@@ -16,11 +16,15 @@
   limitations under the License.
 --><!-- The contents of this file will be loaded for each web application -->
 
-<Context workDir="/Users/iminjae/Desktop/BACK-END/jspwork">
+
+
+
+
+<Context workDir="/Users/iminjae/Desktop/BACK-END/buy9sell9">
 <!--<Context workDir="C:\Users\Notebook\git\team3Project\WebContent\WEB-INF\jspwork">-->
 <!--<Context workDir="C:\Users\dayeo\BACKEND\jspProject\WebContent\WEB-INF\jspwork">-->
 <!--<Context workDir="C:\Users\82109\git\team3Project\WebContent\WEB-INF\jspwork">-->
-  
+<!--<Context workDir="C:\BACKEND\buy9sell9\WebContent\WEB-INF\jspwork">-->
   
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->
@@ -31,6 +35,7 @@
     <!--
     <Manager pathname="" />
     -->
+
 </Context>
 
 
