@@ -17,6 +17,9 @@
 --><!-- The contents of this file will be loaded for each web application -->
 
 
+	
+
+
 
 
 
@@ -25,7 +28,8 @@
 <!--<Context workDir="C:\Users\dayeo\BACKEND\jspProject\WebContent\WEB-INF\jspwork">-->
 <!--<Context workDir="C:\Users\82109\git\team3Project\WebContent\WEB-INF\jspwork">-->
 <!--<Context workDir="C:\BACKEND\buy9sell9\WebContent\WEB-INF\jspwork">-->
-  
+  <!--<Context workDir="C:\workspace\JAVA\backAnd\jspPro1\WebContent\META-INF\context.xml\jspwork">-->
+
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
@@ -37,5 +41,4 @@
     -->
 
 </Context>
-
 
