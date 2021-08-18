@@ -22,8 +22,11 @@
 
     </div>
 
-    <form id="createUser" action=/insert.me" method="post" onsubmit="return joinValidate();">
    
+	<form id="createUser" method="post"  action="<%=request.getContextPath() %>/insert.me"
+			 onSubmit="return joinValidate();">
+
+
       	<input type="text"  id="id" name="id" placeholder="아이디" maxlength="13"> 
       	<button type="button" id="idCheckBtn" onclick="checkId()";>중복 확인 </button>
       	 <br>

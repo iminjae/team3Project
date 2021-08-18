@@ -21,6 +21,22 @@ public class MemberService {
 
 		return loginUser;
 	}
+	public int insertMember(Member mem) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().insertMember(conn,mem);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+		
+		
+	}
 
 
 }

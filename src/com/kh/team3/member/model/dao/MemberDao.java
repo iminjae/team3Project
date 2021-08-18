@@ -73,6 +73,44 @@ public class MemberDao {
 
 	}
 
+	public int insertMember(Connection conn, Member mem) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMember");
+		
+	
+		System.out.println(mem.getUserId());
+		System.out.println(mem.getUserPwd());
+		System.out.println(mem.getUserName());
+		System.out.println(mem.getPhone());
+		System.out.println(mem.getNickname());
+		System.out.println(mem.getAddress());
+		System.out.println(mem.getCategoryno());
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem.getUserId());
+			pstmt.setString(2, mem.getUserPwd());
+			pstmt.setString(3, mem.getUserName());
+			pstmt.setString(4, mem.getPhone());
+			pstmt.setString(5, mem.getNickname());
+			pstmt.setInt(6, mem.getCategoryno());
+			pstmt.setString(7, mem.getAddress());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
+
 
 
 }
