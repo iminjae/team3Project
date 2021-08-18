@@ -17,8 +17,6 @@
 </head>
 <body>
 
-    
-
     <div class="top">
 
         <img src="resources\images\common\logo2.png" id="logo">
