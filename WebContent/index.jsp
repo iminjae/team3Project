@@ -23,7 +23,7 @@
 
     <div class="center">
 
-        <form class="login" method="post"  action="/login.me"
+        <form class="login" method="post"  action="<%=request.getContextPath() %>/login.me"
 			method="post" onSubmit="return LoginValidate();">
         <input type="text"  id="idPath" name="id" placeholder="아이디">  <br>
         <input type="text" id="pwdPath" name="pw" placeholder="비밀번호">    
