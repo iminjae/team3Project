@@ -78,12 +78,8 @@
             Copyright All Rights Reserved.
 
         </div>
-        
-        
-        
 
     </div>
     
-	
 </body>
 </html>
