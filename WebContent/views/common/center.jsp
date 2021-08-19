@@ -1,107 +1,20 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<title> 4989 | HOME </title>
+<title>Insert title here</title>
 
-<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/PIE.js"></script>
-	<script>
-		$(function(){
-			if (window.PIE) {
-				$('.rounded').each(function() {
-								PIE.attach(this);
-				});
-			}
-		});
-	</script >
-	<style>
-		body{min-width:1024px;}
-	</style>
-<![endif]-->
+<link rel="stylesheet" href="..\..\resources\css\main.css">
+<script src="..\..\resources\js\jquery.js"></script>
+<script src="..\..\resources\js\jquery.bxslider.min.js"></script>
+<script src="..\..\resources\js\isotope.pkgd.min.js"></script>
+<script src="..\..\resources\js\main.js"></script>
 </head>
 <body>
 
-	<!--헤더 영역-->
-	<div id="header-wrap">
-		<header class="header-inner">
-			<h1>
-				<a href="#">
-				<picture>
-								<source media="(max-width:800px)" srcset="..\..\resources\images\common\logo-white.png">
-								<img src="..\..\resources\images\common\logo.jpg" alt="사구팔구">
-				</picture>
-				</a>
-			</h1>
-			<p class="mobile-menu-open">
-				<button>
-								<span class="blind">메뉴 열기</span>
-								<span></span>
-								<span></span>
-								<span></span>
-				</button>
-			</p>
-			<div class="mobile-menu-wrap">
-				<div class="mobile-menu-scroll">
-					<ul class="site-choice">
-				
-					</ul>
-					<ul class="util-menu">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">마이 페이지</a></li>
-						<li><a href="#">내 상점</a></li>
-					</ul>
-					<nav id="gnb">
-						<h2 class="blind">메인메뉴</h2>
-						<ul>
-							<li class="m1">
-								<a href="#" >공지사항</a>
-							
-							</li>
-							<li class="m2">
-								<a href="#">거래장터</a>
-								<ul>
-									<li><a href="chatroom.jsp">물물교환 게시판</a></li>
-									<li><a href="#">판매 게시판</a></li>
-								
-								</ul>
-							</li>
-							<li class="m3">
-								<a href="#">커뮤니티</a>
-								<ul>
-									<li><a href="#">무료나눔</a></li>
-									<li><a href="#">자유 게시판</a></li>
-								
-								</ul>
-							</li>
-							<li class="m4 no-sub">
-											<a href="#">기타</a>
-											<ul>
-												<li><a href="#">이벤트</a></li>
-												<li><a href="#">신고/문의</a></li>
-											
-											</ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-				<p class="mobile-menu-close">
-					<button>
-						<span class="blind">메뉴닫기</span>
-						<span></span>
-						<span></span>
-					</button>
-				</p>
-			</div>
-		</header>
-	</div>
-	<!--//헤더 영역-->
-	<!--콘테이너 영역-->
+<!--콘테이너 영역-->
 	<div id="container">
 		<section id="main-visual" class="rounded">
 			<h3 class="blind">HOT BOOK</h3>
@@ -173,14 +86,5 @@
 			</ul>
 		</section>
 	</div>
-
-	<%@include file = "menubar.jsp" %>
-	<%@include file = "center.jsp" %>
-	<%@include file = "footer.jsp" %>
-	
-
-	<!--//콘테이너 영역-->
-	<!--푸터 영역-->
-
 </body>
 </html>
