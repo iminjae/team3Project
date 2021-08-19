@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SellBoardDetailServlet
+ * Servlet implementation class SellBoardInsertServlet
  */
-@WebServlet("/sellDetail.bo")
-public class SellBoardDetailServlet extends HttpServlet {
+@WebServlet("/sellInsert.bo")
+public class SellBoardInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardDetailServlet() {
+    public SellBoardInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,8 +28,7 @@ public class SellBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		RequestDispatcher view =request.getRequestDispatcher("views/sellBoard/sellBoardDetailView.jsp");
+		RequestDispatcher view =request.getRequestDispatcher("views/sellBoard/sellBoardInsertView.jsp");
 	    view.forward(request, response);
 	}
 
