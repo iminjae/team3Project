@@ -28,7 +28,7 @@
     <div class="center">
 
         <form class="login" method="post"  action="<%=request.getContextPath() %>/login.me"
-			method="post" onSubmit="return LoginValidate();">
+			 onSubmit="return LoginValidate();">
         <input type="text"  id="idPath" name="id" placeholder="아이디">  <br>
         <input type="text" id="pwdPath" name="pw" placeholder="비밀번호">    
             <br>
@@ -51,7 +51,7 @@
     <span> | </span>
     <a href="" id="pwdfind">비밀번호 찾기</a>
     <span> | </span>    
-    <a href="" id="createuser">회원가입</a>
+    <a href="views\member\createUser.jsp" id="createuser">회원가입</a>
     
     
 
