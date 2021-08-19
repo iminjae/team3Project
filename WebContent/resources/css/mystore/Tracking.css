@@ -1,0 +1,71 @@
+@charset "UTF-8";
+  /* ---------------- */
+
+  #now{
+    color: white;
+    font-size: 18px;
+  }
+
+  /* 타이틀 */
+
+
+  .title2{
+  	font-size: 22px;
+  	margin-left : 40px;
+  	font-weight : 900;
+  }
+
+  /* 딜리버리 이미지 */
+  .deliveryimg{
+   width: 800px;
+   height: 150px;
+   margin-left: 70px;
+   margin-top: 10px;
+  }
+
+  .named{
+   width: 800px;
+   height: 150px; 
+   margin-left: 50px;
+   margin-bottom: 60px;
+    
+  }
+
+	/*택배 조회*/
+   input[type=text], select[name="t_code"]{
+  	    border : solid 2px #96bbbd;
+        border-radius: 8px;
+        font-size: 18px;
+        margin-left : 10px;
+        width: 230px;
+        height:30px;
+   }
+   
+   
+   .form-group{
+    font-size: 20px;
+     margin-left: 100px;
+     margin-top : -10px;
+  }
+	
+  /* 전송버튼 */
+  
+  #buttongo {
+    background: white;
+    color: rgb(31, 96, 124);
+    font-size: 21px;
+    width: 250px;
+    height: 50px;
+    border-radius: 13px;
+    border-color: rgb(31, 96, 124);
+    float : right;
+    margin-right: 70px;
+    margin-top: -65px;
+  }
+
+  #buttongo:hover {
+    background: #64a2ac;
+    color: #fff;
+    border-color: #fff;
+    transition: all ease-in-out .35s; 
+  }
