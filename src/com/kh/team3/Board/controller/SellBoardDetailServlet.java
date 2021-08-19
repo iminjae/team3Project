@@ -1,4 +1,4 @@
-package com.kh.team3.sellBoard.controller;
+package com.kh.team3.Board.controller;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SellBoardDetailServlet
  */
-@WebServlet("/sellBoardDetail.bo")
+@WebServlet("/sellDetail.bo")
 public class SellBoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -5,13 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="..\..\resources\css\common.css">
-<link rel="stylesheet" href="..\..\resources\css\main.css">
-<script src="..\..\resources\js\jquery.js"></script>
-<script src="..\..\resources\js\jquery.bxslider.min.js"></script>
-<script src="..\..\resources\js\isotope.pkgd.min.js"></script>
-<script src="..\..\resources\js\common.js"></script>
-<script src="..\..\resources\js\main.js"></script>
+<link href="resources\css\common.css" rel="stylesheet" type="text/css">
+<link href="resources\css\main.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
@@ -21,7 +17,7 @@
 				<a href="#">
 				<picture>
 								<source media="(max-width:800px)" srcset="..\..\resources\images\common\logo-white.png">
-								<img src="..\..\resources\images\common\logo.jpg" alt="사구팔구">
+								<img src="resources\images\common\logo.jpg" alt="사구팔구">
 				</picture>
 				</a>
 			</h1>
@@ -54,8 +50,8 @@
 								<a href="#">거래장터</a>
 								<ul>
 									<li><a href="#">물물교환 게시판</a></li>
-									<li><a href="#">판매 게시판</a></li>
-								
+									<li><a href="<%=request.getContextPath()%>/sellList.bo">판매 게시판</a></li>
+
 								</ul>
 							</li>
 							<li class="m3">

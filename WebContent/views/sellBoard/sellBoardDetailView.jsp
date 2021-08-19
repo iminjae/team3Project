@@ -11,6 +11,7 @@
 </head>
 <body>
  <%--메뉴바 --%>
+ <%@ include file = "../common/menubar.jsp" %>
  
  <%--메인 --%>
  <main class="mt-3">

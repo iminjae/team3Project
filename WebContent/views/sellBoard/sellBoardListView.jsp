@@ -18,47 +18,9 @@
   </head>
 
   <body>
-  <!-- 상단 navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Soldout</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">홈</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">전자제품</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">의류</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">식품</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
-    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <!-- 메인 -->
+   <%--메뉴바 --%>
+  <%@ include file = "../common/menubar.jsp" %>
+  <!-- 메인 -->
     <main class="mt-3">
       <div class="container">
         <div class="row mb-2">
@@ -73,7 +35,7 @@
         <div class="row g-3">
           <div class="col-xl-3 col-lg-4 col-md-6">
             <div class="card" style="width: 18rem">
-              <a href="product_detail.html"><img
+              <a href="sellDetail.bo"><img
                 src="http://earlyadopter.godohosting.com/goods_earlyadopter_godo_co_kr/162/1578368250170m0.jpg?cache_ver=2021021601"
                 class="card-img-top"
                 alt="keyboard"
@@ -227,7 +189,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group" role="group">
                     <button type="button" class="btn btn-sm btn-outline-secondary">장바구니 담기</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">주문하기</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" >주문하기</button>
                   </div>
                 <small class="text-dark">119,000원</small>
                 </div>
