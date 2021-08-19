@@ -71,7 +71,7 @@
 							<li class="m2">
 								<a href="#">거래장터</a>
 								<ul>
-									<li><a href="#">물물교환 게시판</a></li>
+									<li><a href="chatroom.jsp">물물교환 게시판</a></li>
 									<li><a href="#">판매 게시판</a></li>
 								
 								</ul>
