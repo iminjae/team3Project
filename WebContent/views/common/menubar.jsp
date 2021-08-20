@@ -57,6 +57,7 @@
                         <ul>
                            <li><a href="#">물물교환 게시판</a></li>
                            <li><a href="<%=request.getContextPath()%>/sellDetail.bo">판매 게시판</a></li>
+                           <li><a href="#">거래후기 게시판</a></li>
 
                         </ul>
                      </li>
