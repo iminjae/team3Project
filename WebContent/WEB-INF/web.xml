@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <!-- 채팅-->
+  <!-- 채팅 매핑한거-->
   <servlet>
   	<servlet-name>ChatSubmitServlet</servlet-name>
   	<servlet-class>chat.ChatSubmitServlet</servlet-class>

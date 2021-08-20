@@ -17,6 +17,9 @@
 </head>
 <body>
 
+
+3
+
     <div class="top">
 
         <img src="resources\images\common\logo2.png" id="logo">
@@ -78,8 +81,15 @@
             Copyright All Rights Reserved.
 
         </div>
+        
+        
+        
 
     </div>
     
+<script>
+
+
+	
 </body>
 </html>

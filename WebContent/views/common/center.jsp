@@ -70,18 +70,18 @@
 			<h3 class="sec-tit-1">BEST BOOK</h3>
 			<ul class="best-book-list grid">
 				<li class="grid-item">
-					<p><a href="#"><img src="..\..\resources\images\main\3.jpg" alt=""></a></p>
-					<p><a href="#"><img src="..\..\resources\images\main\3.jpg" alt=""></a></p>
+					<p><a href="#"><img src="resources\images\main\3.jpg" alt=""></a></p>
+					<p><a href="#"><img src="resources\images\main\3.jpg" alt=""></a></p>
 				</li>
 				<li class="grid-item">
-					<a href="#"><img src="..\..\resources\images\main\3.jpg" alt=""></a>
+					<a href="#"><img src="resources\images\main\3.jpg" alt=""></a>
 				</li>
 				<li class="grid-item">
-					<p><a href="#"><img src="..\..\Wresources\images\main\3.jpg" alt=""></a></p>
-					<p><a href="#"><img src="..\..\resources\images\main\3.jpg" alt=""></a></p>
+					<p><a href="#"><img src="Wresources\images\main\3.jpg" alt=""></a></p>
+					<p><a href="#"><img src="resources\images\main\3.jpg" alt=""></a></p>
 				</li>
 				<li class="grid-item">
-						<a href="#"><img src="..\..\resources\images\main\3.jpg" alt=""></a>
+						<a href="#"><img src="resources\images\main\3.jpg" alt=""></a>
 				</li>
 			</ul>
 		</section>
