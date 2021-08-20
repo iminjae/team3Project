@@ -9,9 +9,9 @@
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="..\..\resources\css\common.css">
-<script src="..\..\resources\js\jquery.js"></script>
-<script src="..\..\resources\js\common.js"></script>
+<link rel="stylesheet" href="resources\css\common.css">
+<script src="resources\js\jquery.js"></script>
+<script src="resources\js\common.js"></script>
 
 
 </head>
@@ -22,7 +22,7 @@
          <h1>
             <a href="#">
             <picture>
-                        <source media="(max-width:800px)" srcset="..\..\resources\images\common\logo-white.png">
+                        <source media="(max-width:800px)" srcset="resources\images\common\logo-white.png">
                         <img src="resources\images\common\logo.jpg" alt="사구팔구">
             </picture>
             </a>
@@ -42,7 +42,7 @@
                </ul>
                <ul class="util-menu">
                   <li><a href="#">Home</a></li>
-                  <li><a href="#">마이 페이지</a></li>
+                  <li><a href="<%=request.getContextPath()%>/MyPageMove.me">마이 페이지</a></li>
                   <li><a href="<%=request.getContextPath()%>/mystore.ms">내 상점</a></li>
                </ul>
                <nav id="gnb">

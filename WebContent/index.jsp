@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,7 @@
 <body>
 
 
-3
+
 
     <div class="top">
 
@@ -31,9 +32,9 @@
         <form class="login" method="post"  action="<%=request.getContextPath() %>/login.me"
 			 onSubmit="return LoginValidate();">
         <input type="text"  id="idPath" name="id" placeholder="아이디">  <br>
-        <input type="text" id="pwdPath" name="pw" placeholder="비밀번호">    
+        <input type="password" id="pwdPath" name="pw" placeholder="비밀번호">    
             <br>
-        <input type="submit" value="로그인" id="path">
+        <input type="submit" value="로그인" id="path" onclick="loginf();">
 
     
 
@@ -48,7 +49,7 @@
 
 <div class="find">
 
-    <a href="" id="idfind">아이디 찾기</a>
+    <a href="" id="idfind" onclick="loginf();">아이디 찾기</a>
     <span> | </span>
     <a href="" id="pwdfind">비밀번호 찾기</a>
     <span> | </span>    
@@ -87,7 +88,8 @@
 
     </div>
     
-<script>
+
+
 
 
 	
