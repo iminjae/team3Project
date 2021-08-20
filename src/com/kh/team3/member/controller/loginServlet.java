@@ -44,20 +44,25 @@ public class loginServlet extends HttpServlet {
 		String originPwd = request.getParameter("pw");
 		
 		Member loginUser = new MemberService().loginMember(userId, userPwd);
-	
+		
 		System.out.println("loginUser : " + loginUser);
 		if(loginUser !=null) {  //로그인 성공
 			HttpSession session = request.getSession();
+			System.out.println("%%%%%%%%%%%%%%%%%%%%%%");
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("originPwd", originPwd);
+			Member test = (Member)request.getAttribute("loginUser");
+			System.out.println(loginUser);
 			System.out.println("session" + session);
-			
-			response.sendRedirect("views/common/mainPage.jsp");
+	
+			RequestDispatcher view = request.getRequestDispatcher("views/common/mainPage.jsp");
+			view.forward(request, response);
+			//response.sendRedirect("views/common/mainPage.jsp");
 			
 		}else {
-			request.setAttribute("msg", "로그인에 실패하였습니다");
+			request.setAttribute("msg", "true");
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 		}
 		
