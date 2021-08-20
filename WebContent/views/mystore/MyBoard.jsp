@@ -67,7 +67,7 @@
               <th width="400">Title</th>
               <th width="100">Author</th>
               <th width="200">CreatDate</th>
-              <th width="100">Like</th>
+              <th colspan=2 width="100">Like</th>
            </tr>
         </thead>
         <tbody>
@@ -77,6 +77,7 @@
                <td>admin</td>
                <td>2020-02-10</td>
                <td>10</td>
+               <td>휴</td>
             </tr>
             <%-- 
             <% if(list.isEmpty()){ %>
@@ -101,6 +102,8 @@
     </div>
     
     <br><br>
+    
+    
 
    <!-- 검색기능 -->
 

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
 
@@ -18,6 +19,7 @@
 <body>
 
 <div id="header-wrap">
+
       <header class="header-inner">
          <h1>
             <a href="#">
@@ -55,9 +57,8 @@
                      <li class="m2">
                         <a href="#">거래장터</a>
                         <ul>
-                           <li><a href="#">물물교환 게시판</a></li>
+                           <li><a href="<%=request.getContextPath()%>/exchangeServlet.es">챗</a></li>
                            <li><a href="<%=request.getContextPath()%>/sellDetail.bo">판매 게시판</a></li>
-
                         </ul>
                      </li>
                      <li class="m3">
@@ -72,8 +73,7 @@
                                  <a href="#">기타</a>
                                  <ul>
                                     <li><a href="#">이벤트</a></li>
-                                    <li><a href="#">신고/문의</a></li>
-                                 
+                                    <li><a href="#">신고/문의</a></li>                    
                                  </ul>
                      </li>
                   </ul>
@@ -89,6 +89,7 @@
          </div>
       </header>
    </div>
+
 
 </body>
 </html>
