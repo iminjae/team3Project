@@ -6,15 +6,14 @@
 <meta charset="UTF-8">
 <title>MyStore</title>
 <link href="resources/css/mystore/MyStore.css" rel="stylesheet" type="text/css">
-<link href="resources\css\common.css" rel="stylesheet" type="text/css">
-<link href="resources\css\main.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
+	
+	<%@include file ="../common/menubar.jsp"%>
 	
 	 <p class="title">MY STORE</p>
 	 <br>
@@ -38,6 +37,21 @@
       <b>배송 조회</b>
     </button>
    </div>
+   
+   <!-- 리뷰다 -->
+   <button onclick="makeReview();">리뷰 쓰기</button>
+   <script>
+	   function makeReview(){
+		   	var _width = '500';
+		    var _height = '600';
+		 
+		    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+		    var _left = Math.ceil(( window.screen.width - _width )/2);
+		    var _top = Math.ceil(( window.screen.height - _height )/2); 
+		 
+		    window.open('<%= request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+		}
+   </script>
     
   
 </body>
