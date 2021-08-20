@@ -74,8 +74,7 @@
                                  <a href="#">기타</a>
                                  <ul>
                                     <li><a href="#">이벤트</a></li>
-                                    <li><a href="#">신고/문의</a></li>
-                                 
+                                    <li><a href="#">신고/문의</a></li>                    
                                  </ul>
                      </li>
                   </ul>

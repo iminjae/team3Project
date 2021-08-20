@@ -1,4 +1,4 @@
-package com.kh.team3.Board.controller;
+package com.kh.team3.sellBoard.controller;
 
 import java.io.IOException;
 

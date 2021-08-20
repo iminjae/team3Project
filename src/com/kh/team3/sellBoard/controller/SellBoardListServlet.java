@@ -1,6 +1,7 @@
-package com.kh.team3.Board.controller;
+package com.kh.team3.sellBoard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,17 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.team3.sellBoard.model.service.BoardService;
+import com.kh.team3.sellBoard.model.vo.Board;
+
 /**
- * Servlet implementation class SellBoardDetailServlet
+ * Servlet implementation class SellBoardListServlet
  */
-@WebServlet("/sellDetail.bo")
-public class SellBoardDetailServlet extends HttpServlet {
+@WebServlet("/sellList.bo")
+public class SellBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardDetailServlet() {
+    public SellBoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +32,11 @@ public class SellBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Board> list = new BoardService().selectThList();
+		System.out.println("servlet : " + list);
 		
-		RequestDispatcher view =request.getRequestDispatcher("views/sellBoard/sellBoardDetailView.jsp");
-	    view.forward(request, response);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/sellBoard/sellBoardListView.jsp").forward(request, response);
 	}
 
 	/**
