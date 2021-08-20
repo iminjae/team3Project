@@ -10,16 +10,8 @@
 
 </head>
 <body>
-
-	
-
 	<%@include file = "menubar.jsp" %>
 	<%@include file = "center.jsp" %>
 	<%@include file = "footer.jsp" %>
-	
-
-	<!--//콘테이너 영역-->
-	<!--푸터 영역-->
-
 </body>
 </html>

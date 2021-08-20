@@ -147,7 +147,7 @@ Mobile:767px;
     #gnb ul li a{color: inherit;font-size: inherit;text-align: left;}
     .util-menu a, #gnb > ul > li > a, #gnb ul ul a{height:40px;line-height:40px;display: block;padding:0 15px;}
     .util-menu a,
-    #gnb > ul > li > a{border-bottom: 1px solid #d00;position: relative;}
+    #gnb > ul > li > a{border-bottom: 1px solid rgb(150, 187, 180); position: relative;}
     #gnb > ul > li > a.on{background-color: #222;border-bottom: 1px solid #222;}
     #gnb > ul > li > a:after{
         content: "";
