@@ -1,5 +1,4 @@
-
-        label{
+ label{
             font-weight: bold;
             font-size: large;
             
@@ -9,7 +8,7 @@
            
            width: 400px;
            height: 45px;
-           margin-top: 30px;
+           margin-top: 15px;
 
        }
 
@@ -58,8 +57,13 @@
         width: 20px;
         height: 20px;
      }
-     
-     #idCheckBtn{
-     	argin-left:20px;
-     
+
+     #id{
+        margin-left: 105px;
      }
+
+     #idCheckBtn{
+         width: 100px;
+         height: 45px;
+     }
+
