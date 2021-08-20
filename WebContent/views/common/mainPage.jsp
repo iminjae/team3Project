@@ -10,7 +10,6 @@
 
 </head>
 <body>
-
 	<%@include file = "menubar.jsp" %>
 	<%@include file = "center.jsp" %>
 	<%@include file = "footer.jsp" %>
