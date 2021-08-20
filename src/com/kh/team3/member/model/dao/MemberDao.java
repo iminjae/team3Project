@@ -16,6 +16,7 @@ import com.kh.team3.member.model.vo.Member;
 public class MemberDao {
 
 	private Properties prop = new Properties();
+	
 
 	public MemberDao() {
 		String fileName = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
@@ -56,7 +57,6 @@ public class MemberDao {
 						 rset.getString("USER_ID"), rset.getString("USER_PWD"),
 						rset.getString("USER_NAME"), rset.getString("PHONE"), rset.getString("NICKNAME"),
 						rset.getDouble("STARPOINT"), rset.getInt("CATEGORY_NO"), rset.getString("ADDRESS"), rset.getString("STATUS")
-					
 					
 				);
 			}
