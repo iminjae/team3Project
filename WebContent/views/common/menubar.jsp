@@ -10,9 +10,9 @@
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="..\..\resources\css\common.css">
-<script src="..\..\resources\js\jquery.js"></script>
-<script src="..\..\resources\js\common.js"></script>
+<link rel="stylesheet" href="resources\css\common.css">
+<script src="resources\js\jquery.js"></script>
+<script src="resources\js\common.js"></script>
 
 
 </head>
@@ -24,7 +24,7 @@
          <h1>
             <a href="#">
             <picture>
-                        <source media="(max-width:800px)" srcset="..\..\resources\images\common\logo-white.png">
+                        <source media="(max-width:800px)" srcset="resources\images\common\logo-white.png">
                         <img src="resources\images\common\logo.jpg" alt="사구팔구">
             </picture>
             </a>
@@ -44,22 +44,20 @@
                </ul>
                <ul class="util-menu">
                   <li><a href="#">Home</a></li>
-                  <li><a href="#">마이 페이지</a></li>
+                  <li><a href="<%=request.getContextPath()%>/MyPageMove.me">마이 페이지</a></li>
                   <li><a href="<%=request.getContextPath()%>/mystore.ms">내 상점</a></li>
                </ul>
                <nav id="gnb">
                   <h2 class="blind">메인메뉴</h2>
                   <ul>
                      <li class="m1">
-                        <a href="#" >공지사항</a>
-                     
+                     	<a href="<%=request.getContextPath()%>/Notice_USER.NU">공지사항</a>
                      </li>
                      <li class="m2">
                         <a href="#">거래장터</a>
                         <ul>
-                           <li><a href="#">물물교환 게시판</a></li>
-                           <li><a href="<%=request.getContextPath()%>/sellList.bo">판매 게시판</a></li>
-
+                           <li><a href="<%=request.getContextPath()%>/exchangeServlet.es">챗</a></li>
+                           <li><a href="<%=request.getContextPath()%>/sellDetail.bo">판매 게시판</a></li>
                         </ul>
                      </li>
                      <li class="m3">
