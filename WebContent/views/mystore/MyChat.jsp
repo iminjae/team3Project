@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 <link href="resources/css/mystore/SideBar.css" rel="stylesheet" type="text/css">
 <link href="resources/css/mystore/MyChat.css" rel="stylesheet" type="text/css">
-<link href="resources\css\common.css" rel="stylesheet" type="text/css">
-<link href="resources\css\main.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
@@ -24,6 +22,7 @@
       <div id="menu">
         <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
+        <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
         <button id="now" onclick="location.href='<%=request.getContextPath()%>/chat.ms'">1:1 채팅내역</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
       </div>

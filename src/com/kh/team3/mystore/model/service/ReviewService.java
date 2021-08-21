@@ -1,4 +1,5 @@
-package com.kh.team3.review.model.service;
+package com.kh.team3.mystore.model.service;
+
 
 import static com.kh.team3.common.JDBCTemplate.close;
 import static com.kh.team3.common.JDBCTemplate.commit;
@@ -6,9 +7,14 @@ import static com.kh.team3.common.JDBCTemplate.getConnection;
 import static com.kh.team3.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
-import com.kh.team3.review.model.dao.ReviewDao;
-import com.kh.team3.review.model.vo.Review;
+
+import com.kh.team3.mystore.model.dao.ReviewDao;
+import com.kh.team3.mystore.model.vo.Review;
+
+
+
 
 public class ReviewService {
 	
@@ -28,6 +34,15 @@ public class ReviewService {
 		close(conn);
 		
 		return result;
+	}
+
+	public ArrayList<Review> selectList(String loginUserId) {
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new ReviewDao().selectList(conn, loginUserId);
+		close(conn);
+		
+		return list;	
 	}
 
 }

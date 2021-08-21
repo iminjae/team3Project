@@ -37,6 +37,7 @@ public class SellBoardListServlet extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/sellBoard/sellBoardListView.jsp").forward(request, response);
+		System.out.println("리스트서블릿도는중");
 	}
 
 	/**

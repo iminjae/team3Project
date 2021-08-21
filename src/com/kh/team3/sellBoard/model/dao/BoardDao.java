@@ -133,6 +133,7 @@ public class BoardDao {
 	         
 	         rset = pstmt.executeQuery();
 	         list = new ArrayList<>();
+	         
 	         while(rset.next()) {
 	        	
 	        	Attachment at = new Attachment();
@@ -155,6 +156,7 @@ public class BoardDao {
 
 	public ArrayList<Board> selectThList(Connection conn) {
 		  ArrayList<Board> list = new ArrayList<>();
+		  Board b = null;
 	      
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
@@ -174,13 +176,11 @@ public class BoardDao {
 
 	         while(rset.next()) {
 	        	// 생성자 없어서 건건이 add 해서 객체 생성
-	        	Board b = new Board();
-	        	b.setBoardNo(rset.getInt("BOARD_NO"));
-	        	b.setBoardTitle(rset.getString("BOARD_TITLE"));
-	        	b.setCount(rset.getInt("BOARD_COUNT"));
-	        	b.setTitleImg(rset.getString("CHANGE_NAME"));
-	        	
-	        	
+	        	 b = new Board(rset.getInt("BOARD_NO"),
+						   rset.getString("BOARD_TITLE"),
+						   rset.getInt("BOARD_COUNT"),
+						   rset.getString("CHANGE_NAME")
+						   );
 	            
 	        	list.add(b);
 //	            System.out.println("dao list : " + list);

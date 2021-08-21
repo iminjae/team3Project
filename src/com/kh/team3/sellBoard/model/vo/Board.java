@@ -60,6 +60,15 @@ public class Board {
 		this.status = status;
 		this.price = price;
 	}
+	
+	public Board(int boardNo, String boardTitle, int bCnt, String titleImg) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.bCnt = bCnt;
+		this.titleImg = titleImg;
+
+	}
 
 
 

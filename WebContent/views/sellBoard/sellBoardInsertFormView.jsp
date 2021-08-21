@@ -126,12 +126,7 @@
     </main>
    
    
-    <!-- 하단부-->
-    <footer class="mt-5 py-5 bg-dark">
-        <div class="col-12 col-md">
-          <small class="d-block mb-3 text-muted">&copy; 2021 BUY9SELL9</small>
-        </div>
-    </footer>
+ 
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
