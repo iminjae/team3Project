@@ -1,6 +1,7 @@
 package com.kh.team3.chat.service;
 
 
+import static com.kh.team3.common.JDBCTemplate.close;
 import static com.kh.team3.common.JDBCTemplate.commit;
 import static com.kh.team3.common.JDBCTemplate.getConnection;
 import static com.kh.team3.common.JDBCTemplate.rollback;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 
 import com.kh.team3.chat.dao.ChatDao;
 import com.kh.team3.chat.vo.Chat;
+import com.kh.team3.sellBoard.model.dao.BoardDao;
+import com.kh.team3.sellBoard.model.vo.Board;
 
 
 
@@ -46,18 +49,29 @@ public class ChatService {
 		
 		
 	}
-	
-	public ArrayList<Chat> ChatList(String nowTime) {
-		
+
+	public static  ArrayList<Chat> getChatList() {
+		// TODO Auto-generated method stub
 		Connection conn = getConnection();
+		ArrayList<Chat> list = new ChatDao().getChatList(conn);
+		close(conn);
 		
-		ArrayList<Chat> result = new ChatDao().ChatList(conn,nowTime);
-		
-		
-		return result;
-		
-		
+		return list;
 	}
+
+	public static ArrayList<Chat> getChatListByRecent(String chatNo) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		ArrayList<Chat> list = new ChatDao().getChatListByRecent(conn, chatNo);
+		close(conn);
+		
+		return list;
+	}
+	
+	
+	
+	
+	
 
 
 }

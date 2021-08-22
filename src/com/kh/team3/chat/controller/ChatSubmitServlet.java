@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.chat.dao.ChatDao;
+
 import com.kh.team3.chat.service.ChatService;
 
 /**
@@ -23,12 +23,11 @@ public class ChatSubmitServlet extends HttpServlet {
 		String chatName = request.getParameter("chatName");
 		String chatContent = request.getParameter("chatContent");
 		
-		System.out.println(chatName);
-		System.out.println(chatContent);
+		
 		
 		if(chatName == null || chatContent == null || chatContent.equals("")) {
 			response.getWriter().write("오류");
-			System.out.println("서블릿에 널값 있어서 오류남");
+
 			
 		}else {
 			response.getWriter().write(new ChatService().submit(chatName,chatContent) + "");

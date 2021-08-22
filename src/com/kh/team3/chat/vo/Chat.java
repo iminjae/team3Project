@@ -1,13 +1,30 @@
 package com.kh.team3.chat.vo;
 
 public class Chat {
+	
+	
+	private int chatNo;
 	private String chatName;
 	private String chatContent;
 	private String chatTime;
 	
 	public Chat() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub-
 	}
+	
+	
+
+	public int getChatNo() {
+		return chatNo;
+	}
+
+
+
+	public void setChatNo(int chatNo) {
+		this.chatNo = chatNo;
+	}
+
+
 
 	public String getChatName() {
 		return chatName;
