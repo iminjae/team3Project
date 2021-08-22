@@ -25,6 +25,31 @@ public class Board {
 
 	
 
+	public Board(int boardNo, String boardTitle, String boardContent, String userId) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.userId = userId;
+	}
+
+
+
+	public Board(int boardNo, String boardTitle, String boardContent, int boardCount, Date createDate, int likeCount,
+			int categoryNo, String userId) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardCount = boardCount;
+		this.createDate = createDate;
+		this.likeCount = likeCount;
+		this.categoryNo = categoryNo;
+		this.userId = userId;
+	}
+
+
+
 	public Board(int boardNo, String boardTitle, String boardContent, String boardStatus, int boardCount,
 			Date createDate, int likeCount, String status, int categoryNo, String userId, int boardType) {
 		super();
@@ -43,14 +68,15 @@ public class Board {
 
 
 
-	public Board(int boardNo, String boardTitle, String boardContent, int categoryNo, String userId, int boardType) {
+
+	public Board(int boardNo, String boardTitle, int boardCount, Date createDate, int categoryNo, String userId) {
 		super();
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
-		this.boardContent = boardContent;
+		this.boardCount = boardCount;
+		this.createDate = createDate;
 		this.categoryNo = categoryNo;
 		this.userId = userId;
-		this.boardType = boardType;
 	}
 
 
@@ -58,6 +84,7 @@ public class Board {
 	public int getBoardNo() {
 		return boardNo;
 	}
+
 
 
 
