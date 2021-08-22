@@ -83,4 +83,27 @@ public class BoardService {
 
 	}
 
+	public ArrayList<Reply> selectRList(int bNo) {
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new BoardDao().selectRList(conn, bNo);
+		close(conn);
+		return list;
+	}
+
+	public int insertReply(Reply r) {
+		Connection conn = getConnection();
+
+		int result = new BoardDao().insertReply(conn, r);
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
+
+	}
+
 }
