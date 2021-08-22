@@ -1,7 +1,6 @@
 package com.kh.team3.sellBoard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.sellBoard.model.service.BoardService;
-import com.kh.team3.sellBoard.model.vo.Attachment;
-import com.kh.team3.sellBoard.model.vo.Board;
+
+
 
 /**
- * Servlet implementation class SellBoardDetailServlet
+ * Servlet implementation class SellBoardDeleteServlet
  */
-@WebServlet("/sellDetail.bo")
-public class SellBoardDetailServlet extends HttpServlet {
+@WebServlet("/sellDelete.bo")
+public class SellBoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardDetailServlet() {
+    public SellBoardDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +32,17 @@ public class SellBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		System.out.println("SellBoardDetailServlet :" + bNo);
-		
-		Board b = new BoardService().selectBoard(bNo);
-
-		System.out.println("SellBoardDetailServlet :" + b);
-		
-		ArrayList<Attachment> fileList = new BoardService().selectThumbnail(bNo);
-		System.out.println("SellBoardDetailServlet :" + fileList);		
-
-	
-		if(b != null) {
-			request.setAttribute("b", b);
-			request.setAttribute("fileList", fileList);
-			request.getRequestDispatcher("views/sellBoard/sellBoardDetailView.jsp").forward(request, response);
+		int result = new BoardService().deleteBoard(bNo);
+		if(result > 0) {
+			response.sendRedirect("sellList.bo");
 		}else {
-			request.setAttribute("msg", "게시글 상세보기에 실패했습니다");
+			request.setAttribute("msg", "게시글 삭제에 실패했습니다");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
-		}		
+		}
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -63,4 +50,5 @@ public class SellBoardDetailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }
