@@ -319,10 +319,10 @@ public class BoardDao {
 
 			rset = pstmt.executeQuery();
 			list = new ArrayList<>();
-			while (rset.next()) {
+			while (rset.next()) {//M.NICKNAME ?
 				list.add(new Reply(rset.getInt("REPLY_NO"), 
 						rset.getString("REPLY_CONTENT"), 
-						rset.getString("USER_ID"), //M.NICKNAME ?
+						rset.getString("USER_ID"),
 						rset.getDate("CREATE_DATE")));
 			}
 		} catch (SQLException e) {
