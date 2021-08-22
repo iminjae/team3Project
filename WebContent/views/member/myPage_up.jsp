@@ -8,7 +8,7 @@ String userName = ((Member)request.getSession().getAttribute("loginUser")).getUs
 String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
 String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNickname();
 String address = ((Member)request.getSession().getAttribute("loginUser")).getAddress();
-
+String message = (String)request.getSession().getAttribute("msg");
 
 %>
 <!doctype html>
@@ -60,6 +60,7 @@ String address = ((Member)request.getSession().getAttribute("loginUser")).getAdd
     height: 50px;
     background-color: rgb(201, 210, 214);
     color: white;
+    margin-top : 30px;
     margin-left: 500px;
 
 	#exampleInputEmail1{
@@ -69,6 +70,9 @@ String address = ((Member)request.getSession().getAttribute("loginUser")).getAdd
   }
   
 </style>  
+
+
+
   <body>
 	<%@include file = "..\common\menubar.jsp" %>
 
@@ -79,47 +83,49 @@ String address = ((Member)request.getSession().getAttribute("loginUser")).getAdd
     <button type="button" id ="one" class="list-group-item list-group-item-action" aria-current="true">
       MyPage Menu
     </button> 
-    <a href="<%=request.getContextPath()%>/MyPageMove.me"><button type="button" class="list-group-item list-group-item-action">탈퇴하기</button> </a>
-    <a href="<%=request.getContextPath()%>/MyPageUpdateMove.me"> <button type="button" class="list-group-item list-group-item-action">회원정보 수정</button> </a>
-    <a href="<%=request.getContextPath()%>/MyPageMove.me"> <button type="button" class="list-group-item list-group-item-action" disabled>관리자 게시판</button> </a>
+   <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
+   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one"></button>
+   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
+	<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"></button> 
 
+</form>
 
   </div>
 
  <div class="del">
  
-	<form>
+		<form id="updateUser" method="post"  action="<%=request.getContextPath() %>/update.me">
+
   <div class="form-group">
+  
+    <input type="hidden" class="form-control" name="id" id="exampleInputEmail1" value="<%=userId%>">
+  
     <label for="exampleInputEmail1">아이디</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="<%=userId%>" disabled>
+    <input type="text" class="form-control" name="id2" id="exampleInputEmail1" placeholder="<%=userId%>" value="<%=userId%>" disabled>
     
     <label for="exampleInputEmail1">이름</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="<%=userName%>">
+    <input type="text" class="form-control"  name="name" id="exampleInputEmail1" placeholder="<%=userName%>">
     
     <label for="exampleInputEmail1">PHONE</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="<%=phone%>">
+    <input type="text" class="form-control"  name="phone" id="exampleInputEmail1" placeholder="<%=phone%>">
     
     <label for="exampleInputEmail1">닉네임</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="<%=nickName%>">
+    <input type="text" class="form-control"  name="nick" id="exampleInputEmail1" placeholder="<%=nickName%>">
     
     <label for="exampleInputEmail1">주소</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="<%=address%>">
+    <input type="text" class="form-control"  name="addr" id="exampleInputEmail1" placeholder="<%=address%>">
   </div>
   
-  <div class="form-group">
-    <label for="exampleInputFile">파일 업로드</label>
-    <input type="file" id="exampleInputFile">
- 
-  </div>
-
-      <input type="submit" value="탈퇴하기" id="xkfxhl">
+	
+      <input type="submit" value="수정하기" id="xkfxhl" onclick="al();">
 </form>
   </div>
 
 </div>
+	
 
 
- 
+ 	
  
 
     <!-- Optional JavaScript; choose one of the two! -->

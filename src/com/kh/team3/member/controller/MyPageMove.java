@@ -39,7 +39,7 @@ public class MyPageMove extends HttpServlet {
 		
 		System.out.println("session = " + session);
 		
-		
+	
 		RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_del.jsp");
 		view.forward(request, response);
 	}
