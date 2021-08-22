@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.team3.member.model.vo.Member"%>
+    import = "java.util.ArrayList, com.kh.team3.eventBoard.model.vo.*" pageEncoding="UTF-8"%>
     
-<%
-String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUserPwd();
-String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
-String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
-String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNickname();
-String address = ((Member)request.getSession().getAttribute("loginUser")).getAddress();
-String message = (String)request.getSession().getAttribute("msg");
-
+<% 
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+%>
+  <%   
+   String contextPath = request.getContextPath();
 %>
 <!doctype html>
 <html>
@@ -60,19 +56,38 @@ String message = (String)request.getSession().getAttribute("msg");
     height: 50px;
     background-color: blueviolet;
     color: white;
-    margin-top : 30px;
     margin-left: 500px;
 
-	#exampleInputEmail1{
-		margin-top : 30px;
+	#button{
+		width:100px;
 	}
-
-  }
+	
+	.outer{
+		width:1000px;
+		height:700px;
+		background:black;
+		color:white;
+		margin:auto;
+		margin-top:50px;
+	}
+	.listArea{
+		width:760px;
+		height:550px;
+		margin:auto;
+	}
+	.thumbnail{
+		display:inline-block;
+		width:220px;
+		border:1px solid white;
+		margin:10px;
+	}
+	.thumbnail:hover{
+		opacity:0.7;
+		cursor:pointer;
+	}
+  
   
 </style>  
-
-
-
   <body>
 	<%@include file = "..\common\menubar.jsp" %>
 
@@ -83,7 +98,7 @@ String message = (String)request.getSession().getAttribute("msg");
     <button type="button" id ="one" class="list-group-item list-group-item-action" aria-current="true">
       MyPage Menu
     </button> 
-   <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
+    <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
    <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one"></button>
    <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
 	<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"></button> 
@@ -92,41 +107,31 @@ String message = (String)request.getSession().getAttribute("msg");
 
   </div>
 
- <div class="del">
- 
-		<form id="updateUser" method="post"  action="<%=request.getContextPath() %>/update.me">
-
-  <div class="form-group">
-  
-    <input type="hidden" class="form-control" name="id" id="exampleInputEmail1" value="<%=userId%>">
-  
-    <label for="exampleInputEmail1">아이디</label>
-    <input type="text" class="form-control" name="id2" id="exampleInputEmail1" placeholder="<%=userId%>" value="<%=userId%>" disabled>
-    
-    <label for="exampleInputEmail1">이름</label>
-    <input type="text" class="form-control"  name="name" id="exampleInputEmail1" placeholder="<%=userName%>">
-    
-    <label for="exampleInputEmail1">PHONE</label>
-    <input type="text" class="form-control"  name="phone" id="exampleInputEmail1" placeholder="<%=phone%>">
-    
-    <label for="exampleInputEmail1">닉네임</label>
-    <input type="text" class="form-control"  name="nick" id="exampleInputEmail1" placeholder="<%=nickName%>">
-    
-    <label for="exampleInputEmail1">주소</label>
-    <input type="text" class="form-control"  name="addr" id="exampleInputEmail1" placeholder="<%=address%>">
-  </div>
-  
-	
-      <input type="submit" value="수정하기" id="xkfxhl" onclick="al();">
-</form>
-  </div>
-
-</div>
+	<div class="outer">
+		<br>
+		<h2 align="center">사진 게시판</h2>
+		<br>
+		
+		<div class="listArea">
+			<%for(Board b : list){ %>
+			<div class="thumbnail" align="center">
+				<input type="hidden" value="<%=b.getBoardNo()%>">
+				<img src="<%=contextPath %>/resources/board_upfiles/<%= b.getTitleImg() %>" width="200px" height="150px"> <br>
+				<p>
+					No.<%= b.getBoardNo() %>  <%=b.getBoardTitle() %> <br>
+					조회수 : <%=b.getBoardCount() %>
+				</p>
+			</div>
+			<%} %>
 	
 
-
- 	
  
+		<div>
+		
+		<button id="button" onclick="location.href='<%=request.getContextPath()%>/insertForm.th'">작성하기</button>
+		
+		</div>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 

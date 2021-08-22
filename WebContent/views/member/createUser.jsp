@@ -39,7 +39,7 @@
 			 onSubmit="return joinValidate();">
 
 
-      	<input type="text"  id="id" name="id" placeholder="아이디" maxlength="13"> 
+      	<input type="text"  id="id" name="id" placeholder="아이디" maxlength="13" required> 
       	<button type="button" id="idCheckBtn" onclick="checkId();">중복 확인 </button>
       	 <br>
     	   <span id="idspan"></span>  
@@ -111,59 +111,46 @@
 </div>
 
 
-   <script>
+ <script type="text/javascript">
 	
-	function joinValidate(){
-		
-		if(!(/^[a-z][a-z\d]{3,11}$/i.test($("#createUser input[name=id]").val()))){
-			$("#createUser input[name=id]").focus();
-	        return false;
-		}
-		
-		if($("#createUser input[name=pwd]").val() != $("#createUser input[name=pwdcheck]").val()){
-			$("#pwcheckspan").text("비밀번호 불일치").css("color", "red");
-			return false;			
-		}
-		
 
-		 return true;
-		
-		
-	}
  
    function checkId(){
-      var userId = $("#createUser input[name=id]");
-      
+      var userId = $("#id");
+      console.log(userId.val());
       if(userId.val() ==""){
          alert("아이디를 입력해주세요");
          console.log("아이디를 입력해주세요");
-         return false;
       }
-      
-      $.ajax({
-         url : "idCheck.me",
-         type: "post",
-         data : {userId : userId.val()},
-         success:function(result){
-            if(result == "fail"){
-               alert("사용할 수 없는 아이디 입니다.")
-               console.log("사용할 수 없는 아이디입니다.");
-               }else{
-                  if(confirm("사용가능한 아이디입니다 . 사용하시겠습니까?")){
-                     userId.attr("readonly,ture");
-                     $("#path").removeAttr("disabled");
-                  }else{
-                     userId.focus();
-                  }
-               }
-         },
-         error:function(){
-            console.log("서버 통신 실패");
-         }
-         
-      
-      
-      })
+  	$.ajax({
+		url : "idCheck.me",
+		type: "post",
+		data : {userId : "userId.val()"},
+		success:function(result){
+			if(result == "fail"){
+				
+				alert("사용할 수 없는 아이디 입니다.")
+				console.log("사용할 수 없는 아이디입니다.");
+				}else{
+					if(confirm("사용가능한 아이디입니다 . 사용하시겠습니까?")){
+						userId.attr("readonly,ture");
+						$("#path").removeAttr("disabled");
+					}else{
+						userId.focus();
+					}
+				}
+		},
+		error:function(){
+			console.log("서버 통신 실패");
+			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+
+		
+		}
+		
+	
+	
+	})
+     
    }
    </script>
 

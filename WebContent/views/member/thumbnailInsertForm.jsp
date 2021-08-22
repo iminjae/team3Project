@@ -4,11 +4,7 @@
 <%
 String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUserPwd();
-String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
-String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
 String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNickname();
-String address = ((Member)request.getSession().getAttribute("loginUser")).getAddress();
-String message = (String)request.getSession().getAttribute("msg");
 
 %>
 <!doctype html>
@@ -60,19 +56,37 @@ String message = (String)request.getSession().getAttribute("msg");
     height: 50px;
     background-color: blueviolet;
     color: white;
-    margin-top : 30px;
-    margin-left: 500px;
-
-	#exampleInputEmail1{
-		margin-top : 30px;
-	}
 
   }
   
+  .outer {
+	width: 600px;
+	height: 650px;
+	background: white;
+	color: black;
+	 float: left;
+	 display :block;
+	 margin-left : 30px;
+	
+}
+
+#insertForm>table {
+	border: 1px solid white;
+}
+
+#insertForm input, #insertForm textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#insertForm img {
+	border: 1px dashed darkgray;
+}
+
+#a{
+	margin-top:25px;
+}
 </style>  
-
-
-
   <body>
 	<%@include file = "..\common\menubar.jsp" %>
 
@@ -83,51 +97,106 @@ String message = (String)request.getSession().getAttribute("msg");
     <button type="button" id ="one" class="list-group-item list-group-item-action" aria-current="true">
       MyPage Menu
     </button> 
-   <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
+    <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
    <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one"></button>
    <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
 	<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"></button> 
 
 </form>
-
   </div>
 
- <div class="del">
- 
-		<form id="updateUser" method="post"  action="<%=request.getContextPath() %>/update.me">
 
-  <div class="form-group">
-  
-    <input type="hidden" class="form-control" name="id" id="exampleInputEmail1" value="<%=userId%>">
-  
-    <label for="exampleInputEmail1">아이디</label>
-    <input type="text" class="form-control" name="id2" id="exampleInputEmail1" placeholder="<%=userId%>" value="<%=userId%>" disabled>
-    
-    <label for="exampleInputEmail1">이름</label>
-    <input type="text" class="form-control"  name="name" id="exampleInputEmail1" placeholder="<%=userName%>">
-    
-    <label for="exampleInputEmail1">PHONE</label>
-    <input type="text" class="form-control"  name="phone" id="exampleInputEmail1" placeholder="<%=phone%>">
-    
-    <label for="exampleInputEmail1">닉네임</label>
-    <input type="text" class="form-control"  name="nick" id="exampleInputEmail1" placeholder="<%=nickName%>">
-    
-    <label for="exampleInputEmail1">주소</label>
-    <input type="text" class="form-control"  name="addr" id="exampleInputEmail1" placeholder="<%=address%>">
-  </div>
-  
+		<div class="outer">
+		<br>
+		<h2 align="center">이벤트 게시판 작성</h2>
+		<br>
+
+
+
+		<form id="insertForm" action="<%=request.getContextPath()%>/insert.th" method="post" enctype="multipart/form-data"
+			>
+			<input type="hidden" name="writer" value="<%=userId%>">
+			
+			
+					
+			<label for="exampleFormControlInput1" class="form-label"> 제목 </label>
+     		 <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="">
+					
+			<label for="exampleFormControlInput1" class="form-label" id="a"> 내용 </label>
+			<textarea class="form-control" rows="3"   name="content" style="resize: none;"></textarea>
+				
+					
+			<br><br>
+			<label for="exampleFormControlInput1" class="form-label"> 파일 첨부 </label><br>
+     		
+					<img id="titleImg"  width="150" height="120">
+					
+			<div id="fileArea">
+				<input type="file" name="file1" id="file1"
+					onchange="loadImg(this, 1);">
+			</div>
+
+			<br>
+
+			<div class="btns" align="center">
+
+				<input type="submit" id="xkfxhl" value="작성하기">
+			</div>
+		</form>
+
+	</div>
+
+	<script>
+		$(function() {
+			$("#fileArea").hide();
+
+			$("#titleImg").click(function() {
+				$("#file1").click();
+			});
+
+		});
+		function loadImg(inputFile, num){
+			if(inputFile.files.length == 1){ //파일 존재하면
+				var reader = new FileReader();
+				reader.readAsDataURL(inputFile.files[0]); //파일을 읽어들이는 메소드
+				reader.onload = function(e){
+					switch (num) {
+					case 1: $("#titleImg").attr("src", e.target.result); break;
+					case 2: $("#contentImg1").attr("src", e.target.result); break;
+					case 3: $("#contentImg2").attr("src", e.target.result); break;
+					case 4: $("#contentImg3").attr("src", e.target.result); break;
+					default: break;
+					}
+				}
+			}
+		}
+		
+	</script>
+		
+
+
+<script>
 	
-      <input type="submit" value="수정하기" id="xkfxhl" onclick="al();">
-</form>
-  </div>
-
-</div>
 	
-
-
- 	
- 
-
+		function deleteMember(){
+			
+			var pwd = $('input[name="pw"]').val();
+			console.log(pwd);
+			if("<%= userPwd %>" == pwd){
+				var val = confirm("정말로 탈퇴하시겠습니까?(복구문의 : kkj@naver.com)");
+				
+				if(val){
+					$("#updateForm").attr("action","<%= request.getContextPath()%>/delete.me");
+					$("#updateForm").submit();
+				}else{
+					alert("취소하였습니다.");
+				}
+			}else{
+				alert("비밀번호를 잘못입력하였습니다.");
+			}
+		}
+	</script>
+	
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
