@@ -1,16 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    import = "java.util.ArrayList, com.kh.team3.eventBoard.model.vo.*" pageEncoding="UTF-8"%>
+    
+    <% 
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+%>
+  <%   
+   String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="..\..\resources\css\main.css">
-<script src="..\..\resources\js\jquery.js"></script>
-<script src="..\..\resources\js\jquery.bxslider.min.js"></script>
-<script src="..\..\resources\js\isotope.pkgd.min.js"></script>
-<script src="..\..\resources\js\main.js"></script>
+<link rel="stylesheet" href="resources\css\main.css">
+<script src="resources\js\jquery.js"></script>
+<script src="resources\js\jquery.bxslider.min.js"></script>
+<script src="resources\js\isotope.pkgd.min.js"></script>
+<script src="resources\js\main.js"></script>
 </head>
 <body>
 
