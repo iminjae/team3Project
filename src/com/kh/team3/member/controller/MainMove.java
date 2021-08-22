@@ -15,14 +15,14 @@ import com.kh.team3.member.model.vo.Member;
 /**
  * Servlet implementation class MyPageMove
  */
-@WebServlet("/MyPageMove.me")
-public class MyPageMove extends HttpServlet {
+@WebServlet("/main.me")
+public class MainMove extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageMove() {
+    public MainMove() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +40,7 @@ public class MyPageMove extends HttpServlet {
 		System.out.println("session = " + session);
 		
 	
-		RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_del.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/common/mainPage.jsp");
 		view.forward(request, response);
 	}
 
