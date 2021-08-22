@@ -64,3 +64,21 @@
     font-size: 18px;
   }
   
+  /*휴지통버튼*/
+   .btn-trash{
+       color: transparent;
+       text-shadow: 0 0 0 black;
+       background-color: white;
+       font-size: 20px;
+       border-color: white;
+       border: 0;
+       outline: 0;
+       font-weight: 400;
+       margin-top: 30px;
+       text-align: bold;
+   }
+
+   .btn-trash:hover {
+       text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 black;
+   } 
+  

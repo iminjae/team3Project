@@ -1,29 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-    
-    <%--
-<%@page import="java.util.ArrayList, com.kh.team3.common.PageInfo.java*"%>
+    pageEncoding="UTF-8" %>   
+<%@page import="java.util.ArrayList, com.kh.team3.mystore.model.vo.Review, com.kh.team3.member.model.vo.Member "%>
 <%
-	//형변환 해줘야 함
-   ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-   PageInfo pi = (PageInfo)request.getAttribute("pi");
-   
-   int listCount = pi.getListCount();
-   int currentPage = pi.getCurrentPage();
-   int maxPage = pi.getMaxPage();
-   int startPage = pi.getStartPage();
-   int endPage = pi.getEndPage();
-   
-
+	ArrayList<Review> myboard = (ArrayList<Review>)request.getAttribute("myboard");
 %>
-   --%>  
-<%--
-<%
-   ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-%>
---%>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -58,55 +38,77 @@
 
     <div class="center">
     	<p class="mytitle">내 게시글</p>
-    	<button id="writeboard" onclick="location.href='<%=request.getContextPath()%>">글쓰기</button>
+    	<button id="writeboard" onclick="writeBoard();">글쓰기</button>
     	<br>
     	
     	<table class="list">
         <thead>
            <tr>
-              <th width="100">No.</th>
+              <th width="100">BoardNo.</th>
               <th width="400">Title</th>
-              <th width="100">Author</th>
+              <th width="80">Author</th>
               <th width="200">CreatDate</th>
-              <th colspan=2 width="100">Like</th>
+              <th width="70">LikeCount</th>
+              <th  colspan=2  width="50">Count</th>
+              <th></th>
            </tr>
         </thead>
-        <tbody>
-            <tr>
-               <td>3</td>
-               <td>[카테고리] 마지막 공지사항제목(댓글수) new</td>
-               <td>admin</td>
-               <td>2020-02-10</td>
-               <td>10</td>
-               <td>휴</td>
-            </tr>
-            <%-- 
-            <% if(list.isEmpty()){ %>
-                <tr>
-                  <td colspan="5">존재하는 공지사항이 없습니다.</td>
-               </tr>
-             <% }else{  %>
-	                <% for(Notice n : list){ %>
-	                   <tr>
-	                      <td><%= n.getNoticeNo() %></td>
-	                     <td><%= n.getNoticeTitle() %></td>
-	                     <td><%= n.getNoticeWriter() %></td>
-	                     <td><%= n.getCount() %></td>
-	                     <td><%= n.getCreateDate() %></td>
-	                   </tr>
-	                <% } %>
-             <% } %>
-             
-             --%>  
-        </tbody>
+          <div class="myboardlist">
+		        <tbody>
+		 
+		              <% for(Review rv : myboard){ %>
+		                 <tr>
+		                   <td><%= rv.getBoardNo() %></td>
+		                   <td><%=  "["+ rv.getCategoryName() +"] "+ rv.getBoardTitle() %></td>
+		                   <td><%= rv.getUserId() %></td>
+		                   <td><%= rv.getCreateDate() %></td>
+		                   <td ><%= rv.getLikeCnt() %></td>
+		                   <td colspan=2><%= rv.getCount() %></td>
+		                   <td><button class="btn-trash" onclick="deleteboard();">🗑</button></td>
+		                 </tr>
+		              <% } %>
+					     
+		        </tbody>
+	         </div>
+	      
     </table>
     </div>
     
     <br><br>
-    
-    
 
-   <!-- 검색기능 -->
+
+    <script>
+         <% if(!myboard.isEmpty()){ %>
+         $(function(){
+            $(".myboardlist>tbody>tr").click(function(){
+               var bNo = $(this).children().eq(0).text();
+               
+               location.href="<%= request.getContextPath()%>/sellDetail.bo?bNo="+ bNo;
+                     
+            })
+         })
+         <% } %>
+         
+         function deleteboard(){
+        	 confirm("게시글을 삭제하시겠습니까?");
+        	 
+        	  $(function(){
+                  $(".myboardlist>tbody>tr").click(function(){
+                     var bNo = $(this).children().eq(0).text();
+                     
+                     location.href="<%= request.getContextPath()%>/sellDelete.bo?bNo="+ bNo;
+                           
+                  })
+               })
+        	 
+             
+         }
+         
+         function writeBoard(){
+        	 location.href="<%= request.getContextPath()%>/sellInsertForm.bo";
+
+         }
+   </script>
 
  		
 		

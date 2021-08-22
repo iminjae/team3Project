@@ -9,17 +9,18 @@ public class Review {
 	private int boardNo;
 	private String content; 
 	private String radio;
-	private int category;
+	private int category; //카테고리 번호 
 	private String boardTitle;
 	private Date createDate;
 	private int likeCnt;
 	private int count;
-	private String categoryName;
+	private String categoryName; //카테고리 이름
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	//전체
 	public Review(String reviewNo, String userId, int boardNo, String content, String radio, int category,
 			String boardTitle, Date createDate, int likeCnt, int count, String categoryName) {
 		super();
@@ -36,7 +37,7 @@ public class Review {
 		this.categoryName = categoryName;
 	}
 
-
+	//리뷰 인서트
 	public Review(String userId, String content, String radio) {
 		super();
 		this.userId = userId;
@@ -44,7 +45,7 @@ public class Review {
 		this.radio = radio;
 	}
 	
-	//리스트생성자
+	//리뷰 생성자
 	public Review( int boardNo, String categoryName, String boardTitle, String userId, Date createDate,  int count, int likeCnt, 
 			String content, String radio ) {
 		super();
@@ -59,6 +60,20 @@ public class Review {
 		this.radio = radio;
 
 	}
+	
+	 //마이보드 생성자
+	 public Review( int boardNo, String categoryName, String boardTitle, String userId, int likeCnt, int count, 
+			 Date createDate) {
+			super();	
+			this.boardNo = boardNo;
+			this.categoryName = categoryName;
+			this.boardTitle = boardTitle;
+			this.userId = userId;
+			this.likeCnt = likeCnt;
+			this.count = count;
+			this.createDate = createDate;
+		
+		}
 
 	public String getReviewNo() {
 		return reviewNo;

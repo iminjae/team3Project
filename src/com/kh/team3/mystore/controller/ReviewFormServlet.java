@@ -40,6 +40,7 @@ public class ReviewFormServlet extends HttpServlet {
 		  String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		  String content = request.getParameter("content");
 	      String[] review = request.getParameterValues("review");
+	      request.setAttribute("reviewjoin", review);
 	      System.out.println("리뷰서블릿"+ content);
 	      System.out.println("리뷰서블릿"+ review);
 	      

@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList, com.kh.team3.mystore.model.vo.Review, com.kh.team3.member.model.vo.Member "%>
 <%
 	ArrayList<Review> rvlist = (ArrayList<Review>)request.getAttribute("rvlist");
+	Review review = (Review)request.getAttribute("reviewdetail");
 %>
 <!DOCTYPE html>
 <html>
@@ -47,31 +48,22 @@
               <th></th>
            </tr>
         </thead>
-        <tbody>
-        <%-- 
-          <% if(list.isEmpty()){ %>
-                <tr>
-                  <td colspan="6">존재하는 리뷰가 없습니다.</td>
-               </tr>
-             <% }else{  %>
-             --%>
-	                <% for(Review rv : rvlist){ %>
-	                   <tr>
-	                     <td><%= rv.getBoardNo() %></td>
-	                     <td><%=  "["+ rv.getCategoryName() +"] "+ rv.getBoardTitle() %></td>
-	                     <td><%= rv.getCreateDate() %></td>
-	                     <td ><%= rv.getLikeCnt() %></td>
-	                     <td colspan=2><%= rv.getCount() %></td>
-	                     <td><%= rv.getUserId()%></td>
-	                   </tr>
-	                <% } %>
-	                 <%-- 
-             <% } %>
-              --%>
-
-       
-           
-        </tbody>
+	         <div class="rvlist">
+		        <tbody>
+		 
+		              <% for(Review rv : rvlist){ %>
+		                 <tr>
+		                   <td><%= rv.getBoardNo() %></td>
+		                   <td><%=  "["+ rv.getCategoryName() +"] "+ rv.getBoardTitle() %></td>
+		                   <td><%= rv.getCreateDate() %></td>
+		                   <td ><%= rv.getLikeCnt() %></td>
+		                   <td colspan=2><%= rv.getCount() %></td>
+		                   <td><%= rv.getUserId()%></td>
+		                 </tr>
+		              <% } %>
+					     
+		        </tbody>
+	         </div>
     </table>
     </div>
     
@@ -80,5 +72,17 @@
     </div>
     
     <br><br>
+    <script>
+         <% if(!rvlist.isEmpty()){ %>
+         $(function(){
+            $(".rvlist>tbody>tr").click(function(){
+               var nno = $(this).children().eq(0).text();
+               
+               location.href="<%= request.getContextPath()%>/myreviewdetail.ms?nno="+nno;
+                     
+            })
+         })
+         <% } %>
+   </script>
 </body>
 </html>

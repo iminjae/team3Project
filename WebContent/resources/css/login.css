@@ -44,7 +44,7 @@ body{
     width: 410px;
     height: 45px;
     margin-top: 20px;
-    background-color: blueviolet;
+    background-color: rgb(201, 210, 214);
     font-size: large;
     font-weight: bold;
     color: white;
@@ -52,8 +52,8 @@ body{
 
 #line{
     width: 410px;
-    color: blueviolet;
-    border: solid 1px blueviolet;
+    color: rgb(201, 210, 214);
+    border: solid 1px rgb(201, 210, 214);
 }
 
 .check{

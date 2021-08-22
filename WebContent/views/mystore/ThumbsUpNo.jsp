@@ -46,12 +46,12 @@
 	    </div>
 	 
 	    
-     
-    <script>
-       function cancle(){
-           confirm("관심목록에서 해제하시겠습니까?");
-       }
-    </script>
+	     
+	    <script>
+	       function cancle(){
+	           confirm("관심목록에서 해제하시겠습니까?");
+	       }
+	    </script>
     
     <br><br>
 </body>

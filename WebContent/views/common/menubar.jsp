@@ -55,7 +55,7 @@
                      </li>
                      <li class="m2">
                         <a href="#">거래장터</a>
-                        <ul>
+                        <ul >
                            <li><a href="<%=request.getContextPath()%>/exchangeServlet.es">챗</a></li>
                            <li><a href="<%=request.getContextPath()%>/sellList.bo">판매 게시판</a></li>
                         </ul>
