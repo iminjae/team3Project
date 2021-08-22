@@ -32,8 +32,9 @@ public class SellBoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Board> list = new BoardService().selectThList();
-		System.out.println("servlet : " + list);
+		ArrayList<Board> list = new BoardService().selectThList(); //카테고리 번호 같이 넘겨주기
+		
+//		System.out.println("servlet list : " + list );
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/sellBoard/sellBoardListView.jsp").forward(request, response);

@@ -43,9 +43,10 @@
             
                </ul>
                <ul class="util-menu">
-                  <li><a href="#">Home</a></li>
+                  <li><a href="<%=request.getContextPath()%>/main.me">Home</a></li>
                   <li><a href="<%=request.getContextPath()%>/MyPageMove.me">마이 페이지</a></li>
                   <li><a href="<%=request.getContextPath()%>/mystore.ms">내 상점</a></li>
+                  <li><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
                </ul>
                <nav id="gnb">
                   <h2 class="blind">메인메뉴</h2>
@@ -57,7 +58,7 @@
                         <a href="#">거래장터</a>
                         <ul>
                            <li><a href="<%=request.getContextPath()%>/exchangeServlet.es">챗</a></li>
-                           <li><a href="<%=request.getContextPath()%>/sellDetail.bo">판매 게시판</a></li>
+                           <li><a href="<%=request.getContextPath()%>/sellList.bo">판매 게시판</a></li>
                         </ul>
                      </li>
                      <li class="m3">
