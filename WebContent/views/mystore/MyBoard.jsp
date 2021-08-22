@@ -15,7 +15,6 @@
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -41,7 +40,7 @@
     	<button id="writeboard" onclick="writeBoard();">글쓰기</button>
     	<br>
     	
-    	<table class="list">
+    	<table class="myboardlist">
         <thead>
            <tr>
               <th width="100">BoardNo.</th>
