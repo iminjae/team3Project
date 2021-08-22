@@ -1,6 +1,5 @@
 package com.kh.team3.sellBoard.model.dao;
 
-
 import static com.kh.team3.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
@@ -15,7 +14,7 @@ import java.util.Properties;
 
 import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
-
+import com.kh.team3.sellBoard.model.vo.Reply;
 
 public class BoardDao {
 
@@ -38,8 +37,8 @@ public class BoardDao {
 	public int increaseCount(Connection conn, int bNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
-		//UPDATE BOARD SET BOARD_COUNT=BOARD_COUNT+1 WHERE BOARD_NO=?
+
+		// UPDATE BOARD SET BOARD_COUNT=BOARD_COUNT+1 WHERE BOARD_NO=?
 		String sql = prop.getProperty("increaseCount");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -88,16 +87,10 @@ public class BoardDao {
 //	         LEFT JOIN BOARDTYPE C ON C.BOARDTYPE_NO = B.BOARDTYPE_NO WHERE B.STATUS = 'Y' AND B.BOARD_NO=?
 
 			if (rset.next()) { // bNo로 조회
-				b = new Board(rset.getInt("BOARD_NO"), 
-						rset.getString("CATEGORY_NAME"), 
-						rset.getString("BOARD_TITLE"),
-						rset.getString("BOARD_CONTENT"), 
-						rset.getString("USER_ID"), 
-						rset.getInt("BOARD_COUNT"),
-						rset.getDate("CREATE_DATE"), 
-						rset.getInt("LIKE_COUNT"), 
-						rset.getInt("PRICE"));	
-				}		
+				b = new Board(rset.getInt("BOARD_NO"), rset.getString("CATEGORY_NAME"), rset.getString("BOARD_TITLE"),
+						rset.getString("BOARD_CONTENT"), rset.getString("USER_ID"), rset.getInt("BOARD_COUNT"),
+						rset.getDate("CREATE_DATE"), rset.getInt("LIKE_COUNT"), rset.getInt("PRICE"));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -157,7 +150,6 @@ public class BoardDao {
 //		JOIN (SELECT * FROM ATTACHMENT 
 //		WHERE FILE_NO IN(SELECT MIN(FILE_NO) FILE_NO FROM ATTACHMENT WHERE STATUS='Y' GROUP BY BOARD_NO)) A  ON (B.BOARD_NO = A.BOARD_NO)
 //		WHERE B.STATUS='Y' AND B.BOARDTYPE_NO=1 ORDER BY B.BOARD_NO DESC;
-
 
 		String sql = prop.getProperty("selectThList");
 //		System.out.println("dao sql : " + sql);
@@ -273,43 +265,98 @@ public class BoardDao {
 
 	public int deleteBoard(Connection conn, int bNo) {
 		int result = 0;
-	     PreparedStatement pstmt = null;
-	     
-	     //UPDATE BOARD SET STATUS='N' WHERE BOARD_NO=?
-	     String sql = prop.getProperty("deleteBoard");
-	     try {
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, bNo);
-	      
-	        result = pstmt.executeUpdate();
-	     } catch (SQLException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	     } finally {
-	        close(pstmt);
-	     }
-	     
-	     return result;
+		PreparedStatement pstmt = null;
+
+		// UPDATE BOARD SET STATUS='N' WHERE BOARD_NO=?
+		String sql = prop.getProperty("deleteBoard");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 	public int deleteAttachment(Connection conn, int bNo) {
-		 int result = 0;
-	     PreparedStatement pstmt = null;
-	     //UPDATE ATTACHMENT SET STATUS='N' WHERE BOARD_NO=?
-	     String sql = prop.getProperty("deleteAttachment");
-	     try {
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, bNo);
-	      
-	        result = pstmt.executeUpdate();
-	     } catch (SQLException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	     } finally {
-	        close(pstmt);
-	     }
-	     
-	     return result;
+		int result = 0;
+		PreparedStatement pstmt = null;
+		// UPDATE ATTACHMENT SET STATUS='N' WHERE BOARD_NO=?
+		String sql = prop.getProperty("deleteAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public ArrayList<Reply> selectRList(Connection conn, int bNo) {
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+//	      SELECT R.REPLY_NO, R.REPLY_CONTENT, R.USER_ID, R.CREATE_DATE FROM REPLY R JOIN MEMBER M ON(R.USER_ID = M.USER_ID) 
+//	      WHERE R.BOARD_NO=? AND R.REPLY_STATUS='Y' ORDER BY R.REPLY_NO DESC
+		String sql = prop.getProperty("selectRlist");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNo);
+
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while (rset.next()) {
+				list.add(new Reply(rset.getInt("REPLY_NO"), 
+						rset.getString("REPLY_CONTENT"), 
+						rset.getString("USER_ID"), //M.NICKNAME ?
+						rset.getDate("CREATE_DATE")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+
+	public int insertReply(Connection conn, Reply r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		//INSERT INTO REPLY VALUES(SEQ_REPLY_NO.NEXTVAL, ?, SYSDATE, DEFAULT, ? , ?)
+		String sql = prop.getProperty("insertReply");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getRefBoardId());
+			pstmt.setString(3, r.getReplyWriter());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 }

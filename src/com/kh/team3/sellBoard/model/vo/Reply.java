@@ -7,9 +7,11 @@ public class Reply {
 	private String replyContent;
 	private int refBoardId;
 	private String replyWriter; // 조회시 : 작성자 이름,  댓글작성시 : 회원번호로 쓰일 것!!
+	// M.NICKNAME으로 작성하게 할지...
 	private Date createDate;
 	private Date modifyDate;
 	private String status;
+	
 	
 	public Reply() {
 		
