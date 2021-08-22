@@ -18,7 +18,7 @@
 <body>
 
 
-3
+
 
     <div class="top">
 
@@ -31,7 +31,7 @@
         <form class="login" method="post"  action="<%=request.getContextPath() %>/login.me"
 			 onSubmit="return LoginValidate();">
         <input type="text"  id="idPath" name="id" placeholder="아이디">  <br>
-        <input type="text" id="pwdPath" name="pw" placeholder="비밀번호">    
+        <input type=password id="pwdPath" name="pw" placeholder="비밀번호">    
             <br>
         <input type="submit" value="로그인" id="path">
 
