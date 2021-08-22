@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%
 	String msg = (String)request.getAttribute("msg");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -12,17 +11,17 @@
 <link href="resources/css/review/reviewForm.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
 </head>
 <body>
 	 <div class="all">
         <h4 align="center">리뷰 쓰기</h4>
         <div class="form">
             <p align="center">☆ 판매자께 드리는 후기 ☆</p>
-            <form action="<%=request.getContextPath()%>/reviewform.rv"  method="post" name="testForm" >
+            <form action="<%=request.getContextPath()%>/reviewform.rv" id="updateForm" method="post" name="testForm" >
 
                 <input  type="text" class="reviewtext" name="content" placeholder="리뷰는 솔직하게 작성해주세요"/><br>
                 <br>
-
                 <div class="radio">
                     <p>Good</p>
                     <input type="checkbox" name="review" id="review1" value="친절하고 매너가 좋아요"/><label for="review1">친절하고 매너가 좋아요</label> <br>
@@ -41,7 +40,7 @@
                 
                  <div align="center">
 			        <%-- <input type="submit" name="btnOk" id="btnOk" value="리뷰 등록">--%>
-			        <input type="submit" name="btnOk" id="btnOk" value="등록">&nbsp;&nbsp;
+		        	<input type="button" name="btnOk" value="등록"onclick="alertfun();"/>&nbsp;&nbsp;
 		        </div>
             </form>
         </div>
@@ -50,7 +49,21 @@
     </div>
 
     <script>
-   
+    	function alertfun()
+    	{
+    		var params = $("#updateForm").serialize();
+    		$.ajax(
+    		{
+    			url : 'reviewform.rv',
+    			data : params,
+    			success : function(xh)
+    					{			
+    						alert("성공적으로 리뷰를 등록하였습니다.");
+    						window.close();
+    					}
+    		});
+    	}
+    	
     </script>
 </body>
 </html>

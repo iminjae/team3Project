@@ -1,6 +1,5 @@
 package com.kh.team3.sellBoard.model.service;
 
-
 import static com.kh.team3.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -26,9 +25,6 @@ public class BoardService {
 			rollback(conn);
 		}
 		close(conn);
-
-		System.out.println("BoardService :" + b);
-
 		return b;
 
 	}
@@ -37,73 +33,15 @@ public class BoardService {
 		Connection conn = getConnection();
 		ArrayList<Attachment> list = new BoardDao().selectThumbnail(conn, bNo);
 		close(conn);
-		System.out.println("BoardService :" + list);
 		return list;
 	}
 
 	public ArrayList<Board> selectThList() {
 		Connection conn = getConnection();
-		ArrayList<Board> list = new BoardDao().selectThList(conn); // 카테고리 번호 전달
+		ArrayList<Board> list = new BoardDao().selectThList(conn);
 		close(conn);
-//		System.out.println("service : "+ list);
+		//System.out.println("service : "+ list);
 		return list;
-	}
-
-	public int insertThumbnail(String userId, Board b, ArrayList<Attachment> fileList) {
-		Connection conn = getConnection();
-//		System.out.println("service: " + userId + b+ fileList);
-		int result1 = new BoardDao().insertThBoard(conn, b, userId);
-		// 사진게시판이라 파일첨부는 필수
-		int result2 = new BoardDao().insertThAttachment(conn, fileList);
-
-		if (result1 > 0 && result2 > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-
-		return result1 * result2;
-	}
-
-	public int deleteBoard(int bNo) {
-		Connection conn = getConnection();
-
-		int result1 = new BoardDao().deleteBoard(conn, bNo);
-		int result2 = new BoardDao().deleteAttachment(conn, bNo);
-
-		if (result1 > 0 && result2 > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-
-		return result1 * result2;
-
-	}
-
-	public ArrayList<Reply> selectRList(int bNo) {
-		Connection conn = getConnection();
-		ArrayList<Reply> list = new BoardDao().selectRList(conn, bNo);
-		close(conn);
-		return list;
-	}
-
-	public int insertReply(Reply r) {
-		Connection conn = getConnection();
-
-		int result = new BoardDao().insertReply(conn, r);
-
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-
-		return result;
-
 	}
 
 }

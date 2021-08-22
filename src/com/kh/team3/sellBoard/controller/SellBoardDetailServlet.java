@@ -33,18 +33,12 @@ public class SellBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("디테일서블릿도는중");
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		System.out.println("SellBoardDetailServlet :" + bNo);
-		
 		Board b = new BoardService().selectBoard(bNo);
-
-		System.out.println("SellBoardDetailServlet :" + b);
 		
 		ArrayList<Attachment> fileList = new BoardService().selectThumbnail(bNo);
-		System.out.println("SellBoardDetailServlet :" + fileList);		
-
-	
+		System.out.println(fileList);
 		if(b != null) {
 			request.setAttribute("b", b);
 			request.setAttribute("fileList", fileList);
@@ -53,7 +47,8 @@ public class SellBoardDetailServlet extends HttpServlet {
 			request.setAttribute("msg", "게시글 상세보기에 실패했습니다");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
-		}		
+		}
+		
 	}
 	
 	/**
@@ -63,4 +58,5 @@ public class SellBoardDetailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

@@ -33,7 +33,7 @@ String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUse
   #one{
     text-align: center;
     font-size: large;
-    background-color: blueviolet;
+    background-color: rgb(201, 210, 214);
     color: white;
     font-weight: bold;
   }
@@ -53,7 +53,7 @@ String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUse
   #xkfxhl{
     width: 100px;
     height: 50px;
-    background-color: blueviolet;
+    background-color: rgb(201, 210, 214);
     color: white;
     margin-left: 500px;
 

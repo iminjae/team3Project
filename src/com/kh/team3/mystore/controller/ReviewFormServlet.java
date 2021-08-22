@@ -1,6 +1,5 @@
-package com.kh.team3.review.controller;
+package com.kh.team3.mystore.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.member.model.vo.Member;
-import com.kh.team3.review.model.service.ReviewService;
-import com.kh.team3.review.model.vo.Review;
+import com.kh.team3.mystore.model.service.ReviewService;
+import com.kh.team3.mystore.model.vo.Review;
+
 
 /**
  * Servlet implementation class ReviewFormServlet
@@ -40,6 +40,7 @@ public class ReviewFormServlet extends HttpServlet {
 		  String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		  String content = request.getParameter("content");
 	      String[] review = request.getParameterValues("review");
+	      request.setAttribute("reviewjoin", review);
 	      System.out.println("리뷰서블릿"+ content);
 	      System.out.println("리뷰서블릿"+ review);
 	      
@@ -52,12 +53,10 @@ public class ReviewFormServlet extends HttpServlet {
 	      
 	      Review rv = new Review(userId, content, reviews);
 	      
-	      
 	      int result = new ReviewService().insertReview(userId, rv);
 	      
 	      if(result > 0) {
 				request.getSession().setAttribute("msg", "리뷰 등록 성공");
-				//response.sendRedirect("list.bo"); -> 보여줬던 화면 게시글 그대로 다시
 			}else {
 				request.setAttribute("msg", "리뷰 등록 실패했습니다");
 				

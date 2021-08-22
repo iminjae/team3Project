@@ -18,7 +18,7 @@
 <body>
 
 
-3
+
 
     <div class="top">
 
@@ -35,9 +35,6 @@
             <br>
         <input type="submit" value="로그인" id="path">
 
-    
-
-
     <div class="check">
     <input type="checkbox" id="session"> <label>로그인 유지</label>
 </div>
@@ -53,9 +50,6 @@
     <a href="" id="pwdfind">비밀번호 찾기</a>
     <span> | </span>    
     <a href="views\member\createUser.jsp" id="createuser">회원가입</a>
-    
-    
-
 
 </div>
 

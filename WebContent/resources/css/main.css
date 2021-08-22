@@ -36,7 +36,7 @@
     color: #b40a13;
     font-weight: bold;
     margin-bottom: 17px;
-    border-color:blueviolet;
+    border-color:rgb(201, 210, 214);
     white-space: nowrap;
     overflow: hidden;
     text-overflow:ellipsis;
@@ -51,7 +51,7 @@
     margin-bottom: 39px;
 }
 #main-visual .detail-view a{
-    background-color: blueviolet;
+    background-color: rgb(201, 210, 214);
     color: #fff;
     display: inline-block;
     border-radius: 3px;
@@ -129,7 +129,7 @@
     display: inline-block;
 }
 #notice-tab-wrap h4 a.on{
-    background-color:blueviolet;
+    background-color:rgb(201, 210, 214);
     color: #fff;
 }
 #notice-tab-wrap .tab-btn-1{

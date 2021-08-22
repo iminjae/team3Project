@@ -38,7 +38,7 @@ String message = (String)request.getSession().getAttribute("msg");
   #one{
     text-align: center;
     font-size: large;
-    background-color: blueviolet;
+    background-color: rgb(201, 210, 214);
     color: white;
     font-weight: bold;
   }
@@ -58,7 +58,7 @@ String message = (String)request.getSession().getAttribute("msg");
   #xkfxhl{
     width: 100px;
     height: 50px;
-    background-color: blueviolet;
+    background-color: rgb(201, 210, 214);
     color: white;
     margin-top : 30px;
     margin-left: 500px;

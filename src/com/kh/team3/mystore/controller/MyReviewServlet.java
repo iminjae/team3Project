@@ -10,21 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.kh.team3.member.model.vo.Member;
 import com.kh.team3.mystore.model.service.ReviewService;
 import com.kh.team3.mystore.model.vo.Review;
 
 /**
- * Servlet implementation class MyBoardServlet
+ * Servlet implementation class MyReviewServlet
  */
-@WebServlet("/myboard.ms")
-public class MyBoardServlet extends HttpServlet {
+@WebServlet("/myreview.ms")
+public class MyReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyBoardServlet() {
+    public MyReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +35,28 @@ public class MyBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	
 		
-		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			//String userId = request.getParameter("writer");
+			
+			System.out.println("로그인아이디" + loginuserId);
+			//System.out.println("jsp아이디" + userId);
+			
 		
-
-		ArrayList<Review> myboard = new ReviewService().selectMyBoardList(loginuserId);
-		request.setAttribute("myboard", myboard);
+				ArrayList<Review> rvlist = new ReviewService().selectList(loginuserId);
+				request.setAttribute("rvlist", rvlist);
+				
+				RequestDispatcher view =request.getRequestDispatcher("views/mystore/MyReview.jsp");
+			    view.forward(request, response);
+			
 		
-		RequestDispatcher view =request.getRequestDispatcher("views/mystore/MyBoard.jsp");
-	    view.forward(request, response);
-
+		
+		
+		
+		
+		
 	}
 
 	/**

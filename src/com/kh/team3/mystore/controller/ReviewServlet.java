@@ -1,4 +1,4 @@
-package com.kh.team3.review.controller;
+package com.kh.team3.mystore.controller;
 
 import java.io.IOException;
 
@@ -28,7 +28,7 @@ public class ReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view  = request.getRequestDispatcher("views/review/ReviewList.jsp");
+		RequestDispatcher view  = request.getRequestDispatcher("views/mystore/ReviewList.jsp");
 		view.forward(request, response);
 		
 		//response.sendRedirect("views/review/ReviewList.jsp");
