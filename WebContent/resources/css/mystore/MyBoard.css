@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-/*테이블*/
- .list{
+.myboardlist{
       border-collapse: separate;
       border-spacing: 1px;
       text-align: left;
@@ -12,7 +11,7 @@
 
   }
 
-  .list th{
+  .myboardlist th{
       padding: 5px;
       font-weight: bold;
       vertical-align: top;
@@ -20,25 +19,18 @@
       background-color:rgb(236, 241, 236);
       font-size: 15px;
   }
-  .list td{
+  .myboardlist td{
       padding: 10px;
       vertical-align: top;
       border-bottom: 1px solid #ccc;
       font-size: 13px;
   }
   
-  /*title*/
-  .mytitle{
-  	font-size: 22px;
-  	margin-left : 20px;
-  	margin-bottom: -20px;
-  	font-weight : 900;
-  }
-  
-  .center{
-  	margin-top: 20px;
-  }
-  
+  .myboardlist>tbody>tr:hover{
+      background:darkgrey;
+      cursor:pointer
+   }
+   
   
   /*버튼*/
   #writeboard{
@@ -81,4 +73,3 @@
    .btn-trash:hover {
        text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 black;
    } 
-  

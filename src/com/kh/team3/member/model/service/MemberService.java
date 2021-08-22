@@ -32,7 +32,7 @@ public class MemberService {
 		}else {
 			rollback(conn);
 		}
-		
+		close(conn);
 		return result;
 		
 		
@@ -59,6 +59,25 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	public Member updateMember(Member member) {
+
+		Connection conn = getConnection();
+		Member updateMem = null;
+		int result = new MemberDao().updateMember(conn, member);
+		System.out.println("통과!");
+		System.out.println(result);
+		if (result > 0) {
+			commit(conn);
+			System.out.println("통과!@");
+			updateMem = new MemberDao().selectMember(conn, member.getUserId());
+
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return updateMem;
+	}
+	}
 
 
-}
+

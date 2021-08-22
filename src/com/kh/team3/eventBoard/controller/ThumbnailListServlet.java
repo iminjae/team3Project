@@ -1,25 +1,28 @@
-package com.kh.team3.member.controller;
+package com.kh.team3.eventBoard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.team3.eventBoard.model.service.EventBoardService;
+import com.kh.team3.eventBoard.model.vo.Board;
+
 /**
- * Servlet implementation class MyPageUpdateMove
+ * Servlet implementation class ThumbnailListServlet
  */
-@WebServlet("/MyPageUpdateMove.me")
-public class MyPageUpdateMove extends HttpServlet {
+@WebServlet("/list.th")
+public class ThumbnailListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageUpdateMove() {
+    public ThumbnailListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,8 +31,12 @@ public class MyPageUpdateMove extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_up.jsp");
-		view.forward(request, response);
+
+		ArrayList<Board> list = new EventBoardService().selectThList();
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/member/thumbnailListView.jsp").forward(request, response);
+		
 	}
 
 	/**

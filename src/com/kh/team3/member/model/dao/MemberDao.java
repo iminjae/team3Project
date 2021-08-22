@@ -16,6 +16,7 @@ import com.kh.team3.member.model.vo.Member;
 public class MemberDao {
 
 	private Properties prop = new Properties();
+	
 
 	public MemberDao() {
 		String fileName = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
@@ -56,7 +57,6 @@ public class MemberDao {
 						 rset.getString("USER_ID"), rset.getString("USER_PWD"),
 						rset.getString("USER_NAME"), rset.getString("PHONE"), rset.getString("NICKNAME"),
 						rset.getDouble("STARPOINT"), rset.getInt("CATEGORY_NO"), rset.getString("ADDRESS"), rset.getString("STATUS")
-					
 					
 				);
 			}
@@ -160,7 +160,72 @@ public class MemberDao {
 
 		return result;
 	}
+
+	public int updateMember(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updateMember");
+		System.out.println(m);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getPhone());
+			pstmt.setString(3, m.getNickname());
+			pstmt.setString(4, m.getAddress());
+			pstmt.setString(5, m.getUserId());
+		
+			System.out.println("!@#!@#!@#");
+				result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
+
+
+	public Member selectMember(Connection conn, String userId) {
+		Member mem = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		System.out.println("!!!!!!!!!!!!!");
+		String sql = prop.getProperty("selectMember");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				mem = new Member(
+
+						 rset.getString("USER_ID"), rset.getString("USER_PWD"),
+							rset.getString("USER_NAME"), rset.getString("PHONE"), rset.getString("NICKNAME"),
+							rset.getDouble("STARPOINT"), rset.getInt("CATEGORY_NO"), rset.getString("ADDRESS"), rset.getString("STATUS")
+						
+				);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return mem;
+
+	}
+
+	}
+	
 
 
 

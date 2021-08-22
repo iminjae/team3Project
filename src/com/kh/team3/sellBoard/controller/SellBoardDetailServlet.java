@@ -33,7 +33,7 @@ public class SellBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("디테일서블릿도는중");
+		
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
 		System.out.println("SellBoardDetailServlet :" + bNo);
 		

@@ -59,15 +59,6 @@ public class Board {
 		this.likeCnt = likeCnt;
 		this.price = price;
 	}
-	
-	public Board(int boardNo, String boardTitle, int bCnt, String titleImg) {
-		super();
-		this.boardNo = boardNo;
-		this.boardTitle = boardTitle;
-		this.bCnt = bCnt;
-		this.titleImg = titleImg;
-
-	}
 
 	public int getBoardNo() {
 		return boardNo;

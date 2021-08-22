@@ -22,7 +22,9 @@ Member loginUser = (Member) request.getAttribute("loginUser");
 <body>
 	<!-- 메뉴바 -->
 	<%@ include file="../common/menubar.jsp"%>
+
 	<!-- 메인 -->
+
 
 	<form id="insertForm"
 		action="<%=request.getContextPath()%>/sellInsert.bo" method="post"
