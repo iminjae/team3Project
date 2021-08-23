@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-.myboardlist{
+/*테이블*/
+ .list{
       border-collapse: separate;
       border-spacing: 1px;
       text-align: left;
@@ -11,7 +12,7 @@
 
   }
 
-  .myboardlist th{
+  .list th{
       padding: 5px;
       font-weight: bold;
       vertical-align: top;
@@ -19,30 +20,42 @@
       background-color:rgb(236, 241, 236);
       font-size: 15px;
   }
-  .myboardlist td{
+  .list td{
       padding: 10px;
       vertical-align: top;
       border-bottom: 1px solid #ccc;
       font-size: 13px;
   }
   
-  .myboardlist>tbody>tr:hover{
+   .list>tbody>tr:hover{
       background:darkgrey;
       cursor:pointer
    }
-   
+  
+  /*title*/
+  .mytitle{
+     font-size: 22px;
+     margin-left : 20px;
+     margin-bottom: -20px;
+     font-weight : 900;
+  }
+  
+  .center{
+     margin-top: 20px;
+  }
+  
   
   /*버튼*/
   #writeboard{
-  	float: right;
-  	margin-right: 20px;
-  	padding : 3px;
-  	width : 60px;
-  	height : 30px;
-  	font-size: 13px;
-  	background : white;
-  	border-radius : 6px;
-  	border-color : rgb(201, 210, 214);
+     float: right;
+     margin-right: 20px;
+     padding : 3px;
+     width : 60px;
+     height : 30px;
+     font-size: 13px;
+     background : white;
+     border-radius : 6px;
+     border-color : rgb(201, 210, 214);
   }
   
   #writeboard:hover{
@@ -55,21 +68,4 @@
     color: white;
     font-size: 18px;
   }
-   
-  /*휴지통버튼*/
-   .btn-trash{
-       color: transparent;
-       text-shadow: 0 0 0 black;
-       background-color: white;
-       font-size: 20px;
-       border-color: white;
-       border: 0;
-       outline: 0;
-       font-weight: 400;
-       margin-top: 30px;
-       text-align: bold;
-   }
-
-   .btn-trash:hover {
-       text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 black;
-   } 
+  

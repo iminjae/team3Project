@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.team3.mystore.model.vo.Jjim;
 import com.kh.team3.mystore.model.vo.Review;
 
 
@@ -190,6 +191,72 @@ public class ReviewDao {
 		}
 
 		return list;
+	}
+	
+	//찜 조회
+	public ArrayList<Jjim> selectJjimList(Connection conn, String loginuserId) {
+	ArrayList<Jjim> list = new ArrayList<Jjim>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMyJjim");
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, loginuserId );
+			rset = pstmt.executeQuery(); 
+
+			
+			
+			while(rset.next()) {
+				list.add(new Jjim(rset.getInt("BOARD_NO"),
+									rset.getString("USER_ID"),
+									rset.getString("BOARD_TITLE"),
+									rset.getString("BOARD_COUNT"),
+									rset.getInt("LIKE_COUNT"),
+									rset.getString("JJIM_CHECK"),
+									rset.getString("CHANGE_NAME")
+									));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+	
+	//찜 삭제
+	public int deleteJjim(Connection conn, int jno) {
+		 int result = 0;
+	      PreparedStatement pstmt = null;
+	      String sql = prop.getProperty("deleteNotice");
+      
+//	      UPDATE JJIM  SET
+//	      JJIM_CHECK='N'
+//	      WHERE BOARD_NO=?;
+	      
+	      try {
+		         pstmt = conn.prepareStatement(sql);
+		     
+		         pstmt.setInt(1, jno);
+		 
+		         result = pstmt.executeUpdate();
+		         
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } finally {
+		         close(pstmt);
+		      }
+		      
+		      
+		      return result;
 	}
 
 }
