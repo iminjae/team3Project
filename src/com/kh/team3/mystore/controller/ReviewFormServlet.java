@@ -42,10 +42,11 @@ public class ReviewFormServlet extends HttpServlet {
 		  String content = request.getParameter("content");
 	      String[] review = request.getParameterValues("review");
 	      
-	     // int bno = ((Board)request.getSession().getAttribute("b")).getBoardNo();
 	      
 	      
-	      int bNo = Integer.parseInt((String) request.getSession().getAttribute("bNo"));
+		int rno = Integer.parseInt(request.getParameter("rno"));			
+		System.out.println("리뷰폼 서블릿 게시글번호 : " + rno);
+	      
 	      request.setAttribute("reviewjoin", review);
 	      System.out.println("리뷰서블릿"+ content);
 	      System.out.println("리뷰서블릿"+ review);
@@ -55,16 +56,16 @@ public class ReviewFormServlet extends HttpServlet {
 	      System.out.println("리뷰서블릿 :" + userId);
 	      System.out.println("리뷰서블릿 :" + content);
 	      System.out.println("리뷰서블릿 :" + reviews);
-	      System.out.println("리뷰서블릿 보드넘버 넘어와라 :" + bNo);
+
 	      
 	    
 	      
-	      Review rv = new Review(userId, content, reviews);
+	      Review rv = new Review(userId, rno, content, reviews);
 	      
 	      int result = new ReviewService().insertReview(userId, rv);
 	      
 	      if(result > 0) {
-				request.getSession().setAttribute("msg", "리뷰 등록 성공");
+	    	  	request.getSession().setAttribute("msg", "게시물 등록 성공");
 			}else {
 				request.setAttribute("msg", "리뷰 등록 실패했습니다");
 				
