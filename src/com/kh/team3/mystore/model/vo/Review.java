@@ -38,9 +38,10 @@ public class Review {
 	}
 
 	//리뷰 인서트
-	public Review(String userId, String content, String radio) {
+	public Review(String userId, int boardNo, String content, String radio) {
 		super();
 		this.userId = userId;
+		this.boardNo = boardNo;
 		this.content = content;
 		this.radio = radio;
 	}
