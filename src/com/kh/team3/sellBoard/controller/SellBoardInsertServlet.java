@@ -60,7 +60,7 @@ public class SellBoardInsertServlet extends HttpServlet {
 			String title = multiRequest.getParameter("title"); //제목
 			int price = Integer.parseInt(multiRequest.getParameter("price")); //판매가격
 			int category = Integer.parseInt(multiRequest.getParameter("category"));//판매 카테고리
-			System.out.println("SellBoardInsertServlet: " + category);
+			String boardStatus = multiRequest.getParameter("boardStatus"); //게시글 상태(판매중, 예약중, 판매완료)
 			String content = multiRequest.getParameter("content");//판매물품 설명
 			
 			
@@ -68,6 +68,7 @@ public class SellBoardInsertServlet extends HttpServlet {
 			b.setBoardTitle(title);
 			b.setPrice(price);
 			b.setCategory(category);
+			b.setBoardStatus(boardStatus);
 			b.setBoardContent(content);
 				
 			ArrayList<Attachment> fileList = new ArrayList<>();
