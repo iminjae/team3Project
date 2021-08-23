@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.team3.member.model.vo.Member"%>
+    
+ <%
+	
+	String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNickname();
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +18,11 @@
 	<script src="resources/js/chat/bootstrap.js"></script>
 	
 	<script type = "text/javascript">
-	var lastNo = 0;
+		var lastNo = 0;
 		function submitFunction(){
-			var chatName = $('#chatName').val();
+			var nickName = "<%=nickName%>";
+			var chatName = nickName;
+			
 			var chatContent = $('#chatContent').val();
 			$.ajax({
 				type : "POST",
@@ -68,10 +76,6 @@
 		}
 		
 		
-		
-		
-		
-		
 		function addChat(chatName, chatContent,chatTime){
 			$('#chatList').append('<div class="row">' +
 					'<div class = "col-lg-12">' +
@@ -97,7 +101,7 @@
 			$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 			
 		}
-		<!--전체말고  마지막  대화만 새로고침되게 바꾸면 끝\-->
+	
 		function getInfiniteChat(){
 			setInterval(function(){
 				
@@ -119,14 +123,10 @@
 						<div class = "clearfix"></div>
 					</div>
 					<div id = "chat" class = "panel-collapse collapse in">
-						<div id = "chatList" class = "portlet-body chat-widget" style = "overflow-y : auto; width : auto; height : 300px;">
+						<div id = "chatList" class = "portlet-body chat-widget" style = "overflow-y : auto; width : auto; height : 550px;">
 						</div>
 					<div class = "portlet-footer">
-						<div class = "row">
-							<div class = "form-group col-xs-4">
-								<input style = "height : 40px; " type = "text" id = "chatName" class = "form-control" placeholder = "이름" maxlength = "20">
-							</div>
-						</div>
+						
 						<div class = "row" style = "height: 90px">
 							<div class = "form-group col-xs-10">
 								<textarea style = "height : 80px" id = "chatContent" class = "form-control" placeholder ="메세지를 입력하세요" maxlength = "100"></textarea>

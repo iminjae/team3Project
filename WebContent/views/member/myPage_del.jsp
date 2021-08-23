@@ -4,7 +4,7 @@
 <%
 String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUserPwd();
-
+String loginUser = (String)request.getAttribute("loginUser");
 %>
 <!doctype html>
 <html>
@@ -71,9 +71,14 @@ String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUse
       MyPage Menu
     </button> 
     <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
-   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one"></button>
-   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
-	<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"></button> 
+   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one">
+   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two">
+			<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
+			<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"> 
+			<% }else{ %>
+				
+				<% } %>
+
 
 </form>
   </div>
@@ -101,6 +106,7 @@ String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUse
 
 
 <script>
+	console.log("<%=(String)request.getSession().getAttribute("userId") %>")
 	
 	
 		function deleteMember(){

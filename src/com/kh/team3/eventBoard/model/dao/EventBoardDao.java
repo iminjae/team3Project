@@ -61,6 +61,7 @@ public int insertThBoard(Connection conn,Board b) {
 	return result;
 }
 
+
 public int insertAttachment(Connection conn, Attachment at) {
 	int result = 0;
 	PreparedStatement pstmt = null;
@@ -194,6 +195,165 @@ public Attachment selectThumnail(Connection conn, int bid) {
 	}
 	System.out.println("파일 조회 퇴장전");
 	return at;
+}
+public int deleteBoard(Connection conn, int bid) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	String sql = prop.getProperty("deleteBoard");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, bid);
+
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	return result;
+}
+
+public int deleteAttachment(Connection conn, int bid) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	String sql = prop.getProperty("deleteAtachment");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, bid);
+
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+	return result;
+}
+
+public Attachment selectAttachment(Connection conn, int bno) {
+
+	Attachment at = null;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	String sql = prop.getProperty("selectAttachment");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, bno);
+
+		rset = pstmt.executeQuery();
+		if (rset.next()) {
+			at = new Attachment();
+
+			at.setFileNo(rset.getInt("FILE_NO"));
+			at.setOriginName(rset.getString("ORIGIN_NAME"));
+			at.setChangeName(rset.getString("CHANGE_NAME"));
+
+		}
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(rset);
+
+		close(pstmt);
+	}
+
+	return at;
+}
+
+public Board selectBoardtwo(Connection conn, int bno) {
+	Board b = new Board();
+
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectThListtwo");
+	System.out.println("se;ectBoardtwo sql 실행전 : " + bno);
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, bno);
+		rset = pstmt.executeQuery();
+		if (rset.next()) {
+			
+			b.setBoardNo(rset.getInt("BOARD_NO"));
+			b.setBoardTitle(rset.getString("BOARD_TITLE"));
+			b.setBoardContent(rset.getString("BOARD_CONTENT"));
+			b.setTitleImg(rset.getString("CHANGE_NAME"));
+			
+			System.out.println(rset.getInt("BOARD_NO"));
+			System.out.println(rset.getString("BOARD_TITLE"));
+			System.out.println(rset.getString("BOARD_CONTENT"));
+			System.out.println(rset.getString("CHANGE_NAME"));
+			
+		}
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	return b;
+
+}
+
+
+public int updateBoard(Connection conn, Board b) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+
+	String sql = prop.getProperty("updateBoard");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, b.getBoardTitle());
+		pstmt.setString(2, b.getBoardContent());
+		pstmt.setInt(3, b.getBoardNo());
+		result = pstmt.executeUpdate();
+		System.out.println("보드업데이트 리슐" +result);
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	return result;
+}
+
+
+public int updateAttachment(Connection conn, Attachment at) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	System.out.println("파일 업데이트 다오 입장 : " + at);
+	String sql = prop.getProperty("updateAttachment");
+	//UPDATE ATTACHMENT SET ORIGIN_NAME=? , CHANGE_NAME=?, UPLOAD_DATE=SYSDATE WHERE BOARD_NO=?
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, at.getOriginName());
+		pstmt.setString(2, at.getChangeName());
+		pstmt.setInt(3, at.getRefBoardNo());
+		
+		result = pstmt.executeUpdate();
+		System.out.println("다오 리슐:" +result);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+	System.out.println("파일 업데이트 다오 리턴전");
+	return result;
 }
 
 

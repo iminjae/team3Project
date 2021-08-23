@@ -3,6 +3,7 @@
 	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.Review"
 	pageEncoding="UTF-8"%>
 <%
+
 ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 Board b = (Board) request.getAttribute("b");
@@ -10,8 +11,7 @@ Review rv = (Review) request.getAttribute("review");
 %>
 
 
-String userId = ((Member)
-request.getSession().getAttribute("loginUser")).getUserId(); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
