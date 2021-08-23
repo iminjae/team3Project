@@ -18,6 +18,7 @@ import com.kh.team3.sellBoard.model.vo.Reply;
 
 public class BoardDao {
 
+	// 왕다영
 	private Properties prop = new Properties();
 
 	public BoardDao() {

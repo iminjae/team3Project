@@ -20,6 +20,7 @@ import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
 import com.oreilly.servlet.MultipartRequest;
 
+//왕다영
 /**
  * Servlet implementation class SellBoardInsertServlet
  */

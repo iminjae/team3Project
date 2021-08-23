@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.team3.sellBoard.model.service.BoardService;
 
 
-
+//왕다영
 /**
  * Servlet implementation class SellBoardDeleteServlet
  */
