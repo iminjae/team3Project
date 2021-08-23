@@ -14,7 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.kh.team3.sellBoard.model.service.BoardService;
 import com.kh.team3.sellBoard.model.vo.Reply;
 
-//왕다영
+
 /**
  * Servlet implementation class ReplyListServlet
  */

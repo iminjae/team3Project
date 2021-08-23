@@ -1,20 +1,16 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.Review"
+	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.*"
 	pageEncoding="UTF-8"%>
 <%
 
-	
+	Board b = (Board) request.getAttribute("b");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 	String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
-  
+	String result = String.valueOf(request.getSession().getAttribute("result"));
 	Review rv = (Review)request.getAttribute("review");
 %>
 
-
-String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
-%>
-// 왕다영
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +163,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn2" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">찜❤</button>
+										class="btn btn-outline-secondary" onclick="insertJjim();">찜❤</button>
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
@@ -223,7 +219,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 	</div>
 
 	<form action="" id="postForm" method="post">
-		<input type="hidden" name="bNo" value="<%=b.getBoardNo()%>">
+		<input type="hidden" name="bNo" class="bNo" value="<%=b.getBoardNo()%>">
 	</form>
 	<div class="btns" align="center">
 		<button type="button"
@@ -323,24 +319,42 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 
 	<script>
 	   function makeReview(){
-		   <%if( rv != null){ %>
-			   $('#rvbtn').click( function() {
-		            $(this).html('확인');
-		        })
-		   <%}else{%>
 			  	var _width = '500';
 			    var _height = '600';
 			 
 			    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 			    var _left = Math.ceil(( window.screen.width - _width )/2);
 			    var _top = Math.ceil(( window.screen.height - _height )/2); 
-			 
-			    window.open('<%= request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
-		   <%  }%>
-		 
-		
+			    
+			    var rno = $(".bNo").val();
+			    console.log("rno"+rno)
+
+			    window.open('<%= request.getContextPath()%>/review.rv?rno='+rno, '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
    		
    		}
+	   
+	   function insertJjim(){	   
+		   var answer;
+  			answer = confirm("관심목록에 추가하시겠습니까?");
+  			 if(answer == true){
+ 		 
+  	          var test = "<%= result %>"; 
+  	          console.log("찜여부" + test);
+  	            
+  	             <% if (request.getSession().getAttribute("result") == null) { %>
+	                    var jno = "<%=b.getBoardNo() %>";
+	                    console.log("jno"+jno);
+	      
+	                    location.href='<%=request.getContextPath()%>/jjimInsert.ms?jno='+jno;
+	                      
+	                    alert("관심목록에 추가되었습니다. 내 상점에서 확인해 주세요.");
+	             <%}else{%>   
+	             		alert("관심목록에 이미 추가되어 있습니다.");
+	             <%}%>
+	                    
+  			 }
+	   }
    </script>
 
 </body>
