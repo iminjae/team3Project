@@ -41,29 +41,34 @@
         <thead>
            <tr>
               <th width="80">BoardNo.</th>
-              <th width="400">Title</th>
+              <th width="350">Title</th>
+              <th width="400">Review</th>
               <th width="100">CreatDate</th>
               <th  width="70">LikeCount</th>
-              <th  colspan=2  width="50">Count</th>
-              <th></th>
+              <th  width="50">Count</th>
            </tr>
         </thead>
 	         <div class="rvlist">
 		        <tbody>
-		 
-		              <% for(Review rv : rvlist){ %>
+				 	 <% if(rvlist.isEmpty()){ %>
 		                 <tr>
-		                   <td><%= rv.getBoardNo() %></td>
-		                   <td><%=  "["+ rv.getCategoryName() +"] "+ rv.getBoardTitle() %></td>
-		                   <td><%= rv.getCreateDate() %></td>
-		                   <td ><%= rv.getLikeCnt() %></td>
-		                   <td colspan=2><%= rv.getCount() %></td>
-		                   <td><%= rv.getUserId()%></td>
-		                 </tr>
-		              <% } %>
+		                  <td colspan="6">작성한 리뷰가 없습니다.</td>
+		                </tr>
+		             <% }else{  %>
+			              <% for(Review rv : rvlist){ %>
+			                 <tr>
+			                   <td><%= rv.getBoardNo() %></td>
+			                   <td><%=  "["+ rv.getCategoryName() +"] "+ rv.getBoardTitle() %></td>
+			                   <td><%=  rv.getContent() %></td>
+			                   <td><%= rv.getCreateDate() %></td>
+			                   <td ><%= rv.getLikeCnt() %></td>
+			                   <td ><%= rv.getCount() %></td>
+			                 </tr>
+			              <% } %>
+		            <% } %>
 					     
 		        </tbody>
-	         </div>
+	         </div>  
     </table>
     </div>
     

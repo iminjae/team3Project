@@ -1,16 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.team3.mystore.model.vo.Jjim"%>
+<%
+   ArrayList<Jjim> jjimList = (ArrayList<Jjim>)request.getAttribute("jjimList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="resources/css/mystore/SideBar.css" rel="stylesheet" type="text/css">
-<link href="resources/css/mystore/ThumbsUpNo.css" rel="stylesheet" type="text/css">
+<link href="resources/css/mystore/Jjim.css" rel="stylesheet" type="text/css">
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<style>
+.ptag{
+font-size : 24px;
+}
+</style>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 	
@@ -33,14 +41,24 @@
 	    <div class="center">
 	    	 <p class="mytitle">찜 ♡</p>
 		   	 <div class="listArea">
-		        <div class="getboard">
-		            <%-- <input type="hidden" value="<%=b.getBoardNo()%>"> --%>  
-		            <img src="resources/images/MyStore/chat.png" width="50px" height="50px"> <br>
-		            <p>글제목</p>
-		            <p>작성자 조회수</p>
-		            <button class="btn-like" onclick="cancle();">🧡</button>
-		
-		        </div>
+		   	 
+		   	 <% if(jjimList.isEmpty()){ %>
+                <div>
+                  <p class="ptag">존재하는 찜 목록이 없습니다.<p>
+               </div>
+             <% }else{  %>
+			   	  <% for(Jjim list : jjimList){ %>
+			   	 
+			        <div class="getboard" >
+			        		<div onclick="location.href='<%=request.getContextPath()%>/sellDetail.bo?bNo=<%=list.getBoardNo() %>'">
+					            <img src="<%=request.getContextPath()%>/resources/board_upfiles/<%=list.getChangeName() %>" width="50px" height="50px"> <br>
+					            <p><%= list.getBoardTitle()%></p>
+					            <p><%= list.getUserId()%>&ensp;&ensp;조회수:<%= list.getBoardCount()%></p>			            
+				            </div>
+				            <button class="btn-like" onclick="cancle();">🧡</button>  
+			        </div>
+			        <% } %> 
+			   <% } %>   
 		    </div>
 	  
 	    </div>
@@ -49,7 +67,18 @@
 	     
 	    <script>
 	       function cancle(){
-	           confirm("관심목록에서 해제하시겠습니까?");
+	    	   var answer;
+	   			answer = confirm("관심목록에서 해제하시겠습니까?");
+	   		
+	   			if(answer == true){
+	   					
+	   				location.href='<%=request.getContextPath()%>/deleteJjim.ms?jno=10';
+	   				
+	   				  
+	   				alert("관심목록에서 해제되었습니다");
+	   			}
+	   			
+	   			
 	       }
 	    </script>
     

@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.member.model.vo.Member;
 import com.kh.team3.mystore.model.service.ReviewService;
-import com.kh.team3.mystore.model.vo.Review;
+import com.kh.team3.mystore.model.vo.Jjim;
 
 /**
  * Servlet implementation class ThumbsUpNoServlet
  */
 @WebServlet("/like.ms")
-public class ThumbsUpNoServlet extends HttpServlet {
+public class JjimServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ThumbsUpNoServlet() {
+    public JjimServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,14 +34,15 @@ public class ThumbsUpNoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		
-		ArrayList<Jjim> rvlist = new ReviewService().selectList(loginuserId);
-		request.setAttribute("rvlist", rvlist);
+
+			ArrayList<Jjim> jjimList = new ReviewService().selectJjimList(loginuserId);
+			request.setAttribute("jjimList", jjimList);
 
 		
 		
-		RequestDispatcher view =request.getRequestDispatcher("views/mystore/ThumbsUpNo.jsp");
+		RequestDispatcher view =request.getRequestDispatcher("views/mystore/Jjim.jsp");
 	    view.forward(request, response);
 	}
 

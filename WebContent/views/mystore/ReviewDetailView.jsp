@@ -47,11 +47,16 @@
 			
 			                <div class="buyercheckbox">
 			                    <ul>
-			               
+			                    <% String checkbox = rv.getRadio(); %>
+			               		<% String[] splited =checkbox.split(","); %>
+			               		
+			               		<% for(int i = 0; i < splited.length; i++){ %>
+			                      
 			                        <li>
-			                            <%=rv.getRadio() %>
+			                        	<%= (i+1)+". " %><%= splited[i] %>
 			                        </li>
-			                  
+	
+			                  <% } %>
 			                    </ul>
 			                   
 			                </div>    
