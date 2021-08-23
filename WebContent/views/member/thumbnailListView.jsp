@@ -27,13 +27,14 @@
 		width:760px;
 		height:550px;
 		margin:auto;
+		
 	}
 	.thumbnail{
 		display:inline-block;
 		width:220px;
-		border:1px solid white;
+		border:3px solid blue;
 		margin:10px;
-		 border: 1px black solid;
+		 
 		
 	}
 	.thumbnail:hover{
@@ -130,10 +131,10 @@
 		<div class="listArea">
 			<%for(Board b : list){ %>
 			<div class="thumbnail" align="center">
-				<input type="hidden" value="<%=b.getBoardNo()%>">
+				<input type="hidden" value="<%=b.getBoardNo()%>">	
 				<img src="<%=contextPath %>/resources/board_upfiles/<%= b.getTitleImg() %>" width="200px" height="150px"> <br>
 				<p>
-					No.<%= b.getBoardNo() %>  <%=b.getBoardTitle() %> <br>
+					 <%=b.getBoardTitle() %> <br>
 					조회수 : <%=b.getBoardCount() %>
 				</p>
 			</div>

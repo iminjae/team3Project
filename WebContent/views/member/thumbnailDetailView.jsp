@@ -4,12 +4,11 @@
 <% 
 	Board b = (Board)request.getAttribute("b"); 
 	Attachment fileList = (Attachment)request.getAttribute("fileList");
-
+	String contextPath = request.getContextPath();
+	String loginUser = (String)request.getAttribute("loginUser");
 	
 %>
-  <%   
-   String contextPath = request.getContextPath();
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,8 +178,31 @@
 				
 			</tr>
 		</table>
+		<form action="" id="postForm" method="post">
+			<input type="hidden" name="bno" value="<%= b.getBoardNo() %>">
+		</form>
+		
+			<% if((String)request.getSession().getAttribute("userId") != "admin"){ %>
+					<button type="button" onclick="updateForm();">수정하기</button>
+					<button type="button" onclick="deleteBoard();">삭제하기</button>
+				<% }else{ %>
+				
+				<% } %>
 		
 	</div>
+	<script>
+	function updateForm(){
+		$("#postForm").attr("action", "<%=contextPath%>/updateForm.bo");
+		$("#postForm").submit();
+	}
+	
+	
+	function deleteBoard(){
+		$("#postForm").attr("action", "<%=contextPath%>/deleteB.bo");
+		$("#postForm").submit();
+	}
+	</script>
+	
 	
 	 <!-- Optional JavaScript; choose one of the two! -->
 

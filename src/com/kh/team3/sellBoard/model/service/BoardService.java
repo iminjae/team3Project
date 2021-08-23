@@ -1,6 +1,5 @@
 package com.kh.team3.sellBoard.model.service;
 
-
 import static com.kh.team3.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -104,6 +103,48 @@ public class BoardService {
 
 		return result;
 
+	}
+
+	public int updateBoard(Board b, Attachment at) {
+		Connection conn = getConnection();
+
+		int result1 = new BoardDao().updateBoard(conn, b);
+		int result2 = 1;
+
+		if (at != null) {
+			if (at.getFileNo() != 0) {
+				result2 = new BoardDao().updateAttachment(conn, at);
+			} else {
+				result2 = new BoardDao().insertNewAttachment(conn, at);
+			}
+		}
+		if (result1 * result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result1 * result2;
+	}
+
+	public Board selectUpdateBoard(int bNo) {
+		Connection conn = getConnection();
+
+		// 단순 조회만
+		Board b = new BoardDao().selectBoard(conn, bNo);
+
+		close(conn);
+		return b;
+	}
+
+	public Attachment selectAttachment(int bNo) {
+		Connection conn = getConnection();
+
+		Attachment at = new BoardDao().selectAttachment(conn, bNo);
+
+		close(conn);
+		return at;
 	}
 
 }

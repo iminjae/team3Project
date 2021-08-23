@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,64 +9,56 @@
 <link href="resources/css/Notice_css/Notice_USER.css" rel="stylesheet" type="text/css">
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
-	
-	<div class="Content">
-		<br>
-		<h1 align="center" class="Notice">공지사항</h1>
-		<hr align="center" style="border: solid 1px rgb(0, 0, 0); width:40%" >
-		<br>
 	    
-		<!--게시판-->
-		<div class="Content">
-		<br>
-		<h1 align="center" class="Notice">공지사항</h1>
-		<hr align="center" style="border: solid 1px rgb(0, 0, 0); width:40%" >
-		<br>
+	    
+		<div class="board_list">
+			<br>
+			<h1 align="center" class="Notice">공지사항</h1>
+			<hr align="center" style="border: solid 1px rgb(0, 0, 0); width:40%" >
+			<br>
 	    
 		<!--게시판-->
 		<table class="list">
+
 			<thead>
+
 				<tr>
 					<th width="40">NO.</th>
 					<th width="500">제목</th>
 					<th width="100">작성자</th>
 					<th width="120">작성일</th>
 				</tr>
-			</thead>
-			<tbody>
 
+			</thead>
+
+			<tbody>
+				
+				
 				<tr>
 					<td>1</td>
-					<td style="width: 500px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">코로나 조심sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</td>
+					<td class="tit">
+						<a href="#">코로나 조심sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</a>
+					</td>
 					<td>운영자</td>
 					<td>2021-08-18</td>
 				</tr>
 
 			</tbody>
+
 		</table>
 
-		<!--Pagination-->
-		<ul class="pagination">
-			<li class="disabled">
-				<a href="#">
-					<span>«</span>
-				</a>
-			</li>
-			<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-			<li>
-				<a href="#">
-				<span>»</span>
-				</a>
-			</li>
-		</ul>
+		<div class="paging">
+			<a href="#">이전 페이지</a>
+			<a href="#">1</a>
+			<a href="#">2</a>
+			<a href="#">3</a>
+			<a href="#">다음 페이지</a>
+		</div>
 
 		<!-- 검색옵션 -->
 		<form class="searchArea">

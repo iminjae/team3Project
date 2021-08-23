@@ -8,9 +8,12 @@ public class Chat {
 	private String chatContent;
 	private String chatTime;
 	
+	
+	
 	public Chat() {
 		// TODO Auto-generated constructor stub-
 	}
+	
 	
 	
 

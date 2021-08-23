@@ -1,7 +1,5 @@
 package com.kh.team3.mystore.model.service;
 
-
-
 import static com.kh.team3.common.JDBCTemplate.close;
 import static com.kh.team3.common.JDBCTemplate.commit;
 import static com.kh.team3.common.JDBCTemplate.getConnection;
@@ -10,8 +8,8 @@ import static com.kh.team3.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-
 import com.kh.team3.mystore.model.dao.ReviewDao;
+import com.kh.team3.mystore.model.vo.Jjim;
 import com.kh.team3.mystore.model.vo.Review;
 
 
@@ -19,7 +17,7 @@ import com.kh.team3.mystore.model.vo.Review;
 
 public class ReviewService {
 	
-	//리뷰 등록
+	//리뷰 추가
 	public int insertReview(String userId, Review rv) {
 		Connection conn = getConnection();
 
@@ -36,7 +34,8 @@ public class ReviewService {
 		
 		return result;
 	}
-
+	
+	//리뷰 조회
 	public ArrayList<Review> selectList(String loginUserId) {
 		Connection conn = getConnection();
 		System.out.println("서비스 아이디" + loginUserId);
@@ -66,5 +65,61 @@ public class ReviewService {
 		
 		return list;	
 	}
+	
+	//찜 조회
+	public ArrayList<Jjim> selectJjimList(String loginuserId) {
+		Connection conn = getConnection();
+		System.out.println("서비스 아이디" + loginuserId);
+		ArrayList<Jjim> list = new ReviewDao().selectJjimList(conn, loginuserId);
+		close(conn);
+		
+		return list;	
+	}
+	
+	//찜 삭제
+	public int deleteJjim(int jno) {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().deleteJjim(conn,jno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	//찜 추가 
+	public int insertJjim(Jjim Jjim) {
+		Connection conn = getConnection();
+
+		int result= new ReviewDao().insertJjim(conn,Jjim);
+		
+		
+		if(result> 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+//	//찜 하나만 조회에서 jsp에서
+//	public Jjim selectJjimOne(String userId, int bNo) {
+//		Connection conn = getConnection();
+//		Jjim list = new ReviewDao().selectJjimOne(conn, userId, bNo);
+//		
+//		System.out.println("~~~~~~~~~~~~~서비스에서 객체담아서 다시 서블릿으로" + list);
+//		close(conn);
+//		
+//		return list;
+//	}
 
 }

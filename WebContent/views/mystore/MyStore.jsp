@@ -44,31 +44,7 @@
       <b>배송 조회</b>
     </button>
    </div>
-   
-   <!-- 리뷰다 -->
-   <button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>
-   <p><%= rv %></p>
-   <script>
-	   function makeReview(){
-		   <%if( rv != null){ %>
-			   $('#rvbtn').click( function() {
-		            $(this).html('확인');
-		        })
-		   <%}else{%>
-			  	var _width = '500';
-			    var _height = '600';
-			 
-			    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-			    var _left = Math.ceil(( window.screen.width - _width )/2);
-			    var _top = Math.ceil(( window.screen.height - _height )/2); 
-			 
-			    window.open('<%= request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
-		   <%  }%>
-		 
-		
-   		
-   		}
-   </script>
+
     
   
 </body>

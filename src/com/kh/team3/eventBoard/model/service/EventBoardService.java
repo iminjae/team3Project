@@ -32,6 +32,31 @@ Connection conn = getConnection();
 
 
 	}
+	
+	public int updateBoard(Board b, Attachment at) {
+		Connection conn = getConnection();
+
+		int result1 = new EventBoardDao().updateBoard(conn, b);
+		int result2 = 1;
+		System.out.println("서비스의 at : " +at);
+		if (at != null) {
+			System.out.println("$");
+				result2 = new EventBoardDao().updateAttachment(conn, at);
+			}
+
+		System.out.println("#");
+		if (result1 * result2 > 0) {
+			System.out.println("#1");
+			commit(conn);
+			System.out.println("#2");
+			
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1 * result2;
+
+	}
 
 	public ArrayList<Board> selectThList() {
 		Connection conn = getConnection();
@@ -71,7 +96,49 @@ Connection conn = getConnection();
 		close(conn);
 		return list;
 	}
+	
+	public int deleteBoard(int bid) {
 
+		Connection conn = getConnection();
+
+		int result1 = new EventBoardDao().deleteBoard(conn, bid);
+		int result2 = new EventBoardDao().deleteAttachment(conn, bid);
+
+		if (result1 > 0) {
+			commit(conn);
+
+		} else {
+			rollback(conn);
+		}
+
+		close(conn);
+
+		return result1;
+	}
+
+	public Board selectUpdateBoard(int bno) {
+
+		Connection conn = getConnection();
+
+		Board b = new EventBoardDao().selectBoardtwo(conn, bno);
+
+		close(conn);
+
+		return b;
+	}
+	
+	public Attachment selectAttachment(int bno) {
+		Connection conn = getConnection();
+
+		Attachment at = new EventBoardDao().selectAttachment(conn, bno);
+
+		close(conn);
+
+		return at;
+	}
 }
+
+
+
 
 

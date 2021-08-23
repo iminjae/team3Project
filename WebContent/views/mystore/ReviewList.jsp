@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.team3.sellBoard.model.vo.*" %>
 <%
 	String msg = (String)request.getAttribute("msg");
+	String rno = (String)request.getAttribute("rno");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
         <div class="form">
             <p align="center">☆ 판매자께 드리는 후기 ☆</p>
             <form action="<%=request.getContextPath()%>/reviewform.rv" id="updateForm" method="post" name="testForm" >
-
+				<input  type="hidden" name="rno" value="<%= rno %>"/>
                 <input  type="text" class="reviewtext" name="content" placeholder="리뷰는 솔직하게 작성해주세요"/><br>
                 <br>
                 <div class="radio">
@@ -51,6 +52,7 @@
     <script>
     	function alertfun()
     	{
+
     		var params = $("#updateForm").serialize();
     		$.ajax(
     		{
@@ -62,6 +64,7 @@
     						window.close();
     					}
     		});
+
     	}
     	
     </script>
