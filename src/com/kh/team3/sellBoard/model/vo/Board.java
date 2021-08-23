@@ -45,7 +45,7 @@ public class Board {
 		this.titleImg = titleImg;
 	}
 
-	public Board(int boardNo, String categoryName, String boardTitle, String boardContent,  String userId, int bCnt, 
+	public Board(int boardNo, String categoryName, String boardTitle, String boardContent,  String userId, String boardStatus, int bCnt, 
 			Date createDate, int likeCnt, int price) {
 		super();
 		this.boardNo = boardNo;
@@ -53,6 +53,7 @@ public class Board {
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;		
 		this.userId = userId;
+		this.boardStatus = boardStatus;
 		this.bCnt = bCnt;	
 		this.createDate = createDate;
 		this.likeCnt = likeCnt;

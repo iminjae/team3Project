@@ -17,7 +17,7 @@ import com.kh.team3.mystore.model.vo.Review;
 
 public class ReviewService {
 	
-	//리뷰 등록
+	//리뷰 추가
 	public int insertReview(String userId, Review rv) {
 		Connection conn = getConnection();
 
@@ -92,5 +92,34 @@ public class ReviewService {
 		
 		return result;
 	}
+	
+	//찜 추가 
+	public int insertJjim(Jjim Jjim) {
+		Connection conn = getConnection();
+
+		int result= new ReviewDao().insertJjim(conn,Jjim);
+		
+		
+		if(result> 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+//	//찜 하나만 조회에서 jsp에서
+//	public Jjim selectJjimOne(String userId, int bNo) {
+//		Connection conn = getConnection();
+//		Jjim list = new ReviewDao().selectJjimOne(conn, userId, bNo);
+//		
+//		System.out.println("~~~~~~~~~~~~~서비스에서 객체담아서 다시 서블릿으로" + list);
+//		close(conn);
+//		
+//		return list;
+//	}
 
 }

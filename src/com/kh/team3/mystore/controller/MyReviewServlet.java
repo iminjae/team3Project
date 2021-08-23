@@ -39,10 +39,7 @@ public class MyReviewServlet extends HttpServlet {
 	
 		
 			String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-			//String userId = request.getParameter("writer");
-			
-			System.out.println("로그인아이디" + loginuserId);
-			//System.out.println("jsp아이디" + userId);
+
 			
 		
 				ArrayList<Review> rvlist = new ReviewService().selectList(loginuserId);

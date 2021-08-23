@@ -47,6 +47,7 @@
                   <li><a href="<%=request.getContextPath()%>/MyPageMove.me">마이 페이지</a></li>
                   <li><a href="<%=request.getContextPath()%>/mystore.ms">내 상점</a></li>
                   <li><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
+                   <li> <img src="..." alt="..." class="img-circle"> </li>
                </ul>
                <nav id="gnb">
                   <h2 class="blind">메인메뉴</h2>
@@ -72,7 +73,7 @@
                      <li class="m4 no-sub">
                                  <a href="#">기타</a>
                                  <ul>
-                                    <li><a href="#">이벤트</a></li>
+                                     <li><a href="<%=request.getContextPath()%>/event.bo">이벤트</a></li>
                                     <li><a href="#">신고/문의</a></li>                    
                                  </ul>
                      </li>

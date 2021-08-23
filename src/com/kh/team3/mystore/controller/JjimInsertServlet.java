@@ -1,7 +1,6 @@
 package com.kh.team3.mystore.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +14,16 @@ import com.kh.team3.mystore.model.service.ReviewService;
 import com.kh.team3.mystore.model.vo.Jjim;
 
 /**
- * Servlet implementation class ThumbsUpNoServlet
+ * Servlet implementation class JjimInsertServlet
  */
-@WebServlet("/like.ms")
-public class JjimServlet extends HttpServlet {
+@WebServlet("/jjimInsert.ms")
+public class JjimInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JjimServlet() {
+    public JjimInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +32,31 @@ public class JjimServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
-		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-
-			ArrayList<Jjim> jjimList = new ReviewService().selectJjimList(loginuserId);
-			request.setAttribute("jjimList", jjimList);
+		 request.setCharacterEncoding("UTF-8");
 
 		
-		RequestDispatcher view =request.getRequestDispatcher("views/mystore/Jjim.jsp");
-	    view.forward(request, response);
+		 	String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+			int bNo = Integer.parseInt(request.getParameter("jno"));			
+			System.out.println("찜 인서트서블릿 게시글번호 : " + bNo);
+	      
+	      Jjim Jjim = new Jjim(userId, bNo);
+	      int result = 0;
+	     result = new ReviewService().insertJjim(Jjim);
+
+	      
+	      if(result > 0) {
+				request.getSession().setAttribute("msg", "찜 등록 성공");
+				request.getSession().setAttribute("result", result);
+				response.sendRedirect("sellDetail.bo?bNo="+bNo);
+			}else {
+				request.setAttribute("msg", "찜 등록 실패했습니다");
+				
+				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+				view.forward(request, response);
+			}
+
+		
+		
 	}
 
 	/**

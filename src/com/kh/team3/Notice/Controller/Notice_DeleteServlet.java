@@ -1,30 +1,23 @@
-package com.kh.team3.mystore.controller;
+package com.kh.team3.Notice.Controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.member.model.vo.Member;
-import com.kh.team3.mystore.model.service.ReviewService;
-import com.kh.team3.mystore.model.vo.Jjim;
-
 /**
- * Servlet implementation class ThumbsUpNoServlet
+ * Servlet implementation class Notice_DeleteServlet
  */
-@WebServlet("/like.ms")
-public class JjimServlet extends HttpServlet {
+@WebServlet("/Delete.do")
+public class Notice_DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JjimServlet() {
+    public Notice_DeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +26,8 @@ public class JjimServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
-		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-
-			ArrayList<Jjim> jjimList = new ReviewService().selectJjimList(loginuserId);
-			request.setAttribute("jjimList", jjimList);
-
-		
-		RequestDispatcher view =request.getRequestDispatcher("views/mystore/Jjim.jsp");
-	    view.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

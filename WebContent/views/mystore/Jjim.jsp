@@ -49,7 +49,8 @@ font-size : 24px;
              <% }else{  %>
 			   	  <% for(Jjim list : jjimList){ %>
 			   	 
-			        <div class="getboard" >
+			        <div class="getboard"  >
+			        		<input type="hidden" value="<%=list.getBoardNo() %>">
 			        		<div onclick="location.href='<%=request.getContextPath()%>/sellDetail.bo?bNo=<%=list.getBoardNo() %>'">
 					            <img src="<%=request.getContextPath()%>/resources/board_upfiles/<%=list.getChangeName() %>" width="50px" height="50px"> <br>
 					            <p><%= list.getBoardTitle()%></p>
@@ -69,11 +70,13 @@ font-size : 24px;
 	       function cancle(){
 	    	   var answer;
 	   			answer = confirm("관심목록에서 해제하시겠습니까?");
-	   		
+	   			
+	   			
+	   			
 	   			if(answer == true){
-	   					
-	   				location.href='<%=request.getContextPath()%>/deleteJjim.ms?jno=10';
-	   				
+	   				var jno = $(".getboard").children().eq(0).val();
+	
+	   				location.href='<%=request.getContextPath()%>/deleteJjim.ms?jno='+jno;
 	   				  
 	   				alert("관심목록에서 해제되었습니다");
 	   			}
