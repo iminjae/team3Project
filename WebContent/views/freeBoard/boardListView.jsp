@@ -19,6 +19,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <style>
 	.box{
 		width:800px;
@@ -70,16 +71,29 @@
 			<thead>
 	
 			<tbody>
-				<%
-				
-				%>
+				<%if(list.isEmpty()){ %>
+				<tr>
+					<td colspan="6">조회된 리스트가 없습니다.</td>
+				</tr>
+				<%}else{ %>
+				<% for(Board b : list){ %>
+				<tr>
+					<td><%= b.getBoardNo() %></td>
+					<td><%= b.getCategoryNo() %></td>
+					<td class="link"><%= b.getBoardTitle() %></td>
+					<td><%= b.getUserId() %></td>
+					<td><%= b.getBoardCount() %></td>
+					<td><%= b.getCreateDate() %></td>
+				</tr>
+				<%} %>
+				<%} %>
 			</tbody>
 		</table>
 		
 		<br>
 		<div align="right">
 	
-		<button onclick="location.href='write.bo'">작성하기</button>
+		<button onclick="location.href='<%=request.getContextPath()%>/insertForm.bo'">작성하기</button>
 
 		</div>
 	</div>
@@ -117,6 +131,7 @@
 			<!-- 맨 끝으로 (>>) -->
 			<button onclick="location.href='<%=request.getContextPath()%>/list.bo?currentPage=<%=maxPage%>'"> &gt;&gt; </button>
 		</div> 
+
 		
 
 
@@ -137,7 +152,20 @@
   <DIV class='menu_line' style='clear: both;'></DIV>
 </DIV>
 
-	
 
+<script>
+		
+			$(function(){
+				console.log('외않되');
+				$(".board>tbody>tr").click(function(){
+					
+					var bno = $(this).children().eq(0).text();
+					location.href = "<%=request.getContextPath()%>/detail.bo?bno="+bno;
+				})
+			})
+		
+	</script>
+
+	
 </body>
 </html>

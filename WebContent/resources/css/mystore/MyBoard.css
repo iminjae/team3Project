@@ -27,30 +27,35 @@
       font-size: 13px;
   }
   
+   .list>tbody>tr:hover{
+      background:darkgrey;
+      cursor:pointer
+   }
+  
   /*title*/
   .mytitle{
-  	font-size: 22px;
-  	margin-left : 20px;
-  	margin-bottom: -20px;
-  	font-weight : 900;
+     font-size: 22px;
+     margin-left : 20px;
+     margin-bottom: -20px;
+     font-weight : 900;
   }
   
   .center{
-  	margin-top: 20px;
+     margin-top: 20px;
   }
   
   
   /*버튼*/
   #writeboard{
-  	float: right;
-  	margin-right: 20px;
-  	padding : 3px;
-  	width : 60px;
-  	height : 30px;
-  	font-size: 13px;
-  	background : white;
-  	border-radius : 6px;
-  	border-color : rgb(201, 210, 214);
+     float: right;
+     margin-right: 20px;
+     padding : 3px;
+     width : 60px;
+     height : 30px;
+     font-size: 13px;
+     background : white;
+     border-radius : 6px;
+     border-color : rgb(201, 210, 214);
   }
   
   #writeboard:hover{

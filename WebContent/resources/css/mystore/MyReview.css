@@ -1,0 +1,81 @@
+@charset "UTF-8";
+  .myreviewtitle{
+  	font-size: 22px;
+  	margin-left : 20px;
+  	margin-top: 40px;
+  	font-weight : 900;
+  }
+  
+  #now{
+    color: white;
+    font-size: 18px;
+  }
+  
+  /*테이블*/
+ .rvlist{
+      border-collapse: separate;
+      border-spacing: 1px;
+      text-align: left;
+      line-height: 1.5;
+      border-top: 1px solid #ccc;
+      margin : 20px 10px;
+      text-align: center;
+
+  }
+
+  .rvlist th{
+      padding: 5px;
+      font-weight: bold;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      background-color:rgb(236, 241, 236);
+      font-size: 15px;
+  }
+  .rvlist td{
+      padding: 10px;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      font-size: 13px;
+  }
+  
+  .rvlist>tbody>tr:hover{
+      background:darkgrey;
+      cursor:pointer
+   }
+   
+   /*디테일*/
+   
+   .all{
+            border: 1px solid black;
+            width: 500px;
+            height: 600px; 
+        }
+
+        .form{
+            margin-left: 20px;
+            width: 450px;
+            height: 480px; 
+            background-color: rgb(254, 255, 210);
+            border-radius: 8px;
+        }
+
+        .buyertext{
+            width: 400px;
+            height: 100px;
+            border-radius: 5px;
+            border: 0;
+            outline: 0;
+            background-color: rgb(223, 223, 223, 0.7);
+            margin-left: 25px;
+            margin-top: 20px;
+   
+        }
+
+        .okbtn{
+            text-align: center;
+        }
+
+        .buyercheckbox{
+            margin-left: 30px;
+            margin-top: -20px;
+        }

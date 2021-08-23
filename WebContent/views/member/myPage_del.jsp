@@ -53,7 +53,7 @@ String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUse
   #xkfxhl{
     width: 100px;
     height: 50px;
-    background-color: blueviolet;
+    background-color: rgb(201, 210, 214);
     color: white;
     margin-left: 500px;
 
@@ -70,13 +70,13 @@ String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUse
     <button type="button" id ="one" class="list-group-item list-group-item-action" aria-current="true">
       MyPage Menu
     </button> 
-    <a href="<%=request.getContextPath()%>/MyPageMove.me"><button type="button" class="list-group-item list-group-item-action">탈퇴하기</button> </a>
-    <a href="<%=request.getContextPath()%>/MyPageUpdateMove.me"> <button type="button" class="list-group-item list-group-item-action">회원정보 수정</button> </a>
-    <a href="<%=request.getContextPath()%>/MyPageMove.me"> <button type="button" class="list-group-item list-group-item-action" disabled>관리자 게시판</button> </a>
+    <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
+   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one"></button>
+   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
+	<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"></button> 
 
-
+</form>
   </div>
-
  <div class="del">
  
 		<form id="updateForm" method="post">
@@ -97,9 +97,10 @@ String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUse
 </div>
 
 
+		
+
 
 <script>
-	
 	
 	
 		function deleteMember(){

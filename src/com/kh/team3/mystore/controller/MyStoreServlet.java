@@ -1,6 +1,7 @@
 package com.kh.team3.mystore.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.team3.mystore.model.service.ReviewService;
+import com.kh.team3.mystore.model.vo.Review;
+
+
+
 
 /**
  * Servlet implementation class MyStore
@@ -28,8 +35,11 @@ public class MyStoreServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view =request.getRequestDispatcher("views/mystore/MyStore.jsp");
-	    view.forward(request, response);
+
+		RequestDispatcher view = request.getRequestDispatcher("views/mystore/MyStore.jsp");
+		view.forward(request, response);
+
+
 	}
 
 	/**
