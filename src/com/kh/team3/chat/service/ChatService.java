@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 import com.kh.team3.chat.dao.ChatDao;
 import com.kh.team3.chat.vo.Chat;
-import com.kh.team3.sellBoard.model.dao.BoardDao;
-import com.kh.team3.sellBoard.model.vo.Board;
 
 
 
