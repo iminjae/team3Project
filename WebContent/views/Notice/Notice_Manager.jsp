@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,8 @@
 			</thead>
 
 			<tbody>
-
+			
+		
 				<tr>
 					<td>1</td>
 					<td class="tit">
@@ -50,7 +52,7 @@
 		</table>
 
 			<div class="paging">
-				<a href="#">이전 페이지</a>
+				<a href="location.href='<%=request.getContextPath()%>/Notice_USER.NU?currentPage=1">이전 페이지</a>
 				<a href="#">1</a>
 				<a href="#">2</a>
 				<a href="#">3</a>

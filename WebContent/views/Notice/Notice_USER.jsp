@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <link href="resources/css/Notice_css/Notice_USER.css" rel="stylesheet" type="text/css">
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </head>
 <body>
@@ -35,7 +37,8 @@
 			</thead>
 
 			<tbody>
-
+				
+				
 				<tr>
 					<td>1</td>
 					<td class="tit">
