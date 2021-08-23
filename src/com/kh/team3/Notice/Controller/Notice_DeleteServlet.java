@@ -1,8 +1,6 @@
-package com.kh.team3.chat.controller;
+package com.kh.team3.Notice.Controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ExchangeServlet
+ * Servlet implementation class Notice_DeleteServlet
  */
-@WebServlet("/ChatServlet")
-public class ChatServlet extends HttpServlet {
+@WebServlet("/Delete.do")
+public class Notice_DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChatServlet() {
+    public Notice_DeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,8 +26,8 @@ public class ChatServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view =request.getRequestDispatcher("views/chat/chatroom.jsp");
-	    view.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

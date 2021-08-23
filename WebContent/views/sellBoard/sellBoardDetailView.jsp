@@ -3,7 +3,6 @@
 	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.*"
 	pageEncoding="UTF-8"%>
 <%
-
 	Board b = (Board) request.getAttribute("b");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 	String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
@@ -24,7 +23,8 @@
 	crossorigin="anonymous" />
 
 <title>SellBoard_detail</title>
-<link href="resources/css/mystore/reviewForm.css" rel="stylesheet" type="text/css">
+<link href="resources/css/mystore/reviewForm.css" rel="stylesheet"
+	type="text/css">
 </head>
 <style>
 .card {
@@ -85,7 +85,9 @@
 						<!--for문 돌리면서 이미지 가져와서 보여주기-->
 
 						<div class="carousel-inner">
-							<% for (int i = 0; i < fileList.size(); i++) { %>
+							<%
+							for (int i = 0; i < fileList.size(); i++) {
+							%>
 							<div class="carousel-item active ">
 
 								<img width="400px" height="500px"
@@ -106,7 +108,9 @@
 									class="d-block w-100" alt="...">
 							</div>
 
-							<% } %>
+							<%
+							}
+							%>
 
 						</div>
 
@@ -130,14 +134,16 @@
 
 
 				<div class="col-md-7">
-					<h4>
 
-						<span class="badge bg-secondary"><%=b.getCategoryName() %></span>
-						<button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>	
-
-					</h4>
 					<div class="card shadow-sm" style="width: 50em;">
 						<div class="card-body">
+							<h4>
+								<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
+								<span class="badge bg-success"><%=b.getBoardStatus()%></span>
+								<button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>
+							</h4>
+							<br>
+							<br>
 							<h3 class="card-title"><%=b.getBoardTitle()%>
 							</h3>
 							<p class="card-text border-top pb-3"></p>
@@ -157,7 +163,7 @@
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="col-6 d-grid p-1">
-								
+
 									<button id="btn1" type="button"
 										class="btn btn-outline-secondary" onclick="location.href='#'">좋아요👍</button>
 								</div>
@@ -167,7 +173,8 @@
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅</button>
+										class="btn btn-outline-secondary"
+										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅</button>
 								</div>
 
 							</div>
@@ -319,12 +326,14 @@
 
 	<script>
 	   function makeReview(){
+
 			  	var _width = '500';
 			    var _height = '600';
 			 
 			    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 			    var _left = Math.ceil(( window.screen.width - _width )/2);
 			    var _top = Math.ceil(( window.screen.height - _height )/2); 
+
 			    
 			    var rno = $(".bNo").val();
 			    console.log("rno"+rno)
