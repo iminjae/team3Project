@@ -8,7 +8,6 @@ public class Board {
 	private int boardType; // 게시글 타입번호(1~5)
 	private String boardTypeName; // 게시글 타입이름(1.판매게시판)
 	private int category; // 판매물품 분류번호(1~5)
-	// 추가
 	private String categoryName; // 판매물품 분류이름(1.태블릿)
 	private String boardTitle; // 게시글 제목
 	private String boardContent; // 게시글 내용

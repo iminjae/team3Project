@@ -8,7 +8,7 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("f
 
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 %>
-
+// 왕다영
 <!DOCTYPE html>
 <html lang="en">
 <head>
