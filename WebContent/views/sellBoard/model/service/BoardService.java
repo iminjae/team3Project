@@ -12,7 +12,6 @@ import com.kh.team3.sellBoard.model.vo.Reply;
 
 public class BoardService {
 
-	// 왕다영
 	public Board selectBoard(int bNo) {
 		Connection conn = getConnection();
 
