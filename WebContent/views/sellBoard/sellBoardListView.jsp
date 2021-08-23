@@ -7,6 +7,7 @@
 ArrayList<Board> list = (ArrayList<Board>) request.getAttribute("list");
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,6 +96,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 									<p class="card-text">
 									<h4>
 										<span class="badge bg-secondary"><%=b.getCategoryName() %></span>
+										<span class="badge bg-success"><%=b.getBoardStatus() %></span>
 									</h4>
 									</p>
 									<h5 class="card-title">
@@ -108,7 +110,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
                          			 <button type="button" class="btn btn-sm btn-outline-secondary">버튼1</button>
                           			 <button type="button" class="btn btn-sm btn-outline-secondary">버튼2</button>
                         			</div> -->
-										<small class="text-dark"><%=b.getbCnt()%></small>
+										<small class="text-dark">조회수 <%=b.getbCnt()%></small>
 									</div>
 								</div>
 							</div>
