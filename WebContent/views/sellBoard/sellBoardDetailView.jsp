@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%
 
-	
+Board b = (Board) request.getAttribute("b");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 	String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
   
@@ -14,7 +14,6 @@
 
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 %>
-// 왕다영
 <!DOCTYPE html>
 <html lang="en">
 <head>

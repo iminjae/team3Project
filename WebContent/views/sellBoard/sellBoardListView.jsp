@@ -7,7 +7,7 @@
 ArrayList<Board> list = (ArrayList<Board>) request.getAttribute("list");
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 %>
-// 왕다영
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +34,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 .thumbnail {
 	display: inline-block;
 	width: 220px;
-	border: 1px solid white;
+	border: 1px solid blue;
 	margin: 10px;
 }
 
