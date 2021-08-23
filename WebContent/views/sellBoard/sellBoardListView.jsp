@@ -7,7 +7,6 @@
 ArrayList<Board> list = (ArrayList<Board>) request.getAttribute("list");
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 %>
-// 왕다영
 <!DOCTYPE html>
 <html lang="en">
 <head>
