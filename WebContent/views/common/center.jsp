@@ -13,11 +13,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="..\..\resources\css\main.css">
-<script src="..\..\resources\js\jquery.js"></script>
-<script src="..\..\resources\js\jquery.bxslider.min.js"></script>
-<script src="..\..\resources\js\isotope.pkgd.min.js"></script>
-<script src="..\..\resources\js\main.js"></script>
+<link rel="stylesheet" href="resources\css\main.css">
+<script src="resources\js\jquery.js"></script>
+<script src="resources\js\jquery.bxslider.min.js"></script>
+<script src="resources\js\isotope.pkgd.min.js"></script>
+<script src="resources\js\main.js"></script>
 </head>
 <body>
 

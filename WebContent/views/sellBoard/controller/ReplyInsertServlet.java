@@ -1,31 +1,33 @@
 package com.kh.team3.sellBoard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.team3.member.model.vo.Member;
 import com.kh.team3.sellBoard.model.service.BoardService;
-import com.kh.team3.sellBoard.model.vo.Attachment;
-import com.kh.team3.sellBoard.model.vo.Board;
+import com.kh.team3.sellBoard.model.vo.Reply;
 
-//왕다영
+
+
+
+
 /**
- * Servlet implementation class SellBoardDetailServlet
+ * Servlet implementation class ReplyInsertServlet
  */
-@WebServlet("/sellDetail.bo")
-public class SellBoardDetailServlet extends HttpServlet {
+@WebServlet("/rinsert.bo")
+public class ReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardDetailServlet() {
+    public ReplyInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,29 +36,28 @@ public class SellBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String content = request.getParameter("content");
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		request.setAttribute("bNo", bNo);
-		System.out.println("SellBoardDetailServlet :" + bNo);
+		//오브젝트 타입이어서 Member 로 형변환
+		String writer = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		Board b = new BoardService().selectBoard(bNo);
-
-		System.out.println("SellBoardDetailServlet :" + b);
+		Reply r = new Reply();
+		r.setReplyContent(content);
+		r.setRefBoardId(bNo);
+		r.setReplyWriter(String.valueOf(writer));
 		
-		ArrayList<Attachment> fileList = new BoardService().selectThumbnail(bNo);
-		System.out.println("SellBoardDetailServlet :" + fileList);		
-	
-		if(b != null) {
-			request.setAttribute("b", b);
-			request.setAttribute("fileList", fileList);
-			request.getRequestDispatcher("views/sellBoard/sellBoardDetailView.jsp").forward(request, response);
+		int result = new BoardService().insertReply(r);
+		
+		PrintWriter out = response.getWriter();
+		if(result > 0) {
+			out.print("success");
 		}else {
-			request.setAttribute("msg", "게시글 상세보기에 실패했습니다");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}		
+			out.print("fail");
+		}
+		out.flush();
+		out.close();
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -64,4 +65,5 @@ public class SellBoardDetailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

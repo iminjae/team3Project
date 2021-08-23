@@ -11,21 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.sellBoard.model.service.BoardService;
-import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
 
-//왕다영
 /**
- * Servlet implementation class SellBoardDetailServlet
+ * Servlet implementation class SellBoardListServlet
  */
-@WebServlet("/sellDetail.bo")
-public class SellBoardDetailServlet extends HttpServlet {
+@WebServlet("/sellList.bo")
+public class SellBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardDetailServlet() {
+    public SellBoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,29 +32,14 @@ public class SellBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Board> list = new BoardService().selectThList(); //카테고리 번호 같이 넘겨주기
 		
-		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		request.setAttribute("bNo", bNo);
-		System.out.println("SellBoardDetailServlet :" + bNo);
+//		System.out.println("servlet list : " + list );
 		
-		Board b = new BoardService().selectBoard(bNo);
-
-		System.out.println("SellBoardDetailServlet :" + b);
-		
-		ArrayList<Attachment> fileList = new BoardService().selectThumbnail(bNo);
-		System.out.println("SellBoardDetailServlet :" + fileList);		
-	
-		if(b != null) {
-			request.setAttribute("b", b);
-			request.setAttribute("fileList", fileList);
-			request.getRequestDispatcher("views/sellBoard/sellBoardDetailView.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "게시글 상세보기에 실패했습니다");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/sellBoard/sellBoardListView.jsp").forward(request, response);
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -64,4 +47,5 @@ public class SellBoardDetailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }
