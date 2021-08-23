@@ -7,7 +7,7 @@
 	
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 	String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
-  
+	Board b = (Board) request.getAttribute("b");
 	Review rv = (Review)request.getAttribute("review");
 %>
 
