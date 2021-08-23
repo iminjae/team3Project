@@ -52,6 +52,7 @@ public class loginServlet extends HttpServlet {
 		if(loginUser !=null) {  //로그인 성공
 			HttpSession session = request.getSession();
 			System.out.println("%%%%%%%%%%%%%%%%%%%%%%");
+			session.setAttribute("userId", userId);
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("originPwd", originPwd);
 			Member test = (Member)request.getAttribute("loginUser");
