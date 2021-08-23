@@ -156,7 +156,7 @@
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">1:1채팅</button>
+										class="btn btn-outline-secondary" onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅</button>
 								</div>
 
 							</div>
