@@ -1,29 +1,26 @@
-package com.kh.team3.sellBoard.controller;
+package com.kh.team3.mystore.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.sellBoard.model.service.BoardService;
+import com.kh.team3.mystore.model.service.ReviewService;
 
-
-//왕다영
 /**
- * Servlet implementation class SellBoardDeleteServlet
+ * Servlet implementation class JJimDeleteServlet
  */
-@WebServlet("/sellDelete.bo")
-public class SellBoardDeleteServlet extends HttpServlet {
+@WebServlet("/deleteJjim.ms")
+public class JJimDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardDeleteServlet() {
+    public JJimDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +29,18 @@ public class SellBoardDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("딜리트서블릿 타는중");
-		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		int result = new BoardService().deleteBoard(bNo);
+		int jno = Integer.parseInt(request.getParameter("jno"));
+		
+		System.out.println("찜삭제 게시글번호 : " + jno);
+		int result = new ReviewService().deleteJjim(jno);
+		
+		
 		if(result > 0) {
-			response.sendRedirect("sellList.bo");
+			response.sendRedirect("like.ms");
 		}else {
-			request.setAttribute("msg", "게시글 삭제에 실패했습니다");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+			request.setAttribute("msg", "찜 삭제에 실패했습니다");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		
 		}
 	}
 

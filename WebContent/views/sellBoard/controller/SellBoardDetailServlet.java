@@ -14,7 +14,6 @@ import com.kh.team3.sellBoard.model.service.BoardService;
 import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
 
-//왕다영
 /**
  * Servlet implementation class SellBoardDetailServlet
  */
@@ -36,7 +35,6 @@ public class SellBoardDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		request.setAttribute("bNo", bNo);
 		System.out.println("SellBoardDetailServlet :" + bNo);
 		
 		Board b = new BoardService().selectBoard(bNo);
@@ -45,6 +43,7 @@ public class SellBoardDetailServlet extends HttpServlet {
 		
 		ArrayList<Attachment> fileList = new BoardService().selectThumbnail(bNo);
 		System.out.println("SellBoardDetailServlet :" + fileList);		
+
 	
 		if(b != null) {
 			request.setAttribute("b", b);

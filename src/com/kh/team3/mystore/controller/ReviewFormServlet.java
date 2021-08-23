@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.team3.member.model.vo.Member;
 import com.kh.team3.mystore.model.service.ReviewService;
 import com.kh.team3.mystore.model.vo.Review;
+import com.kh.team3.sellBoard.model.vo.Board;
 
 
 /**
@@ -40,6 +41,11 @@ public class ReviewFormServlet extends HttpServlet {
 		  String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		  String content = request.getParameter("content");
 	      String[] review = request.getParameterValues("review");
+	      
+	     // int bno = ((Board)request.getSession().getAttribute("b")).getBoardNo();
+	      
+	      
+	      int bNo = Integer.parseInt((String) request.getSession().getAttribute("bNo"));
 	      request.setAttribute("reviewjoin", review);
 	      System.out.println("리뷰서블릿"+ content);
 	      System.out.println("리뷰서블릿"+ review);
@@ -49,6 +55,8 @@ public class ReviewFormServlet extends HttpServlet {
 	      System.out.println("리뷰서블릿 :" + userId);
 	      System.out.println("리뷰서블릿 :" + content);
 	      System.out.println("리뷰서블릿 :" + reviews);
+	      System.out.println("리뷰서블릿 보드넘버 넘어와라 :" + bNo);
+	      
 	    
 	      
 	      Review rv = new Review(userId, content, reviews);

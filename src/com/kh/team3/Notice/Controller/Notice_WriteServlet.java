@@ -1,4 +1,4 @@
-package com.kh.team3.sellBoard.controller;
+package com.kh.team3.Notice.Controller;
 
 import java.io.IOException;
 
@@ -9,21 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.sellBoard.model.service.BoardService;
-
-
-//왕다영
 /**
- * Servlet implementation class SellBoardDeleteServlet
+ * Servlet implementation class Notice_WriteServlet
  */
-@WebServlet("/sellDelete.bo")
-public class SellBoardDeleteServlet extends HttpServlet {
+@WebServlet("/Notice_Write.NW")
+public class Notice_WriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardDeleteServlet() {
+    public Notice_WriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +27,11 @@ public class SellBoardDeleteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("딜리트서블릿 타는중");
-		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		int result = new BoardService().deleteBoard(bNo);
-		if(result > 0) {
-			response.sendRedirect("sellList.bo");
-		}else {
-			request.setAttribute("msg", "게시글 삭제에 실패했습니다");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view =request.getRequestDispatcher("views/Notice/Notice_Write.jsp");
+		view.forward(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

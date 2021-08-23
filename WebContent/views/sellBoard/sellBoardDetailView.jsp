@@ -1,10 +1,16 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member"
+	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.Review"
 	pageEncoding="UTF-8"%>
 <%
-Board b = (Board) request.getAttribute("b");
-ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
+
+	
+	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
+	String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
+  
+	Review rv = (Review)request.getAttribute("review");
+%>
+
 
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 %>
@@ -21,6 +27,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 	crossorigin="anonymous" />
 
 <title>SellBoard_detail</title>
+<link href="resources/css/mystore/reviewForm.css" rel="stylesheet" type="text/css">
 </head>
 <style>
 .card {
@@ -127,7 +134,10 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 
 				<div class="col-md-7">
 					<h4>
-						<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
+
+						<span class="badge bg-secondary"><%=b.getCategoryName() %></span>
+						<button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>	
+
 					</h4>
 					<div class="card shadow-sm" style="width: 50em;">
 						<div class="card-body">
@@ -150,6 +160,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="col-6 d-grid p-1">
+								
 									<button id="btn1" type="button"
 										class="btn btn-outline-secondary" onclick="location.href='#'">좋아요👍</button>
 								</div>
@@ -159,7 +170,7 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">1:1채팅</button>
+										class="btn btn-outline-secondary" onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅</button>
 								</div>
 
 							</div>
@@ -309,6 +320,27 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 		
 	</script>
 
+	<script>
+	   function makeReview(){
+		   <%if( rv != null){ %>
+			   $('#rvbtn').click( function() {
+		            $(this).html('확인');
+		        })
+		   <%}else{%>
+			  	var _width = '500';
+			    var _height = '600';
+			 
+			    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+			    var _left = Math.ceil(( window.screen.width - _width )/2);
+			    var _top = Math.ceil(( window.screen.height - _height )/2); 
+			 
+			    window.open('<%= request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+		   <%  }%>
+		 
+		
+   		
+   		}
+   </script>
 
 </body>
 </html>
