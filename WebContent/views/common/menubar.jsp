@@ -51,7 +51,7 @@
                   <h2 class="blind">메인메뉴</h2>
                   <ul>
                      <li class="m1">
-                     	<a href="<%=request.getContextPath()%>/Notice_USER.NU">공지사항</a>
+                     	<a href="<%=request.getContextPath()%>/Notice_Manager.NM">공지사항</a>
                      </li>
                      <li class="m2">
                         <a href="#">거래장터</a>
