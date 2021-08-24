@@ -1,8 +1,6 @@
 package com.kh.team3.Notice.Controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Notice_WriteServlet
+ * Servlet implementation class Notice_BoardUpdate
  */
-@WebServlet("/Notice_Write.NW")
-public class Notice_WriteServlet extends HttpServlet {
+@WebServlet("/Update.do")
+public class Notice_BoardUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Notice_WriteServlet() {
+    public Notice_BoardUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,11 +25,10 @@ public class Notice_WriteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view =request.getRequestDispatcher("views/Notice/Notice_Write.jsp");
-		view.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
