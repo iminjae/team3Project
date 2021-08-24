@@ -1,4 +1,4 @@
-package com.kh.team3.freeBoard.controller;
+package com.kh.team3.shareBoard.controller;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ import com.oreilly.servlet.MultipartRequest;
 /**
  * Servlet implementation class BoardInsertServlet
  */
-@WebServlet("/write.bo")
+@WebServlet("/write.sbo")
 public class BoardInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

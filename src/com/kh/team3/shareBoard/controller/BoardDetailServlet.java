@@ -1,4 +1,4 @@
-package com.kh.team3.freeBoard.controller;
+package com.kh.team3.shareBoard.controller;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import com.kh.team3.freeBoard.model.vo.Reply;
 /**
  * Servlet implementation class BoardDetailServlet
  */
-@WebServlet("/detail.bo")
+@WebServlet("/detail.sbo")
 public class BoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

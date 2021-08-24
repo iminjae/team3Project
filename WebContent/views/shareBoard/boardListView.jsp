@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList, com.kh.team3.freeBoard.model.vo.* , com.kh.team3.freeBoard.model.dao.*,com.kh.team3.freeBoard.model.service.*"%>
+<%@page import="java.util.ArrayList, com.kh.team3.shareBoard.model.vo.* , com.kh.team3.shareBoard.model.dao.*,com.kh.team3.shareBoard.model.service.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -163,7 +163,7 @@
 				$(".board>tbody>tr").click(function(){
 					
 					var bno = $(this).children().eq(0).text();
-					location.href = "<%=request.getContextPath()%>/detail.bo?bno="+bno;
+					location.href = "<%=request.getContextPath()%>/detail.sbo?bno="+bno;
 				})
 			})
 		

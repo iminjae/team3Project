@@ -9,27 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
-import com.kh.team3.common.MyFileRenamePolicy;
 import com.kh.team3.freeBoard.model.service.BoardService;
 import com.kh.team3.freeBoard.model.vo.Board;
-import com.kh.team3.member.model.vo.Member;
-import com.oreilly.servlet.MultipartRequest;
-// import com.oreilly.servlet.multipart.DefaultFileRenamePolicy; // 기본파일 rename해보고
-// common에 추상클래스 만들어서 MyFileRenamePolicy 구현해보기
 
 /**
- * Servlet implementation class BoardInsertServlet
+ * Servlet implementation class BoardUpdateServlet
  */
-@WebServlet("/write.bo")
-public class BoardInsertServlet extends HttpServlet {
+@WebServlet("/update.fbo")
+public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertServlet() {
+    public BoardUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,38 +31,36 @@ public class BoardInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-			request.setCharacterEncoding("UTF-8");
 		
+		request.setCharacterEncoding("UTF-8");
+			int bno = Integer.parseInt(request.getParameter("bno"));
+			
+			int category = Integer.parseInt(request.getParameter("categoryNo"));
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-			String categoryNo = request.getParameter("categoryNo");
-			String user = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-	
-			Board b = new Board();
 			
-		
+			
+			
+			Board b = new Board();
+			b.setCategoryNo(category);
 			b.setBoardTitle(title);
 			b.setBoardContent(content);
-			b.setCategoryNo(Integer.parseInt(categoryNo));
-			b.setUserId(user);
+			b.setBoardNo(bno);
+
 			
 			
 			
-			
-			int result = new BoardService().insertBoard(b);
-			if(result > 0) {
-				request.getSession().setAttribute("msg", "게시물 등록 성공");
-				
-				
-				request.getRequestDispatcher("list.bo").forward(request, response);
+			int result = new BoardService().updateBoard(b);
+			if(result > 0) { //성공하면 바로 상세페이지로 보내고
+				request.setAttribute(String.valueOf(bno), "bno");
+				request.getRequestDispatcher("detail.bo").forward(request, response);	
 			}else {
-				request.setAttribute("msg", "게시판 등록에 실패했습니다");
+				request.setAttribute("msg", "게시판 수정에 실패했습니다");
 				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 				view.forward(request, response);
 			}
-		
-	}
+		}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

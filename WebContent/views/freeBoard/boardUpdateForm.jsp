@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.kh.team3.freeBoard.model.vo.* "%>
+<%
+	Board b = (Board)request.getAttribute("b");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +38,7 @@
 		<h2>게시글 작성하기</h2>
 		<br>
 		
-		<form id="insertForm" action="<%= request.getContextPath()%>/write.bo" method="post" >
+		<form id="insertForm" action="<%= request.getContextPath()%>/update.fbo" method="post" >
 			<table align="center">
 				<tr>
 					<th width="100">분야</th>
@@ -49,16 +53,17 @@
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="title"></td>
+					<td><input type="text" name="title"value="<%=b.getBoardTitle()%>"></td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea rows="15" name="content" style="resize:none;"></textarea>
+						<textarea rows="15" name="content" style="resize:none;"><%=b.getBoardContent()%></textarea>
 					</td>
 				</tr>
 				
 			</table>
+			<input type="hidden" name="bno" value="<%= b.getBoardNo() %>">
 			<br>
 			
 			<div class="btns" align="center">

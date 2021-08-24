@@ -1,8 +1,8 @@
-package com.kh.team3.freeBoard.controller;
+package com.kh.team3.shareBoard.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.freeBoard.model.service.BoardService;
-import com.kh.team3.freeBoard.model.vo.Board;
 import com.kh.team3.freeBoard.model.vo.Reply;
+import com.kh.team3.member.model.vo.Member;
 
 /**
- * Servlet implementation class BoardDetailServlet
+ * Servlet implementation class ReplyInsertServlet
  */
-@WebServlet("/detail.bo")
-public class BoardDetailServlet extends HttpServlet {
+@WebServlet("/rinsert.sbo")
+public class ReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDetailServlet() {
+    public ReplyInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +32,27 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
+		String content = request.getParameter("content");
 		int bno = Integer.parseInt(request.getParameter("bno"));
-
+		System.out.println("bnd : "+ bno);
+		//오브젝트 타입이어서 Member 로 형변환
+		String writer = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		Board b = new BoardService().selectBoard(bno);
-
+		Reply r = new Reply();
+		r.setReplyContent(content);
+		r.setBoardNo(bno);
+		r.setUserId(writer);
 		
-		if(b != null) {
-			request.setAttribute("b", b);
-
-			request.getRequestDispatcher("views/freeBoard/boardDetailView.jsp").forward(request, response);
+		int result = new BoardService().insertReply(r);
+		
+		PrintWriter out = response.getWriter();
+		if(result > 0) {
+			out.print("success");
 		}else {
-			request.setAttribute("msg", "게시판 상세조회에 실패했습니다");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+			out.print("fail");
 		}
-		
-		
-		
+		out.flush();
+		out.close();
 	}
 
 	/**
