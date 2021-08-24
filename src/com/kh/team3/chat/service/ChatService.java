@@ -25,7 +25,7 @@ public class ChatService {
 		
 		System.out.println(chatName);
 		System.out.println(chatContent);
-		
+	
 		
 		int result = new ChatDao().submit(conn,chatName,chatContent);
 		

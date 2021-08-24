@@ -58,7 +58,7 @@
                      <li class="m2">
                         <a href="#">거래장터</a>
                         <ul >
-                           <li><a href="<%=request.getContextPath()%>/exchangeServlet.es">물물교환 게시판</a></li>
+                           <li><a href="<%=request.getContextPath()%>/ExchangeViewServlet.ev">물물교환 게시판</a></li>
                            <li><a href="<%=request.getContextPath()%>/sellList.bo">판매 게시판</a></li>
                         </ul>
                      </li>
@@ -74,7 +74,7 @@
                                  <a href="#">기타</a>
                                  <ul>
                                      <li><a href="<%=request.getContextPath()%>/event.bo">이벤트</a></li>
-                                    <li><a href="#">신고/문의</a></li>                    
+                                    <li><a href="<%=request.getContextPath()%>/report.rp">신고/문의</a></li>                    
                                  </ul>
                      </li>
                   </ul>

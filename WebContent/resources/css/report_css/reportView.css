@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+ .list{
+      border-collapse: separate;
+      border-spacing: 1px;
+      text-align: left;
+      line-height: 1.5;
+      border-top: 1px solid #ccc;
+      margin : 20px 10px;
+      text-align: center;
+
+  }
+
+  .list th{
+      padding: 5px;
+      font-weight: bold;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      background-color:rgb(236, 241, 236);
+      font-size: 15px;
+  }
+  .list td{
+      padding: 10px;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      font-size: 13px;
+  }
+  
+   .list>tbody>tr:hover{
+      background: rgb(241, 238, 235);
+      cursor:pointer
+   }
