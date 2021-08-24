@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.team3.member.model.vo.Member;
+import com.kh.team3.mystore.model.service.ReviewService;
+import com.kh.team3.mystore.model.vo.Jjim;
 import com.kh.team3.sellBoard.model.service.BoardService;
 import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
 
-//왕다영
+
 /**
  * Servlet implementation class SellBoardDetailServlet
  */
@@ -42,7 +45,7 @@ public class SellBoardDetailServlet extends HttpServlet {
 		Board b = new BoardService().selectBoard(bNo);
 
 		System.out.println("SellBoardDetailServlet :" + b);
-		
+
 		ArrayList<Attachment> fileList = new BoardService().selectThumbnail(bNo);
 		System.out.println("SellBoardDetailServlet :" + fileList);		
 	

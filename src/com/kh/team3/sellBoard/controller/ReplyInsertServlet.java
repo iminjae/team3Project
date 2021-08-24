@@ -16,7 +16,7 @@ import com.kh.team3.sellBoard.model.vo.Reply;
 
 
 
-// 왕다영
+
 /**
  * Servlet implementation class ReplyInsertServlet
  */
