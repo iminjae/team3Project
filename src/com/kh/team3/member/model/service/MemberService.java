@@ -77,7 +77,25 @@ public class MemberService {
 		close(conn);
 		return updateMem;
 	}
+	public Member updatepwMember(String userId, String pw2) {
+		Connection conn = getConnection();
+		Member updateMem = null;
+		int result = new MemberDao().updatepwMember(conn, userId, pw2);
+		System.out.println("통과!");
+		System.out.println(result);
+		if (result > 0) {
+			commit(conn);
+			System.out.println("통과!@");
+			updateMem = new MemberDao().selectMember(conn, userId);
+
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return updateMem;
 	}
+	}
+	
 
 
 

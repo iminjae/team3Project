@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.team3.eventBoard.model.dao.EventBoardDao;
 import com.kh.team3.eventBoard.model.service.EventBoardService;
 import com.kh.team3.eventBoard.model.vo.Board;
 import com.kh.team3.member.model.service.MemberService;
@@ -61,8 +62,17 @@ public class loginServlet extends HttpServlet {
 			
 			ArrayList<Board> list = new EventBoardService().selectThList();
 			
+			//프로필 사진 가져오기
+			String changeName = new EventBoardService().selectpic(userId);
+			
+			//이벤트 게시물 가져오기
+			ArrayList<Board> listtwo = new EventBoardService().selectThListtwo();
+			
+			request.setAttribute("listtwo", listtwo);
+			
 			request.setAttribute("list", list);
-	
+			request.getSession().setAttribute("path", changeName);
+			
 			RequestDispatcher view = request.getRequestDispatcher("views/common/mainPage.jsp");
 			view.forward(request, response);
 			//response.sendRedirect("views/common/mainPage.jsp");

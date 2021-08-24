@@ -4,9 +4,7 @@
 <% 
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 %>
-  <%   
-   String contextPath = request.getContextPath();
-%>
+ 
 <!DOCTYPE html>
 <html>
 <head>

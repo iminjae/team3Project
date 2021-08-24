@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.team3.sellBoard.model.service.BoardService;
 
 
-//왕다영
+
 /**
  * Servlet implementation class SellBoardDeleteServlet
  */
@@ -32,7 +32,6 @@ public class SellBoardDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("딜리트서블릿 타는중");
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
 		int result = new BoardService().deleteBoard(bNo);
 		if(result > 0) {

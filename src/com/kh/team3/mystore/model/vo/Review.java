@@ -15,6 +15,7 @@ public class Review {
 	private int likeCnt;
 	private int count;
 	private String categoryName; //카테고리 이름
+	private String boardtypeName; //보드타입 이름
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +23,7 @@ public class Review {
 	
 	//전체
 	public Review(String reviewNo, String userId, int boardNo, String content, String radio, int category,
-			String boardTitle, Date createDate, int likeCnt, int count, String categoryName) {
+			String boardTitle, Date createDate, int likeCnt, int count, String categoryName, String boardtypeName) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
@@ -35,6 +36,7 @@ public class Review {
 		this.likeCnt = likeCnt;
 		this.count = count;
 		this.categoryName = categoryName;
+		this.boardtypeName = boardtypeName;
 	}
 
 	//리뷰 인서트
@@ -62,15 +64,14 @@ public class Review {
 
 	}
 	
-	 //마이보드 생성자
-	 public Review( int boardNo, String categoryName, String boardTitle, String userId, int likeCnt, int count, 
+	 //마이보드 조회 생성자
+	 public Review( int boardNo, String boardtypeName, String boardTitle, String userId, int count, 
 			 Date createDate) {
 			super();	
 			this.boardNo = boardNo;
-			this.categoryName = categoryName;
+			this.boardtypeName = boardtypeName;
 			this.boardTitle = boardTitle;
 			this.userId = userId;
-			this.likeCnt = likeCnt;
 			this.count = count;
 			this.createDate = createDate;
 		
@@ -164,11 +165,22 @@ public class Review {
 		this.categoryName = categoryName;
 	}
 
+	
+	
+	public String getBoardtypeName() {
+		return boardtypeName;
+	}
+
+	public void setBoardtypeName(String boardtypeName) {
+		this.boardtypeName = boardtypeName;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", userId=" + userId + ", boardNo=" + boardNo + ", content=" + content
 				+ ", radio=" + radio + ", category=" + category + ", boardTitle=" + boardTitle + ", createDate="
-				+ createDate + ", likeCnt=" + likeCnt + ", count=" + count + ", categoryName=" + categoryName + "]";
+				+ createDate + ", likeCnt=" + likeCnt + ", count=" + count + ", categoryName=" + categoryName
+				+ ", boardtypeName=" + boardtypeName + "]";
 	}
 
 

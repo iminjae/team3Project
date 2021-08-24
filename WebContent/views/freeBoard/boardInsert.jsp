@@ -25,7 +25,8 @@
 </style>
 </head>
 <body>
-
+<%@ include file="../common/menubar.jsp" %>
+	
 	
 	<div class="outer">
 		<br>
@@ -66,6 +67,6 @@
 			</div>
 		</form>
 	</div>
-	
+		<%@include file = "../common/footer.jsp" %>
 </body>
 </html>

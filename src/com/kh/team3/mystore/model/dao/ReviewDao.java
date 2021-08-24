@@ -162,9 +162,10 @@ public class ReviewDao {
 		
 		String sql = prop.getProperty("selectMyBoard");
 		
-//		SELECT  A.BOARD_NO, B.CATEGORY_NAME, A.BOARD_TITLE, A.USER_ID, A.LIKE_COUNT, A.BOARD_COUNT, A.CREATE_DATE
+//		SELECT  A.BOARD_NO, C.BOARDTYPE_NAME, A.BOARD_TITLE, A.USER_ID, A.BOARD_COUNT, A.CREATE_DATE
 //		FROM BOARD A JOIN CATEGORY B ON A.CATEGORY_NO = B.CATEGORY_NO
-//		WHERE A.USER_ID='user1' ORDER BY 1 DESC;
+//		JOIN BOARDTYPE C ON A.BOARDTYPE_NO = C.BOARDTYPE_NO
+//		WHERE A.USER_ID=? AND A.STATUS='Y' ORDER BY 1 DESC;
 
 		try {
 
@@ -175,10 +176,9 @@ public class ReviewDao {
 
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("BOARD_NO"),
-									rset.getString("CATEGORY_NAME"),
+									rset.getString("BOARDTYPE_NAME"),
 									rset.getString("BOARD_TITLE"),
 									rset.getString("USER_ID"),
-									rset.getInt("LIKE_COUNT"),
 									rset.getInt("BOARD_COUNT"),								
 									rset.getDate("CREATE_DATE")			
 									));
