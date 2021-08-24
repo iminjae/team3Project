@@ -33,7 +33,7 @@ public class SellBoardCategoryListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 조회해올 카테고리번호 넘겨주기
 		int category = Integer.parseInt(request.getParameter("category"));
-		System.out.println("SellBoardCategoryListServlet :" + category);
+		System.out.println("SellBoardCategoryListServlet category:" + category);
 		
 		ArrayList<Board> list = new BoardService().selectCList(category); //카테고리 번호 같이 넘겨주기
 		

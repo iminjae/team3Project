@@ -86,9 +86,15 @@ public class BoardDao {
 //	         LEFT JOIN BOARDTYPE C ON C.BOARDTYPE_NO = B.BOARDTYPE_NO WHERE B.STATUS = 'Y' AND B.BOARD_NO=?
 
 			if (rset.next()) { // bNo로 조회
-				b = new Board(rset.getInt("BOARD_NO"), rset.getString("CATEGORY_NAME"), rset.getString("BOARD_TITLE"),
-						rset.getString("BOARD_CONTENT"), rset.getString("USER_ID"), rset.getString("BOARD_STATUS"),
-						rset.getInt("BOARD_COUNT"), rset.getDate("CREATE_DATE"), rset.getInt("LIKE_COUNT"),
+				b = new Board(rset.getInt("BOARD_NO"), 
+						rset.getString("CATEGORY_NAME"), 
+						rset.getString("BOARD_TITLE"),
+						rset.getString("BOARD_CONTENT"), 
+						rset.getString("USER_ID"), 
+						rset.getString("BOARD_STATUS"),
+						rset.getInt("BOARD_COUNT"), 
+						rset.getDate("CREATE_DATE"), 
+						rset.getInt("LIKE_COUNT"),
 						rset.getInt("PRICE"));
 			}
 		} catch (SQLException e) {

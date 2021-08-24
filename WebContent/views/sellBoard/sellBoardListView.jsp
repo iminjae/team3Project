@@ -79,8 +79,7 @@ String five = "5";
 								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=three %>">노트북</option>
 								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=four %>">핸드폰</option>
 								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=five %>">기타</option>
-							</select>
-							
+							</select>							
 					</div>
 				</div>
 				

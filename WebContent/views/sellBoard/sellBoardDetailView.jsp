@@ -94,20 +94,20 @@ Review rv = (Review) request.getAttribute("review");
 							%>
 							<div class="carousel-item active ">
 
-								<img width="400px" height="500px"
+								<img width="200px" height="300px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 
 							</div>
 
 							<div class="carousel-item ">
-								<img width="400px" height="500px"
+								<img width="200px" height="300px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 							</div>
 
 							<div class="carousel-item ">
-								<img width="400px" height="500px"
+								<img width="200px" height="300px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 							</div>
@@ -135,7 +135,6 @@ Review rv = (Review) request.getAttribute("review");
 
 				<!-- 판매제품 소개 -->
 				<!-- 제목, 가격, 작성자, 조회수, 설명내용-->
-
 
 				<div class="col-md-7">
 
@@ -174,9 +173,8 @@ Review rv = (Review) request.getAttribute("review");
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="col-6 d-grid p-1">
-
 									<button id="btn1" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">좋아요👍</button>
+										class="btn btn-outline-secondary" onclick="thumbsUp();">좋아요👍</button>
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn2" type="button"
@@ -187,7 +185,6 @@ Review rv = (Review) request.getAttribute("review");
 										class="btn btn-outline-secondary"
 										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -344,7 +341,17 @@ Review rv = (Review) request.getAttribute("review");
 		crossorigin="anonymous">
 		
 	</script>
-
+	<!-- 좋아요 -->
+	<script>
+		function thumbsUp(){
+		
+			var bNo = "<%=b.getBoardNo() %>";
+			console.log("bNo"+bNo);	           
+			location.href='<%=request.getContextPath()%>/thumbsUp.is?bNo='+bNo;
+	                           
+			alert("게시글이 추천되었습니다👍");
+		}
+	</script>
 	<script>
 	   function makeReview(){
 		   <%if (rv != null) {%>
@@ -361,11 +368,8 @@ Review rv = (Review) request.getAttribute("review");
 			 
 			    window.open('<%=request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 		   <%}%>
-		 
-		
-   		
    		}
-   </script>
-
+  </script>
+  
 </body>
 </html>
