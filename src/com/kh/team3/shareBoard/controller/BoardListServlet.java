@@ -1,4 +1,4 @@
-package com.kh.team3.freeBoard.controller;
+package com.kh.team3.shareBoard.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import com.kh.team3.freeBoard.model.vo.PageInfo;
 /**
  * Servlet implementation class BoardListServlet
  */
-@WebServlet("/list.bo")
+@WebServlet("/list.sbo")
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
