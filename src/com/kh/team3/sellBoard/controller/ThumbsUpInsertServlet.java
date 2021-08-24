@@ -1,30 +1,25 @@
 package com.kh.team3.sellBoard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.sellBoard.model.service.BoardService;
-import com.kh.team3.sellBoard.model.vo.Board;
-
+import com.kh.team3.member.model.vo.Member;
 
 /**
- * Servlet implementation class SellBoardListServlet
+ * Servlet implementation class ThumbsUpInsertServlet
  */
-@WebServlet("/sellList.bo")
-public class SellBoardListServlet extends HttpServlet {
+@WebServlet("/thumbsUp.is")
+public class ThumbsUpInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardListServlet() {
+    public ThumbsUpInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +28,14 @@ public class SellBoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Board> list = new BoardService().selectThList(); 
+
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-//		System.out.println("servlet list : " + list );
+		System.out.println("ThumbsUpInsertServlet : " + bNo);
+		System.out.println("ThumbsUpInsertServlet : " + userId);
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/sellBoard/sellBoardListView.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

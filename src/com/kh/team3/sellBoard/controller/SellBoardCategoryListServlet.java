@@ -3,7 +3,6 @@ package com.kh.team3.sellBoard.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,18 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.team3.sellBoard.model.service.BoardService;
 import com.kh.team3.sellBoard.model.vo.Board;
 
-
 /**
- * Servlet implementation class SellBoardListServlet
+ * Servlet implementation class SellBoardCategoryListServlet
  */
-@WebServlet("/sellList.bo")
-public class SellBoardListServlet extends HttpServlet {
+@WebServlet("/sellCategoryList.bo")
+public class SellBoardCategoryListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SellBoardListServlet() {
+    public SellBoardCategoryListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +31,16 @@ public class SellBoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Board> list = new BoardService().selectThList(); 
+		// 조회해올 카테고리번호 넘겨주기
+		int category = Integer.parseInt(request.getParameter("category"));
+		System.out.println("SellBoardCategoryListServlet category:" + category);
 		
-//		System.out.println("servlet list : " + list );
+		ArrayList<Board> list = new BoardService().selectCList(category); //카테고리 번호 같이 넘겨주기
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/sellBoard/sellBoardListView.jsp").forward(request, response);
+
+
 	}
 
 	/**
