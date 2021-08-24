@@ -94,7 +94,7 @@ public class MemberDao {
 			pstmt.setString(3, mem.getUserName());
 			pstmt.setString(4, mem.getPhone());
 			pstmt.setString(5, mem.getNickname());
-			pstmt.setInt(6, mem.getCategoryno());
+			pstmt.setInt(6, mem.getCategoryno());,
 			pstmt.setString(7, mem.getAddress());
 			
 			result = pstmt.executeUpdate();
