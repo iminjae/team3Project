@@ -397,6 +397,7 @@
                        
             }
 
+
             --%>
              var answer;
              answer = confirm("관심목록에 추가하시겠습니까?");
@@ -416,6 +417,8 @@
 
       }
    </script>
+   
+   
 
 
 </body>
