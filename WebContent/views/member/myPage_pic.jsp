@@ -2,15 +2,12 @@
     pageEncoding="UTF-8" import="com.kh.team3.member.model.vo.Member"%>
     
 <%
-String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+
 String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUserPwd();
-String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
-String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
-String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNickname();
-String address = ((Member)request.getSession().getAttribute("loginUser")).getAddress();
-String message = (String)request.getSession().getAttribute("msg");
+String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 
 %>
+
 <!doctype html>
 <html>
   <head>
@@ -96,40 +93,64 @@ String message = (String)request.getSession().getAttribute("msg");
 
 </form>
 
-  </div>
+	<label for="exampleFormControlInput1" class="form-label"> 기존 사진 </label><br>
+	<img src="<%=contextPath%>/resources/board_upfiles/<%= path %>" width="200px" height="150px"> <br>
+<form id="insertForm" action="<%=request.getContextPath()%>/insertpic.th" method="post" enctype="multipart/form-data"
+			>
 
- <div class="del">
- 
-		<form id="updateUser" method="post"  action="<%=request.getContextPath() %>/update.me">
 
-  <div class="form-group">
-  
-    <input type="hidden" class="form-control" name="id" id="exampleInputEmail1" value="<%=userId%>">
-  
-    <label for="exampleInputEmail1">아이디</label>
-    <input type="text" class="form-control" name="id2" id="exampleInputEmail1" placeholder="<%=userId%>" value="<%=userId%>" disabled>
-    
-    <label for="exampleInputEmail1">이름</label>
-    <input type="text" class="form-control"  name="name" id="exampleInputEmail1" placeholder="<%=userName%>">
-    
-    <label for="exampleInputEmail1">PHONE</label>
-    <input type="text" class="form-control"  name="phone" id="exampleInputEmail1" placeholder="<%=phone%>">
-    
-    <label for="exampleInputEmail1">닉네임</label>
-    <input type="text" class="form-control"  name="nick" id="exampleInputEmail1" placeholder="<%=nickName%>">
-    
-    <label for="exampleInputEmail1">주소</label>
-    <input type="text" class="form-control"  name="addr" id="exampleInputEmail1" placeholder="<%=address%>">
-  </div>
-  
-	
-      <input type="submit" value="수정하기" id="xkfxhl" onclick="al();">
-</form>
+<label for="exampleFormControlInput1" class="form-label"> 파일 첨부 </label><br>
+     		<input type="hidden" name="id" value="<%=userId%>">
+			
+					<img id="titleImg"  width="150" height="120">
+					
+			<div id="fileArea">
+				<input type="file" name="file1" id="file1"
+					onchange="loadImg(this, 1);">
+			</div>
+
+			<br>
+
+			<div class="btns" align="center">
+
+				<input type="submit" id="xkfxhl" value="작성하기">
+			</div>
+		</form>
+
+
   </div>
 
 </div>
-	
 
+
+
+ 	<script>
+		$(function() {
+			$("#fileArea").hide();
+
+			$("#titleImg").click(function() {
+				$("#file1").click();
+			});
+
+		});
+		function loadImg(inputFile, num){
+			if(inputFile.files.length == 1){ //파일 존재하면
+				var reader = new FileReader();
+				reader.readAsDataURL(inputFile.files[0]); //파일을 읽어들이는 메소드
+				reader.onload = function(e){
+					switch (num) {
+					case 1: $("#titleImg").attr("src", e.target.result); break;
+					case 2: $("#contentImg1").attr("src", e.target.result); break;
+					case 3: $("#contentImg2").attr("src", e.target.result); break;
+					case 4: $("#contentImg3").attr("src", e.target.result); break;
+					default: break;
+					}
+				}
+			}
+		}
+		
+	</script>
+		
 
  	
  

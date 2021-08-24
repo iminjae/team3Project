@@ -8,21 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.team3.member.model.service.MemberService;
+import com.kh.team3.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberDeleteServlet
+ * Servlet implementation class MemberPwUPdateServlet
  */
-@WebServlet("/delete.me")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet("/pwupdate.me")
+public class MemberPwUPdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteServlet() {
+    public MemberPwUPdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,22 +31,36 @@ public class MemberDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
+	request.setCharacterEncoding("UTF-8");
 		
-		System.out.println("@@############@@"+userId);
-		int result = new MemberService().deleteMember(userId);
 	
-		if(result > 0) {
-			HttpSession session = request.getSession();
-			session.removeAttribute("loginUser");
-			session.setAttribute("msg", "탈퇴완료");
-			response.sendRedirect("index.jsp");
-		}else {
-			request.setAttribute("msg", "회원탈퇴에 실패하였습니다.");
+		String userId = request.getParameter("id");
+		String pw1 = request.getParameter("pw1");
+		String pw2 = request.getParameter("pw2");
+		String pw3 = request.getParameter("pw3");
+		Member updatemem = null;
+		if(pw2.equals(pw3)) {
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_del.jsp");
+		
+		
+		
+		updatemem = new MemberService().updatepwMember(userId , pw2);
+		}
+		
+		if(updatemem !=null) {
+			request.getSession().setAttribute("msg", "회원정보를 수정하였습니다");
+			request.getSession().setAttribute("loginUser", updatemem);
+			RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_pw.jsp");
+			view.forward(request, response);
+		}else {
+			request.setAttribute("msg", "회원정보수정에 실패하였습니다.");
+			
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 		}
+		
+		
+		
 		
 	}
 

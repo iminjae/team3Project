@@ -42,6 +42,8 @@ public class MemberUpdateServlet extends HttpServlet {
 		String nickName = request.getParameter("nick");
 		String address = request.getParameter("addr");
 	
+		
+		
 		Member member =  new Member(userId, userName,phone,nickName,address);
 		
 		Member updatemem = new MemberService().updateMember(member);

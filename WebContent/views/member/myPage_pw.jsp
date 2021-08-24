@@ -2,13 +2,9 @@
     pageEncoding="UTF-8" import="com.kh.team3.member.model.vo.Member"%>
     
 <%
-String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+
 String userPwd = ((Member)request.getSession().getAttribute("loginUser")).getUserPwd();
-String userName = ((Member)request.getSession().getAttribute("loginUser")).getUserName();
-String phone = ((Member)request.getSession().getAttribute("loginUser")).getPhone();
-String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNickname();
-String address = ((Member)request.getSession().getAttribute("loginUser")).getAddress();
-String message = (String)request.getSession().getAttribute("msg");
+String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 
 %>
 <!doctype html>
@@ -88,11 +84,7 @@ String message = (String)request.getSession().getAttribute("msg");
    <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
     <input type="submit" class="list-group-item list-group-item-action" value="비밀번호 변경" name="four">
    <input type="submit" class="list-group-item list-group-item-action" value="회원사진 설정" name="five">  
-		<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
-			<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"> 
-			<% }else{ %>
-				
-				<% } %>
+	<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"></button> 
 
 </form>
 
@@ -100,35 +92,48 @@ String message = (String)request.getSession().getAttribute("msg");
 
  <div class="del">
  
-		<form id="updateUser" method="post"  action="<%=request.getContextPath() %>/update.me">
+		<form id="updatepw" method="post"  action="<%=request.getContextPath() %>/pwupdate.me">
 
   <div class="form-group">
   
     <input type="hidden" class="form-control" name="id" id="exampleInputEmail1" value="<%=userId%>">
   
-    <label for="exampleInputEmail1">아이디</label>
-    <input type="text" class="form-control" name="id2" id="exampleInputEmail1" placeholder="<%=userId%>" value="<%=userId%>" disabled>
+    <label for="exampleInputEmail1">기존 패스워드</label>
+    <input type="password" class="form-control" name="pw1" id="exampleInputEmail1">
     
-    <label for="exampleInputEmail1">이름</label>
-    <input type="text" class="form-control"  name="name" id="exampleInputEmail1" placeholder="<%=userName%>">
+    <label for="exampleInputEmail1">변경 패스워드</label>
+    <input type="password" class="form-control"  name="pw2" id="exampleInputEmail1">
     
-    <label for="exampleInputEmail1">PHONE</label>
-    <input type="text" class="form-control"  name="phone" id="exampleInputEmail1" placeholder="<%=phone%>">
-    
-    <label for="exampleInputEmail1">닉네임</label>
-    <input type="text" class="form-control"  name="nick" id="exampleInputEmail1" placeholder="<%=nickName%>">
-    
-    <label for="exampleInputEmail1">주소</label>
-    <input type="text" class="form-control"  name="addr" id="exampleInputEmail1" placeholder="<%=address%>">
+    <label for="exampleInputEmail1">확인 패스워드</label>
+    <input type="password" class="form-control"  name="pw3" id="exampleInputEmail1">
   </div>
   
 	
-      <input type="submit" value="수정하기" id="xkfxhl" onclick="al();">
+      <input type="submit" value="변경하기" id="xkfxhl" onclick="uppw();">
 </form>
   </div>
 
 </div>
 	
+	<script>
+		function uppw(){
+			
+			var pwd = $('input[name="pw"]').val();
+			console.log(pwd);
+			if("<%= userPwd %>" == pwd){
+				var val = confirm("정말로 변경하시겠습니까?);
+				
+				if(val){
+					$("#updatepw").attr("action","<%= request.getContextPath()%>/updatepw.me");
+					$("#updatepw").submit();
+				}else{
+					alert("취소하였습니다.");
+				}
+			}else{
+				alert("비밀번호를 잘못입력하였습니다.");
+			}
+		}
+	</script>
 
 
  	
