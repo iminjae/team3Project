@@ -1,6 +1,8 @@
 package com.kh.team3.Notice.Controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Notice_DeleteServlet
+ * Servlet implementation class Notice_BoardInsertFormServlet
  */
-@WebServlet("/Delete.do")
-public class Notice_DeleteServlet extends HttpServlet {
+@WebServlet("/insertForm.fo")
+public class Notice_BoardInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Notice_DeleteServlet() {
+    public Notice_BoardInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,9 +27,9 @@ public class Notice_DeleteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view =request.getRequestDispatcher("views/Notice/Notice_BoardInsert.jsp");
+		view.forward(request, response);
 	}
 
 	/**

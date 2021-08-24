@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.Notice.model.service.NoticeService;
-import com.kh.team3.eventBoard.model.vo.Board;
+import com.kh.team3.Notice.model.vo.NoticeBoard;
 import com.kh.team3.member.model.vo.Member;
 
 /**
@@ -36,20 +36,23 @@ public class Notice_insertSecvlet extends HttpServlet {
 	
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String attachments = request.getParameter("attachments");
-		String writer = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getUserId());
-		
-		Board b2 = new Board();
+		String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 
-		b2.setBoardTitle(title);
-		b2.setBoardContent(content);
-		b2.setUserId(writer);
-	
-		int result = new NoticeService().NoticeBoard(b2);
+
+		
+		NoticeBoard b2 = new NoticeBoard();
+
+		b2.setNoticeTitle(title);
+		b2.setNoticeContent(content);
+		b2.setUser_id(userId);
+		
+		System.out.println(b2+"서블릿");
+		int result = new NoticeService().insertNotice(b2 , userId);
+		
 		if(result > 0) {
-			request.getSession().setAttribute("mag", "등록 성공");
+			request.getSession().setAttribute("msg", "공지사항 등록이 성공하엿습니다.");
+			response.sendRedirect("Notice_Manager.NM");
 			
-			request.getRequestDispatcher("Notice_USER.NU").forward(request, response);
 		}else {
 			request.setAttribute("msg", "공지사항 등록에 실패했습니다.");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");

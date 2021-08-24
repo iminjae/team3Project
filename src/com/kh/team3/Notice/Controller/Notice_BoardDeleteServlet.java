@@ -1,9 +1,7 @@
 package com.kh.team3.Notice.Controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.Notice.model.service.NoticeService;
-import com.kh.team3.Notice.model.vo.NoticeBoard;
 
 /**
- * Servlet implementation class Notice_ManagerServlet
+ * Servlet implementation class Notice_BoardDeleteServlet
  */
-@WebServlet("/Notice_Manager.NM")
-public class Notice_ManagerServlet extends HttpServlet {
+@WebServlet("/Delete.do")
+public class Notice_BoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Notice_ManagerServlet() {
+    public Notice_BoardDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +29,18 @@ public class Notice_ManagerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<NoticeBoard> list = new NoticeService().selectList();
-		request.setAttribute("list", list);
-		RequestDispatcher view =request.getRequestDispatcher("views/Notice/Notice_Manager.jsp");
-		view.forward(request, response);
+		
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		int result = new NoticeService().deleteNotice(nno);
+		
+		if(result > 0) {
+			request.getSession().setAttribute("msg", "공지사항 삭제 성공");
+			response.sendRedirect("Notice_Manager.NM");
+		}else {
+			request.setAttribute("msg", "공지사항 삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+
 	}
 
 	/**
