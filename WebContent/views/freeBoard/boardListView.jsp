@@ -47,16 +47,19 @@
     	padding: 10px;
     	font-size:11px;
   	}
+  	td{
+  		height:30px;
+  	}
   	</style>
 </head>
 <body>
-
+<%@ include file="../common/menubar.jsp"%>
 	
 	<div class="box">
 		<br>
 		
 		<h3>자유 게시판</h3>
-		
+		<br>
 		
 		<table class="board"  align="center">
 			<thead>
@@ -156,7 +159,7 @@
 <script>
 		
 			$(function(){
-				console.log('외않되');
+				
 				$(".board>tbody>tr").click(function(){
 					
 					var bno = $(this).children().eq(0).text();
@@ -165,7 +168,7 @@
 			})
 		
 	</script>
-
+<%@include file = "../common/footer.jsp" %>
 	
 </body>
 </html>

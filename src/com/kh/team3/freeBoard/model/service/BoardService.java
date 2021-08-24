@@ -1,5 +1,6 @@
 package com.kh.team3.freeBoard.model.service;
 
+
 import static com.kh.team3.common.JDBCTemplate.*;
 
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import com.kh.team3.freeBoard.model.dao.BoardDao;
 import com.kh.team3.freeBoard.model.vo.Board;
 import com.kh.team3.freeBoard.model.vo.PageInfo;
+import com.kh.team3.freeBoard.model.vo.Reply;
 import com.kh.team3.sellBoard.model.vo.Attachment;
 
 
@@ -64,12 +66,11 @@ public class BoardService {
 	}
 
 	
-	public int deleteBoard(int bid) {
+	public int deleteBoard(int bno) {
 		Connection conn = getConnection();
 		
-		int result1 = new BoardDao().deleteBoard(conn,bid);
+		int result1 = new BoardDao().deleteBoard(conn,bno);
 		
-		// 첨부파일이 필수는 아니라서
 		if(result1 > 0) { 
 			commit(conn);
 		} else {
@@ -91,21 +92,21 @@ public class BoardService {
 		return b;
 	}
 
-	public int updateBoard(Board b, Attachment at) {
+	public int updateBoard(Board b) {
 		Connection conn = getConnection();
 		
 		int result1 = new BoardDao().updateBoard(conn, b);
-		int result2 = 1;
+
 		
 		
-		if(result1 * result2 > 0) {
+		if(result1  > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
 		
-		return result1 * result2;
+		return result1 ;
 	}
 
 	public ArrayList<Board> selectThList() {
@@ -115,7 +116,45 @@ public class BoardService {
 		return list;
 	}
 
-	
+	public int insertReply(Reply r) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().insertReply(conn, r);
+		
+		if(result > 0) { 
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+
+	}
+
+	public ArrayList<Reply> selectRList(int bno) {
+		
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new BoardDao().selectRList(conn, bno);
+		close(conn);
+		return list;
+	}
+
+	public int replyDelete(int rno) {
+		Connection conn = getConnection();
+		
+		int result1 = new BoardDao().deleteReply(conn,rno);
+		
+		
+		if(result1 > 0) { 
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result1;
+	}
 	
 
 }

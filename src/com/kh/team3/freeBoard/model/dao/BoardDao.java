@@ -1,6 +1,6 @@
 package com.kh.team3.freeBoard.model.dao;
 
-import static com.kh.team3.common.JDBCTemplate.close;
+import static com.kh.team3.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import com.kh.team3.freeBoard.model.vo.Board;
 import com.kh.team3.freeBoard.model.vo.PageInfo;
+import com.kh.team3.freeBoard.model.vo.Reply;
 
 public class BoardDao {
    
@@ -24,7 +25,7 @@ public class BoardDao {
 
    public BoardDao() {
       String fileName = BoardDao.class.getResource("/sql/freeBoard/board-query.properties").getPath();
-      System.out.println("fileName1 :  " + fileName);
+//      System.out.println("fileName1 :  " + fileName);
       try {
     	  
          prop.load(new FileReader(fileName));
@@ -197,14 +198,14 @@ public class BoardDao {
    
   
 
-	public int deleteBoard(Connection conn, int bid) {
+	public int deleteBoard(Connection conn, int bno) {
 		 int result = 0;
 	     PreparedStatement pstmt = null;
 	     
 	     String sql = prop.getProperty("deleteBoard");
 	     try {
 	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, bid);
+	        pstmt.setInt(1, bno);
 	      
 	        result = pstmt.executeUpdate();
 	     } catch (SQLException e) {
@@ -300,6 +301,83 @@ public class BoardDao {
 	      
 	      return result;
 	   }
+
+	public int insertReply(Connection conn, Reply r) {
+		  int result = 0;
+	      PreparedStatement pstmt = null;
+	      
+	      String sql = prop.getProperty("insertReply");
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, r.getReplyContent() );
+	         pstmt.setInt(2, r.getBoardNo());
+	         pstmt.setString(3, r.getUserId());
+	         
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	      }
+	      
+	      return result;
+	   }
+
+	public ArrayList<Reply> selectRList(Connection conn, int bno) {
+			
+		  ArrayList<Reply> list = new ArrayList<>();	      
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	     
+	      String sql = prop.getProperty("selectRlist");
+	
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, bno);
+	         
+	         rset = pstmt.executeQuery();
+	         list = new ArrayList<>();
+	         while(rset.next()) {
+	        	list.add(new Reply(rset.getInt("REPLY_NO"),
+	        					    rset.getString("REPLY_CONTENT"),
+	        					    rset.getDate("CREATE_DATE"),
+	        						rset.getString("USER_ID"),
+	        						rset.getInt("BOARD_NO")
+	        						));
+	        	
+	         }
+	        
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return list;
+	   }
+
+	public int deleteReply(Connection conn, int rno) {
+		 int result = 0;
+	     PreparedStatement pstmt = null;
+	     
+	     String sql = prop.getProperty("deleteReply");
+	     try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, rno);
+	      
+	        result = pstmt.executeUpdate();
+	     } catch (SQLException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	     } finally {
+	        close(pstmt);
+	     }
+	     
+	     return result;
+	}
 
 	
 	

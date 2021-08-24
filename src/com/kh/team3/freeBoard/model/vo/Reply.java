@@ -16,13 +16,13 @@ public class Reply {
 	
 	
 
-	public Reply(int replyNo, String replyContent, Date createDate, int boardNo, String userId) {
+	public Reply(int replyNo, String replyContent, Date createDate, String userId,int boardNo ) {
 		super();
 		this.replyNo = replyNo;
 		this.replyContent = replyContent;
 		this.createDate = createDate;
-		this.boardNo = boardNo;
 		this.userId = userId;
+		this.boardNo=boardNo;
 	}
 
 

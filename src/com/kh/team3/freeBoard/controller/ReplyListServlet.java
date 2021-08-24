@@ -1,29 +1,31 @@
 package com.kh.team3.freeBoard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.team3.freeBoard.model.service.BoardService;
-import com.kh.team3.freeBoard.model.vo.Board;
 import com.kh.team3.freeBoard.model.vo.Reply;
+import com.kh.team3.member.model.vo.Member;
 
 /**
- * Servlet implementation class BoardDetailServlet
+ * Servlet implementation class ReplyListServlet
  */
-@WebServlet("/detail.bo")
-public class BoardDetailServlet extends HttpServlet {
+@WebServlet("/rlist.fbo")
+public class ReplyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDetailServlet() {
+    public ReplyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,24 +34,15 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		int bno = Integer.parseInt(request.getParameter("bno"));
-
 		
-		Board b = new BoardService().selectBoard(bno);
-
+		ArrayList<Reply> list = new BoardService().selectRList(bno);
 		
-		if(b != null) {
-			request.setAttribute("b", b);
-
-			request.getRequestDispatcher("views/freeBoard/boardDetailView.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "게시판 상세조회에 실패했습니다");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy년 MM월 dd일").create();
 		
+		gson.toJson(list, response.getWriter());
+	
 		
 		
 	}
