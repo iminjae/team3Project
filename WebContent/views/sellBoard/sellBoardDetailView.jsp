@@ -9,12 +9,10 @@
 	String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
   
 	Review rv = (Review)request.getAttribute("review");
+	Board b = (Board) request.getAttribute("b");
 %>
 
 
-String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
-%>
-// 왕다영
 <!DOCTYPE html>
 <html lang="en">
 <head>

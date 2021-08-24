@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import com.kh.common.wrapper.EncryptWrapper;
+import com.kh.team3.common.wrapper.EncryptWrapper;
 
 /**
  * Servlet Filter implementation class EncryptFilter
