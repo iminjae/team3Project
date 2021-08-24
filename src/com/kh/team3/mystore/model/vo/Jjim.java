@@ -29,7 +29,7 @@ public class Jjim {
 		this.changeName = changeName;
 	}
 	
-	//인서트 찜
+	//조회 찜
 	public Jjim(int boardNo, String userId, String boardTitle, String boardCount, int likeCnt, String jjimCheck, String changeName) {
 		super();
 		this.boardNo = boardNo;
@@ -40,6 +40,23 @@ public class Jjim {
 		this.jjimCheck = jjimCheck;
 		this.changeName = changeName;
 	}
+	
+	//찜 하나 조회
+		public Jjim(String userId, int boardNo, String jjimCheck) {
+			super();
+			this.userId = userId;
+			this.boardNo = boardNo;
+			this.jjimCheck = jjimCheck;
+		}
+		
+     //인서트 찜
+		public Jjim(String userId, int boardNo) {
+			super();
+			this.userId = userId;
+			this.boardNo = boardNo;
+		}
+		
+	
 	
 	public String getJjimNo() {
 		return jjimNo;
@@ -112,8 +129,10 @@ public class Jjim {
 	@Override
 	public String toString() {
 		return "Jjim [jjimNo=" + jjimNo + ", jjimCheck=" + jjimCheck + ", boardNo=" + boardNo + ", boardTitle="
-				+ boardTitle + ", boardCount=" + boardCount + ", likeCnt=" + likeCnt + "]";
+				+ boardTitle + ", boardCount=" + boardCount + ", likeCnt=" + likeCnt + ", userId=" + userId
+				+ ", changeName=" + changeName + "]";
 	}
+
 	
 	
 

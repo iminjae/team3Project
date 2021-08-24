@@ -28,10 +28,16 @@ public class ReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String rno = request.getParameter("rno");	
+		System.out.println("리뷰서블릿 게시판번호" + rno);
+		
+		request.setAttribute("rno", rno);
+		
 		RequestDispatcher view  = request.getRequestDispatcher("views/mystore/ReviewList.jsp");
 		view.forward(request, response);
 		
-		//response.sendRedirect("views/review/ReviewList.jsp");
+
 		
 		System.out.println("리뷰서블릿 화면전환 ----");
 	}

@@ -19,7 +19,8 @@
 		<h1 align="center" class="Notice">공지사항</h1>
 		<hr align="center" style="border: solid 1px rgb(0, 0, 0); width:40%" >
 		<br>
-		<form>
+		
+		<form action="<%= request.getContextPath()%>/insert.io" method="post">
 	        <table class="Write" border="1px">  
 	            <tr>
 	                <th>작성자</th>

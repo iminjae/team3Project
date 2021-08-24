@@ -47,8 +47,9 @@ public class ReviewDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, rv.getUserId());
-			pstmt.setString(2, rv.getContent());
-			pstmt.setString(3, rv.getRadio());
+			pstmt.setInt(2, rv.getBoardNo());
+			pstmt.setString(3, rv.getContent());
+			pstmt.setString(4, rv.getRadio());
 
 
 			result = pstmt.executeUpdate();
@@ -236,7 +237,7 @@ public class ReviewDao {
 	public int deleteJjim(Connection conn, int jno) {
 		 int result = 0;
 	      PreparedStatement pstmt = null;
-	      String sql = prop.getProperty("deleteNotice");
+	      String sql = prop.getProperty("deleteMyJjim");
       
 //	      UPDATE JJIM  SET
 //	      JJIM_CHECK='N'
@@ -258,5 +259,78 @@ public class ReviewDao {
 		      
 		      return result;
 	}
+	
+	//찜 추가
+	public int insertJjim(Connection conn, Jjim jjim) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertJjim");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, jjim.getUserId());
+			pstmt.setInt(2, jjim.getBoardNo());
+
+
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	
+//	//찜 하나만 조회 jsp에서 
+//	public Jjim selectJjimOne(Connection conn, String userId, int bNo) {
+//		Jjim one = null;
+//		System.out.println("@@@@@@@@@찜 하나만 조회 다오 진입");
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("selectOneJjim");
+//		
+//		System.out.println("에스큐엘"+ sql);
+//		System.out.println("스트링 넘어올까?"+ userId +"~~" + bNo);
+//		
+////		SELECT A.BOARD_NO, A.USER_ID, B.JJIM_CHECK
+////		FROM BOARD A JOIN JJIM B ON A.BOARD_NO = B.BOARD_NO
+////		JOIN ATTACHMENT C ON B.BOARD_NO = C.BOARD_NO
+////		WHERE B.USER_ID=? AND A.BOARD_NO=? AND B.JJIM_CHECK='Y' ORDER BY 1 DESC;
+//
+//		try {
+//
+//
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, userId);
+//			pstmt.setInt(2, bNo);
+//			
+//			rset = pstmt.executeQuery(); 
+//
+//			
+//			
+//		  if(rset.next()) {
+//			  one = new Jjim(
+//					  		rset.getString("USER_ID"), 
+//					  		rset.getInt("BOARD_NO"),
+//					  		rset.getString("JJIM_CHECK")
+//							);
+//	         }
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(rset);
+//			close(pstmt);
+//		}
+//
+//		return one;
+//	}
 
 }

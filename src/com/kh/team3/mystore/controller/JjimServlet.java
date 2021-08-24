@@ -41,7 +41,6 @@ public class JjimServlet extends HttpServlet {
 			request.setAttribute("jjimList", jjimList);
 
 		
-		
 		RequestDispatcher view =request.getRequestDispatcher("views/mystore/Jjim.jsp");
 	    view.forward(request, response);
 	}
