@@ -4,12 +4,13 @@
 	pageEncoding="UTF-8"%>
 <%
 
+Board b = (Board) request.getAttribute("b");
 ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
-Board b = (Board) request.getAttribute("b");
-Review rv = (Review) request.getAttribute("review");
-%>
+String result = String.valueOf(request.getSession().getAttribute("result"));
+Review rv = (Review)request.getAttribute("review");
 
+%>
 
 
 <!DOCTYPE html>
@@ -82,9 +83,11 @@ Review rv = (Review) request.getAttribute("review");
 								data-bs-slide-to="1"></li>
 							<li data-bs-target="#carouselExampleIndicators"
 								data-bs-slide-to="2"></li>
+
 						</ol>
 						<!--이미지-->
 						<!--for문 돌리면서 이미지 가져와서 보여주기-->
+						<!-- 이거왜 사진전체리스트를 못돌릴까... -->
 
 						<div class="carousel-inner">
 							<%
@@ -92,20 +95,20 @@ Review rv = (Review) request.getAttribute("review");
 							%>
 							<div class="carousel-item active ">
 
-								<img width="400px" height="500px"
+								<img width="200px" height="300px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 
 							</div>
 
 							<div class="carousel-item ">
-								<img width="400px" height="500px"
+								<img width="200px" height="300px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 							</div>
 
 							<div class="carousel-item ">
-								<img width="400px" height="500px"
+								<img width="200px" height="300px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 							</div>
@@ -134,18 +137,24 @@ Review rv = (Review) request.getAttribute("review");
 				<!-- 판매제품 소개 -->
 				<!-- 제목, 가격, 작성자, 조회수, 설명내용-->
 
-
 				<div class="col-md-7">
 
 					<div class="card shadow-sm" style="width: 50em;">
 						<div class="card-body">
 							<h4>
 								<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
-								<span class="badge bg-success"><%=b.getBoardStatus()%></span>
+								<%if(b.getBoardStatus().equals("판매중")) {%>
+								<span class="badge bg-primary">판매중</span>
+
+								<%}else if(b.getBoardStatus().equals("예약중")){%>
+								<span class="badge bg-success">예약중</span>
+
+								<%}else if(b.getBoardStatus().equals("판매완료")){%>
+								<span class="badge bg-warning">판매완료</span>
+								<%}%>
 								<button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>
 							</h4>
-							<br>
-							<br>
+							<br><p class="card-text pb-3"><%=b.getUserId()%>님의 게시글</p><br>
 							<h3 class="card-title"><%=b.getBoardTitle()%>
 							</h3>
 							<p class="card-text border-top pb-3"></p>
@@ -160,25 +169,23 @@ Review rv = (Review) request.getAttribute("review");
 								</div>
 							</div>
 							<p class="card-text border-top pb-3"></p>
-							<p class="card-text pb-3">안내사항 있으면 적는 공간...</p>
+							
 
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="col-6 d-grid p-1">
-
 									<button id="btn1" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">좋아요👍</button>
+										class="btn btn-outline-secondary" onclick="thumbsUp();">좋아요👍</button>
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn2" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">찜❤</button>
+										class="btn btn-outline-secondary" onclick="insertJjim();">찜❤</button>
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
 										class="btn btn-outline-secondary"
-										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅</button>
+										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -187,6 +194,17 @@ Review rv = (Review) request.getAttribute("review");
 			<br>
 
 			<!--판매상품 설명글-->
+			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas"
+				aria-labelledby="offcanvasLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+					<button type="button" class="btn-close text-reset"
+						data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body">Content for the offcanvas goes
+					here. You can place just about any Bootstrap component or custom
+					elements here.</div>
+			</div>
 			<div class="row">
 				<div class="col-12">
 					<p id="contentArea"><%=b.getBoardContent()%></p>
@@ -239,24 +257,23 @@ Review rv = (Review) request.getAttribute("review");
 		%>
 
 		<!--<button type="button" onclick="updateTForm();">수정하기</button>  -->
-		<button type="button" onclick="deleteTBoard();">삭제하기</button>
+		<button type="button" onclick="deleteSBoard();">삭제하기</button>
 		<%
 		}
 		%>
 	</div>
 	<script>
-			function updateTForm(){
+			function updateSBoard(){
 				$("#postForm").attr("action", "<%=request%>/updateTForm.th");
 				$("#postForm").submit();
 			}
 			
-			function deleteTBoard(){
-				$("#postForm").attr("action", "<%=request.getContextPath()%>
-		/sellDelete.bo");
-			$("#postForm").submit();
+			function deleteSBoard(){
+				$("#postForm").attr("action", "<%=request.getContextPath()%>/sellDelete.bo");
+				$("#postForm").submit();
 		}
 	</script>
-	<!-- 동적으로 작성될 수 있도록 ajax 이용 -->
+	<!-- 댓글 작성 -->
 	<script>
 		$(function() {
 			selectReplyList();
@@ -325,7 +342,17 @@ Review rv = (Review) request.getAttribute("review");
 		crossorigin="anonymous">
 		
 	</script>
-
+	<!-- 좋아요 -->
+	<script>
+		function thumbsUp(){
+		
+			var bNo = "<%=b.getBoardNo() %>";
+			console.log("bNo"+bNo);	           
+			location.href='<%=request.getContextPath()%>/thumbsUp.is?bNo='+bNo;
+	                           
+			alert("게시글이 추천되었습니다👍");
+		}
+	</script>
 	<script>
 	   function makeReview(){
 		   <%if (rv != null) {%>
@@ -342,11 +369,46 @@ Review rv = (Review) request.getAttribute("review");
 			 
 			    window.open('<%=request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 		   <%}%>
-		 
-		
-   		
    		}
-   </script>
+	   
+	   function insertJjim(){      
+	         <%--
+	         var answer;
+	           answer = confirm("관심목록에 추가하시겠습니까?");
+	            if(answer == true){
+	        
+	               var test = "<%= result %>"; 
+	               console.log("찜여부" + test);
+	                 
+	                  <% if (request.getSession().getAttribute("result") == null) { %>
+	                       var jno = "<%=b.getBoardNo() %>";
+	                       console.log("jno"+jno);
+	         
+	                       location.href='<%=request.getContextPath()%>/jjimInsert.ms?jno='+jno;
+	                         
+	                       alert("관심목록에 추가되었습니다. 내 상점에서 확인해 주세요.");
+	                <%}else{%>   
+	                      alert("관심목록에 이미 추가되어 있습니다.");
+	                <%}%>
+	                       
+	            }
+	            --%>
+	             var answer;
+	             answer = confirm("관심목록에 추가하시겠습니까?");
+	              if(answer == true){
 
+	                   
+	                    
+	                         var jno = "<%=b.getBoardNo() %>";
+	                         console.log("jno"+jno);
+	           
+	                         location.href='<%=request.getContextPath()%>/jjimInsert.ms?jno='+jno;
+	                           
+	                         alert("관심목록에 추가되었습니다. 내 상점에서 확인해 주세요.");
+	                
+	              }
+	      }
+  </script>
+  
 </body>
 </html>

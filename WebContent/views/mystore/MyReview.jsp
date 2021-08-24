@@ -3,7 +3,6 @@
 <%@page import="java.util.ArrayList, com.kh.team3.mystore.model.vo.Review, com.kh.team3.member.model.vo.Member "%>
 <%
 	ArrayList<Review> rvlist = (ArrayList<Review>)request.getAttribute("rvlist");
-	Review review = (Review)request.getAttribute("reviewdetail");
 %>
 <!DOCTYPE html>
 <html>
@@ -14,6 +13,19 @@
 <link href="resources/css/mystore/MyReview.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<style>
+ .new{
+       width: 45px;
+       height: 15px;
+       background-color: rgb(245, 184, 128);
+       border-radius: 4px;
+       text-align: center;
+       padding-bottom: 10px;
+       padding-top: -35px;
+  
+   }
+
+</style>
 <body>
 <%@ include file="../common/menubar.jsp" %>
 	
@@ -28,7 +40,6 @@
         <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
         <button id="now" onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
-        <button onclick="location.href='<%=request.getContextPath()%>/chat.ms'">1:1 채팅내역</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
       </div>
     </div>
@@ -41,9 +52,9 @@
         <thead>
            <tr>
               <th width="80">BoardNo.</th>
-              <th width="350">Title</th>
+              <th width="350">BoardTitle</th>
               <th width="400">Review</th>
-              <th width="100">CreatDate</th>
+              <th width="150">CreatDate</th>
               <th  width="70">LikeCount</th>
               <th  width="50">Count</th>
            </tr>
@@ -58,7 +69,7 @@
 			              <% for(Review rv : rvlist){ %>
 			                 <tr>
 			                   <td><%= rv.getBoardNo() %></td>
-			                   <td><%=  "["+ rv.getCategoryName() +"] "+ rv.getBoardTitle() %></td>
+			                   <td><%=  "[ "+ rv.getCategoryName() +" ] "+ rv.getBoardTitle()%></td>
 			                   <td><%=  rv.getContent() %></td>
 			                   <td><%= rv.getCreateDate() %></td>
 			                   <td ><%= rv.getLikeCnt() %></td>

@@ -8,10 +8,11 @@ public class NoticeBoard {
 	private String noticeTitle; // 제목
 	private String noticeContent;// 내용
 	private Date createDate;// 작성일
-	private String status;// 상태
+	private String user_id;// 작성자 아이디
+
 	
 	public NoticeBoard() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public NoticeBoard(String noticeTitle, String noticeContent) {
@@ -66,19 +67,19 @@ public class NoticeBoard {
 		this.createDate = createDate;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	@Override
 	public String toString() {
 		return "NoticeBoard [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", createDate=" + createDate + ", status=" + status + "]";
+				+ ", createDate=" + createDate + ", user_id=" + user_id + "]";
 	}
-	
+
 	
 }

@@ -44,7 +44,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "회원탈퇴에 실패하였습니다.");
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_del.jsp");
 			view.forward(request, response);
 		}
 		

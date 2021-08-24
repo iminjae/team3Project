@@ -42,7 +42,7 @@ public class BoardService {
 
 	public ArrayList<Board> selectThList() {
 		Connection conn = getConnection();
-		ArrayList<Board> list = new BoardDao().selectThList(conn); // 카테고리 번호 전달
+		ArrayList<Board> list = new BoardDao().selectThList(conn);
 		close(conn);
 //		System.out.println("service : "+ list);
 		return list;
@@ -145,6 +145,15 @@ public class BoardService {
 
 		close(conn);
 		return at;
+	}
+
+
+	public ArrayList<Board> selectCList(int category) {
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectCList(conn, category);
+		close(conn);
+
+		return list;
 	}
 
 }

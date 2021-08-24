@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.Notice{
+	font-size: 30px;
+	color: steelblue;
+}
+
+
+.Write_board{
+ width: 70%; 
+ height:70%;
+ margin:auto;
+ margin-top: 40px;
+ text-align: center;
+
+}
+
+.Write{
+    width: 80%;
+    margin:auto;
+    border-collapse: collapse;
+   
+}
+
+#user{
+    width: 97%;
+    height:auto;
+   
+}
+#day{
+    width: 97%;
+}
+#title{
+    width: 99%;
+}
+#content{
+    width: 99%;
+    height: 400px;
+	white-space: nowrap;
+}
+#attachments{
+    width: 99%;
+    height: 70px;
+}
+#completion{
+    width: 70px;
+    height: 30px;
+    margin-top: 30px;
+    text-align: center;
+}

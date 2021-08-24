@@ -31,7 +31,6 @@
         <button id="now" onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
           <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
-        <button onclick="location.href='<%=request.getContextPath()%>/chat.ms'">1:1 채팅내역</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
       </div>
     </div>
@@ -47,28 +46,25 @@
               <th width="100">BoardNo.</th>
               <th width="400">Title</th>
               <th width="80">Author</th>
-              <th width="200">CreatDate</th>
-              <th width="70">LikeCount</th>
-              <th  colspan=2  width="50">Count</th>
-              <th></th>
+               <th width="50">Count</th>
+              <th width="200">CreatDate</th>           
            </tr>
         </thead>
           <div class="myboardlist">
               <tbody>
           	 <% if(myboard.isEmpty()){ %>
                  <tr>
-                  <td colspan="7">작성한 게시글이 없습니다.</td>
+                  <td colspan="5">작성한 게시글이 없습니다.</td>
                 </tr>
              <% }else{  %>
                     <% for(Review rv : myboard){ %>
                        <tr>
-                         <td><%= rv.getBoardNo() %></td>
-                         <td><%=  "["+ rv.getCategoryName() +"] "+ rv.getBoardTitle() %></td>
-                         <td><%= rv.getUserId() %></td>
-                         <td><%= rv.getCreateDate() %></td>
-                         <td ><%= rv.getLikeCnt() %></td>
-                         <td colspan=2><%= rv.getCount() %></td>
-                         <td><div><button class="btn-trash" onclick="deleteboard();">🗑</button></div></td>
+             
+		                         <td><%= rv.getBoardNo() %></td>
+		                         <td><%=  "[ "+ rv.getBoardtypeName() +" ] "+ rv.getBoardTitle() %></td>
+		                         <td><%= rv.getUserId() %></td>
+		                          <td><%= rv.getCount() %></td>
+		                         <td><%= rv.getCreateDate() %></td>	                        
                        </tr>
                     <% } %>   
              <% } %>                   
@@ -83,22 +79,20 @@
 
     <script>
          <% if(!myboard.isEmpty()){ %>
-         $(function(){
-            $(".list>tbody>tr").click(function(){
-               var bNo = $(this).children().eq(0).text();
-               
-               location.href="<%= request.getContextPath()%>/sellDetail.bo?bNo="+ bNo;
-                     
-            })
-         })
+	         $(function(){
+	            $(".list>tbody>tr").click(function(){
+	               var bNo = $(this).children().eq(0).text();
+	          
+	               location.href="<%= request.getContextPath()%>/sellDetail.bo?bNo="+ bNo;
+	               
+	            })
+	         })
          <% } %>
-         
-         function deleteboard(){
-        
-         }
+
          
          function writeBoard(){
-            location.href="<%= request.getContextPath()%>/sellInsertForm.bo";
+           
+        	 location.href="<%= request.getContextPath()%>/sellInsertForm.bo";
 
          }
    </script>

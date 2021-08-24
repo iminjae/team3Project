@@ -224,7 +224,33 @@ public class MemberDao {
 
 	}
 
+	public int updatepwMember(Connection conn, String userId, String pw2) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updatePwd");
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pw2);
+			pstmt.setString(2, userId);
+			
+		
+			System.out.println("!@#!@#!@#");
+				result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
+	}
+
+	
 	
 
 

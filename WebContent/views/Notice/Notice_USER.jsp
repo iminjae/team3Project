@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.team3.Notice.model.vo.NoticeBoard"%>
 
 <!DOCTYPE html>
 <html>
@@ -38,15 +38,7 @@
 
 			<tbody>
 				
-				
-				<tr>
-					<td>1</td>
-					<td class="tit">
-						<a href="#">코로나 조심sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</a>
-					</td>
-					<td>운영자</td>
-					<td>2021-08-18</td>
-				</tr>
+		
 
 			</tbody>
 

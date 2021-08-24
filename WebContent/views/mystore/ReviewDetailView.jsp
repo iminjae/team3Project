@@ -25,7 +25,6 @@
 		        <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
 		        <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
 		        <button id="now" onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
-		        <button onclick="location.href='<%=request.getContextPath()%>/chat.ms'">1:1 채팅내역</button><br>
 		        <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
 		      </div>
 		    </div>
@@ -69,6 +68,7 @@
 			        <br>
 			        <div align="center">
 			            <button class="okbtn"onclick="history.go(-1)">리뷰 목록으로</button>
+			            <button class="okbtn"onclick="#">별점주기</button>
 			        </div>
 			
 			    </div>

@@ -39,7 +39,7 @@
   }
   
   .rvlist>tbody>tr:hover{
-      background:darkgrey;
+      background:rgb(241, 238, 235);
       cursor:pointer
    }
    
