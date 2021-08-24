@@ -40,6 +40,12 @@ public class MyPageMoveAll extends HttpServlet {
 		}else if(request.getParameter("three") !=null) {
 			RequestDispatcher view = request.getRequestDispatcher("/list.th");
 			view.forward(request, response);
+		}else if(request.getParameter("four") !=null) {
+			RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_pw.jsp");
+			view.forward(request, response);
+		}else if(request.getParameter("five") !=null) {
+			RequestDispatcher view = request.getRequestDispatcher("views/member/myPage_pic.jsp");
+			view.forward(request, response);
 		}
 		
 		

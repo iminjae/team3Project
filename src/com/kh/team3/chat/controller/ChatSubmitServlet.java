@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.team3.chat.service.ChatService;
 
@@ -22,7 +21,7 @@ public class ChatSubmitServlet extends HttpServlet {
 		
 		String chatName = request.getParameter("chatName");
 		String chatContent = request.getParameter("chatContent");
-		
+
 		
 		
 		if(chatName == null || chatContent == null || chatContent.equals("")) {

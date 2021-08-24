@@ -1,16 +1,14 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.Review"
-	pageEncoding="UTF-8"%>
+   import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.*"
+   pageEncoding="UTF-8"%>
 <%
-
-ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
-String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
-Board b = (Board) request.getAttribute("b");
-Review rv = (Review) request.getAttribute("review");
-
+   Board b = (Board) request.getAttribute("b");
+   ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
+   String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
+   String result = String.valueOf(request.getSession().getAttribute("result"));
+   Review rv = (Review)request.getAttribute("review");
 %>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,39 +17,39 @@ Review rv = (Review) request.getAttribute("review");
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-	crossorigin="anonymous" />
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+   rel="stylesheet"
+   integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+   crossorigin="anonymous" />
 
 <title>SellBoard_detail</title>
 <link href="resources/css/mystore/reviewForm.css" rel="stylesheet"
-	type="text/css">
+   type="text/css">
 </head>
 <style>
 .card {
-	margin-bottom: 10px;
+   margin-bottom: 10px;
 }
 
 #contentArea {
-	height: 50px;
+   height: 50px;
 }
 
 #btn1 {
-	width: 150px;
-	height: 50px;
+   width: 150px;
+   height: 50px;
 }
 
 #btn2 {
-	width: 150px;
-	height: 50px;
-	margin-left: -100px;
+   width: 150px;
+   height: 50px;
+   margin-left: -100px;
 }
 
 #btn3 {
-	width: 150px;
-	height: 50px;
-	margin-left: -200px;
+   width: 150px;
+   height: 50px;
+   margin-left: -200px;
 }
 
 /* .detail td{
@@ -65,6 +63,8 @@ Review rv = (Review) request.getAttribute("review");
 </style>
 
 <body>
+ 
+               
 	<!-- 메뉴바 -->
 	<%@ include file="../common/menubar.jsp"%>
 
@@ -178,7 +178,7 @@ Review rv = (Review) request.getAttribute("review");
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn2" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">찜💙</button>
+										class="btn btn-outline-secondary" onclick="insertJjim();">찜❤</button>
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
@@ -369,7 +369,54 @@ Review rv = (Review) request.getAttribute("review");
 			    window.open('<%=request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 		   <%}%>
    		}
-  </script>
   
+  
+
+      function insertJjim(){      
+
+         <%--
+
+
+         var answer;
+           answer = confirm("관심목록에 추가하시겠습니까?");
+            if(answer == true){
+        
+               var test = "<%= result %>"; 
+               console.log("찜여부" + test);
+                 
+                  <% if (request.getSession().getAttribute("result") == null) { %>
+                       var jno = "<%=b.getBoardNo() %>";
+                       console.log("jno"+jno);
+         
+                       location.href='<%=request.getContextPath()%>/jjimInsert.ms?jno='+jno;
+                         
+                       alert("관심목록에 추가되었습니다. 내 상점에서 확인해 주세요.");
+                <%}else{%>   
+                      alert("관심목록에 이미 추가되어 있습니다.");
+                <%}%>
+                       
+            }
+
+            --%>
+             var answer;
+             answer = confirm("관심목록에 추가하시겠습니까?");
+              if(answer == true){
+
+                   
+                    
+                         var jno = "<%=b.getBoardNo() %>";
+                         console.log("jno"+jno);
+           
+                         location.href='<%=request.getContextPath()%>/jjimInsert.ms?jno='+jno;
+                           
+                         alert("관심목록에 추가되었습니다. 내 상점에서 확인해 주세요.");
+                
+              }
+
+
+      }
+   </script>
+
+
 </body>
 </html>

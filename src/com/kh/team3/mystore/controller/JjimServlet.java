@@ -36,10 +36,8 @@ public class JjimServlet extends HttpServlet {
 		
 
 		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-
 			ArrayList<Jjim> jjimList = new ReviewService().selectJjimList(loginuserId);
 			request.setAttribute("jjimList", jjimList);
-
 		
 		RequestDispatcher view =request.getRequestDispatcher("views/mystore/Jjim.jsp");
 	    view.forward(request, response);
