@@ -117,6 +117,37 @@ public ArrayList<Board> selectThList(Connection conn) {
 	return list;
 
 }
+public ArrayList<Board> selectThListtwo(Connection conn) {
+	ArrayList<Board> list = new ArrayList<>();
+
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+
+	String sql = prop.getProperty("selectThListtwo");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+		rset = pstmt.executeQuery();
+		while (rset.next()) {
+			Board b = new Board();
+			b.setBoardNo(rset.getInt("BOARD_NO"));
+			b.setBoardTitle(rset.getString("BOARD_TITLE"));
+			b.setBoardContent(rset.getString("BOARD_CONTENT"));
+			b.setTitleImg(rset.getString("CHANGE_NAME"));
+
+			list.add(b);
+		}
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	return list;
+
+}
 
 public int increaseCount(Connection conn, int bno) {
 	int result = 0;
@@ -355,6 +386,115 @@ public int updateAttachment(Connection conn, Attachment at) {
 	System.out.println("파일 업데이트 다오 리턴전");
 	return result;
 }
+
+public int selectpic(Connection conn,String userId) {
+	int result = 0;
+	
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("picpic");
+	System.out.println("se;ectBoardtwo sql 실행전 : " + userId);
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, userId);
+		rset = pstmt.executeQuery();
+		if (rset.next()) {
+			
+			result = 1;
+		}
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	
+	
+	
+	return result;
+}
+
+public int insertpic(Connection conn, Attachment at, String userId) {
+
+	int result = 0;
+	PreparedStatement pstmt = null;
+	String sql = prop.getProperty("insertpic");
+	System.out.println("파일 입력" + at.getOriginName() + at.getChangeName() + at.getFilePath() );
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, at.getOriginName());
+		pstmt.setString(2, at.getChangeName());
+		pstmt.setString(3, at.getFilePath());
+		pstmt.setString(4, userId);
+
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	return result;
+}
+
+public int updatepic(Connection conn, Attachment at, String userId) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	System.out.println("파일 업데이트 다오 입장 : " + at);
+	String sql = prop.getProperty("uppic");
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, at.getOriginName());
+		pstmt.setString(2, at.getChangeName());
+		pstmt.setString(3, userId);
+		result = pstmt.executeUpdate();
+		System.out.println("다오 리슐:" +result);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+	System.out.println("파일 업데이트 다오 리턴전");
+	return result;
+
+}
+
+public String selectpicp(Connection conn, String userId) {
+String result = null;
+	
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("picpic");
+	System.out.println("se;ectBoardtwo sql 실행전 : " + userId);
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, userId);
+		rset = pstmt.executeQuery();
+		if (rset.next()) {
+			
+			result = rset.getString("CHANGE_NAME");
+		}
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	
+	
+	
+	return result;
+}
+
 
 
 }

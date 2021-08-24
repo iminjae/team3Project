@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    import = "java.util.ArrayList, com.kh.team3.eventBoard.model.vo.*" pageEncoding="UTF-8"%>
+    import="java.util.ArrayList, com.kh.team3.eventBoard.model.vo.*" pageEncoding="UTF-8"%>
     
 <% 
-	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	Board b = (Board)request.getAttribute("b"); 
+	Attachment fileList = (Attachment)request.getAttribute("fileList");
+	String loginUser = (String)request.getAttribute("loginUser");
+	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
+ <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-   <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -21,19 +23,29 @@
 <title>Insert title here</title>
 <style>
 
-	.listArea{
+
+	#contentArea{
+		height:50px;
+	}
+	
+	.detail td{
+		text-align:center;
+		border:1px solid white;
+	}
+	.detailImgArea{
+		width:220px;
+		height:190px;
+	}
+		.listArea{
 		width:760px;
 		height:550px;
 		margin:auto;
-		
 	}
 	.thumbnail{
 		display:inline-block;
 		width:220px;
-		border:3px solid blue;
+		border:1px solid white;
 		margin:10px;
-		 
-		
 	}
 	.thumbnail:hover{
 		opacity:0.7;
@@ -104,65 +116,62 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
-	
-  <div id="header-wrap">
-  
-   <div class="menu">
-   <div class="list-group">
-    <button type="button" id ="one" class="list-group-item list-group-item-action" aria-current="true">
-      MyPage Menu
-    </button> 
-    <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
-   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one">
-   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two">
-    <input type="submit" class="list-group-item list-group-item-action" value="비밀번호 변경" name="four">
-   <input type="submit" class="list-group-item list-group-item-action" value="회원사진 설정" name="five">  
-		<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
-			<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"> 
-			<% }else{ %>
-				
-				<% } %>
-
-</form>
-  </div>
-	
+		<%@ include file="../common/menubar.jsp" %>
+		
 	<div class="outer">
+	
 		<br>
-		<h2 align="center">사진 게시판</h2>
+		<h2 align="center">사진게시판 상세보기</h2>
 		<br>
 		
-		<div class="listArea">
-			<%for(Board b : list){ %>
-			<div class="thumbnail" align="center">
-				<input type="hidden" value="<%=b.getBoardNo()%>">	
-				<img src="<%=contextPath %>/resources/board_upfiles/<%= b.getTitleImg() %>" width="200px" height="150px"> <br>
-				<p>
-					 <%=b.getBoardTitle() %> <br>
-					조회수 : <%=b.getBoardCount() %>
-				</p>
-			</div>
-			<%} %>
+		<table class="detail" align="center">
+			<tr>
+				<td width="70px">제목</td>
+				<td colspan="5"><%= b.getBoardTitle() %></td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td><%= b.getUserId() %></td>
+				<td>조회수</td>
+				<td><%= b.getBoardCount() %></td>
+				<td>작성일</td>
+				<td><%= b.getCreateDate() %></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td colspan="6">
+					<p id="contentArea"><%= b.getBoardContent() %></p>
+				</td>
+			</tr>
+			<tr>
+				<td>대표사진</td>
+				<td colspan="4">
+					<div id="titleImgArea" align="center">
+						<img width="500px" height="300px" id="titleImg" src="<%=request.getContextPath()%>/resources/board_upfiles/<%= fileList.getChangeName() %>">
+					</div>
+				</td>
+				<td>
+					<a download="<%=fileList.getOriginName() %>"  href="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.getChangeName()%>">다운로드</a>
+							</td>
+			</tr>			
+		</table>
 		
+		<table class="detail" align="center">
+			<tr>
+				
+			</tr>
+		</table>
+		<form action="" id="postForm" method="post">
+			<input type="hidden" name="bno" value="<%= b.getBoardNo() %>">
 			
-			<br><br>
-			<div align="center">
-			
+		</form>
 		
-			<button id="button" onclick="location.href='<%=request.getContextPath()%>/insertForm.th'">작성하기</button>
-			</div>
-		</div>
-		<script>
 		
-			$(function(){
-				$(".thumbnail").click(function(){
-					var bId = $(this).children().eq(0).val();
-					location.href="<%=contextPath%>/detail.th?bId=" + bId;
-					 
-				});
-			});
-		</script>
+		
 	</div>
+	<script>
+	
+	
 	
 	 <!-- Optional JavaScript; choose one of the two! -->
 

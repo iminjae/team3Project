@@ -68,6 +68,16 @@ Connection conn = getConnection();
 		return list;
 	}
 
+	public ArrayList<Board> selectThListtwo() {
+		Connection conn = getConnection();
+
+		ArrayList<Board> list = new EventBoardDao().selectThListtwo(conn);
+
+		close(conn);
+
+		return list;
+	}
+	
 	public Board selectBoard(int bno) {
 		Connection conn = getConnection();
 		System.out.println("서비스 접근 및 조회수 다오 입장 전");
@@ -135,6 +145,48 @@ Connection conn = getConnection();
 		close(conn);
 
 		return at;
+	}
+
+	public int picmeup(String userId, Attachment at) {
+		Connection conn = getConnection();
+		int result2 =0;
+		int result3 =0;
+		
+		System.out.println("1");
+		int result = new EventBoardDao().selectpic(conn,userId);
+		
+		if(result > 0) {
+			System.out.println("2");
+			result2 = new EventBoardDao().updatepic(conn,at ,userId);
+		}else {
+			System.out.println("3");
+			result3 = new EventBoardDao().insertpic(conn,at,userId);
+		}
+		if (result2 > 0 || result3 > 0) {
+			commit(conn);
+			close(conn);
+			return 1;
+
+		} else {
+			rollback(conn);
+			close(conn);
+			return 0;
+		}
+
+	
+		
+		
+		
+	
+	}
+
+	public String selectpic(String userId) {
+		Connection conn = getConnection();
+		System.out.println("파일 조회 입장 전");
+		String list = new EventBoardDao().selectpicp(conn, userId);
+		System.out.println("파일 조회 퇴장");
+		close(conn);
+		return list;
 	}
 }
 

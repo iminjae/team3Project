@@ -1,7 +1,6 @@
-package com.kh.team3.member.controller;
+package com.kh.team3.eventBoard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,23 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.team3.eventBoard.model.service.EventBoardService;
+import com.kh.team3.eventBoard.model.vo.Attachment;
 import com.kh.team3.eventBoard.model.vo.Board;
-import com.kh.team3.member.model.vo.Member;
 
 /**
- * Servlet implementation class MyPageMove
+ * Servlet implementation class ThumbnailDetailServlet
  */
-@WebServlet("/main.me")
-public class MainMove extends HttpServlet {
+@WebServlet("/detailuser.th")
+public class ThumbnailUserDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainMove() {
+    public ThumbnailUserDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,21 +32,26 @@ public class MainMove extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)request.getAttribute("loginUser");
 		
-		System.out.println("===========세션유지확인===============");
-		System.out.println(loginUser);
+		int bid = Integer.parseInt(request.getParameter("bNo"));
+		System.out.println("상세조회 섭블릿 입장 및 board 정보 불러오기");
+		Board b = new EventBoardService().selectBoard(bid);
 		
-		System.out.println("session = " + session);
+		System.out.println("파일 정보 불러오기");
+		Attachment fileList = new EventBoardService().selectThumnail(bid);
+		System.out.println("전체 조회끝");
+		if(b!=null) {
+			request.setAttribute("b", b);
+			request.setAttribute("fileList", fileList);
+			
+			request.getRequestDispatcher("views/member/thumbnailUserDetailView.jsp").forward(request, response);
+		}else {
+			request.setAttribute("msg", "사진게시판 상세보기 실패");
+			
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
 		
-		ArrayList<Board> listtwo = new EventBoardService().selectThListtwo();
-		
-		request.setAttribute("listtwo", listtwo);
-		
-	
-		RequestDispatcher view = request.getRequestDispatcher("views/common/mainPage.jsp");
-		view.forward(request, response);
 	}
 
 	/**
