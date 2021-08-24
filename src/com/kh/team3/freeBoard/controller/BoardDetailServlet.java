@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.freeBoard.model.service.BoardService;
 import com.kh.team3.freeBoard.model.vo.Board;
+import com.kh.team3.freeBoard.model.vo.Reply;
 
 /**
  * Servlet implementation class BoardDetailServlet
@@ -31,12 +32,17 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
+
+		
 		Board b = new BoardService().selectBoard(bno);
+
 		
 		if(b != null) {
 			request.setAttribute("b", b);
+
 			request.getRequestDispatcher("views/freeBoard/boardDetailView.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "게시판 상세조회에 실패했습니다");

@@ -1,6 +1,7 @@
 package com.kh.team3.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.team3.eventBoard.model.service.EventBoardService;
+import com.kh.team3.eventBoard.model.vo.Board;
 import com.kh.team3.member.model.vo.Member;
 
 /**
@@ -38,6 +41,10 @@ public class MainMove extends HttpServlet {
 		System.out.println(loginUser);
 		
 		System.out.println("session = " + session);
+		
+		ArrayList<Board> listtwo = new EventBoardService().selectThListtwo();
+		
+		request.setAttribute("listtwo", listtwo);
 		
 	
 		RequestDispatcher view = request.getRequestDispatcher("views/common/mainPage.jsp");

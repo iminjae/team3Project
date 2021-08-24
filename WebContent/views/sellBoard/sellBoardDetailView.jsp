@@ -8,7 +8,9 @@
    String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
    String result = String.valueOf(request.getSession().getAttribute("result"));
    Review rv = (Review)request.getAttribute("review");
+
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -236,7 +238,9 @@
       if (userId != null && ((Member) request.getSession().getAttribute("loginUser")).getUserId().equals(b.getUserId())) {
       %>
 
+
       <button type="button" onclick="updateTForm();">수정하기</button>
+
       <button type="button" onclick="deleteTBoard();">삭제하기</button>
       <%
       }
@@ -344,7 +348,10 @@
          }
       
       function insertJjim(){      
+
          <%--
+
+
          var answer;
            answer = confirm("관심목록에 추가하시겠습니까?");
             if(answer == true){
@@ -364,6 +371,7 @@
                 <%}%>
                        
             }
+
             --%>
              var answer;
              answer = confirm("관심목록에 추가하시겠습니까?");
@@ -379,6 +387,8 @@
                          alert("관심목록에 추가되었습니다. 내 상점에서 확인해 주세요.");
                 
               }
+
+
       }
    </script>
 

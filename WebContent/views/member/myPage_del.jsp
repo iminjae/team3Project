@@ -73,6 +73,8 @@ String loginUser = (String)request.getAttribute("loginUser");
     <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
    <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one">
    <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two">
+   <input type="submit" class="list-group-item list-group-item-action" value="비밀번호 변경" name="four">
+   <input type="submit" class="list-group-item list-group-item-action" value="회원사진 설정" name="five">  
 			<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
 			<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"> 
 			<% }else{ %>

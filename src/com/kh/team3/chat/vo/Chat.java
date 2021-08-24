@@ -7,6 +7,7 @@ public class Chat {
 	private String chatName;
 	private String chatContent;
 	private String chatTime;
+	private String chatUserName;
 	
 	
 	
@@ -16,6 +17,20 @@ public class Chat {
 	
 	
 	
+
+	public String getChatUserName() {
+		return chatUserName;
+	}
+
+
+
+
+	public void setChatUserName(String chatUserName) {
+		this.chatUserName = chatUserName;
+	}
+
+
+
 
 	public int getChatNo() {
 		return chatNo;

@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%  
+    String path = (String)request.getSession().getAttribute("path");
+%>
+  <%   
+  	
+   String contextPath = request.getContextPath();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +55,7 @@
                   <li><a href="<%=request.getContextPath()%>/MyPageMove.me">마이 페이지</a></li>
                   <li><a href="<%=request.getContextPath()%>/mystore.ms">내 상점</a></li>
                   <li><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
-                   <li> <img src="..." alt="..." class="img-circle"> </li>
+              	    <li>  <img src="<%=contextPath%>/resources/board_upfiles/<%= path %>" width="30px" height="30px"> </li>
                </ul>
                <nav id="gnb">
                   <h2 class="blind">메인메뉴</h2>
@@ -58,7 +66,7 @@
                      <li class="m2">
                         <a href="#">거래장터</a>
                         <ul >
-                           <li><a href="<%=request.getContextPath()%>/exchangeServlet.es">물물교환 게시판</a></li>
+                           <li><a href="<%=request.getContextPath()%>/ExchangeViewServlet.ev">물물교환 게시판</a></li>
                            <li><a href="<%=request.getContextPath()%>/sellList.bo">판매 게시판</a></li>
                         </ul>
                      </li>
@@ -74,7 +82,7 @@
                                  <a href="#">기타</a>
                                  <ul>
                                      <li><a href="<%=request.getContextPath()%>/event.bo">이벤트</a></li>
-                                    <li><a href="#">신고/문의</a></li>                    
+                                    <li><a href="<%=request.getContextPath()%>/report.rp">신고/문의</a></li>                    
                                  </ul>
                      </li>
                   </ul>

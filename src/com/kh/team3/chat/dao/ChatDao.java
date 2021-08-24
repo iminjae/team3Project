@@ -138,7 +138,7 @@ public ArrayList<Chat> getChatListByRecent(Connection conn, String chatNo){
 		String sql = prop.getProperty("submit");
 		System.out.println(chatName);
 		System.out.println(chatContent);
-		
+
 		
 		
 		try {
