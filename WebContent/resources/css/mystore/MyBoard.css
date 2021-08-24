@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+/*테이블*/
+ .list{
+      border-collapse: separate;
+      border-spacing: 1px;
+      text-align: left;
+      line-height: 1.5;
+      border-top: 1px solid #ccc;
+      margin : 20px 10px;
+      text-align: center;
+
+  }
+
+  .list th{
+      padding: 5px;
+      font-weight: bold;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      background-color:rgb(236, 241, 236);
+      font-size: 15px;
+  }
+  .list td{
+      padding: 10px;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      font-size: 13px;
+  }
+  
+   .list>tbody>tr:hover{
+      background: rgb(241, 238, 235);
+      cursor:pointer
+   }
+  
+  /*title*/
+  .mytitle{
+     font-size: 22px;
+     margin-left : 20px;
+     margin-bottom: -20px;
+     font-weight : 900;
+  }
+  
+  .center{
+     margin-top: 20px;
+  }
+  
+  
+  /*버튼*/
+  #writeboard{
+     float: right;
+     margin-right: 20px;
+     padding : 3px;
+     width : 60px;
+     height : 30px;
+     font-size: 13px;
+     background : white;
+     border-radius : 6px;
+     border-color : rgb(201, 210, 214);
+  }
+  
+  #writeboard:hover{
+   color : rgb(201, 210, 214);
+   border-color : rgb(201, 210, 214);
+   font-size : 14px;
+  }
+  
+  #now{
+    color: white;
+    font-size: 18px;
+  }
+  
