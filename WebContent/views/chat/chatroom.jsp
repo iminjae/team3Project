@@ -4,7 +4,8 @@
  <%
 	
 	String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNickname();
-	
+ 	
+ 	
 %>
 <!DOCTYPE html>
 <html>
