@@ -1,16 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.team3.eventBoard.model.vo.*" %>    
-  <%   
-  	
-   String contextPath = request.getContextPath();
-%>
+
 <% 
 	Board b = (Board)request.getAttribute("board");
 	Attachment at = (Attachment)request.getAttribute("at");
 
-	
-	String[] selected = new String[7];
 	
 %>
 <!DOCTYPE html>

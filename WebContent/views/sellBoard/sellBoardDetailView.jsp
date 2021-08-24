@@ -8,7 +8,7 @@
    String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
    String result = String.valueOf(request.getSession().getAttribute("result"));
    Review rv = (Review)request.getAttribute("review");
-%>
+
 
 <!DOCTYPE html>
 <html lang="en">

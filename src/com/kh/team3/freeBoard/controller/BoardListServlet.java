@@ -106,7 +106,23 @@ public class BoardListServlet extends HttpServlet {
 		
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, startPage, endPage, maxPage, pageLimit, boardLimit);
-		ArrayList<Board> list = new BoardService().selectList(pi);
+		ArrayList<Board> list =null;
+		if (request.getParameter("type")!=null) {
+			if(request.getParameter("type").equals("userId")) {
+				String search=request.getParameter("search");
+				System.out.println(search);
+				list= new BoardService().serachIdList(pi,search);
+			}
+		
+			else if(request.getParameter("type").equals("BoardTitle")){
+				String search=request.getParameter("search");
+				System.out.println("서치 : "+search);
+				list= new BoardService().serachTitleList(pi,search);
+				}
+		}else {
+			list= new BoardService().selectList(pi);
+		}
+		
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/freeBoard/boardListView.jsp").forward(request, response);

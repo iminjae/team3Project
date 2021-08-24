@@ -47,16 +47,19 @@
     	padding: 10px;
     	font-size:11px;
   	}
+  	td{
+  		height:30px;
+  	}
   	</style>
 </head>
 <body>
-
+<%@ include file="../common/menubar.jsp"%>
 	
 	<div class="box">
 		<br>
 		
 		<h3>자유 게시판</h3>
-		
+		<br>
 		
 		<table class="board"  align="center">
 			<thead>
@@ -138,13 +141,13 @@
 
 
 <DIV class='aside_menu'>
-  <FORM name='frm' method='GET' action='./list.jsp'>
+  <FORM name='frm' method='GET' action='./list.bo'>
     <ASIDE align = 'center'>
-      <SELECT name='col'> 
+      <SELECT name='type'> 
         <OPTION value='userId'>이름</OPTION>
         <OPTION value='BoardTitle'>제목</OPTION>
       </SELECT>
-      <input type='text' name='word'>
+      <input type='text' name='search'>
       <button type='submit'>검색</button>    
 
     </ASIDE> 
@@ -156,7 +159,7 @@
 <script>
 		
 			$(function(){
-				console.log('외않되');
+				
 				$(".board>tbody>tr").click(function(){
 					
 					var bno = $(this).children().eq(0).text();
@@ -165,7 +168,7 @@
 			})
 		
 	</script>
-
+<%@include file = "../common/footer.jsp" %>
 	
 </body>
 </html>
