@@ -8,6 +8,7 @@ ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("f
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 Board b = (Board) request.getAttribute("b");
 Review rv = (Review) request.getAttribute("review");
+
 %>
 
 
@@ -81,9 +82,11 @@ Review rv = (Review) request.getAttribute("review");
 								data-bs-slide-to="1"></li>
 							<li data-bs-target="#carouselExampleIndicators"
 								data-bs-slide-to="2"></li>
+
 						</ol>
 						<!--이미지-->
 						<!--for문 돌리면서 이미지 가져와서 보여주기-->
+						<!-- 이거왜 사진전체리스트를 못돌릴까... -->
 
 						<div class="carousel-inner">
 							<%
@@ -140,11 +143,18 @@ Review rv = (Review) request.getAttribute("review");
 						<div class="card-body">
 							<h4>
 								<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
-								<span class="badge bg-success"><%=b.getBoardStatus()%></span>
+								<%if(b.getBoardStatus().equals("판매중")) {%>
+								<span class="badge bg-primary">판매중</span>
+
+								<%}else if(b.getBoardStatus().equals("예약중")){%>
+								<span class="badge bg-success">예약중</span>
+
+								<%}else if(b.getBoardStatus().equals("판매완료")){%>
+								<span class="badge bg-warning">판매완료</span>
+								<%}%>
 								<button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>
 							</h4>
-							<br>
-							<br>
+							<br><p class="card-text pb-3"><%=b.getUserId()%>님의 게시글</p><br>
 							<h3 class="card-title"><%=b.getBoardTitle()%>
 							</h3>
 							<p class="card-text border-top pb-3"></p>
@@ -159,7 +169,7 @@ Review rv = (Review) request.getAttribute("review");
 								</div>
 							</div>
 							<p class="card-text border-top pb-3"></p>
-							<p class="card-text pb-3">안내사항 있으면 적는 공간...</p>
+							
 
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 							<div class="d-flex justify-content-between align-items-center">
@@ -170,12 +180,12 @@ Review rv = (Review) request.getAttribute("review");
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn2" type="button"
-										class="btn btn-outline-secondary" onclick="location.href='#'">찜❤</button>
+										class="btn btn-outline-secondary" onclick="location.href='#'">찜💙</button>
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
 										class="btn btn-outline-secondary"
-										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅</button>
+										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
 								</div>
 
 							</div>
@@ -186,6 +196,17 @@ Review rv = (Review) request.getAttribute("review");
 			<br>
 
 			<!--판매상품 설명글-->
+			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas"
+				aria-labelledby="offcanvasLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+					<button type="button" class="btn-close text-reset"
+						data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body">Content for the offcanvas goes
+					here. You can place just about any Bootstrap component or custom
+					elements here.</div>
+			</div>
 			<div class="row">
 				<div class="col-12">
 					<p id="contentArea"><%=b.getBoardContent()%></p>
@@ -238,24 +259,23 @@ Review rv = (Review) request.getAttribute("review");
 		%>
 
 		<!--<button type="button" onclick="updateTForm();">수정하기</button>  -->
-		<button type="button" onclick="deleteTBoard();">삭제하기</button>
+		<button type="button" onclick="deleteSBoard();">삭제하기</button>
 		<%
 		}
 		%>
 	</div>
 	<script>
-			function updateTForm(){
+			function updateSBoard(){
 				$("#postForm").attr("action", "<%=request%>/updateTForm.th");
 				$("#postForm").submit();
 			}
 			
-			function deleteTBoard(){
-				$("#postForm").attr("action", "<%=request.getContextPath()%>
-		/sellDelete.bo");
-			$("#postForm").submit();
+			function deleteSBoard(){
+				$("#postForm").attr("action", "<%=request.getContextPath()%>/sellDelete.bo");
+				$("#postForm").submit();
 		}
 	</script>
-	<!-- 동적으로 작성될 수 있도록 ajax 이용 -->
+	<!-- 댓글 작성 -->
 	<script>
 		$(function() {
 			selectReplyList();

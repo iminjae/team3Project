@@ -17,7 +17,7 @@ public class Board {
 	private int bCnt; // 게시글 조회수
 	private int likeCnt; // 게시글 좋아요 수
 	private Date createDate; // 게시글 작성일
-	private String boardStatus; // 게시글 상태(판매중|판매완료)
+	private String boardStatus; // 게시글 상태(판매중|예약중|판매완료)
 	private String status; // 게시글 상태값(Y,삭제시N)
 	private String titleImg; // 게시글의 타이틀 이미지 (실제 서버에 업로드되어있는 이름)
 

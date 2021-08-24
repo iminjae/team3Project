@@ -51,7 +51,6 @@ public class BoardDao {
 		} finally {
 			close(pstmt);
 		}
-
 		return result;
 	}
 
@@ -87,15 +86,9 @@ public class BoardDao {
 //	         LEFT JOIN BOARDTYPE C ON C.BOARDTYPE_NO = B.BOARDTYPE_NO WHERE B.STATUS = 'Y' AND B.BOARD_NO=?
 
 			if (rset.next()) { // bNo로 조회
-				b = new Board(rset.getInt("BOARD_NO"), 
-						rset.getString("CATEGORY_NAME"), 
-						rset.getString("BOARD_TITLE"),
-						rset.getString("BOARD_CONTENT"), 
-						rset.getString("USER_ID"), 
-						rset.getString("BOARD_STATUS"),
-						rset.getInt("BOARD_COUNT"),
-						rset.getDate("CREATE_DATE"), 
-						rset.getInt("LIKE_COUNT"), 
+				b = new Board(rset.getInt("BOARD_NO"), rset.getString("CATEGORY_NAME"), rset.getString("BOARD_TITLE"),
+						rset.getString("BOARD_CONTENT"), rset.getString("USER_ID"), rset.getString("BOARD_STATUS"),
+						rset.getInt("BOARD_COUNT"), rset.getDate("CREATE_DATE"), rset.getInt("LIKE_COUNT"),
 						rset.getInt("PRICE"));
 			}
 		} catch (SQLException e) {
@@ -152,7 +145,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-//		SELECT B.BOARD_NO, B.BOARD_TITLE, B.BOARD_COUNT, A.CHANGE_NAME, B.BOARDTYPE_NO, C.CATEGORY_NAME, B.BOARD_STATUS
+//		SELECT B.BOARD_NO, B.BOARD_TITLE, B.USER_ID, B.BOARD_COUNT, A.CHANGE_NAME, B.BOARDTYPE_NO, C.CATEGORY_NAME, B.BOARD_STATUS
 //		FROM BOARD B JOIN CATEGORY C  ON (B.CATEGORY_NO=C.CATEGORY_NO)
 //		JOIN (SELECT * FROM ATTACHMENT 
 //		WHERE FILE_NO IN(SELECT MIN(FILE_NO) FILE_NO FROM ATTACHMENT WHERE STATUS='Y' GROUP BY BOARD_NO)) A  ON (B.BOARD_NO = A.BOARD_NO)
@@ -170,6 +163,7 @@ public class BoardDao {
 				Board b = new Board();
 				b.setBoardNo(rset.getInt("BOARD_NO"));
 				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setUserId(rset.getString("USER_ID"));
 				b.setbCnt(rset.getInt("BOARD_COUNT"));
 				b.setTitleImg(rset.getString("CHANGE_NAME"));
 				b.setCategoryName(rset.getString("CATEGORY_NAME"));
@@ -404,7 +398,8 @@ public class BoardDao {
 	public int updateAttachment(Connection conn, Attachment at) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		//UPDATE ATTACHMENT SET CHANGE_NAME=?, ORIGIN_NAME=?, FILE_PATH=? WHERE FILE_NO=?
+		// UPDATE ATTACHMENT SET CHANGE_NAME=?, ORIGIN_NAME=?, FILE_PATH=? WHERE
+		// FILE_NO=?
 		String sql = prop.getProperty("updateAttachment");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -427,7 +422,8 @@ public class BoardDao {
 	public int insertNewAttachment(Connection conn, Attachment at) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		//INSERT INTO ATTACHMENT VALUES(SEQ_FNO.NEXTVAL, ?, ?, ?, ?, SYSDATE, 1, DEFAULT)
+		// INSERT INTO ATTACHMENT VALUES(SEQ_FNO.NEXTVAL, ?, ?, ?, ?, SYSDATE, 1,
+		// DEFAULT)
 		String sql = prop.getProperty("insertNewAttachment");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -449,31 +445,76 @@ public class BoardDao {
 
 	public Attachment selectAttachment(Connection conn, int bNo) {
 		Attachment at = null;
-	      PreparedStatement pstmt = null;
-	      ResultSet rset = null;
-	      
-	      String sql = prop.getProperty("selectAttachment");
-	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setInt(1, bNo);
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 
-	         rset = pstmt.executeQuery();
-	         
-	         if(rset.next()) { // bNo로 딱 1개만 조회해서 while 안 써도 됨
-	            at = new Attachment();
-	            at.setFileNo(rset.getInt("FILE_NO"));
-	            at.setOriginName(rset.getString("ORIGIN_NAME"));
-	            at.setChangeName(rset.getString("CHANGE_NAME"));
-	         }
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      } finally {
-	         close(rset);
-	         close(pstmt);
-	      }
-	      
-	      return at;
-	   }
+		String sql = prop.getProperty("selectAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNo);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) { // bNo로 딱 1개만 조회해서 while 안 써도 됨
+				at = new Attachment();
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setOriginName(rset.getString("ORIGIN_NAME"));
+				at.setChangeName(rset.getString("CHANGE_NAME"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return at;
+	}
+
+	public ArrayList<Board> selectCList(Connection conn, int category) {
+		ArrayList<Board> list = new ArrayList<>();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+//		SELECT B.BOARD_NO, B.BOARD_TITLE, B.USER_ID, B.BOARD_COUNT, A.CHANGE_NAME, B.BOARDTYPE_NO, C.CATEGORY_NAME, B.BOARD_STATUS
+//		FROM BOARD B JOIN CATEGORY C  ON (B.CATEGORY_NO=C.CATEGORY_NO)
+//		JOIN (SELECT * FROM ATTACHMENT 
+//		WHERE FILE_NO IN(SELECT MIN(FILE_NO) FILE_NO FROM ATTACHMENT WHERE STATUS='Y' GROUP BY BOARD_NO)) A  ON (B.BOARD_NO = A.BOARD_NO)
+//		WHERE B.STATUS='Y' AND B.BOARDTYPE_NO=1 AND CATEGORY_NO = ? ORDER BY B.BOARD_NO DESC;
+
+		String sql = prop.getProperty("selectCList");
+		System.out.println("dao sql : " + sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				// 생성자 없어서 건건이 add 해서 객체 생성
+				Board b = new Board();
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setUserId(rset.getString("USER_ID"));
+				b.setbCnt(rset.getInt("BOARD_COUNT"));
+				b.setTitleImg(rset.getString("CHANGE_NAME"));
+				b.setCategoryName(rset.getString("CATEGORY_NAME"));
+				b.setBoardStatus(rset.getString("BOARD_STATUS"));
+
+				list.add(b);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
 
 }
