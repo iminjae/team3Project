@@ -22,7 +22,7 @@
     text-align: center;
     border-radius: 11px;
     background-color: rgb(201, 210, 214);
-    margin-top: 10px;
+    margin-top: 3px;
   }
   #menu button{
     background-color: rgb(201, 210, 214);
@@ -40,20 +40,39 @@
     color: white;
     font-size: 18px;
   }
-  
-  /*매너지수*/
-  .mypoint{
-  	border : 1px solid black;
-  	width : 170px;
-  	height : 80px;
-  	margin-top : -20px;
-  	margin-bottom : 20px;
-  }
-  
-  
     
   .title{
     text-align: center;
     font-size: 20px;
     font-weight: bold;
+    margin-top : -20px;
+    margin-bottom : 20px;
   }
+  
+   /*v프로그래스바*/
+         #myProgress {
+         margin-top: 8px;
+         width: 150px;
+         height: 50px;
+         margin-left: 10px;
+     }
+     .mypoint{
+     	 border : 0;
+         width : 170px;
+         height : 80px;
+         margin-top : -20px;
+         margin-bottom : 20px;
+     }
+
+     #ptagstar{
+         margin-left: 45px;
+         margin-top: 5px;
+         margin-bottom: 7px;
+        
+     }
+     #pointtt{
+         font-size: small;
+         margin-left: 120px;
+     }
+        
+

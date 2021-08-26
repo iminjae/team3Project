@@ -1,4 +1,4 @@
-package com.kh.team3.sellBoard.model.vo;
+package com.kh.team3.freeBoard.model.vo;
 
 public class PageInfo {
 	

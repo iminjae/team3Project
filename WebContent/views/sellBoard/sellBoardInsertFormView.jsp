@@ -51,7 +51,7 @@ Member loginUser = (Member) request.getAttribute("loginUser");
                      <option value="1">태블릿</option>
                      <option value="2">데스크탑</option>
                      <option value="3">노트북</option>
-                     <option value="4">스마트폰</option>
+                     <option value="4">핸드폰</option>
                      <option value="5">기타</option>
                   </select>
                </div>
@@ -89,7 +89,7 @@ Member loginUser = (Member) request.getAttribute("loginUser");
             <div class="col-md-9">
                <div class="alert alert-secondary" role="alert">
                   <ul>
-                     <li>최대 3개까지 등록가능</li>
+                     <li>최대 2개까지 등록가능</li>
                      <li>이미지 사이즈 : 700 * 700</li>
                      <li>파일 사이즈 : 1M 이하</li>
                      <li>파일 확장자 : png, jpg만 가능</li>
@@ -98,8 +98,7 @@ Member loginUser = (Member) request.getAttribute("loginUser");
                <table>
                   <tr>
                      <td><img id="contentImg1" width="150" height="120"></td>
-                     <td><img id="contentImg2" width="150" height="120"></td>
-                     <td><img id="contentImg3" width="150" height="120"></td>
+                     <td><img id="contentImg2" width="150" height="120"></td>                 
                   </tr>
                </table>
             </div>
@@ -158,11 +157,7 @@ Member loginUser = (Member) request.getAttribute("loginUser");
             $("#contentImg2").click(function(){
                 $("#file3").click();
             });
-            
-            $("#contentImg3").click(function(){
-                $("#file4").click();
-            });
-            
+                      
         });
         function loadImg(inputFile, num){
             if(inputFile.files.length ==1){ // inputFile 에 파일이 존재하면
@@ -174,8 +169,7 @@ Member loginUser = (Member) request.getAttribute("loginUser");
                     case 1 : $("#titleImg").attr("src",e.target.result);break;
                     case 2 : $("#contentImg1").attr("src",e.target.result);break;
                     case 3 : $("#contentImg2").attr("src",e.target.result);break;
-                    case 4 : $("#contentImg3").attr("src",e.target.result);break;
-                    }
+                     }
                 }
             }
         }

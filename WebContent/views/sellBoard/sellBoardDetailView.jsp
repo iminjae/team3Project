@@ -3,13 +3,11 @@
 	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.Review"
 	pageEncoding="UTF-8"%>
 <%
-
 Board b = (Board) request.getAttribute("b");
 ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
 String userId = ((Member) request.getSession().getAttribute("loginUser")).getUserId();
 String result = String.valueOf(request.getSession().getAttribute("result"));
-Review rv = (Review)request.getAttribute("review");
-
+Review rv = (Review) request.getAttribute("review");
 %>
 
 
@@ -143,18 +141,27 @@ Review rv = (Review)request.getAttribute("review");
 						<div class="card-body">
 							<h4>
 								<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
-								<%if(b.getBoardStatus().equals("판매중")) {%>
+								<%
+								if (b.getBoardStatus().equals("판매중")) {
+								%>
 								<span class="badge bg-primary">판매중</span>
 
-								<%}else if(b.getBoardStatus().equals("예약중")){%>
+								<%
+								} else if (b.getBoardStatus().equals("예약중")) {
+								%>
 								<span class="badge bg-success">예약중</span>
 
-								<%}else if(b.getBoardStatus().equals("판매완료")){%>
+								<%
+								} else if (b.getBoardStatus().equals("판매완료")) {
+								%>
 								<span class="badge bg-warning">판매완료</span>
-								<%}%>
 								<button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>
+								<%}%>
 							</h4>
-							<br><p class="card-text pb-3"><%=b.getUserId()%>님의 게시글</p><br>
+							<br>
+							<p class="card-text pb-3"><%=b.getUserId()%>님의 게시글
+							</p>
+							<br>
 							<h3 class="card-title"><%=b.getBoardTitle()%>
 							</h3>
 							<p class="card-text border-top pb-3"></p>
@@ -169,7 +176,7 @@ Review rv = (Review)request.getAttribute("review");
 								</div>
 							</div>
 							<p class="card-text border-top pb-3"></p>
-							
+
 
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 							<div class="d-flex justify-content-between align-items-center">
@@ -179,7 +186,7 @@ Review rv = (Review)request.getAttribute("review");
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn2" type="button"
-										class="btn btn-outline-secondary" onclick="insertJjim();">찜❤</button>
+										class="btn btn-outline-secondary" onclick="insertJjim();">찜💙</button>
 								</div>
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
@@ -225,6 +232,7 @@ Review rv = (Review)request.getAttribute("review");
 				<td><textarea rows="3" cols="60" id="replyContent"
 						style="resize: none;"></textarea></td>
 				<td><button id="addReply">댓글등록</button></td>
+				<td><button id="deleteReply">댓글삭제</button></td>
 
 				<%
 				} else {
@@ -232,6 +240,7 @@ Review rv = (Review)request.getAttribute("review");
 				<td><textarea readonly rows="3" cols="60" id="replyContent"
 						style="resize: none;">로그인한 사용자만 가능한 서비스입니다. 로그인 후 이용해주세요</textarea></td>
 				<td><button disabled>댓글등록</button></td>
+				<td><button disabled>댓글삭제</button></td>
 				<%
 				}
 				%>
@@ -256,15 +265,15 @@ Review rv = (Review)request.getAttribute("review");
 		if (userId != null && ((Member) request.getSession().getAttribute("loginUser")).getUserId().equals(b.getUserId())) {
 		%>
 
-		<!--<button type="button" onclick="updateTForm();">수정하기</button>  -->
+		<button type="button" onclick="updateSBForm();">수정하기</button> 
 		<button type="button" onclick="deleteSBoard();">삭제하기</button>
 		<%
 		}
 		%>
 	</div>
 	<script>
-			function updateSBoard(){
-				$("#postForm").attr("action", "<%=request%>/updateTForm.th");
+			function updateSBForm(){
+				$("#postForm").attr("action", "<%=request.getContextPath()%>/sellUpdateForm.bo");
 				$("#postForm").submit();
 			}
 			
@@ -302,6 +311,7 @@ Review rv = (Review)request.getAttribute("review");
 
 			})
 		})
+		
 		function selectReplyList() {
 			$("#replyList").empty();
 			$.ajax({
@@ -335,6 +345,33 @@ Review rv = (Review)request.getAttribute("review");
 				}
 			})
 		}
+		$(function() {
+			deleteReplyList();
+			$("#deleteReply").click(function() {
+				var content = $("#replyContent").val();
+				var bNo = <%=b.getBoardNo()%>;
+	
+
+				$.ajax({
+					url : "rdelete.bo",
+					type : "post",
+					data : {
+						content : content,
+						bNo : bNo
+					},
+					success : function(status) {
+						if (status == "success") {
+							selectReplyList();
+							$("#replyContent").val("");
+						}
+					},
+					error : function() {
+						console.log("ajax통신실패-댓글삭제");
+					}
+				})
+
+			})
+		})
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -344,14 +381,19 @@ Review rv = (Review)request.getAttribute("review");
 	</script>
 	<!-- 좋아요 -->
 	<script>
+	
 		function thumbsUp(){
+			 var answer;
+             answer = confirm("추천 하시겠습니까?");
+              if(answer == true){
+					var bNo = "<%=b.getBoardNo()%>";   
+					location.href='<%=request.getContextPath()%>/thumbsUp.ck?bNo='+bNo;
+					
+					alert("추천되었습니다")
+					location.href='<%=request.getContextPath()%>/thumbsUp.pl?bNo='+bNo;
+             		 }             	
+				}
 		
-			var bNo = "<%=b.getBoardNo() %>";
-			console.log("bNo"+bNo);	           
-			location.href='<%=request.getContextPath()%>/thumbsUp.is?bNo='+bNo;
-	                           
-			alert("게시글이 추천되었습니다👍");
-		}
 	</script>
 	<script>
 	   function makeReview(){
@@ -399,7 +441,7 @@ Review rv = (Review)request.getAttribute("review");
 
 	                   
 	                    
-	                         var jno = "<%=b.getBoardNo() %>";
+	                         var jno = "<%=b.getBoardNo()%>";
 	                         console.log("jno"+jno);
 	           
 	                         location.href='<%=request.getContextPath()%>/jjimInsert.ms?jno='+jno;
@@ -409,7 +451,7 @@ Review rv = (Review)request.getAttribute("review");
 	              }
 	      }
   </script>
-  
+ 
   <script>
   	function chat(){
   		var answer;
@@ -426,5 +468,7 @@ Review rv = (Review)request.getAttribute("review");
   
   </script>
   
+
+
 </body>
 </html>
