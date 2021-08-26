@@ -39,6 +39,10 @@
        border: 2px;
    }
    
+   .center{  
+    margin-top: 80px;  
+   }
+   
    /* 찜버튼 */
    .btn-like{
        color: transparent;

@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.kh.team3.member.model.vo.Member "%>   
   <%  
     String path = (String)request.getSession().getAttribute("path");
 %>
   <%   
   	
    String contextPath = request.getContextPath();
+%>
+
+<%
+	
+	String loginUserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+	
 %>
 
 <!DOCTYPE html>
@@ -73,7 +80,7 @@
                      <li class="m3">
                         <a href="#">커뮤니티</a>
                         <ul>
-                           <li><a href="#">무료나눔</a></li>
+                           <li><a href="list.sbo">무료나눔</a></li>
                            <li><a href="list.bo">자유 게시판</a></li>
                         
                         </ul>
@@ -81,8 +88,19 @@
                      <li class="m4 no-sub">
                                  <a href="#">기타</a>
                                  <ul>
+                                 		
+                                 		
+                                 		
                                      <li><a href="<%=request.getContextPath()%>/event.bo">이벤트</a></li>
-                                    <li><a href="#">신고/문의</a></li>                    
+                                     
+                                    
+                                    
+                                    	 <%if(loginUserId.equals("admin")) {%>
+                                    	  <li> <a href="<%=request.getContextPath()%>/ReportViewServlet">신고문의 조회</a></li> 
+                                    	<%}else{%>
+                                    	  <li><a href="<%=request.getContextPath()%>/ReportInsertFormServlet">신고하기</a></li>
+                                    	<%} %> 
+                                                      
                                  </ul>
                      </li>
                   </ul>

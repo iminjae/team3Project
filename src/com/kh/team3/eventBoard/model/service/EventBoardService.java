@@ -38,7 +38,6 @@ Connection conn = getConnection();
 
 		int result1 = new EventBoardDao().updateBoard(conn, b);
 		int result2 = 1;
-		System.out.println("서비스의 at : " +at);
 		if (at != null) {
 			System.out.println("$");
 				result2 = new EventBoardDao().updateAttachment(conn, at);

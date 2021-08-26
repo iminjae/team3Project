@@ -38,8 +38,8 @@
       font-size: 13px;
   }
   
-  .rvlist>tbody>tr:hover{
-      background:rgb(241, 238, 235);
+   .rvlist>tbody>tr:hover{
+      background: rgb(241, 238, 235);
       cursor:pointer
    }
    
