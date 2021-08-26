@@ -12,25 +12,13 @@ public class Reply {
 	private Date createDate;
 	private Date modifyDate;
 	private String status;
-	private String boardNo;
+	
 	
 	public Reply() {
 		
 	}
 	
 	
-
-
-	public String getBoardNo() {
-		return boardNo;
-	}
-
-
-
-	public void setBoardNo(String boardNo) {
-		this.boardNo = boardNo;
-	}
-
 
 	public Reply(int replyId, String replyContent, String replyWriter, Date createDate) {
 		super();

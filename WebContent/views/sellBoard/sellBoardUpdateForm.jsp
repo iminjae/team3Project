@@ -91,7 +91,7 @@
 				</div>
 			</div>
 			<div class="mb-3 row">
-				<label class="col-md-3 col-form-label">기존 이미지</label>
+				<label class="col-md-3 col-form-label">대표 이미지</label>
 				<div class="col-md-9">
 					<div class="alert alert-secondary" role="alert">
 						<ul>
@@ -105,7 +105,7 @@
 				</div>
 			</div>
 			<div class="mb-3 row">
-				<label class="col-md-3 col-form-label">수정 이미지</label>
+				<label class="col-md-3 col-form-label">판매물품 이미지</label>
 				<div class="col-md-9">
 					<div class="alert alert-secondary" role="alert">
 						<ul>
