@@ -39,7 +39,6 @@ String five = "5";
 .thumbnail {
 	display: inline-block;
 	width: 220px;
-	border: 1px solid blue;
 	margin: 10px;
 }
 
@@ -48,7 +47,7 @@ String five = "5";
 	cursor: pointer;
 }
 </style>
-<title>Product_list</title>
+<title>SellBoard_List</title>
 </head>
 
 <body>
@@ -58,6 +57,7 @@ String five = "5";
 	<!-- 메인 -->
 	<div class="container">
 		<h2 class="text-center">판매 게시판</h2>
+		
 
 		<!-- 로그인유저가 있으면 게시글 작성 -->
 		<div align="right">
@@ -108,12 +108,14 @@ String five = "5";
 										<%} else if (b.getBoardStatus().equals("판매완료")) {%>
 										<span class="badge bg-warning">판매완료</span>
 										<%}%>
-										<span><%=b.getUserId()%></span>
 									</h4>
+									
 									<br>
 									<h5 class="card-title">
 										<%=b.getBoardTitle()%>
 									</h5>
+
+									<span><%=b.getUserId()%></span>
 									<div class="d-flex justify-content-between align-items-center">
 										<!--추천수, 조회수, 찜하기?-->
 

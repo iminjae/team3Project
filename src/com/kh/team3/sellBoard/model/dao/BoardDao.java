@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
 import com.kh.team3.sellBoard.model.vo.Reply;
+import com.kh.team3.sellBoard.model.vo.ThumbsUp;
 
 public class BoardDao {
 
@@ -65,37 +66,31 @@ public class BoardDao {
 			pstmt.setInt(1, bNo);
 
 			rset = pstmt.executeQuery();
-
-//	         BOARD_NO // 게시글번호
-//	         BOARD_TITLE // 게시글 제목
-//	         BOARD_CONTENT // 게시글 내용
-//	         BOARD_STATUS // 게시글 상태(판매중..)
-//	         BOARD_COUNT // 게시글 조회수
-//	         CREATE_DATE // 작성날짜
-//	         LIKE_COUNT // 추천수
-//	         STATUS // 삭제여부
-//	         CATEGORY_NAME // 카테고리번호(노트북..) LEFT JOIN CATEGORY USING(CATEGORY_NO) 
-//	         USER_ID // 작성자
-//	         BOARDTYPE_NAME // 게시판 타입(1. 판매게시판) LEFT JOIN BOARDTYPE USING(BOARDTYPE_NO) 
-//	         PRICE // 가격
-
-//	         selectBoard= B.BOARD_NO, A.CATEGORY_NAME, B.BOARD_TITLE, B.BOARD_CONTENT, D.USER_ID, B.BOARD_STATUS
-//	         B.BOARD_COUNT, B.CREATE_DATE, B.LIKE_COUNT, C.BOARDTYPE_NAME, B.PRICE 
-//	         FROM BOARD B JOIN MEMBER D ON D.USER_ID = B.USER_ID 
-//	         LEFT JOIN CATEGORY A ON A.CATEGORY_NO = B.CATEGORY_NO 
-//	         LEFT JOIN BOARDTYPE C ON C.BOARDTYPE_NO = B.BOARDTYPE_NO WHERE B.STATUS = 'Y' AND B.BOARD_NO=?
-
+			
+//			SELECT B.BOARD_NO, A.CATEGORY_NAME, B.BOARD_TITLE,
+//			B.BOARD_CONTENT, D.USER_ID, B.BOARD_STATUS, 
+//			B.BOARD_COUNT, B.CREATE_DATE, 
+//			B.LIKE_COUNT, C.BOARDTYPE_NAME, B.PRICE, D.THUMBSUP_CHECK, B.STATUS 
+//			FROM BOARD B JOIN MEMBER D ON D.USER_ID = B.USER_ID 
+//			LEFT JOIN CATEGORY A ON A.CATEGORY_NO = B.CATEGORY_NO 
+//			LEFT JOIN BOARDTYPE C ON C.BOARDTYPE_NO = B.BOARDTYPE_NO 
+//			LEFT JOIN THUMBSUP D ON D.BOARD_NO = B.BOARD_NO 
+//			WHERE B.STATUS = 'Y' AND B.BOARD_NO=?
+//			
 			if (rset.next()) { // bNo로 조회
 				b = new Board(rset.getInt("BOARD_NO"), 
 						rset.getString("CATEGORY_NAME"), 
 						rset.getString("BOARD_TITLE"),
 						rset.getString("BOARD_CONTENT"), 
 						rset.getString("USER_ID"), 
-						rset.getString("BOARD_STATUS"),
-						rset.getInt("BOARD_COUNT"), 
+						rset.getString("BOARD_STATUS"), 
+						rset.getInt("BOARD_COUNT"),
 						rset.getDate("CREATE_DATE"), 
-						rset.getInt("LIKE_COUNT"),
-						rset.getInt("PRICE"));
+						rset.getInt("LIKE_COUNT"), 
+						rset.getString("BOARDTYPE_NAME"),
+						rset.getInt("PRICE"),
+						rset.getString("THUMBSUP_CHECK"),
+						rset.getString("STATUS"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -174,6 +169,8 @@ public class BoardDao {
 				b.setTitleImg(rset.getString("CHANGE_NAME"));
 				b.setCategoryName(rset.getString("CATEGORY_NAME"));
 				b.setBoardStatus(rset.getString("BOARD_STATUS"));
+				b.setLikeCnt(rset.getInt("LIKE_COUNT"));
+
 
 				list.add(b);
 //	            System.out.println("dao list : " + list);
@@ -371,19 +368,33 @@ public class BoardDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateBoard");
+		System.out.println("updateBoard dao:" + b);
+		System.out.println("updateBoard sql:" + sql);
 
-		// UPDATE BOARD SET BOARD_CONTENT=?, BOARD_STATUS=?,
-		// CATEGORY_NO=?, PRICE=? WHERE BOARD_NO=?
 
-//		BOARD_NO
+//		UPDATE BOARD SET BOARD_TITLE=?, BOARD_CONTENT=?, 
+//				BOARD_STATUS=?, CATEGORY_NO=?, PRICE=? 
+//				WHERE BOARD_NO=?
+
+
+//		BOARD_TITLE
 //		BOARD_CONTENT
 //		BOARD_STATUS
 //		CATEGORY_NO
-//		BOARDTYPE_NO
 //		PRICE
+//		BOARD_NO
+		
+		System.out.println("b.getBoardTitle()"+ b.getBoardNo());
+		System.out.println("b.getBoardContent()"+b.getBoardContent()) ;
+		System.out.println("b.getBoardStatus()"+b.getBoardStatus());
+		System.out.println("b.getCategory()"+b.getCategory());
+		System.out.println("b.getPrice()"+b.getPrice());
+		System.out.println("b.getBoardNo()"+b.getBoardNo());
+		
 
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoardTitle());
 			pstmt.setString(2, b.getBoardContent());
 			pstmt.setString(3, b.getBoardStatus());
 			pstmt.setInt(4, b.getCategory());
@@ -397,46 +408,24 @@ public class BoardDao {
 		} finally {
 			close(pstmt);
 		}
-
+		System.out.println("updateBoard result:" + result);
 		return result;
 	}
 
 	public int updateAttachment(Connection conn, Attachment at) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		// UPDATE ATTACHMENT SET CHANGE_NAME=?, ORIGIN_NAME=?, FILE_PATH=? WHERE
-		// FILE_NO=?
+		// UPDATE ATTACHMENT SET CHANGE_NAME=?, ORIGIN_NAME=? WHERE
+		// BOARD_NO=?
+
 		String sql = prop.getProperty("updateAttachment");
+
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, at.getChangeName());
 			pstmt.setString(2, at.getOriginName());
-			pstmt.setString(3, at.getFilePath());
-			pstmt.setInt(4, at.getFileNo());
-
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-
-	public int insertNewAttachment(Connection conn, Attachment at) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		// INSERT INTO ATTACHMENT VALUES(SEQ_FNO.NEXTVAL, ?, ?, ?, ?, SYSDATE, 1,
-		// DEFAULT)
-		String sql = prop.getProperty("insertNewAttachment");
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, at.getRefBoardNo());
-			pstmt.setString(2, at.getOriginName());
-			pstmt.setString(3, at.getChangeName());
-			pstmt.setString(4, at.getFilePath());
+			pstmt.setInt(3, at.getRefBoardNo());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -491,7 +480,7 @@ public class BoardDao {
 //		WHERE B.STATUS='Y' AND B.BOARDTYPE_NO=1 AND CATEGORY_NO = ? ORDER BY B.BOARD_NO DESC;
 
 		String sql = prop.getProperty("selectCList");
-		System.out.println("dao sql : " + sql);
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, category);
@@ -523,4 +512,54 @@ public class BoardDao {
 		return list;
 	}
 
+	public int insertThumbsUp(Connection conn, ThumbsUp thumbsUp) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		// INSERT INTO THUMBSUP VALUES(SEQ_LIKE_NO.NEXTVAL, 'Y', ?, ?)
+		String sql = prop.getProperty("insertThumbsUp");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, thumbsUp.getUserId());
+			pstmt.setInt(2, thumbsUp.getBoardNo());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int plusThumbsUp(Connection conn, int bNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		// UPDATE BOARD SET LIKE_COUNT=LIKE_COUNT+1 WHERE BOARD_NO=?
+		String sql = prop.getProperty("plusThumbsUp");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	
+	public int delectRList(Connection conn, int bNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
+

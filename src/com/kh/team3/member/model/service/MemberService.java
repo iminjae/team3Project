@@ -6,6 +6,7 @@ import static com.kh.team3.common.JDBCTemplate.getConnection;
 import static com.kh.team3.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.team3.member.model.dao.MemberDao;
 import com.kh.team3.member.model.vo.Member;
@@ -93,6 +94,17 @@ public class MemberService {
 		}
 		close(conn);
 		return updateMem;
+	}
+	public ArrayList<Member> selectMember() {
+		
+		Connection conn = getConnection();
+		ArrayList<Member> list = new ArrayList<>();
+		
+		list = new MemberDao().selectMember(conn);
+		
+		close(conn);
+
+		return list;
 	}
 	}
 	

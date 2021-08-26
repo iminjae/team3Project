@@ -31,8 +31,12 @@ public class ThumbnailDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("삭제 진입@@@@@@@@@@@@@@@");
+		
 		int bid = Integer.parseInt(request.getParameter("bno"));
+		System.out.println(bid);
 		int result = new EventBoardService().deleteBoard(bid);
+		System.out.println("삭제 완료 !@@@@@@@@@@@@@@@@@@");
 		if(result >  0 ) {
 			response.sendRedirect("list.th");
 			

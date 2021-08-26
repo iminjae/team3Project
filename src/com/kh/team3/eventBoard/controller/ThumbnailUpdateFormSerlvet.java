@@ -38,6 +38,10 @@ public class ThumbnailUpdateFormSerlvet extends HttpServlet {
 		Board board = new EventBoardService().selectUpdateBoard(bno);
 		Attachment at  = new EventBoardService().selectAttachment(bno);
 		
+		System.out.println("================================="+board);
+		System.out.println(at);
+		
+		
 		if(board !=null) {
 			request.setAttribute("board", board);
 			request.setAttribute("at", at);

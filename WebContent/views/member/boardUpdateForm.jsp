@@ -93,6 +93,14 @@
 				<input type="file" name="file1" id="file1"
 					onchange="loadImg(this, 1);">
 			</div>
+	
+			<div>
+			<input type="checkbox" id="evt" name="evt" value="1">
+						<label for="sports">이벤트 시작</label>
+						
+			<input type="checkbox" id="evt" name="evt" value="2">
+			<label for="climbing">이벤트 종료</label>
+			</div>
 
 			<div class="btns" align="center">
 				<button type="submit">수정하기</button>
