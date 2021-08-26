@@ -1,13 +1,20 @@
 package com.kh.team3.sellBoard.model.service;
 
-import static com.kh.team3.common.JDBCTemplate.*;
+import static com.kh.team3.common.JDBCTemplate.close;
+import static com.kh.team3.common.JDBCTemplate.commit;
+import static com.kh.team3.common.JDBCTemplate.getConnection;
+import static com.kh.team3.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
+
 import com.kh.team3.sellBoard.model.dao.BoardDao;
 import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
-import com.kh.team3.sellBoard.model.vo.PageInfo;
 import com.kh.team3.sellBoard.model.vo.Reply;
+import com.kh.team3.sellBoard.model.vo.ThumbsUp;
+
+
 
 public class BoardService {
 
@@ -105,33 +112,9 @@ public class BoardService {
 
 	}
 
-	public int updateBoard(Board b, Attachment at) {
-		Connection conn = getConnection();
-
-		int result1 = new BoardDao().updateBoard(conn, b);
-		int result2 = 1;
-
-		if (at != null) {
-			if (at.getFileNo() != 0) {
-				result2 = new BoardDao().updateAttachment(conn, at);
-			} else {
-				result2 = new BoardDao().insertNewAttachment(conn, at);
-			}
-		}
-		if (result1 * result2 > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-
-		return result1 * result2;
-	}
-
 	public Board selectUpdateBoard(int bNo) {
 		Connection conn = getConnection();
 
-		// 단순 조회만
 		Board b = new BoardDao().selectBoard(conn, bNo);
 
 		close(conn);
@@ -147,7 +130,6 @@ public class BoardService {
 		return at;
 	}
 
-
 	public ArrayList<Board> selectCList(int category) {
 		Connection conn = getConnection();
 		ArrayList<Board> list = new BoardDao().selectCList(conn, category);
@@ -156,4 +138,73 @@ public class BoardService {
 		return list;
 	}
 
+	public int insertThumbsUp(ThumbsUp thumbsUp) {
+		Connection conn = getConnection();
+
+		int result = new BoardDao().insertThumbsUp(conn, thumbsUp);
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
+
+	}
+
+	public int plusThumbsUp(int bNo) {
+		Connection conn = getConnection();
+
+		int result = new BoardDao().plusThumbsUp(conn, bNo);
+		
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	
+	}
+
+	public int updateBoard(Board b, Attachment at) {
+		Connection conn = getConnection();
+		System.out.println("서비스" + b.toString());
+		
+		int result1 = new BoardDao().updateBoard(conn, b);
+		int result2 = new BoardDao().updateAttachment(conn, at);
+		
+		System.out.println("updateBoard : " + b);
+
+		if (result1 * result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result1 * result2;
+	}
+
+	
+	public int delectRList(int bNo) {
+		Connection conn = getConnection();
+
+		int result = new BoardDao().delectRList(conn, bNo);
+		
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	
+	}
+
+	
 }
