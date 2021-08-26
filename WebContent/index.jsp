@@ -51,7 +51,7 @@
     <span> | </span>
     <a href="" id="pwdfind">비밀번호 찾기</a>
     <span> | </span>    
-    <a href="views\member\createUser.jsp" id="createuser">회원가입</a>
+    <a id="createuser" href="<%=request.getContextPath()%>/create.bo">회원가입</a>
 
 </div>
 

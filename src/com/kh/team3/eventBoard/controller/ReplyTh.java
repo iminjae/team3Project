@@ -10,20 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.team3.eventBoard.model.service.EventBoardService;
-import com.kh.team3.eventBoard.model.vo.Attachment;
-import com.kh.team3.eventBoard.model.vo.Board;
 
 /**
- * Servlet implementation class BoardUpdateFormSerlvet
+ * Servlet implementation class ReplyTh
  */
-@WebServlet("/updateForm.bo")
-public class ThumbnailUpdateFormSerlvet extends HttpServlet {
+@WebServlet("/ReplyDel.bo")
+public class ReplyTh extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ThumbnailUpdateFormSerlvet() {
+    public ReplyTh() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,31 +30,26 @@ public class ThumbnailUpdateFormSerlvet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		
-		Board board = new EventBoardService().selectUpdateBoard(bno);
-		Attachment at  = new EventBoardService().selectAttachment(bno);
-		
-		System.out.println("================================="+board);
-		System.out.println(at);
-		
-		
-		if(board !=null) {
-			request.setAttribute("board", board);
-			request.setAttribute("at", at);
-			request.getRequestDispatcher("views/member/boardUpdateForm.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "수정할 게시글을불러오는데 실패");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}
-		
-		
-		
-		
-	
-	}
+
+	      int rno = Integer.parseInt(request.getParameter("rno"));
+	      int bno = Integer.parseInt(request.getParameter("bno"));
+	      
+	      System.out.println(rno);
+	      System.out.println(bno);
+	      
+	      int result = new EventBoardService().replyDelete(rno);
+	      if(result > 0) {
+	    		request.setAttribute(String.valueOf(rno), "rno");  
+				request.setAttribute(String.valueOf(bno), "bno");
+			
+	         request.getRequestDispatcher("detail.bo").forward(request, response);
+	         
+	      }else {
+	         request.setAttribute("msg", "댓글 삭제에 실패했습니다");
+	         RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+	         view.forward(request, response);
+	      }
+	      }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

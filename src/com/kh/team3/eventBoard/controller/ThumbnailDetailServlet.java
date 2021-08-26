@@ -43,7 +43,7 @@ public class ThumbnailDetailServlet extends HttpServlet {
 		if(b!=null) {
 			request.setAttribute("b", b);
 			request.setAttribute("fileList", fileList);
-			
+		
 			request.getRequestDispatcher("views/member/thumbnailDetailView.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "사진게시판 상세보기 실패");

@@ -41,7 +41,7 @@ public int insertThBoard(Connection conn,Board b) {
 	int result = 0;
 	PreparedStatement pstmt = null;
 	String sql = prop.getProperty("insertBoard");
-	//insertBoard=INSERT INTO BOARD VALUES(SEQ_BNO.NEXTVAL,?, ?, NULL, 0, SYSDATE, 0, DEFAULT , NULL , ? , 10)
+	//insertBoard=INSERT INTO BOARD VALUES(SEQ_BNO.NEXTVAL,?, ?, NULL, 0, SYSDATE, 0, DEFAULT , NULL , 'Y' , 10)
 	System.out.println("정보 입력" + b.getBoardTitle() +b.getBoardContent() + b.getUserId());
 	
 	try {
@@ -100,6 +100,7 @@ public ArrayList<Board> selectThList(Connection conn) {
 		while (rset.next()) {
 			Board b = new Board();
 			b.setBoardNo(rset.getInt("BOARD_NO"));
+			b.setBoardStatus(rset.getString("BOARD_STATUS"));
 			b.setBoardTitle(rset.getString("BOARD_TITLE"));
 			b.setBoardCount(rset.getInt("BOARD_COUNT"));
 			b.setTitleImg(rset.getString("CHANGE_NAME"));
@@ -228,14 +229,15 @@ public Attachment selectThumnail(Connection conn, int bid) {
 	return at;
 }
 public int deleteBoard(Connection conn, int bid) {
+	System.out.println("삭제다오!@@@@@@@@@@@@ " + bid);
 	int result = 0;
 	PreparedStatement pstmt = null;
 	String sql = prop.getProperty("deleteBoard");
-
+	System.out.println(sql);
 	try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, bid);
-
+		
 		result = pstmt.executeUpdate();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -243,7 +245,7 @@ public int deleteBoard(Connection conn, int bid) {
 	} finally {
 		close(pstmt);
 	}
-
+	System.out.println("삭제다오끝!!");
 	return result;
 }
 
@@ -306,10 +308,10 @@ public Board selectBoardtwo(Connection conn, int bno) {
 	ResultSet rset = null;
 	
 	String sql = prop.getProperty("selectThListtwo");
-	System.out.println("se;ectBoardtwo sql 실행전 : " + bno);
+	System.out.println("selectBoardtwo sql 실행전 : " + bno);
 	try {
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, bno);
+	
 		rset = pstmt.executeQuery();
 		if (rset.next()) {
 			
@@ -342,13 +344,16 @@ public int updateBoard(Connection conn, Board b) {
 	PreparedStatement pstmt = null;
 
 	String sql = prop.getProperty("updateBoard");
-
+	System.out.println(b.getBoardStatus());
+	
 	try {
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, b.getBoardTitle());
 		pstmt.setString(2, b.getBoardContent());
-		pstmt.setInt(3, b.getBoardNo());
+		pstmt.setString(3, b.getBoardStatus());
+		pstmt.setInt(4, b.getBoardNo());
+		
 		result = pstmt.executeUpdate();
 		System.out.println("보드업데이트 리슐" +result);
 
@@ -494,6 +499,26 @@ String result = null;
 	
 	return result;
 }
+
+public int replyDel(Connection conn, int rno) {
+	int result = 0;
+	PreparedStatement pstmt = null;
+	String sql = prop.getProperty("replydel");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, rno);
+
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+	return result;
+}
+
 
 
 
