@@ -53,11 +53,12 @@ int maxSize = 10 * 1024 * 1024;
 		int bno = Integer.parseInt(multiRequest.getParameter("bno"));
 		String title = multiRequest.getParameter("title");
 		String content = multiRequest.getParameter("content");
-		
+		String evt =  multiRequest.getParameter("evt");
 		
 		b.setBoardNo(bno);
 		b.setBoardTitle(title);
 		b.setBoardContent(content);
+		b.setBoardStatus(evt);
 		
 		
 		Attachment at = new Attachment();

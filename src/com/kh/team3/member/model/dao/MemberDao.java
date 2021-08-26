@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.team3.eventBoard.model.vo.Board;
 import com.kh.team3.member.model.vo.Member;
 
 public class MemberDao {
@@ -247,6 +249,36 @@ public class MemberDao {
 		}
 
 		return result;
+	}
+
+	public ArrayList<Member> selectMember(Connection conn) {
+		ArrayList<Member> list = new ArrayList<>();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("selectThList");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while (rset.next()) {
+				Member m = new Member();
+				m.setUserId(rset.getString("USER_ID"));
+				list.add(m);
+				
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return list;
+
+	
 	}
 	}
 

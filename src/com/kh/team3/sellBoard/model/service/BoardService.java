@@ -138,6 +138,7 @@ public class BoardService {
 		return list;
 	}
 
+
 	public int insertThumbsUp(ThumbsUp thumbsUp) {
 		Connection conn = getConnection();
 
@@ -208,3 +209,8 @@ public class BoardService {
 
 	
 }
+
+		
+	}
+
+

@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+  import = "java.util.ArrayList, com.kh.team3.member.model.vo.*"  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+<%
+
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+
+
+
+
+%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +17,7 @@
     <title>Document</title>
 
 
-  <link href="..\..\resources\css\create.css" rel="stylesheet" type="text/css">
+  <link href="resources\css\create.css" rel="stylesheet" type="text/css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -30,7 +38,7 @@
 
     <div class="top"  >
 
-        <img src="..\..\resources\images\common\logo2.png" id="logo">
+        <img src="resources\images\common\logo2.png" id="logo">
 
     </div>
 
@@ -51,7 +59,7 @@
         
       
         <input type="password" id="pwdcheck" name="pw2" placeholder="비밀번호확인">   <br> 
-           <span id="pwcheckspan"></span>  
+           <span id="pwspan2"> </span> 
         <br>
         
     
@@ -110,49 +118,63 @@
 
 </div>
 
-
- <script type="text/javascript">
+<script>
+function joinValidate(){
 	
 
- 
-   function checkId(){
-      var userId = $("#id");
-      console.log(userId.val());
-      if(userId.val() ==""){
-         alert("아이디를 입력해주세요");
-         console.log("아이디를 입력해주세요");
-      }
-  	$.ajax({
-		url : "idCheck.me",
-		type: "post",
-		data : {userId : "userId.val()"},
-		success:function(result){
-			if(result == "fail"){
-				
-				alert("사용할 수 없는 아이디 입니다.")
-				console.log("사용할 수 없는 아이디입니다.");
-				}else{
-					if(confirm("사용가능한 아이디입니다 . 사용하시겠습니까?")){
-						userId.attr("readonly,ture");
-						$("#path").removeAttr("disabled");
-					}else{
-						userId.focus();
-					}
-				}
-		},
-		error:function(){
-			console.log("서버 통신 실패");
-			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-
+	
+	if(!(/^[a-z][a-z\d]{3,11}$/i.test($("#createUser input[name=id]").val()))){
+		$("#createUser input[name=userId]").focus();
+        return false;
+	}
+	
+	if($("#createUser input[name=pw]").val() != $("#createUser input[name=pw2]").val()){
+		$("#pwspan").text("비밀번호와 확인이 일치하지 않습니다.").css("color", "red");
+		$("#pwspan2").text("비밀번호와 확인이 일치하지 않습니다.").css("color", "red");
 		
-		}
-		
+		return false;			
+	}
+	
+	 if(!(/^[가-힣]{2,}$/.test($("#createUser input[name=name]").val()))){
+		 $("#createUser input[name=name]").focus();
+        return false;
+	 }
+	 
+	 return true;
 	
 	
-	})
-     
-   }
-   </script>
+}
+
+function checkId(){
+    var userId = $("#createUser input[name=id]");
+    if(userId.val() ==""){ //값이 없다면
+       alert("아이디를 입력해주세요");
+       return false;
+    }
+    
+    $.ajax({ // 값이 있다면 ajax를 통해
+       url:"idCheck.me",
+       type:"post",
+       data: {userId : userId.val()},
+       success:function(result){
+          if(result =="fail"){
+             alert("사용할수 없는 아이디 입니다");
+             userId.focus();
+          }else{
+             if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+                userId.attr("readonly", "true");
+              
+             }else{
+                userId.focus();
+             }
+          }
+       },
+       error:function(){
+          console.log("서버통신실패");
+       }
+    })
+}
+</script>
 
 
 

@@ -140,6 +140,11 @@
 				<p>
 					 <%=b.getBoardTitle() %> <br>
 					조회수 : <%=b.getBoardCount() %>
+					<%if(b.getBoardStatus().equals("1")) {%>
+						이벤트 진행중 
+						<%}else{ %>
+						이벤트 종료
+						<%} %>
 				</p>
 			</div>
 			<%} %>
@@ -155,6 +160,7 @@
 		<script>
 		
 			$(function(){
+				
 				$(".thumbnail").click(function(){
 					var bId = $(this).children().eq(0).val();
 					location.href="<%=contextPath%>/detail.th?bId=" + bId;
