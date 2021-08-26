@@ -1,30 +1,23 @@
 package com.kh.team3.report.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.member.model.vo.Member;
-import com.kh.team3.report.model.vo.Report;
-import com.kh.team3.report.service.ReportService;
-
 /**
- * Servlet implementation class ReportViewServlet
+ * Servlet implementation class ReportInsertFormServlet
  */
-@WebServlet("/ReportViewServlet")
-public class ReportViewServlet extends HttpServlet {
+@WebServlet("/ReportInsertFormServlet")
+public class ReportInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportViewServlet() {
+    public ReportInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +26,7 @@ public class ReportViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		ArrayList<Report> reportList = new ReportService().reportList(loginuserId);
-        request.setAttribute("reportList", reportList);
-        
-       
-        
-        RequestDispatcher view =request.getRequestDispatcher("views/Report/Report.jsp");
-         view.forward(request, response);
+		request.getRequestDispatcher("views/Report/ReportInsert.jsp").forward(request, response);
 	}
 
 	/**

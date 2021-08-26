@@ -191,7 +191,7 @@ Review rv = (Review) request.getAttribute("review");
 								<div class="col-6 d-grid p-1">
 									<button id="btn3" type="button"
 										class="btn btn-outline-secondary"
-										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
+										onclick="chat();">1:1채팅💌</button>
 								</div>
 							</div>
 						</div>
@@ -451,6 +451,24 @@ Review rv = (Review) request.getAttribute("review");
 	              }
 	      }
   </script>
+ 
+  <script>
+  	function chat(){
+  		var answer;
+        answer = confirm("채팅?");
+         if(answer == true){
+                    var cha = "<%=b.getBoardNo()%>";
+                    console.log("cha"+cha);
+      
+                    location.href='<%=request.getContextPath()%>/ChatSubmitServlet?cha='+cha;
+             
+         }
+  	}
+  
+  
+  </script>
+  
+
 
 </body>
 </html>

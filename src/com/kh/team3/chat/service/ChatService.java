@@ -17,7 +17,7 @@ import com.kh.team3.chat.vo.Chat;
 public class ChatService {
 
 	
-	public int submit(String chatName, String chatContent) {
+	public int submit(String chatName, String chatContent, int cha) {
 		
 		Connection conn = getConnection();
 		System.out.println("서비스 도착");
@@ -27,7 +27,7 @@ public class ChatService {
 		System.out.println(chatContent);
 		
 		
-		int result = new ChatDao().submit(conn,chatName,chatContent);
+		int result = new ChatDao().submit(conn,chatName,chatContent, cha);
 		
 		System.out.println(conn);
 		

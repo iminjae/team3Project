@@ -1,7 +1,6 @@
 package com.kh.team3.report.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,17 +13,18 @@ import com.kh.team3.member.model.vo.Member;
 import com.kh.team3.report.model.vo.Report;
 import com.kh.team3.report.service.ReportService;
 
+
 /**
- * Servlet implementation class ReportViewServlet
+ * Servlet implementation class ReportInsertServlet
  */
-@WebServlet("/ReportViewServlet")
-public class ReportViewServlet extends HttpServlet {
+@WebServlet("/ReportInsertServlet")
+public class ReportInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportViewServlet() {
+    public ReportInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +33,36 @@ public class ReportViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		ArrayList<Report> reportList = new ReportService().reportList(loginuserId);
-        request.setAttribute("reportList", reportList);
-        
-       
-        
-        RequestDispatcher view =request.getRequestDispatcher("views/Report/Report.jsp");
-         view.forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		String reportUserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		
+		String reportNickName = request.getParameter("reportNickName");
+		String reportCategory= request.getParameter("reportCategory");
+		String reportContent = request.getParameter("reportContent");
+		
+		
+		Report r = new Report();
+		
+		r.setReportWriter(reportUserId);
+		r.setReportNick(reportNickName);
+		r.setReportCategory(reportCategory);
+		r.setReportContent(reportContent);
+		
+		
+		int result = new ReportService().insert(r);
+		
+		if(result > 0) {
+			request.getSession().setAttribute("msg", "제출 성공");
+			response.sendRedirect("views/common/mainPage.jsp");  
+		}else {
+			request.setAttribute("msg", "제출실패");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
 	}
+		
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
