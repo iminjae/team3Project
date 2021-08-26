@@ -42,7 +42,7 @@ public class ReplyTh extends HttpServlet {
 	    		request.setAttribute(String.valueOf(rno), "rno");  
 				request.setAttribute(String.valueOf(bno), "bno");
 			
-	         request.getRequestDispatcher("detail.bo").forward(request, response);
+	         request.getRequestDispatcher("ddetail.bo").forward(request, response);
 	         
 	      }else {
 	         request.setAttribute("msg", "댓글 삭제에 실패했습니다");
