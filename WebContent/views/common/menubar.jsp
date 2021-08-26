@@ -73,7 +73,7 @@
                      <li class="m3">
                         <a href="#">커뮤니티</a>
                         <ul>
-                           <li><a href="#">무료나눔</a></li>
+                           <li><a href="list.sbo">무료나눔</a></li>
                            <li><a href="list.bo">자유 게시판</a></li>
                         
                         </ul>
