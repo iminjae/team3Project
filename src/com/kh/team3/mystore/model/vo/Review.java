@@ -16,7 +16,6 @@ public class Review {
 	private int count;
 	private String categoryName; //카테고리 이름
 	private String boardtypeName; //보드타입 이름
-	private String boardStaus; //판매중 예약중 판매완료
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
@@ -24,7 +23,7 @@ public class Review {
 	
 	//전체
 	public Review(String reviewNo, String userId, int boardNo, String content, String radio, int category,
-			String boardTitle, Date createDate, int likeCnt, int count, String categoryName, String boardtypeName, String boardStaus) {
+			String boardTitle, Date createDate, int likeCnt, int count, String categoryName, String boardtypeName) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
@@ -38,7 +37,6 @@ public class Review {
 		this.count = count;
 		this.categoryName = categoryName;
 		this.boardtypeName = boardtypeName;
-		this.boardStaus = boardStaus;
 	}
 
 	//리뷰 인서트
@@ -68,7 +66,7 @@ public class Review {
 	
 	 //마이보드 조회 생성자
 	 public Review( int boardNo, String boardtypeName, String boardTitle, String userId, int count, 
-			 Date createDate,  String boardStaus, String categoryName) {
+			 Date createDate) {
 			super();	
 			this.boardNo = boardNo;
 			this.boardtypeName = boardtypeName;
@@ -76,8 +74,6 @@ public class Review {
 			this.userId = userId;
 			this.count = count;
 			this.createDate = createDate;
-			this.boardStaus = boardStaus;
-			this.categoryName = categoryName;
 		
 		}
 
@@ -177,16 +173,6 @@ public class Review {
 
 	public void setBoardtypeName(String boardtypeName) {
 		this.boardtypeName = boardtypeName;
-	}
-	
-	
-
-	public String getBoardStaus() {
-		return boardStaus;
-	}
-
-	public void setBoardStaus(String boardStaus) {
-		this.boardStaus = boardStaus;
 	}
 
 	@Override

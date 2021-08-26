@@ -1,29 +1,25 @@
-package com.kh.team3.shareBoard.controller;
+package com.kh.team3.sellBoard.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.shareBoard.model.service.BoardService;
-import com.kh.team3.shareBoard.model.vo.Reply;
 import com.kh.team3.member.model.vo.Member;
 
 /**
- * Servlet implementation class ReplyInsertServlet
+ * Servlet implementation class ThumbsUpInsertServlet
  */
-@WebServlet("/rinsert.sbo")
-public class ReplyInsertServlet extends HttpServlet {
+@WebServlet("/thumbsUp.is")
+public class ThumbsUpInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReplyInsertServlet() {
+    public ThumbsUpInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +28,14 @@ public class ReplyInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String content = request.getParameter("content");
-		int bno = Integer.parseInt(request.getParameter("bno"));
 
-		String writer = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		Reply r = new Reply();
-		r.setReplyContent(content);
-		r.setBoardNo(bno);
-		r.setUserId(writer);
-		
-		int result = new BoardService().insertReply(r);
-		
-		PrintWriter out = response.getWriter();
-		if(result > 0) {
-			out.print("success");
-		}else {
-			out.print("fail");
-		}
-		out.flush();
-		out.close();
+		System.out.println("ThumbsUpInsertServlet : " + bNo);
+		System.out.println("ThumbsUpInsertServlet : " + userId);
+
+	
 	}
 
 	/**

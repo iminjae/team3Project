@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.team3.mystore.model.vo.Jjim, com.kh.team3.member.model.vo.Member "%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.team3.mystore.model.vo.Jjim"%>
 <%
    ArrayList<Jjim> jjimList = (ArrayList<Jjim>)request.getAttribute("jjimList");
-   int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).getStartpoint();
 %>
 <!DOCTYPE html>
 <html>
@@ -19,36 +18,6 @@
 .ptag{
 font-size : 24px;
 }
-     #myProgress {
-         margin-top: 8px;
-         width: 150px;
-         height: 50px;
-         margin-left: 10px;
-     }
-     .mypoint{
-     	 border : 0;
-         width : 170px;
-         height : 80px;
-         margin-top : -20px;
-         margin-bottom : 20px;
-     }
-
-     #ptagstar{
-         margin-left: 45px;
-         margin-top: 5px;
-         margin-bottom: 7px;
-        
-     }
-     #pointtt{
-         font-size: small;
-         margin-left: 120px;
-     }
-     
-   .center{  
-    margin-top: 40px;  
-   }
-   
-
 </style>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -56,12 +25,9 @@ font-size : 24px;
 	
 	    <div class="leftpanel">
 	      <div class="mypoint">
-            <p id="ptagstar">⭐내별점⭐</p>
-            <P id="pointtt"><%=starpoint %>point</P>
-            <div id="myProgress">
-                <progress id="my" value='<%=starpoint %>' max='100' ></progress>
-            </div>
-       </div>
+	      	 내 별점
+	      	  
+	      </div>
 	      <p class="title">My Store</p>
 	      <div id="menu">
 	        <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
@@ -107,37 +73,16 @@ font-size : 24px;
 	   			
 	   			
 	   			if(answer == true){
-	   			 $(function(){
-		   			 $(".getboard").click(function(){
-		                 var jno = $(this).children().eq(0).val();
-		                 console.log("jno~~" + jno);
-		             	location.href="<%=request.getContextPath()%>/deleteJjim.ms?jno="+jno;
-		         	})
-	   			 })
-		   		
+	   				var jno = $(".getboard").children().eq(0).val();
+	
+	   				location.href='<%=request.getContextPath()%>/deleteJjim.ms?jno='+jno;
+	   				  
 	   				alert("관심목록에서 해제되었습니다");
 	   			}
 	   			
 	   			
 	       }
 	    </script>
-	    
-	   <script>
-        window.onload=function(){
-            var elem = document.getElementById("my");   
-            var width = 10;
-            var id = setInterval(frame, 10);
-            function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-            } else {
-                width++; 
-                elem.style.width = width + '%'; 
-            }
-            }
-
-        }
-        </script>
     
     <br><br>
 </body>

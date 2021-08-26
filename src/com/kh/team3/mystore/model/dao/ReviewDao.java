@@ -180,9 +180,7 @@ public class ReviewDao {
 									rset.getString("BOARD_TITLE"),
 									rset.getString("USER_ID"),
 									rset.getInt("BOARD_COUNT"),								
-									rset.getDate("CREATE_DATE"),
-									rset.getString("BOARD_STATUS"),	
-									rset.getString("CATEGORY_NAME")
+									rset.getDate("CREATE_DATE")			
 									));
 			}
 			

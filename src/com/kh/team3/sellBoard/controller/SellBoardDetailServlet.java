@@ -40,10 +40,10 @@ public class SellBoardDetailServlet extends HttpServlet {
 		
 		Board b = new BoardService().selectBoard(bNo);
 
-		System.out.println("SellBoardDetailServlet b:" + b);
+		System.out.println("SellBoardDetailServlet :" + b);
 		
 		ArrayList<Attachment> fileList = new BoardService().selectThumbnail(bNo);
-		System.out.println("SellBoardDetailServlet fileList:" + fileList);		
+		System.out.println("SellBoardDetailServlet :" + fileList);		
 	
 		if(b != null) {
 			request.setAttribute("b", b);

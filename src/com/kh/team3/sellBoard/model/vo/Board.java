@@ -16,7 +16,6 @@ public class Board {
 	private String userId; // 게시글 작성자 (번호 또는 이름)
 	private int bCnt; // 게시글 조회수
 	private int likeCnt; // 게시글 좋아요 수
-	private String thumbsUpCk; // 좋아요 여부
 	private Date createDate; // 게시글 작성일
 	private String boardStatus; // 게시글 상태(판매중|예약중|판매완료)
 	private String status; // 게시글 상태값(Y,삭제시N)
@@ -27,8 +26,8 @@ public class Board {
 	}
 
 	public Board(int boardNo, int boardType, String boardTypeName, int category, String categoryName, String boardTitle,
-			String boardContent, int price, String userId, int bCnt, int likeCnt, String thumbsUpCk, Date createDate,
-			String boardStatus, String status, String titleImg) {
+			String boardContent, int price, String userId, int bCnt, int likeCnt, Date createDate, String boardStatus,
+			String status, String titleImg) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -41,31 +40,25 @@ public class Board {
 		this.userId = userId;
 		this.bCnt = bCnt;
 		this.likeCnt = likeCnt;
-		this.thumbsUpCk = thumbsUpCk;
 		this.createDate = createDate;
 		this.boardStatus = boardStatus;
 		this.status = status;
 		this.titleImg = titleImg;
 	}
 
-	// sellectBoard
-	public Board(int boardNo, String categoryName, String boardTitle, String boardContent, String userId, String boardStatus,
-			int bCnt, Date createDate,  int likeCnt, String boardTypeName, int price, String thumbsUpCk, String status) {
+	public Board(int boardNo, String categoryName, String boardTitle, String boardContent,  String userId, String boardStatus, int bCnt, 
+			Date createDate, int likeCnt, int price) {
 		super();
 		this.boardNo = boardNo;
 		this.categoryName = categoryName;
 		this.boardTitle = boardTitle;
-		this.boardContent = boardContent;
+		this.boardContent = boardContent;		
 		this.userId = userId;
 		this.boardStatus = boardStatus;
-		this.bCnt = bCnt;
+		this.bCnt = bCnt;	
 		this.createDate = createDate;
 		this.likeCnt = likeCnt;
-		this.boardTypeName = boardTypeName;
 		this.price = price;
-		this.thumbsUpCk = thumbsUpCk;
-		this.status = status;
-
 	}
 
 	public int getBoardNo() {
@@ -156,14 +149,6 @@ public class Board {
 		this.likeCnt = likeCnt;
 	}
 
-	public String getThumbsUpCk() {
-		return thumbsUpCk;
-	}
-
-	public void setThumbsUpCk(String thumbsUpCk) {
-		this.thumbsUpCk = thumbsUpCk;
-	}
-
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -201,9 +186,8 @@ public class Board {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTypeName=" + boardTypeName
 				+ ", category=" + category + ", categoryName=" + categoryName + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", price=" + price + ", userId=" + userId + ", bCnt=" + bCnt
-				+ ", likeCnt=" + likeCnt + ", thumbsUpCk=" + thumbsUpCk + ", createDate=" + createDate
-				+ ", boardStatus=" + boardStatus + ", status=" + status + ", titleImg=" + titleImg + "]";
+				+ ", likeCnt=" + likeCnt + ", createDate=" + createDate + ", boardStatus=" + boardStatus + ", status="
+				+ status + ", titleImg=" + titleImg + "]";
 	}
 
-	
 }

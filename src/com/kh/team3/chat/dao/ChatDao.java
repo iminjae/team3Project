@@ -130,7 +130,7 @@ public ArrayList<Chat> getChatListByRecent(Connection conn, String chatNo){
 	
 		
 
-	public int submit(Connection conn, String chatName, String chatContent, int cha) {
+	public int submit(Connection conn, String chatName, String chatContent) {
 		
 		int result =0;
 		PreparedStatement pstmt = null;
@@ -145,7 +145,6 @@ public ArrayList<Chat> getChatListByRecent(Connection conn, String chatNo){
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, chatName);
 		pstmt.setString(2, chatContent);
-		pstmt.setInt(3, cha);
 		result = pstmt.executeUpdate();
 		
 		

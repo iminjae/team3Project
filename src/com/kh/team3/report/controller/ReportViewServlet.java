@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.member.model.vo.Member;
 import com.kh.team3.report.model.vo.Report;
 import com.kh.team3.report.service.ReportService;
 
@@ -33,11 +32,8 @@ public class ReportViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String loginuserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
-		ArrayList<Report> reportList = new ReportService().reportList(loginuserId);
+		ArrayList<Report> reportList = new ReportService().reportList();
         request.setAttribute("reportList", reportList);
-        
-       
         
         RequestDispatcher view =request.getRequestDispatcher("views/Report/Report.jsp");
          view.forward(request, response);

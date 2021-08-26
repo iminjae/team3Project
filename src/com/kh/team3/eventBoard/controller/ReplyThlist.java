@@ -16,7 +16,7 @@ import com.kh.team3.eventBoard.model.vo.Board;
 /**
  * Servlet implementation class BoardDetailServlet
  */
-@WebServlet("/ddetail.bo")
+@WebServlet("/detailtwo.bo")
 public class ReplyThlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

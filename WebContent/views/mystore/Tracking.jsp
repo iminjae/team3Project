@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.team3.member.model.vo.Member "%>
+    pageEncoding="UTF-8"%>
 <%
-int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).getStartpoint();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -19,13 +19,10 @@ int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).ge
 	
 	 <div class="content" width="1500px">
     <div class="leftpanel">
-    	 <div class="mypoint">
-            <p id="ptagstar">⭐내별점⭐</p>
-            <P id="pointtt"><%=starpoint %>point</P>
-            <div id="myProgress">
-                <progress id="my" value='<%=starpoint %>' max='100' ></progress>
-            </div>
-       </div>
+    	<div class="mypoint">
+      	 내 별점
+      	  
+        </div>
       <p class="title">My Store</p>
       <div id="menu">
         <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
@@ -90,23 +87,6 @@ int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).ge
 	      	<br>
 	      	<br>
 	      	<br>
-	<script>
-        window.onload=function(){
-            var elem = document.getElementById("my");   
-            var width = 10;
-            var id = setInterval(frame, 10);
-            function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-            } else {
-                width++; 
-                elem.style.width = width + '%'; 
-            }
-            }
-
-        }
-   </script>
-	 
      	
 </body>
 </html>
