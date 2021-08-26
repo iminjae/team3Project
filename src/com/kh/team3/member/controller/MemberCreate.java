@@ -1,27 +1,28 @@
-package com.kh.team3.eventBoard.controller;
+package com.kh.team3.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.team3.eventBoard.model.service.EventBoardService;
+import com.kh.team3.member.model.service.MemberService;
+import com.kh.team3.member.model.vo.Member;
 
 /**
- * Servlet implementation class BoardDeleteServlet
+ * Servlet implementation class MemberCreate
  */
-@WebServlet("/deleteB.bo")
-public class ThumbnailDeleteServlet extends HttpServlet {
+@WebServlet("/create.bo")
+public class MemberCreate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ThumbnailDeleteServlet() {
+    public MemberCreate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,25 +31,16 @@ public class ThumbnailDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("삭제 진입@@@@@@@@@@@@@@@");
-		
-		int bid = Integer.parseInt(request.getParameter("bno"));
-		System.out.println(bid);
-		int result = new EventBoardService().deleteBoard(bid);
-		System.out.println("삭제 완료 !@@@@@@@@@@@@@@@@@@");
-		if(result >  0 ) {
-			response.sendRedirect("list.th");
-			
-		}else {
-			request.setAttribute("msg", "게시글 삭제 실패 ");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}
-		
-		
-		
 	
+		ArrayList<Member> list = new ArrayList<>();
+		
+		list = new MemberService().selectMember(); 
+		
+		request.setAttribute("list", list);
+		
+		if(list !=null) {
+			request.getRequestDispatcher("views/member/createUser.jsp").forward(request, response);
+		}
 	
 	}
 

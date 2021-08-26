@@ -169,11 +169,11 @@
 				<td>대표사진</td>
 				<td colspan="4">
 					<div id="titleImgArea" align="center">
-						<img width="500px" height="300px" id="titleImg" src="<%= contextPath %>/resources/board_upfiles/<%= fileList.getChangeName() %>">
+						<img width="500px" height="300px" id="titleImg" src="<%= request.getContextPath() %>/resources/board_upfiles/<%= fileList.getChangeName() %>">
 					</div>
 				</td>
 				<td>
-					<a download="<%=fileList.getOriginName() %>"  href="<%= contextPath %>/resources/board_upfiles/<%=fileList.getChangeName()%>">다운로드</a>
+					<a download="<%=fileList.getOriginName() %>"  href="<%= request.getContextPath() %>/resources/board_upfiles/<%=fileList.getChangeName()%>">다운로드</a>
 							</td>
 			</tr>			
 		</table>
@@ -186,17 +186,137 @@
 		<form action="" id="postForm" method="post">
 			<input type="hidden" name="bno" value="<%= b.getBoardNo() %>">
 			
-		</form>
-		
 			<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
 					<button type="button" onclick="updateForm();">수정하기</button>
 					<button type="button" onclick="deleteBoard();">삭제하기</button>
 				<% }else{ %>
 				
 				<% } %>
+		</form>
+		
+				<br>
+		
 		
 	</div>
+	
+		<!-- 댓글 관련 영역 -->
+	<div class="replyArea">
+		<!-- 댓글 작성하는 div -->
+		<table border="1" align="center">
+			<tr>
+				<th>댓글작성</th>
+				<td><textarea rows="3" cols="60" id="replyContent" style="resize:none;"></textarea></td>
+				<td><button id="addReply">댓글등록</button></td>
+				
+			</tr>
+		</table>
+		
+		
+		<!-- 댓글 리스트들 보여주는 div  -->
+		<div id="replyListArea">
+		<form action="" id="form" method="post">
+			<table id="replyList" border="1" align="center">
+				</form>
+			</table>
+		</div>
+	</div> 
+	<!-- 동적으로 작성될 수 있도록 ajax 이용 -->
 	<script>
+		$(function(){
+			selectReplyList();
+			$("#addReply").click(function(){
+				var content = $("#replyContent").val();
+				var bNo = <%=b.getBoardNo()%>;
+				
+				$.ajax({
+					url:"rinsert.bo",
+					type: "post",
+					data: {content:content,
+							bNo:bNo
+					},
+					success:function(status){
+						if(status == "success"){
+							selectReplyList();
+							$("#replyContent").val("");
+						}
+					},error:function(){
+						console.log("ajax통신실패-댓글등록");
+					}
+				})
+				
+			})
+		})
+		function selectReplyList(){
+			$("#replyList").empty();
+			$.ajax({
+				url:"rlist.bo",
+				data:{bNo:<%=b.getBoardNo()%>},
+				type:"get",
+				success:function(list){
+					console.log(list)
+					//1번 방법
+				 var value="";
+					for(var i in list){
+						<%=b.getBoardNo()%>
+						value += '<tr>'+
+									'<td width="100px">' + list[i].replyWriter+'</td>'+
+									'<td width="330px">' + list[i].replyContent+'</td>'+
+									'<td width="330px">' + list[i].createDate+'</td>'+
+									'<td ><input type="hidden" name="bno" value ="'+<%=b.getBoardNo()%>+'"></td>'+
+									'<td ><input type="hidden" name="rno" value ="'+list[i].replyId+'"></td>'+
+									'<td><button type="button" onclick="deleteReply();">'+'삭제하기'
+									'</button></td>'+
+									'</tr>';		
+								
+					}
+					$("#replyList").html(value);
+					/*
+					//2번 방법
+					var value="";
+					$.each(list,function(index, obj){
+						
+						value += '<tr>'+
+						'<td width="100px">' + obj.replyWriter+'</td>'+
+						'<td width="330px">' + obj.replyContent+'</td>'+
+						'<td width="330px">' + obj.createDate+'</td>'+
+						 '</tr>';
+					})
+					$("#replyList").html(value);  */
+					/*
+					//3번방법
+					$.each(list, function(index, obj){						
+						
+					var writerTd = $("<td>").text(obj.replyWriter).attr("width", "100px");
+					var contentTd = $("<td>").text(obj.replyContent).attr("width", "330px");
+					var dateTd = $("<td>").text(obj.createDate).attr("width", "150px");
+						
+					var tr = $("<tr>").append(writerTd, contentTd, dateTd);
+						
+					$("#replyList").append(tr);
+						
+					});
+					*/
+				},
+				error:function(){
+					console.log("ajax통신실패-댓글조회");
+				}
+			})
+		}
+	</script>
+		
+	<script>
+	
+	function deleteReply(){
+		$('#form').each(function(){
+		    
+		    $("#form").attr("action", "<%=request.getContextPath()%>/ReplyDel.bo");
+			$("#form").submit();
+		    
+		});
+		 
+		
+	}
+
 	function updateForm(){
 		$("#postForm").attr("action", "<%=contextPath%>/updateForm.bo");
 		$("#postForm").submit();
