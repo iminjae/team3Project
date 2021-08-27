@@ -61,7 +61,6 @@
 		    <div class="center">
 		    	 <p class="myreviewtitle">내가 쓴 리뷰</p>
 			   	 <div class="all">
-			        <h4 align="center">리뷰 확인</h4>
 			        <div class="form">
 			            <p align="center">☆ <%=rv.getBoardTitle() %> ☆</p>
 			            <form   method="post" name="testForm" >
@@ -97,7 +96,6 @@
 			        <br>
 			        <div align="center">
 			            <button class="okbtn"onclick="history.go(-1)">리뷰 목록으로</button>
-			            <button class="okbtn"onclick="#">별점주기</button>
 			        </div>
 			
 			    </div>

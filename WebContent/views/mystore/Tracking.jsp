@@ -50,7 +50,7 @@ int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).ge
  		
 		<form action="http://info.sweettracker.co.kr/tracking/5" method="post" >
 	           <div class="form-group">
-	             <input type="hidden" class="form-control" id="t_key" name="t_key"  value ="4vPfmmCdDZ7ywycOTz5biQ">
+	             <input type="hidden" class="form-control" id="t_key" name="t_key"  value ="Zl96RLuXqt6JJKUZ6nfFiw">
 	           </div>
 	           <div>
 			           <div class="form-group">
