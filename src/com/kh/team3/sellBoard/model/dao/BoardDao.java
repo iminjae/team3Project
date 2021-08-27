@@ -555,10 +555,25 @@ public class BoardDao {
 		return result;
 	}
 
-	
-	public int delectRList(Connection conn, int bNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteReply(Connection conn, int rNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		// UPDATE REPLY SET REPLY_STATUS='N' WHERE REPLY_NO=?
+		String sql = prop.getProperty("deleteReply");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rNo);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
 	}
 
 }

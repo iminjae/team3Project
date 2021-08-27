@@ -3,7 +3,7 @@ package com.kh.team3.sellBoard.model.vo;
 import java.sql.Date;
 
 public class Reply {
-	private int replyId;
+	private int replyId; // 댓글번호
 	private String replyContent;
 	private int refBoardId;
 	private String replyWriter; // 조회시 : 작성자 이름,  댓글작성시 : 회원번호로 쓰일 것!!

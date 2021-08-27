@@ -141,7 +141,7 @@
 				<div class="col-6 d-grid p-1">
 					<!-- 뒤로 버튼 어디로연결할지 -->
 					<button type="button" class="btn btn-lg btn-outline-secondary"
-						onclick="location.href=#">버튼</button>
+						onclick="location.href='<%=request.getContextPath()%>/sellList.bo?currentPage=1';">목록으로</button>
 				</div>
 				<div class="col-6 d-grid p-1">
 					<input class="btn btn-lg btn-outline-primary" type="submit"

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	import="java.util.ArrayList, com.kh.team3.sellBoard.model.vo.*, com.kh.team3.member.model.vo.Member, com.kh.team3.mystore.model.vo.Review"
 	pageEncoding="UTF-8"%>
@@ -26,6 +25,7 @@ Review rv = (Review) request.getAttribute("review");
 <title>SellBoard_detail</title>
 <link href="resources/css/mystore/reviewForm.css" rel="stylesheet"
 	type="text/css">
+
 </head>
 <style>
 .card {
@@ -36,6 +36,7 @@ Review rv = (Review) request.getAttribute("review");
 	height: 50px;
 }
 
+/*
 #btn1 {
 	width: 150px;
 	height: 50px;
@@ -51,16 +52,8 @@ Review rv = (Review) request.getAttribute("review");
 	width: 150px;
 	height: 50px;
 	margin-left: -200px;
-}
+}*/
 
-/* .detail td{
-      text-align:center;
-      border:1px solid white;
-    } */
-/* .detailImgArea{
-      width:220px;
-      height:190px;
-    } */
 </style>
 
 <body>
@@ -136,9 +129,9 @@ Review rv = (Review) request.getAttribute("review");
 				<!-- 제목, 가격, 작성자, 조회수, 설명내용-->
 
 				<div class="col-md-7">
-
 					<div class="card shadow-sm" style="width: 50em;">
 						<div class="card-body">
+
 							<h4>
 								<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
 								<%
@@ -155,8 +148,11 @@ Review rv = (Review) request.getAttribute("review");
 								} else if (b.getBoardStatus().equals("판매완료")) {
 								%>
 								<span class="badge bg-warning">판매완료</span>
-								<button id="rvbtn" onclick="makeReview();">리뷰 쓰기</button>
-								<%}%>
+								<button class="btn btn-sm btn-outline-warning" id="rvbtn"
+									onclick="makeReview();">리뷰⭐</button>
+								<%
+								}
+								%>
 							</h4>
 							<br>
 							<p class="card-text pb-3"><%=b.getUserId()%>님의 게시글
@@ -177,48 +173,31 @@ Review rv = (Review) request.getAttribute("review");
 							</div>
 							<p class="card-text border-top pb-3"></p>
 
-
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="col-6 d-grid p-1">
-									<button id="btn1" type="button"
-										class="btn btn-outline-secondary" onclick="thumbsUp();">좋아요👍</button>
-								</div>
-								<div class="col-6 d-grid p-1">
-									<button id="btn2" type="button"
-										class="btn btn-outline-secondary" onclick="insertJjim();">찜💙</button>
-								</div>
-								<div class="col-6 d-grid p-1">
-									<button id="btn3" type="button"
-										class="btn btn-outline-secondary"
-										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
-								</div>
+
+							<!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 오른쪽정렬-->
+							<!-- <div class="d-grid gap-2 class= d-flex justify"> 왼쪽정렬-->
+							<div class="btn-group btn-group-lg" role="group">
+								<!-- 버튼그룹 -->
+								<button class="btn btn-outline-secondary" onclick="thumbsUp();">좋아요👍</button>
+								<button class="btn btn-outline-secondary"
+									onclick="insertJjim();">찜💙</button>
+								<button class="btn btn-outline-secondary"
+									onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<br>
-
 			<!--판매상품 설명글-->
-			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas"
-				aria-labelledby="offcanvasLabel">
-				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-					<button type="button" class="btn-close text-reset"
-						data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				</div>
-				<div class="offcanvas-body">Content for the offcanvas goes
-					here. You can place just about any Bootstrap component or custom
-					elements here.</div>
-			</div>
-			<div class="row">
-				<div class="col-12">
-					<p id="contentArea"><%=b.getBoardContent()%></p>
+			<div class="card">
+				<div class="card-header" align="center">판매물품 설명</div>
+				<div class="card-body">
+					<p><%=b.getBoardContent()%></p>
 				</div>
 			</div>
 		</div>
-
 	</main>
 	<!-- 댓글 관련 영역 -->
 	<div class="replyArea" align="center">
@@ -232,7 +211,6 @@ Review rv = (Review) request.getAttribute("review");
 				<td><textarea rows="3" cols="60" id="replyContent"
 						style="resize: none;"></textarea></td>
 				<td><button id="addReply">댓글등록</button></td>
-				<td><button id="deleteReply">댓글삭제</button></td>
 
 				<%
 				} else {
@@ -240,7 +218,6 @@ Review rv = (Review) request.getAttribute("review");
 				<td><textarea readonly rows="3" cols="60" id="replyContent"
 						style="resize: none;">로그인한 사용자만 가능한 서비스입니다. 로그인 후 이용해주세요</textarea></td>
 				<td><button disabled>댓글등록</button></td>
-				<td><button disabled>댓글삭제</button></td>
 				<%
 				}
 				%>
@@ -248,10 +225,12 @@ Review rv = (Review) request.getAttribute("review");
 		</table>
 
 		<!-- 댓글 리스트들 보여주는 div  -->
+		<form action="" id="form" method="post">
 		<div id="replyListArea">
 			<table id="replyList" border="1" align="center">
 			</table>
 		</div>
+		</form>
 	</div>
 
 	<form action="" id="postForm" method="post">
@@ -264,20 +243,19 @@ Review rv = (Review) request.getAttribute("review");
 		<%
 		if (userId != null && ((Member) request.getSession().getAttribute("loginUser")).getUserId().equals(b.getUserId())) {
 		%>
-
-		<button type="button" onclick="updateSBForm();">수정하기</button> 
+		<button type="button" onclick="updateSBForm();">수정하기</button>
 		<button type="button" onclick="deleteSBoard();">삭제하기</button>
 		<%
 		}
 		%>
 	</div>
 	<script>
-			function updateSBForm(){
+			function updateSBForm(){ // 판매게시판 수정
 				$("#postForm").attr("action", "<%=request.getContextPath()%>/sellUpdateForm.bo");
 				$("#postForm").submit();
 			}
 			
-			function deleteSBoard(){
+			function deleteSBoard(){ // 판매게시판 삭제
 				$("#postForm").attr("action", "<%=request.getContextPath()%>/sellDelete.bo");
 				$("#postForm").submit();
 		}
@@ -316,28 +294,26 @@ Review rv = (Review) request.getAttribute("review");
 			$("#replyList").empty();
 			$.ajax({
 				url : "rlist.bo",
-				data : {
-					bNo : <%=b.getBoardNo()%>
-	
-				},
+				data:{bNo:<%=b.getBoardNo()%>},
 				type : "get",
 				success : function(list) {
 					console.log(list)
 
-					$.each(list, function(index, obj) {
+					var value="";
 
-						var writerTd = $("<td>").text(obj.replyWriter).attr(
-								"width", "100px");
-						var contentTd = $("<td>").text(obj.replyContent).attr(
-								"width", "330px");
-						var dateTd = $("<td>").text(obj.createDate).attr(
-								"width", "150px");
-
-						var tr = $("<tr>").append(writerTd, contentTd, dateTd);
-
-						$("#replyList").append(tr);
-
-					});
+					for(var i in list){
+						<%=b.getBoardNo()%>
+						value += '<tr>'+
+									'<td width="100px">' + list[i].replyWriter+'</td>'+
+									'<td width="330px">' + list[i].replyContent+'</td>'+
+									'<td width="330px">' + list[i].createDate+'</td>'+
+									'<td><input type="hidden" name="bNo" value ="'+<%=b.getBoardNo()%>+'"></td>'+
+									'<td><input type="hidden" name="rNo" value ="'+list[i].replyId+'"></td>'+
+									'<td><button type="button" onclick="deleteReply();">'+'삭제'
+									'</button></td>'+
+									'</tr>';										
+					}
+					$("#replyList").html(value);
 
 				},
 				error : function() {
@@ -345,33 +321,7 @@ Review rv = (Review) request.getAttribute("review");
 				}
 			})
 		}
-		$(function() {
-			deleteReplyList();
-			$("#deleteReply").click(function() {
-				var content = $("#replyContent").val();
-				var bNo = <%=b.getBoardNo()%>;
-	
-
-				$.ajax({
-					url : "rdelete.bo",
-					type : "post",
-					data : {
-						content : content,
-						bNo : bNo
-					},
-					success : function(status) {
-						if (status == "success") {
-							selectReplyList();
-							$("#replyContent").val("");
-						}
-					},
-					error : function() {
-						console.log("ajax통신실패-댓글삭제");
-					}
-				})
-
-			})
-		})
+		
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -381,7 +331,17 @@ Review rv = (Review) request.getAttribute("review");
 	</script>
 	<!-- 좋아요 -->
 	<script>
-	
+		function deleteReply(){
+			console.log("댓글지우기")
+			$('#form').each(function(){
+			   	
+			    $("#form").attr("action", "<%=request.getContextPath()%>/rDelete.bo");
+				$("#form").submit();
+			    
+			});
+			 
+			
+		}
 		function thumbsUp(){
 			 var answer;
              answer = confirm("추천 하시겠습니까?");
