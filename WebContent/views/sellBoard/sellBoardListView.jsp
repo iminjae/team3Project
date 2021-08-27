@@ -24,7 +24,11 @@ String five = "5";
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@700&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<link href="resources\css\common.css" rel="stylesheet" type="text/css">
+<link href="resources\css\main.css" rel="stylesheet" type="text/css">
 <style>
+
 .card {
 	margin-bottom: 10px;
 	display: inline-block;
@@ -47,14 +51,12 @@ String five = "5";
 	cursor: pointer;
 }
 
-.card-columns { @include media-breakpoint-only(lg) { column-count:4;
-	
-}
-
-@
-include media-breakpoint-only(xl) {
-	column-count: 5;
-}
+.text-center{
+	/*font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Gaegu', cursive;
+	font-family: 'Gowun Dodum', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;*/
+	font-size: 2em;
 }
 </style>
 <title>SellBoard_List</title>
@@ -66,14 +68,13 @@ include media-breakpoint-only(xl) {
 
 	<!-- 메인 -->
 	<div class="container">
-		<h2 class="text-center">판매 게시판</h2>
-
+		<p id=p class="text-center">판매 게시판</p>
 
 		<!-- 로그인유저가 있으면 게시글 작성 -->
 		<div align="right">
 			<%if (userId != null) {%>
 			<button class="btn btn-outline-secondary"
-				onclick="location.href='<%=request.getContextPath()%>/sellInsertForm.bo'">작성하기</button>
+				onclick="location.href='<%=request.getContextPath()%>/sellInsertForm.bo'">판매글 등록</button>
 			<%}%>
 		</div>
 		<br>
@@ -98,14 +99,12 @@ include media-breakpoint-only(xl) {
 					</select>
 				</div>
 			</div>
-			<div class="col-xl-3 col-lg-4 col-md-6">
+			<div class="col-xl-12 col-lg-4 col-md-6" >
 				<!-- container 안에서 컴포넌트 요소 정렬 -->
-				<%
-						for (Board b : list) {
-						%>
+				<% for (Board b : list) {%>
 				<div class="thumbnail" align="center">
 					<input type="hidden" value="<%=b.getBoardNo()%>">
-					<div class="card" style="width: 220px;">
+					<div class="card" style="width: 16em;">
 						<img
 							src="<%=request.getContextPath()%>/resources/board_upfiles/<%=b.getTitleImg()%>"
 							width="200px" height="150px" class="card-img-top" />
@@ -138,7 +137,7 @@ include media-breakpoint-only(xl) {
                           			 <button type="button" class="btn btn-sm btn-outline-secondary">버튼2</button>
                         			</div> -->
 								<small class="text-dark">조회수 <%=b.getbCnt()%></small> <small
-									class="text-dark" align="right">추천수 <%=b.getLikeCnt()%></small>
+									class="text-dark" align="right">👍 추천수 <%=b.getLikeCnt()%></small>
 							</div>
 						</div>
 					</div>

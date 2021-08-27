@@ -14,7 +14,22 @@ Member loginUser = (Member) request.getAttribute("loginUser");
    rel="stylesheet"
    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
    crossorigin="anonymous" />
-<style></style>
+<link href="resources\css\common.css" rel="stylesheet" type="text/css">
+<link href="resources\css\main.css" rel="stylesheet" type="text/css">
+<style>
+
+.text-center {
+	/*font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Gaegu', cursive;
+	font-family: 'Gowun Dodum', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;*/
+	font-size: 2em;
+}
+p{
+	font-size: 2em;
+}
+
+</style>
 <title>SellBoard_Insert</title>
 </head>
 

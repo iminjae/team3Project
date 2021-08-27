@@ -8,8 +8,6 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
 String result = String.valueOf(request.getSession().getAttribute("result"));
 Review rv = (Review) request.getAttribute("review");
 %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +19,10 @@ Review rv = (Review) request.getAttribute("review");
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous" />
-
-<title>SellBoard_detail</title>
-<link href="resources/css/mystore/reviewForm.css" rel="stylesheet"
-	type="text/css">
-
+<link href="resources/css/mystore/reviewForm.css" rel="stylesheet" type="text/css">
+<link href="resources\css\common.css" rel="stylesheet" type="text/css">
+<link href="resources\css\main.css" rel="stylesheet" type="text/css">
+<title>SellBoard_Detail</title>
 </head>
 <style>
 .card {
@@ -36,7 +33,6 @@ Review rv = (Review) request.getAttribute("review");
 	height: 50px;
 }
 
-/*
 #btn1 {
 	width: 150px;
 	height: 50px;
@@ -51,8 +47,45 @@ Review rv = (Review) request.getAttribute("review");
 #btn3 {
 	width: 150px;
 	height: 50px;
-	margin-left: -200px;
-}*/
+	margin-left: -100px;
+}
+
+.mt-3 {
+	margin-left: 130px;
+}
+
+#replyList td {
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	font-size: 13px;
+	vertical-align: top;
+}
+
+#replyList {
+	border-collapse: separate;
+	border-spacing: 1px;
+	text-align: left;
+	line-height: 1.5;
+	margin: 20px 10px;
+	text-align: center;
+	border-left:none;
+	border-right:none;
+	
+}
+
+.replyArea {
+margin-top: 70px;
+
+}
+
+.replyArea td{
+	padding-left: 30px;
+}
+
+p{
+	font-size: 1.3em;
+}
 
 </style>
 
@@ -81,33 +114,23 @@ Review rv = (Review) request.getAttribute("review");
 						<!-- 이거왜 사진전체리스트를 못돌릴까... -->
 
 						<div class="carousel-inner">
-							<%
-							for (int i = 0; i < fileList.size(); i++) {
-							%>
+							<%for (int i = 0; i < fileList.size(); i++) {%>
 							<div class="carousel-item active ">
-
-								<img width="200px" height="300px"
+								<img width="180px" height="280px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
-
 							</div>
-
 							<div class="carousel-item ">
-								<img width="200px" height="300px"
+								<img width="180px" height="280px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 							</div>
-
 							<div class="carousel-item ">
-								<img width="200px" height="300px"
+								<img width="180px" height="280px"
 									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=fileList.get(i).getChangeName()%>"
 									class="d-block w-100" alt="...">
 							</div>
-
-							<%
-							}
-							%>
-
+							<%}%>
 						</div>
 
 						<!--이미지 이전 버튼-->
@@ -128,8 +151,8 @@ Review rv = (Review) request.getAttribute("review");
 				<!-- 판매제품 소개 -->
 				<!-- 제목, 가격, 작성자, 조회수, 설명내용-->
 
-				<div class="col-md-7">
-					<div class="card shadow-sm" style="width: 50em;">
+				<div class="col-md-3">
+					<div class="card shadow-sm" style="width: 45em;">
 						<div class="card-body">
 
 							<h4>
@@ -148,41 +171,32 @@ Review rv = (Review) request.getAttribute("review");
 								} else if (b.getBoardStatus().equals("판매완료")) {
 								%>
 								<span class="badge bg-warning">판매완료</span>
-								<button class="btn btn-sm btn-outline-warning" id="rvbtn"
-									onclick="makeReview();">리뷰⭐</button>
+								<button class="btn btn-sm btn-outline-warning" id="rvbtn" onclick="makeReview();">리뷰⭐</button>
 								<%
 								}
 								%>
 							</h4>
 							<br>
-							<p class="card-text pb-3"><%=b.getUserId()%>님의 게시글
-							</p>
+							<p class="card-text pb-3" align="right"><%=b.getUserId()%>님의 게시글</p>
+							
 							<br>
-							<h3 class="card-title"><%=b.getBoardTitle()%>
-							</h3>
+							<p class="card-title"><%=b.getBoardTitle()%></p>
 							<p class="card-text border-top pb-3"></p>
 							<div class="row pt-3 pb-3">
-								<div class="col-6">
-									<h3>판매 금액</h3>
-								</div>
-								<div class="col-6" style="text-align: right;">
-									<h3><%=b.getPrice()%>
-										원
-									</h3>
-								</div>
+								<div class="col-6"><p>판매 금액</p></div>
+								<div class="col-6" style="text-align: right;"><p><%=b.getPrice()%> 원</p></div>
 							</div>
 							<p class="card-text border-top pb-3"></p>
 
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 
-							<!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 오른쪽정렬-->
-							<!-- <div class="d-grid gap-2 class= d-flex justify"> 왼쪽정렬-->
-							<div class="btn-group btn-group-lg" role="group">
+							<div class="d-flex justify-content-between align-items-center">
 								<!-- 버튼그룹 -->
-								<button class="btn btn-outline-secondary" onclick="thumbsUp();">좋아요👍</button>
-								<button class="btn btn-outline-secondary"
+								<button id=btn1 class="btn btn-outline-secondary"
+									onclick="thumbsUp();">좋아요👍</button>
+								<button id=btn2 class="btn btn-outline-secondary"
 									onclick="insertJjim();">찜💙</button>
-								<button class="btn btn-outline-secondary"
+								<button id=btn3 class="btn btn-outline-secondary"
 									onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
 							</div>
 						</div>
@@ -191,10 +205,10 @@ Review rv = (Review) request.getAttribute("review");
 			</div>
 			<br>
 			<!--판매상품 설명글-->
-			<div class="card">
-				<div class="card-header" align="center">판매물품 설명</div>
+			<div class="card col-md-8" style="width: 84.5em;">
+				<div class="card-header" align="center"><p>판매물품 설명</p></div>
 				<div class="card-body">
-					<p><%=b.getBoardContent()%></p>
+					<%=b.getBoardContent()%>
 				</div>
 			</div>
 		</div>
@@ -202,22 +216,22 @@ Review rv = (Review) request.getAttribute("review");
 	<!-- 댓글 관련 영역 -->
 	<div class="replyArea" align="center">
 		<!-- 댓글 작성하는 div -->
-		<table border="1" align="center">
+		<table align="center">
 			<tr>
-				<th>댓글작성</th>
+				
 				<%
 				if (userId != null) {
 				%>
-				<td><textarea rows="3" cols="60" id="replyContent"
+				<td><textarea rows="4" cols="140" id="replyContent"
 						style="resize: none;"></textarea></td>
-				<td><button id="addReply">댓글등록</button></td>
+				<td><button class="btn btn-outline-secondary" id="addReply">댓글등록</button></td>
 
 				<%
 				} else {
 				%>
 				<td><textarea readonly rows="3" cols="60" id="replyContent"
 						style="resize: none;">로그인한 사용자만 가능한 서비스입니다. 로그인 후 이용해주세요</textarea></td>
-				<td><button disabled>댓글등록</button></td>
+				<td><button disabled class="btn btn-outline-secondary">댓글등록</button></td>
 				<%
 				}
 				%>
@@ -226,10 +240,10 @@ Review rv = (Review) request.getAttribute("review");
 
 		<!-- 댓글 리스트들 보여주는 div  -->
 		<form action="" id="form" method="post">
-		<div id="replyListArea">
-			<table id="replyList" border="1" align="center">
-			</table>
-		</div>
+			<div id="replyListArea">
+				<table id="replyList" border="1" align="center">
+				</table>
+			</div>
 		</form>
 	</div>
 
@@ -237,18 +251,19 @@ Review rv = (Review) request.getAttribute("review");
 		<input type="hidden" name="bNo" value="<%=b.getBoardNo()%>">
 	</form>
 	<div class="btns" align="center">
-		<button type="button"
+		<button type="button" class="btn btn-sm btn-outline-secondary"
 			onclick="location.href='<%=request.getContextPath()%>/sellList.bo?currentPage=1';">목록으로</button>
 
 		<%
 		if (userId != null && ((Member) request.getSession().getAttribute("loginUser")).getUserId().equals(b.getUserId())) {
 		%>
-		<button type="button" onclick="updateSBForm();">수정하기</button>
-		<button type="button" onclick="deleteSBoard();">삭제하기</button>
+		<button type="button" class="btn btn-sm btn-outline-secondary" onclick="updateSBForm();">수정하기</button>
+		<button type="button" class="btn btn-sm btn-outline-secondary" onclick="deleteSBoard();">삭제하기</button>
 		<%
 		}
 		%>
 	</div>
+	<br><br>
 	<script>
 			function updateSBForm(){ // 판매게시판 수정
 				$("#postForm").attr("action", "<%=request.getContextPath()%>/sellUpdateForm.bo");
@@ -309,7 +324,7 @@ Review rv = (Review) request.getAttribute("review");
 									'<td width="330px">' + list[i].createDate+'</td>'+
 									'<td><input type="hidden" name="bNo" value ="'+<%=b.getBoardNo()%>+'"></td>'+
 									'<td><input type="hidden" name="rNo" value ="'+list[i].replyId+'"></td>'+
-									'<td><button type="button" onclick="deleteReply();">'+'삭제'
+									'<td><button type="button" class="btn btn-sm btn-outline-secondary" onclick="deleteReply();">'+'❌'
 									'</button></td>'+
 									'</tr>';										
 					}
@@ -369,7 +384,7 @@ Review rv = (Review) request.getAttribute("review");
 			    var _left = Math.ceil(( window.screen.width - _width )/2);
 			    var _top = Math.ceil(( window.screen.height - _height )/2); 
 			 
-			    window.open('<%=request.getContextPath()%>/review.rv', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+			    window.open('<%=request.getContextPath()%>/review.rv?rno=<%=b.getBoardNo()%>&userId=<%=b.getUserId()%>', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 		   <%}%>
    		}
 	   
