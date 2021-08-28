@@ -34,6 +34,7 @@ public class ThumbnailListServlet extends HttpServlet {
 
 		ArrayList<Board> list = new EventBoardService().selectThList();
 		
+		request.setAttribute("check", "1");
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/member/thumbnailListView.jsp").forward(request, response);
 		
