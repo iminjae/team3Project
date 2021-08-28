@@ -38,6 +38,18 @@
          font-size: small;
          margin-left: 120px;
      }
+  
+         
+      #allReviewDetail{
+        border : 1px solid white;
+        width: 500px;
+        height: 600px;
+        background-color:rgb(232, 180, 81);
+        border-radius: 9px;
+        margin-top:30px;
+        margin-left: 150px;
+      }
+ 
 </style>
 <body>
 <%@ include file="../common/menubar.jsp" %>
@@ -53,54 +65,60 @@
 		      <div id="menu">
 		        <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
 		        <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
-		        <button id="now" onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
+		        <button id="now" onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">리뷰 확인</button><br>
 		        <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
 		      </div>
-		    </div>
+	</div>
 		
-		    <div class="center">
-		    	 <p class="myreviewtitle">내가 쓴 리뷰</p>
-			   	 <div class="all">
-			        <div class="form">
-			            <p align="center">☆ <%=rv.getBoardTitle() %> ☆</p>
-			            <form   method="post" name="testForm" >
-			
-			                <div class="buyertext">
-			                
-			                		<%= rv.getContent() %>
-			                </div>
-			
-			                <br>
-			
-			                <div class="buyercheckbox">
-			                    <ul>
-			                    <% String checkbox = rv.getRadio(); %>
-			               		<% String[] splited =checkbox.split(","); %>
-			               		
-			               		<% for(int i = 0; i < splited.length; i++){ %>
-			                      
-			                        <li>
-			                        	<%= (i+1)+". " %><%= splited[i] %>
-			                        </li>
-	
-			                  <% } %>
-			                    </ul>
-			                   
-			                </div>    
-			                
-			                 
-			            </form>
-			        
-			            
-			        </div>
-			        <br>
-			        <div align="center">
-			            <button class="okbtn"onclick="history.go(-1)">리뷰 목록으로</button>
-			        </div>
-			
-			    </div>
-		  
+	<div class="center">
+		    	 <p class="myreviewtitle">리뷰 확인</p>
+			   	 <div id="allReviewDetail">
+		            <p class="reviewTitle" align="center">리뷰 후기</p>
+		            <hr class="hrTag">
+		            <div align="center">
+		                <p>게시글 제목 : <%=rv.getBoardTitle() %></p>
+		            </div>
+		            <div class="contentReviw">
+		                <p class="contentReviwTag">
+		                  <%= rv.getContent() %>
+		                </p>
+		            
+		            </div>
+		            <div class="reviewStarTag">
+		                <img  id="reviewStar" src="resources/images/MyStore/reviewStar.png"/>           
+		            </div>
+		        
+		            <% String checkbox = rv.getRadio(); %>
+		            <% String[] splited =checkbox.split(","); %>
+		
+		            <% for(int i = 0; i < splited.length; i++){ %>
+		
+		            <div id="checkBox">
+		                <div id="samllCheck">
+		                    <p class="smallreviewTag"><%= (i+1)%></p>
+		                </div>
+		                <div id="largeCheck">
+		                    <p class="largereviewTag" > <%= splited[i] %></p>
+		                </div>
+		            </div>
+		            <% } %>
+		
+		            <br>
+		
+		            <div align="center">
+		                <br>
+		                <button id="backList" onclick="history.go(-1)">리뷰 목록으로</button>
+		            </div>
+		
+		            <div class="dogdog">
+		                <img  id="dogdog" src="resources/images/MyStore/catdog.png"/>           
+		            </div>
 		    </div>
+		    
+		    <br><br>
+		    <br><br>
+		  
+	</div>
 
        <script>
         window.onload=function(){

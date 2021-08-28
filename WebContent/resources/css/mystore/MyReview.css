@@ -50,7 +50,7 @@
             width: 500px;
             height: 600px; 
         }
-*/
+
         .form{
             margin-left: 20px;
             width: 450px;
@@ -79,3 +79,125 @@
             margin-left: 30px;
             margin-top: -20px;
         }
+        
+        */
+       
+         /*전체*/
+      
+      #allReviewDetail{
+        border : 1px solid white;
+        width: 500px;
+        height: 600px;
+        background-color:rgb(232, 180, 81);
+        border-radius: 9px;
+        margin-top:30px;
+        margin-left: 150px;
+      }
+
+      /*리뷰후기*/
+      .reviewTitle{
+      	margin-top:20px;
+        font-size: 21px;
+        font-weight: 900;
+        color: white;
+      }
+
+      .hrTag{
+        text-align: center;
+        border: 0.5px solid rgb(23, 62, 96);
+        width: 20%;
+        margin-top: 10px;
+      }
+
+      /*컨텐트리뷰*/
+      .contentReviw{
+        border: 3px solid white;
+        border-radius: 8px;
+        width: 350px;
+        height: 140px;
+        text-align: center;
+        margin-left: 70px;
+        margin-top: 20px;
+      }
+
+      .contentReviwTag{
+          margin: 10px;
+          font-size: 16px;
+      }
+
+      /*체크박스*/
+      #largeCheck{
+        border: 1px solid white;
+        border-radius: 50px;
+        width: 350px;
+        height: 40px;
+        margin-left: 70px;
+        margin-top: -40px;
+        background-color: white;
+        position: relative;
+        z-index: 1;
+      }
+
+      #samllCheck{
+        border: 1px solid rgb(23, 62, 96);
+        border-radius: 50px;
+        width: 70px;
+        height: 40px;
+        margin-top: 19px;
+        margin-left: 70px;
+        background-color: rgb(23, 62, 96);
+        position: relative;
+        z-index: 2;
+      }
+      .largereviewTag{
+        margin-left: 100px;
+        padding-bottom: 6px;
+        color: rgb(23, 62, 96);
+       
+      
+      }
+      .smallreviewTag{
+        margin-left: 30px;
+        color: white;
+      }
+
+      /*사진*/
+      #reviewStar{
+        width: 50px;
+        height: 50px;
+        border-radius: 20px;
+        margin-top: 50px;
+
+      }
+
+      .reviewStarTag{
+          text-align: center;
+          margin-top: -90px;
+      }
+
+      /*버튼*/
+      #backList{
+        border-radius: 8px;
+        background-color: rgb(161, 165, 166);
+        border:0;
+        color: white;
+        width: 120px;
+        height: 30px;
+        margin-left: 300px;
+        margin-top : 30px;
+        font-weight:900;
+      }
+
+      #backList:hover{
+        color: rgb(161, 165, 166);
+        background-color: white;
+      }
+
+      /*개사진*/
+      #dogdog{
+          width: 260px;
+          height: 100px;
+          margin-top: -15px;
+          margin-left: 10px;
+      }
+        

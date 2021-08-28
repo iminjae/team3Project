@@ -66,42 +66,182 @@
     border: 1px solid #e0e0e0;
 }
 
+.review_rating{
+	 text-align: center;
+	 margin-left :  -50px;
+	 margin-top : 20px;
+	 margin-bottom : 20px;
+}
+
+/*s내꺼 CSS*/
+  /*전체 크기 조절*/
+        .allreviewForm{
+            width: 500px;
+            height: 650px; 
+        }
+
+        .middle{
+          background-color: rgb(161, 165, 166);
+          border: 1px solid black;
+          width:480px;
+          height: 600px; 
+          margin-top: 20px;
+          margin-left: 10px;
+          border-radius: 8px;
+        }
+
+        /*리뷰쓰기*/
+        .reviewWriteTag{
+          font-size: 21px;
+          font-weight: 800;
+          color: rgb(232, 180, 81);
+          margin-top: -52px;
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          
+        }
+
+        /*폼*/
+        .reviewWriterform{
+            margin-top: -20px;
+            margin-left: 20px;
+            width: 480px;
+            height: 480px; 
+            border-radius: 8px;
+        }
+
+        /*00께 드리는 후기*/
+        .toSellerTag{
+            padding-top: 5px;
+            margin-left: -50px;
+            text-align: center;
+            margin-top: -10px;
+        }
+
+        /*텍스트아리아*/
+        .WriteTextArea{
+            width: 400px;
+            height: 100px;
+            border-radius: 5px;
+            border: 0;
+            outline: 0;
+            border : 5px solid rgb(232, 180, 81);
+            margin-left: 13px;
+            margin-top: -2px;
+            color: rgb(23, 62, 96);
+   
+        }
+
+
+        /*체크박스*/
+        input[name="review"]{
+          background-color: salmon;
+        }
+
+        input[name="review"] + label{
+           width: 25px;
+           height: 25px;
+        }
+
+        /*등록 버튼*/
+        .reviewFormBtn{
+            text-align: center;
+            border: 0;
+            outline: 0;
+            background-color: rgb(23, 62, 96);
+            color: white;
+            margin-left: -30px;
+            padding-top: 5px;
+            font-weight: 900;
+            border-radius: 5px;
+        }
+
+        .reviewFormBtn:hover{
+            text-align: center;
+            border: 0;
+            outline: 0;
+            color : rgb(23, 62, 96);
+            background-color: white;
+          
+        }
+
+        .radio{
+            margin-left: 30px;
+            margin-top: -20px;
+        }
+
+        /*깃털사진*/
+        .reviewFormImg{
+            width: 60px;
+            height: 50px;
+            margin-left: 70px;
+            margin-top: 20px;
+        }
+
+        /*거래는 ~ goodbad*/
+        .goodbad{
+            color: rgb(232, 180, 81);
+            font-weight: 900;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            margin-top: -15px;
+        }
+
+        /*거래는 괜찮았나요?*/
+        .okTag{
+            text-align: center;
+            margin-left: -70px;
+
+
+        }
+
+        /*체크박스위로*/
+        .checkboxupup{
+            margin-top: -10px;
+
+        }
 
 </style>
 
 
 </head>
 <body>
-	 <div class="all">
-        <h4 align="center">리뷰 쓰기</h4>
-        <div class="form">
-            <p align="center">☆ 판매자께 드리는 후기 ☆</p>
+  <div class="allreviewForm">
+     <div class="middle">
+        <img class="reviewFormImg" src="resources/images/MyStore/reviewFormImg.png">
+        <p class="reviewWriteTag" align="center">리뷰 쓰기</p>
+      
+        <div class="reviewWriterform">
+            <p class="toSellerTag"><%=userId %> 님께 드리는 후기 </p>
             <form action="<%=request.getContextPath()%>/reviewform.rv" id="updateForm" method="post" name="testForm" >
 				<input  type="hidden" name="rno" value="<%= rno %>"/>
-                <input  type="text" class="reviewtext" name="content" placeholder="리뷰는 솔직하게 작성해주세요"/><br>
+                <input  type="text" class="WriteTextArea" name="content" placeholder="리뷰는 솔직하게 작성해주세요"/><br>
                 <br>
                 <div class="radio">
-                    <p>Good</p>
-                    <input type="checkbox" name="review" id="review1" value="친절하고 매너가 좋아요"/><label for="review1">친절하고 매너가 좋아요</label> <br>
-                    <input type="checkbox" name="review" id="review2" value="시간 약속을 잘 지켜요"/><label for="review2">시간 약속을 잘 지켜요</label><br>
-                    <input type="checkbox" name="review" id="review3" value="제가 있는 곳까지 와서 거래 했어요"/><label for="review3">제가 있는 곳까지 와서 거래 했어요</label><br>
-                    <input type="checkbox" name="review" id="review4" value="응답이 빨라요"/><label for="review4">응답이 빨라요</label><br>
+                    <p class="okTag">거래는 괜찮았나요?</p>
+                    <p class="goodbad">👍 GOOD</p>
+
+                    <div class="checkboxupup">
+                        <input type="checkbox" name="review" id="review1" value="친절하고 매너가 좋아요"/><label for="review1">친절하고 매너가 좋아요</label> <br>
+                        <input type="checkbox" name="review" id="review2" value="시간 약속을 잘 지켜요"/><label for="review2">시간 약속을 잘 지켜요</label><br>
+                        <input type="checkbox" name="review" id="review3" value="제가 있는 곳까지 와서 거래 했어요"/><label for="review3">제가 있는 곳까지 와서 거래 했어요</label><br>
+                        <input type="checkbox" name="review" id="review4" value="응답이 빨라요"/><label for="review4">응답이 빨라요</label><br>
+                    </div>
                     
                     <br>
 
-                    <p>Bad</p>
-                    <input type="checkbox" name="review" id="review5" value="불친절 해요"/><label for="review5">불친절 해요</label><br>
-                    <input type="checkbox" name="review" id="review6" value="시간 약속을 잘 안지켜요"/><label for="review6">시간 약속을 잘 안지켜요</label><br>
-                    <input type="checkbox" name="review" id="review7" value="응답이 느려요"/><label for="review7">응답이 느려요</label>
-               
+                    <p class="goodbad" >👎 BAD</p>
+                    <div class="checkboxupup">
+                        <input type="checkbox" name="review" id="chk_info" value="불친절 해요"/><label for="chk_info">불친절 해요</label><br>
+                        <input type="checkbox" name="review" id="review6" value="시간 약속을 잘 안지켜요"/><label for="review6">시간 약속을 잘 안지켜요</label><br>
+                        <input type="checkbox" name="review" id="review7" value="응답이 느려요"/><label for="review7">응답이 느려요</label>
+                    </div>
+
                 </div>    
                 
                
 		        
 		        
 		 <!-- 명선님 파트 -->
-		 
-		<input type="hidden" name="userId" value="<%= userId %>">
+		 <input type="hidden" name="userId" value="<%= userId %>">
 		 
 	        <div class="review_rating">
 	            <div class="rating">
@@ -121,15 +261,12 @@
 	        
 	      
 	           	<input type=hidden name="rate" id="rate" value="0"/>
-	           	<input type="checkbox" id="chk_info">불친절
-		        
-		        
-		        
+	          
+
 		        
 		        
 		        <div align="center">
-			        <%-- <input type="submit" name="btnOk" id="btnOk" value="리뷰 등록">--%>
-		        	<input type="button" name="btnOk" value="등록"onclick="alertfun();"/>&nbsp;&nbsp;
+		        	<input type="button" class="reviewFormBtn" name="reviewFormBtn" value="등록"onclick="alertfun();"/>&nbsp;&nbsp;
 		        </div>
 		        
 		        
@@ -137,10 +274,11 @@
 		        
             </form>
         </div>
-        <br>
+
         
- 
     </div>
+    </div>
+
 
     <script>
     	function alertfun()
