@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-	/*title*/
+   /*title*/
   .mytitle{
-  	font-size: 22px;
-  	margin-left : 20px;
-  	margin-bottom: 40px;
-  	font-weight : 900;
+     font-size: 22px;
+     margin-left : 20px;
+     margin-bottom: 40px;
+     font-weight : 900;
   }
   
   #now{
@@ -23,6 +23,7 @@
        margin: 30px;
        border-radius: 10px;
        text-align: center;
+       margin-top: -5px;
    } 
 
    .getboard p{
@@ -30,7 +31,7 @@
    }
 
    .getboard img{
-       margin-top: 20px;
+       margin-top: 15px;
        margin-bottom: 3px;
    }
 
@@ -43,20 +44,39 @@
     margin-top: 80px;  
    }
    
+   #userTag{
+      border :0 ;
+      background : white;
+      border-color: white;
+      outline: 0;
+     font-weight: 900;
+   }
+   
+   .divTag{
+       margin-top: 2px;  
+   }
+
+   
    /* 찜버튼 */
    .btn-like{
+      outline: 0;
        color: transparent;
        text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 rgb(238, 25, 25);
        background-color: white;
        font-size: 20px;
-       border-color: white;
        border: 0;
-       outline: 0;
        font-weight: 400;
-       margin-top: 10px;
+       margin-top: 6px;
    } 
    
    .btn-like:hover {
        text-shadow: 0 0 0 red;
+       border-color: 0;
+       border-color: white;
+       outline: 0;
    } 
-  
+   
+   button.btn-like:focus{ 	
+    border: none;
+    outline:none;
+    }

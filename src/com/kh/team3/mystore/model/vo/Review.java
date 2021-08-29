@@ -5,7 +5,7 @@ import java.util.Date;
 public class Review {
 
 	private String reviewNo; 
-	private String userId; 
+	private String userId;  //리뷰작성자
 	private int boardNo;
 	private String content; 
 	private String radio;
@@ -17,6 +17,7 @@ public class Review {
 	private String categoryName; //카테고리 이름
 	private String boardtypeName; //보드타입 이름
 	private String boardStaus; //판매중 예약중 판매완료
+	private String boardUsrId; // 게시글작성자-로그인유저아이디
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
@@ -24,7 +25,7 @@ public class Review {
 	
 	//전체
 	public Review(String reviewNo, String userId, int boardNo, String content, String radio, int category,
-			String boardTitle, Date createDate, int likeCnt, int count, String categoryName, String boardtypeName, String boardStaus) {
+			String boardTitle, Date createDate, int likeCnt, int count, String categoryName, String boardtypeName, String boardStaus,  String boardUsrId) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
@@ -39,6 +40,7 @@ public class Review {
 		this.categoryName = categoryName;
 		this.boardtypeName = boardtypeName;
 		this.boardStaus = boardStaus;
+		this.boardUsrId = boardUsrId;
 	}
 
 	//리뷰 인서트
@@ -50,9 +52,9 @@ public class Review {
 		this.radio = radio;
 	}
 	
-	//리뷰 생성자
+	//리뷰 조회 생성자
 	public Review( int boardNo, String categoryName, String boardTitle, String userId, Date createDate,  int count, int likeCnt, 
-			String content, String radio ) {
+			String content, String radio, String boardUsrId ) {
 		super();
 		this.boardNo = boardNo;
 		this.categoryName = categoryName;
@@ -63,8 +65,25 @@ public class Review {
 		this.likeCnt = likeCnt;
 		this.content = content;
 		this.radio = radio;
+		this.boardUsrId = boardUsrId;
 
 	}
+	
+	//내가받은리뷰 조회 생성자
+		public Review( int boardNo, String categoryName, String boardTitle, String userId, Date createDate,  int count, int likeCnt, 
+				String content, String radio ) {
+			super();
+			this.boardNo = boardNo;
+			this.categoryName = categoryName;
+			this.boardTitle = boardTitle;
+			this.userId = userId;
+			this.createDate = createDate;	
+			this.count = count;
+			this.likeCnt = likeCnt;
+			this.content = content;
+			this.radio = radio;
+
+		}
 	
 	 //마이보드 조회 생성자
 	 public Review( int boardNo, String boardtypeName, String boardTitle, String userId, int count, 
@@ -188,13 +207,24 @@ public class Review {
 	public void setBoardStaus(String boardStaus) {
 		this.boardStaus = boardStaus;
 	}
+	
+	
+
+	public String getBoardUsrId() {
+		return boardUsrId;
+	}
+
+	public void setBoardUsrId(String boardUsrId) {
+		this.boardUsrId = boardUsrId;
+	}
 
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", userId=" + userId + ", boardNo=" + boardNo + ", content=" + content
 				+ ", radio=" + radio + ", category=" + category + ", boardTitle=" + boardTitle + ", createDate="
 				+ createDate + ", likeCnt=" + likeCnt + ", count=" + count + ", categoryName=" + categoryName
-				+ ", boardtypeName=" + boardtypeName + "]";
+				+ ", boardtypeName=" + boardtypeName + ", boardStaus=" + boardStaus + ", boardUsrId=" + boardUsrId
+				+ "]";
 	}
 
 

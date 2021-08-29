@@ -30,9 +30,11 @@ public class ReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String rno = request.getParameter("rno");	
+		String userId = request.getParameter("userId");	
 		System.out.println("리뷰서블릿 게시판번호" + rno);
 		
 		request.setAttribute("rno", rno);
+		request.setAttribute("userId", userId);
 		
 		RequestDispatcher view  = request.getRequestDispatcher("views/mystore/ReviewList.jsp");
 		view.forward(request, response);

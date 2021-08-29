@@ -4,6 +4,7 @@
 <%
 	ArrayList<Review> rvlist = (ArrayList<Review>)request.getAttribute("rvlist");
    int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).getStartpoint();
+   ArrayList<Review> getlist = (ArrayList<Review>)request.getAttribute("getlist");
 %>
 <!DOCTYPE html>
 <html>
@@ -69,7 +70,7 @@
       <div id="menu">
         <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
-        <button id="now" onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
+        <button id="now" onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">리뷰 확인</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
       </div>
     </div>
@@ -88,7 +89,7 @@
               <th  width="50">Count</th>
            </tr>
         </thead>
-	         <div class="rvlist">
+	         <div>
 		        <tbody>
 				 	 <% if(rvlist.isEmpty()){ %>
 		                 <tr>
@@ -109,6 +110,49 @@
 		        </tbody>
 	         </div>  
     </table>
+    
+    <br><br>
+    
+    <p class="myreviewtitle">구매자가 보내 온 리뷰</p>
+
+    		
+    	<table class="rvlist">
+        <thead>
+           <tr>
+              <th width="80">BoardNo.</th>
+              <th width="350">BoardTitle</th>
+              <th width="380">Review</th>
+              <th width="150">Buyer</th>
+              <th width="150">CreatDate</th>
+              <th  width="50">Count</th>
+           </tr>
+        </thead>
+	         <div >
+		        <tbody>
+				 	 <% if(getlist.isEmpty()){ %>
+		                 <tr>
+		                  <td colspan="6">받은 리뷰가 없습니다.</td>
+		                </tr>
+		             <% }else{  %>
+			              <% for(Review rv : getlist){ %>
+			                 <tr>
+			                   <td><%= rv.getBoardNo() %></td>
+			                   <td><%=  "[ "+ rv.getCategoryName() +" ] "+ rv.getBoardTitle()%></td>
+			                   <td><%=  rv.getContent() %></td>
+			                   <td><%= rv.getUserId() %></td>
+			                   <td><%= rv.getCreateDate() %></td>
+			                   <td ><%= rv.getCount() %></td>
+			                 </tr>
+			              <% } %>
+		            <% } %>
+					     
+		        </tbody>
+	         </div>  
+    </table>
+    
+
+    
+    
     </div>
     
     <br><br>
@@ -118,6 +162,18 @@
     <br><br>
     <script>
          <% if(!rvlist.isEmpty()){ %>
+         $(function(){
+            $(".rvlist>tbody>tr").click(function(){
+               var nno = $(this).children().eq(0).text();
+               
+               location.href="<%= request.getContextPath()%>/myreviewdetail.ms?nno="+nno;
+                     
+            })
+         })
+         <% } %>
+         
+         
+         <% if(!getlist.isEmpty()){ %>
          $(function(){
             $(".rvlist>tbody>tr").click(function(){
                var nno = $(this).children().eq(0).text();
