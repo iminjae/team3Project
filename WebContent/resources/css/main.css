@@ -2,7 +2,7 @@
 #main-visual{
     width: 62.797619047619044%;/*633px*/
     height: 332px;
-    border: 1px solid #aa7d80;
+    border: 1px solid rgb(23,62,96);
     border-radius: 7px;
     background-color: #fff;
     margin-bottom: 40px;
@@ -52,14 +52,14 @@
     margin-bottom: 39px;
 }
 #main-visual .detail-view a{
-    background-color: rgb(23,62,96);
+    background-color: rgb(232,180,81);
     color: #fff;
     display: inline-block;
     border-radius: 3px;
     padding: 5px 20px 7px;
 }
 #main-visual .detail-view a:hover, #main-visual .detail-view a:focus{
-    background-color: #b40a13;
+    background-color: rgb(232,180,81);
 }
 #main-visual .bx-prev, #main-visual .bx-next{
     display: block;
@@ -165,7 +165,7 @@
     position: absolute;
     top: 24px;
     right: 16px;
-    color: #b40a13;
+    color: rgb(23, 62, 96);
     font-size: 12px;
 }
 #notice-tab-wrap > div{

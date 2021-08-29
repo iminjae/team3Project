@@ -119,6 +119,9 @@
 		    <br><br>
 		  
 	</div>
+	
+	<%@include file = "../common/footer.jsp" %>
+	
 
        <script>
         window.onload=function(){

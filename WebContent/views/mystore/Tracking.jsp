@@ -90,6 +90,9 @@ int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).ge
 	      	<br>
 	      	<br>
 	      	<br>
+	      	
+	      	<%@include file = "../common/footer.jsp" %>
+	      	
 	<script>
         window.onload=function(){
             var elem = document.getElementById("my");   
