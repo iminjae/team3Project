@@ -8,6 +8,7 @@ import static com.kh.team3.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.team3.eventBoard.model.vo.Board;
 import com.kh.team3.member.model.dao.MemberDao;
 import com.kh.team3.member.model.vo.Member;
 
@@ -106,6 +107,7 @@ public class MemberService {
 
 		return list;
 	}
+	
 	}
 	
 

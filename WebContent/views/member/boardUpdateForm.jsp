@@ -38,7 +38,7 @@
 	color: black;
 	 float: left;
 	 display :block;
-	 margin-left : 30px;
+	 margin-left :  400px;
 	
 }
 
@@ -54,6 +54,16 @@
 #insertForm img {
 	border: 1px dashed darkgray;
 }
+	
+	 
+  #bt{
+    width: 100px;
+    height: 50px;
+    background-color: rgb(161,165,156);
+    color: white;
+    margin-top : 30px;
+    margin-left: 500px;
+  }
 	
 	
 	#deleteBtn{color:gray;}
@@ -83,7 +93,7 @@
 			<textarea class="form-control" rows="3"   name="content" style="resize: none;"><%= b.getBoardContent() %></textarea>
 				
 				<label for="exampleFormControlInput1" class="form-label"> 기존 사진 </label><br>
-	<img src="<%=contextPath %>/resources/board_upfiles/<%= b.getTitleImg() %>" width="200px" height="150px"> <br>
+	<img src="<%=contextPath %>/resources/board_upfiles/<%= b.getTitleImg() %>" width="200px" height="150px"> 
 			<br><br>
 			<label for="exampleFormControlInput1" class="form-label"> 파일 첨부 </label><br>
      		
@@ -94,6 +104,7 @@
 					onchange="loadImg(this, 1);">
 			</div>
 	
+	<br>
 			<div>
 			<input type="checkbox" id="evt" name="evt" value="1">
 						<label for="sports">이벤트 시작</label>
@@ -103,10 +114,13 @@
 			</div>
 
 			<div class="btns" align="center">
-				<button type="submit">수정하기</button>
+				<button type="submit" id="bt">수정하기</button>
 			</div>
+			
 		</form>
-		
+		<br>
+	<%@ include file="../common/footer.jsp" %>
+	
 		<script>
 		$(function() {
 			$("#fileArea").hide();
@@ -132,8 +146,12 @@
 			}
 		}
 		
+
 	</script>
+
+
 	</div>
+	
 	 <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -25,7 +25,7 @@
 <link href="resources\css\common.css" rel="stylesheet" type="text/css">
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="resources\css\common.css">
+
 <script src="resources\js\jquery.js"></script>
 <script src="resources\js\common.js"></script>
 

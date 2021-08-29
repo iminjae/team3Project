@@ -520,6 +520,95 @@ public int replyDel(Connection conn, int rno) {
 }
 
 
+public String[] selectCountB(Connection conn) {
+	
+	String [] result = new String[3];
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectcountb");
+	System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		rset = pstmt.executeQuery();
+		
 
+		int i = 0;
+		while (rset.next()) {
+			
+			result[i] = rset.getString("USER_ID");
+			System.out.println(rset.getString("USER_ID"));
+			
+			if(i == 2) {
+				break;
+			}
+			i++;
+		}
+		
+		System.out.println(result[0]);
+		System.out.println(result[1]);
+		System.out.println(result[2]);
+		
 
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+
+	
+	
+	
+	return result;
 }
+
+public String[] selectCountR(Connection conn) {
+	String [] result = new String[3];
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectcountR");
+	System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		rset = pstmt.executeQuery();
+		
+
+		int i = 0;
+		while (rset.next()) {
+			
+			result[i] = rset.getString("USER_ID");
+			System.out.println(rset.getString("USER_ID"));
+			
+			if(i == 2) {
+				break;
+			}
+			i++;
+		}
+		
+		System.out.println(result[0]);
+		System.out.println(result[1]);
+		System.out.println(result[2]);
+		
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+
+	
+	
+	
+	return result;
+}}
+
+
+
+

@@ -33,7 +33,7 @@ public class ThumbnailUserDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int bid = Integer.parseInt(request.getParameter("bNo"));
+		int bid = Integer.parseInt(request.getParameter("bId"));
 		System.out.println("상세조회 섭블릿 입장 및 board 정보 불러오기");
 		Board b = new EventBoardService().selectBoard(bid);
 		

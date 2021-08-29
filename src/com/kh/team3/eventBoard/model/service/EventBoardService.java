@@ -206,6 +206,32 @@ Connection conn = getConnection();
 		
 		return result;
 	}
+
+	public String[] selectCount() {
+		Connection conn = getConnection();
+			
+		String [] result = new EventBoardDao().selectCountB(conn);
+		
+		close(conn);
+
+
+		return result;
+		
+	
+	}
+
+	public String[] selectCountr() {
+		Connection conn = getConnection();
+		
+		String [] result = new EventBoardDao().selectCountR(conn);
+		
+		close(conn);
+
+
+		return result;
+		
+	
+	}
 }
 
 

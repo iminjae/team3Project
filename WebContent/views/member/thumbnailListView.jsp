@@ -17,90 +17,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<link rel="stylesheet" href="resources\css\myPage_list.css">
+ 
 <title>Insert title here</title>
 <style>
 
-	.listArea{
-		width:760px;
-		height:550px;
-		margin:auto;
-		
-	}
-	.thumbnail{
-		display:inline-block;
-		width:220px;
-		border:3px solid blue;
-		margin:10px;
-		 
-		
-	}
-	.thumbnail:hover{
-		opacity:0.7;
-		cursor:pointer;
-	}
-	 .list-group{
-    float: left;
-    margin-left: 30px;
-    width: 400px;
-    height: 300px;
-    
-  }
-  #one{
-    text-align: center;
-    font-size: large;
-    background-color: blueviolet;
-    color: white;
-    font-weight: bold;
-  }
-
-  .del{
-    margin-left: 100px;
-    float: left;
-    display: block;
-    width: 600px;
-    height: 300px;
-  }
-
-  .form-control{
-
-  }
-
-  #xkfxhl{
-    width: 100px;
-    height: 50px;
-    background-color: blueviolet;
-    color: white;
-
-  }
-  
-  .outer {
-	width: 600px;
-	height: 650px;
-	background: white;
-	color: black;
-	 float: left;
-	 display :block;
-	 margin-left : 30px;
 	
-}
-
-#insertForm>table {
-	border: 1px solid white;
-}
-
-#insertForm input, #insertForm textarea {
-	width: 100%;
-	box-sizing: border-box;
-}
-
-#insertForm img {
-	border: 1px dashed darkgray;
-}
-
-#a{
-	margin-top:25px;
-}
 </style>
 </head>
 <body>
@@ -128,9 +50,6 @@
   </div>
 	
 	<div class="outer">
-		<br>
-		<h2 align="center">사진 게시판</h2>
-		<br>
 		
 		<div class="listArea">
 			<%for(Board b : list){ %>
@@ -138,12 +57,12 @@
 				<input type="hidden" value="<%=b.getBoardNo()%>">	
 				<img src="<%=contextPath %>/resources/board_upfiles/<%= b.getTitleImg() %>" width="200px" height="150px"> <br>
 				<p>
-					 <%=b.getBoardTitle() %> <br>
-					조회수 : <%=b.getBoardCount() %>
+					<span class="badge bg-primary"><%=b.getBoardTitle() %> </span><br>
+					<span class="badge bg-primary">조회수 : <%=b.getBoardCount() %></span> 
 					<%if(b.getBoardStatus().equals("1")) {%>
-						이벤트 진행중 
+						<span class="badge bg-warning text-dark">진행중</span> 
 						<%}else{ %>
-						이벤트 종료
+						<span class="badge bg-danger">종료</span>
 						<%} %>
 				</p>
 			</div>

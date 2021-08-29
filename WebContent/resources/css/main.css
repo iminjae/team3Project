@@ -13,6 +13,7 @@
     padding: 36px 11.532385466034755% 20px 46.44549763033176%; /*36px 73px 20px 294px*/
     min-height:332px;
     position: relative;
+    color : black;
 }
 #main-visual .visual-item-wrap:after{
     content: "";
@@ -33,10 +34,10 @@
 }
 #main-visual .visual-title{
     font-size: 17px;
-    color: #b40a13;
+    color: rgb(23,62,96);
     font-weight: bold;
     margin-bottom: 17px;
-    border-color:rgb(201, 210, 214);
+    border-color:rgb(23,62,96);
     white-space: nowrap;
     overflow: hidden;
     text-overflow:ellipsis;
@@ -51,7 +52,7 @@
     margin-bottom: 39px;
 }
 #main-visual .detail-view a{
-    background-color: rgb(201, 210, 214);
+    background-color: rgb(23,62,96);
     color: #fff;
     display: inline-block;
     border-radius: 3px;
@@ -111,7 +112,7 @@
 #notice-tab-wrap{
     width: 35.91269841269841%;/*362px*/
     height: 332px;
-    border: 1px solid #aa7d80;
+    border: 1px solid rgb(23,62,96);
     border-radius: 7px;
     background-color: #fff;
     position: relative;
@@ -120,7 +121,7 @@
     padding: 22px 13px 0;
 }
 #notice-tab-wrap h4 a{
-    background-color: #e5e1e1;
+    background-color: rgb(201, 210, 214);
     color: #a6a6a6;
     text-align: center;
     width: 84px;
@@ -129,7 +130,7 @@
     display: inline-block;
 }
 #notice-tab-wrap h4 a.on{
-    background-color:rgb(201, 210, 214);
+    background-color:rgb(23,62,96);
     color: #fff;
 }
 #notice-tab-wrap .tab-btn-1{
