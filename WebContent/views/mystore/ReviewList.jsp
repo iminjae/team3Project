@@ -210,7 +210,7 @@
         <p class="reviewWriteTag" align="center">리뷰 쓰기</p>
       
         <div class="reviewWriterform">
-            <p class="toSellerTag"><%=userId %> 님께 드리는 후기 </p>
+            <p class="toSellerTag">" <%=userId %>" 님께 드리는 후기 </p>
             <form action="<%=request.getContextPath()%>/reviewform.rv" id="updateForm" method="post" name="testForm" >
 				<input  type="hidden" name="rno" value="<%= rno %>"/>
                 <input  type="text" class="WriteTextArea" name="content" placeholder="리뷰는 솔직하게 작성해주세요"/><br>
