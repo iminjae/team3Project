@@ -8,13 +8,12 @@ import static com.kh.team3.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+
 import com.kh.team3.sellBoard.model.dao.BoardDao;
 import com.kh.team3.sellBoard.model.vo.Attachment;
 import com.kh.team3.sellBoard.model.vo.Board;
 import com.kh.team3.sellBoard.model.vo.Reply;
 import com.kh.team3.sellBoard.model.vo.ThumbsUp;
-
-
 
 public class BoardService {
 
@@ -138,7 +137,6 @@ public class BoardService {
 		return list;
 	}
 
-
 	public int insertThumbsUp(ThumbsUp thumbsUp) {
 		Connection conn = getConnection();
 
@@ -159,25 +157,25 @@ public class BoardService {
 		Connection conn = getConnection();
 
 		int result = new BoardDao().plusThumbsUp(conn, bNo);
-		
+
 		if (result > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
-		
+
 		return result;
-	
+
 	}
 
 	public int updateBoard(Board b, Attachment at) {
 		Connection conn = getConnection();
 		System.out.println("서비스" + b.toString());
-		
+
 		int result1 = new BoardDao().updateBoard(conn, b);
 		int result2 = new BoardDao().updateAttachment(conn, at);
-		
+
 		System.out.println("updateBoard : " + b);
 
 		if (result1 * result2 > 0) {
@@ -190,27 +188,21 @@ public class BoardService {
 		return result1 * result2;
 	}
 
-	
-	public int delectRList(int bNo) {
+	public int deleteReply(int rNo) {
 		Connection conn = getConnection();
 
-		int result = new BoardDao().delectRList(conn, bNo);
-		
+		int result = new BoardDao().deleteReply(conn, rNo);
+
 		if (result > 0) {
 			commit(conn);
+
 		} else {
 			rollback(conn);
 		}
+
 		close(conn);
-		
+
 		return result;
-	
 	}
 
-	
 }
-
-		
-	}
-
-

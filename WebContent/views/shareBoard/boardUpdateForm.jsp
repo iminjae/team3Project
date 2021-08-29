@@ -26,6 +26,17 @@
 		width:100%;
 		box-sizing:border-box;
 	}
+		button{
+  		background-color: rgb(53,61,64);
+  		color: rgb(255,255,255);
+  	}	
+  	h2{
+  		color: rgb(23,62,96);
+  	}
+  	th{
+  		
+  		color: rgb(232,180,81);
+  	}
 </style>
 </head>
 <body>
@@ -38,7 +49,7 @@
 		<h2>게시글 작성하기</h2>
 		<br>
 		
-		<form id="insertForm" action="<%= request.getContextPath()%>/update.sbo" method="post" >
+		<form id="insertForm" action="<%= request.getContextPath()%>/update.sbo" method="post"enctype="multipart/form-data" >
 			<table align="center">
 				<tr>
 					<th width="100">분야</th>
@@ -66,14 +77,20 @@
 					<td><img id="img1" width="330" height="200"><img id="img2" width="330" height="200"></td>
 					
 				</tr>
+				<tr>	
+				<td></td>
+					<td><input type="hidden" name="bno" value="<%= b.getBoardNo() %>"></td>
+				</tr>
+				
 			</table>
-			<input type="hidden" name="bno" value="<%= b.getBoardNo() %>">
+			
 			<br>
 			<div id="fileArea">
 				<input type="file" name="Sfile1" id="Sfile1" onchange="loadImg(this, 1);"> 
 				<input type="file" name="Sfile2" id="Sfile2" onchange="loadImg(this, 2);"> 
-			
+				<input type="hidden" name="bno" value="<%= b.getBoardNo() %>">
 			</div>
+			
 			<div class="btns" align="center">
 				<button type="reset">취소하기</button>
 				<button type="submit">등록하기</button>

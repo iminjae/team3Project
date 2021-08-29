@@ -96,7 +96,7 @@ public class BoardDao {
             				rset.getString("BOARD_TITLE"),
             				rset.getInt("BOARD_COUNT"),
             				rset.getDate("CREATE_DATE"),
-            				rset.getInt("CATEGORY_NO"),
+            				rset.getString("CATEGORY_NAME"),
             				rset.getString("USER_ID")
                            ));
             
@@ -412,7 +412,7 @@ public class BoardDao {
 	            				rset.getString("BOARD_TITLE"),
 	            				rset.getInt("BOARD_COUNT"),
 	            				rset.getDate("CREATE_DATE"),
-	            				rset.getInt("CATEGORY_NO"),
+	            				rset.getString("CATEGORY_NAME"),
 	            				rset.getString("USER_ID")
 	            				
 	                           ));
@@ -462,7 +462,7 @@ public class BoardDao {
 	            				rset.getString("BOARD_TITLE"),
 	            				rset.getInt("BOARD_COUNT"),
 	            				rset.getDate("CREATE_DATE"),
-	            				rset.getInt("CATEGORY_NO"),
+	            				rset.getString("CATEGORY_NAME"),
 	            				rset.getString("USER_ID")
 	            				
 	                           ));
@@ -577,10 +577,9 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		// selectAttachment=SELECT FILE_NO, ORIGIN_NAME, CHANGE_NAME
-		// FROM ATTACHMENT WHERE BOARD_NO=? AND STATUS='Y'
-
 		String sql = prop.getProperty("updateAttachment");
+		
+		int[] fileNo = selectFileNo(conn,bno) ;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -590,12 +589,12 @@ public class BoardDao {
 			for (int i = 0; i < fileList.size(); i++) {
  
 
-				pstmt.setInt(1, bno);
-	 			pstmt.setInt(2,fileList.get(i).getFileNo());
-	 			pstmt.setString(3,fileList.get(i).getOriginName());
-	 			pstmt.setString(4,fileList.get(i).getChangeName());
-				
+				pstmt.setString(1,fileList.get(i).getChangeName());
+				pstmt.setString(2,fileList.get(i).getOriginName());
+				pstmt.setInt(3,fileNo[i]) ;
+	 			pstmt.setInt(4, bno);
 				result += pstmt.executeUpdate();
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -608,7 +607,34 @@ public class BoardDao {
 		 
 		return result;
 	}
-
 	
+	public int[] selectFileNo(Connection conn, int bno) {
+		
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int[] fileNo= new int[2];
+			int index=0;
+	      String sql = prop.getProperty("selectFileNo");
+	      
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, bno);
+	         
+	         rset = pstmt.executeQuery();
+	         while(rset.next()) {
+	        	 fileNo[index]=rset.getInt("FILE_NO");
+	        	index++;
+	         }
+	        
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return fileNo;
+	   }
 
 }

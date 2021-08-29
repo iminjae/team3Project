@@ -21,6 +21,17 @@
 		width:100%;
 		box-sizing:border-box;
 	}
+	button{
+  		background-color: rgb(53,61,64);
+  		color: rgb(255,255,255);
+  	}	
+  	h2{
+  		color: rgb(232,180,81);
+  	}
+  	th{
+  		
+  		color: rgb(232,180,81);
+  	}
 </style>
 </head>
 <body>
@@ -39,9 +50,9 @@
 					<th width="100">분야</th>
 					<td width="500">
 						<select name="categoryNo">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
+							<option value="6">잡담</option>
+							<option value="7">유머</option>
+							<option value="5">기타</option>
 
 						</select>
 					</td>

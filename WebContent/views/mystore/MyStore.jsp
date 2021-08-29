@@ -33,8 +33,8 @@
   </div>
   <div id="center2">
   	<button id="box" onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">
-      <img src="resources/images/MyStore/heart.png"><br>
-      <b>내가 쓴 리뷰</b>
+      <img src="resources/images/MyStore/chat.png"><br>
+      <b>리뷰</b>
     </button>
     <button id="box" onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">
       <img src="resources/images/MyStore/delivery.png"><br>

@@ -280,9 +280,8 @@ public class MemberDao {
 
 	
 	}
-	}
 
-	
+}
 	
 
 

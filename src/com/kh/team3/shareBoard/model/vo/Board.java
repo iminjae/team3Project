@@ -78,18 +78,19 @@ public class Board {
 		this.categoryNo = categoryNo;
 		this.userId = userId;
 		this.boardType = boardType;
+		
 	}
 
 
 
 
-	public Board(int boardNo, String boardTitle, int boardCount, Date createDate, int categoryNo, String userId) {
+	public Board(int boardNo, String boardTitle, int boardCount, Date createDate, String categoryName, String userId) {
 		super();
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
 		this.boardCount = boardCount;
 		this.createDate = createDate;
-		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
 		this.userId = userId;
 	}
 

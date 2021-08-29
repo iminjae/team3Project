@@ -30,7 +30,7 @@ int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).ge
       <div id="menu">
         <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
-          <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
+          <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">리뷰 확인</button><br>
         <button id="now" onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
       </div>
     </div>
@@ -50,7 +50,7 @@ int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).ge
  		
 		<form action="http://info.sweettracker.co.kr/tracking/5" method="post" >
 	           <div class="form-group">
-	             <input type="hidden" class="form-control" id="t_key" name="t_key"  value ="4vPfmmCdDZ7ywycOTz5biQ">
+	             <input type="hidden" class="form-control" id="t_key" name="t_key"  value ="Zl96RLuXqt6JJKUZ6nfFiw">
 	           </div>
 	           <div>
 			           <div class="form-group">

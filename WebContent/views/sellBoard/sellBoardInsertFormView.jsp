@@ -14,7 +14,22 @@ Member loginUser = (Member) request.getAttribute("loginUser");
    rel="stylesheet"
    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
    crossorigin="anonymous" />
-<style></style>
+<link href="resources\css\common.css" rel="stylesheet" type="text/css">
+<link href="resources\css\main.css" rel="stylesheet" type="text/css">
+<style>
+
+.text-center {
+	/*font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Gaegu', cursive;
+	font-family: 'Gowun Dodum', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;*/
+	font-size: 2em;
+}
+p{
+	font-size: 2em;
+}
+
+</style>
 <title>SellBoard_Insert</title>
 </head>
 
@@ -125,12 +140,11 @@ Member loginUser = (Member) request.getAttribute("loginUser");
             <div class="col-6 d-grid p-1">
                <!-- 뒤로 버튼 어디로연결할지 -->
                <button type="button" class="btn btn-lg btn-outline-secondary"
-                  onclick="location.href=#">버튼</button>
+                  onclick="location.href='<%=request.getContextPath()%>/sellList.bo?currentPage=1';">취소</button>
             </div>
             <div class="col-6 d-grid p-1">
                <input class="btn btn-lg btn-outline-primary" type="submit"
                   value="제출하기">
-               </button>
             </div>
          </div>
       </div>

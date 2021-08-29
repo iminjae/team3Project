@@ -61,7 +61,7 @@
   #one{
     text-align: center;
     font-size: large;
-    background-color: blueviolet;
+    background-color: rgb(23,62,96);
     color: white;
     font-weight: bold;
   }
@@ -85,13 +85,23 @@
     color: white;
 
   }
+   #bt{
+    width: 100px;
+    height: 50px;
+    background-color: rgb(161,165,156);
+    color: white;
+    margin-top : 30px;
+    margin-left: 500px;
+  }
+  
+ 
   
   .outer {
 	width: 600px;
 	height: 650px;
 	background: white;
 	color: black;
-	 float: left;
+
 	 display :block;
 	 margin-left : 30px;
 	
@@ -113,12 +123,33 @@
 #a{
 	margin-top:25px;
 }
+.alla{
+	margin-left : 460px;
+}
+.replyArea{
+	margin-top : 170px;
+	margin-left : 70px;
+}
+#bt2{
+	background-color: rgb(161,165,156);
+}
+
+#replyList {
+  
+  width : 500px;
+  
+}
+.bt3{
+background-color: rgb(161,165,156);
+height : 45px;
+}
 </style>
 </head>
 <body>
-	<%@ include file="../common/menubar.jsp" %>
+
+		<%@ include file="../common/menubar.jsp" %>
 		
-  <div id="header-wrap">
+		  <div id="header-wrap">
   
    <div class="menu">
    <div class="list-group">
@@ -126,9 +157,9 @@
       MyPage Menu
     </button> 
     <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
-   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one">
-   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two">
-    <input type="submit" class="list-group-item list-group-item-action" value="비밀번호 변경" name="for">
+   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one"></button>
+   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
+    <input type="submit" class="list-group-item list-group-item-action" value="비밀번호 변경" name="four">
    <input type="submit" class="list-group-item list-group-item-action" value="회원사진 설정" name="five">  
 		<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
 			<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"> 
@@ -138,57 +169,34 @@
 
 </form>
   </div>
-	
-	
+		</div>
+		</div>
+		<div class="alla">
 	<div class="outer">
-	
-		<br>
-		<h2 align="center">사진게시판 상세보기</h2>
-		<br>
-		
-		<table class="detail" align="center">
-			<tr>
-				<td width="70px">제목</td>
-				<td colspan="5"><%= b.getBoardTitle() %></td>
-			</tr>
-			<tr>
-				<td>작성자</td>
-				<td><%= b.getUserId() %></td>
-				<td>조회수</td>
-				<td><%= b.getBoardCount() %></td>
-				<td>작성일</td>
-				<td><%= b.getCreateDate() %></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td colspan="6">
-					<p id="contentArea"><%= b.getBoardContent() %></p>
-				</td>
-			</tr>
-			<tr>
-				<td>대표사진</td>
-				<td colspan="4">
+	<label for="exampleInputEmail1">제목</label>
+    <input type="text" class="form-control" name="id2" id="exampleInputEmail1"  value="<%= b.getBoardTitle() %>" disabled>
+    <label for="exampleInputEmail1">작성자</label>
+    <input type="text" class="form-control" name="id2" id="exampleInputEmail1"  value="<%= b.getUserId() %>" disabled>
+    <label for="exampleInputEmail1">조회수</label>
+    <input type="text" class="form-control" name="id2" id="exampleInputEmail1"  value="<%= b.getBoardCount() %>" disabled>
+    <label for="exampleInputEmail1">작성일</label>
+    <input type="text" class="form-control" name="id2" id="exampleInputEmail1"  value="<%= b.getCreateDate() %>" disabled>
+    
+	<label for="exampleInputEmail1">작성일</label>
+    <input type="textarea" class="form-control" name="id2" id="exampleInputEmail1"  value="<%= b.getBoardContent() %>" disabled>
+    		
+		<label for="exampleInputEmail1">대표사진</label>
 					<div id="titleImgArea" align="center">
 						<img width="500px" height="300px" id="titleImg" src="<%= request.getContextPath() %>/resources/board_upfiles/<%= fileList.getChangeName() %>">
 					</div>
-				</td>
-				<td>
-					<a download="<%=fileList.getOriginName() %>"  href="<%= request.getContextPath() %>/resources/board_upfiles/<%=fileList.getChangeName()%>">다운로드</a>
-							</td>
-			</tr>			
-		</table>
 		
-		<table class="detail" align="center">
-			<tr>
-				
-			</tr>
-		</table>
+	
 		<form action="" id="postForm" method="post">
 			<input type="hidden" name="bno" value="<%= b.getBoardNo() %>">
 			
 			<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
-					<button type="button" onclick="updateForm();">수정하기</button>
-					<button type="button" onclick="deleteBoard();">삭제하기</button>
+					<button id="bt" type="button" onclick="updateForm();">수정하기</button>
+					<button id="bt" type="button" onclick="deleteBoard();">삭제하기</button>
 				<% }else{ %>
 				
 				<% } %>
@@ -196,17 +204,23 @@
 		
 				<br>
 		
-		
-	</div>
-	
+		</div>
+
+
+
+
+
+
+
+
 		<!-- 댓글 관련 영역 -->
 	<div class="replyArea">
 		<!-- 댓글 작성하는 div -->
-		<table border="1" align="center">
+		<table border="1">
 			<tr>
 				<th>댓글작성</th>
 				<td><textarea rows="3" cols="60" id="replyContent" style="resize:none;"></textarea></td>
-				<td><button id="addReply">댓글등록</button></td>
+				<td><button id="addReply" class="bt3">댓글등록</button></td>
 				
 			</tr>
 		</table>
@@ -215,11 +229,20 @@
 		<!-- 댓글 리스트들 보여주는 div  -->
 		<div id="replyListArea">
 		<form action="" id="form" method="post">
-			<table id="replyList" border="1" align="center">
+			<table id="replyList" class="table table-condensed" border="1" align="center">
 				</form>
 			</table>
 		</div>
 	</div> 
+	
+	</div>
+	
+	
+	<br><br>
+	<%@ include file="../common/footer.jsp" %>
+		
+	
+	
 	<!-- 동적으로 작성될 수 있도록 ajax 이용 -->
 	<script>
 		$(function(){
@@ -259,12 +282,12 @@
 					for(var i in list){
 						<%=b.getBoardNo()%>
 						value += '<tr>'+
-									'<td width="100px">' + list[i].replyWriter+'</td>'+
-									'<td width="330px">' + list[i].replyContent+'</td>'+
-									'<td width="330px">' + list[i].createDate+'</td>'+
-									'<td ><input type="hidden" name="bno" value ="'+<%=b.getBoardNo()%>+'"></td>'+
-									'<td ><input type="hidden" name="rno" value ="'+list[i].replyId+'"></td>'+
-									'<td><button type="button" onclick="deleteReply();">'+'삭제하기'
+									'<td>' + list[i].replyWriter+'</td>'+
+									'<td width="220px">' + list[i].replyContent+'</td>'+
+									'<td>' + list[i].createDate+'</td>'+
+									'<td width="1px"><input type="hidden" name="bno" value ="'+<%=b.getBoardNo()%>+'"></td>'+
+									'<td width="1px"><input type="hidden" name="rno" value ="'+list[i].replyId+'"></td>'+
+									'<td><button id="bt2" type="button" onclick="deleteReply();">'+'삭제하기'
 									'</button></td>'+
 									'</tr>';		
 								
@@ -327,7 +350,10 @@
 		$("#postForm").attr("action", "<%=contextPath%>/deleteB.bo");
 		$("#postForm").submit();
 	}
+
+	
 	</script>
+
 	
 	
 	 <!-- Optional JavaScript; choose one of the two! -->

@@ -12,7 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="resources\css\login.css">
+   <Style>
    
+
+
+   </Style>
 
 </head>
 <body>
@@ -35,7 +39,7 @@
         <input type="password" id="pwdPath" name="pw" placeholder="비밀번호">    
 
             <br>
-        <input type="submit" value="로그인" id="path">
+        <input type="submit" value="로그인" id="path" class="paths">
 
     <div class="check">
     <input type="checkbox" id="session"> <label>로그인 유지</label>

@@ -93,7 +93,7 @@
         <br>
 
 
-        <input type="submit" value="로그인" id="path">
+        <input type="submit" value="회원가입" id="path">
 
     </form>
 

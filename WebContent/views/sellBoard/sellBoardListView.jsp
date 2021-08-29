@@ -24,7 +24,11 @@ String five = "5";
 	rel="stylesheet"
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@700&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<link href="resources\css\common.css" rel="stylesheet" type="text/css">
+<link href="resources\css\main.css" rel="stylesheet" type="text/css">
 <style>
+
 .card {
 	margin-bottom: 10px;
 	display: inline-block;
@@ -46,6 +50,14 @@ String five = "5";
 	opacity: 0.7;
 	cursor: pointer;
 }
+
+.text-center{
+	/*font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Gaegu', cursive;
+	font-family: 'Gowun Dodum', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;*/
+	font-size: 2em;
+}
 </style>
 <title>SellBoard_List</title>
 </head>
@@ -56,85 +68,83 @@ String five = "5";
 
 	<!-- 메인 -->
 	<div class="container">
-		<h2 class="text-center">판매 게시판</h2>
-		
+		<p id=p class="text-center">판매 게시판</p>
 
 		<!-- 로그인유저가 있으면 게시글 작성 -->
 		<div align="right">
 			<%if (userId != null) {%>
-			<button
-				onclick="location.href='<%=request.getContextPath()%>/sellInsertForm.bo'">작성하기</button>
+			<button class="btn btn-outline-secondary"
+				onclick="location.href='<%=request.getContextPath()%>/sellInsertForm.bo'">판매글 등록</button>
 			<%}%>
 		</div>
 		<br>
 
-		<main class="mt-3"><!-- margin -->
-			<div class="container">
-				<div class="row mb-2">
-					<div class="col-12"><!-- 검색바길이 -->						
-							<select class="form-select" onchange="location.href=this.value">
-								<option selected>카테고리 선택</option>
-								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=one %>">태블릿</option>								
-								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=two %>">데스크탑</option>
-								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=three %>">노트북</option>
-								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=four %>">핸드폰</option>
-								<option value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=five %>">기타</option>
-							</select>							
-					</div>
+		<!-- margin -->
+		<div class="container">
+			<div class="row mb-2">
+				<div class="col-12">
+					<!-- 검색바길이 -->
+					<select class="form-select" onchange="location.href=this.value">
+						<option selected>카테고리 선택</option>
+						<option
+							value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=one %>">태블릿</option>
+						<option
+							value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=two %>">데스크탑</option>
+						<option
+							value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=three %>">노트북</option>
+						<option
+							value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=four %>">핸드폰</option>
+						<option
+							value="<%=request.getContextPath()%>/sellCategoryList.bo?category=<%=five %>">기타</option>
+					</select>
 				</div>
-				
-				<div class="row g-3">
-					<div class="col-xl-3 col-lg-4 col-md-6"><!-- container 안에서 컴포넌트 요소 정렬 -->
-						<%
-						for (Board b : list) {
-						%>
-						<div class="thumbnail" align="center">
-							<input type="hidden" value="<%=b.getBoardNo()%>">
-							<div class="card" style="width: 220px;">
-								<img
-									src="<%=request.getContextPath()%>/resources/board_upfiles/<%=b.getTitleImg()%>"
-									width="200px" height="150px" class="card-img-top" />
+			</div>
+			<div class="col-xl-12 col-lg-4 col-md-6" >
+				<!-- container 안에서 컴포넌트 요소 정렬 -->
+				<% for (Board b : list) {%>
+				<div class="thumbnail" align="center">
+					<input type="hidden" value="<%=b.getBoardNo()%>">
+					<div class="card" style="width: 16em;">
+						<img
+							src="<%=request.getContextPath()%>/resources/board_upfiles/<%=b.getTitleImg()%>"
+							width="200px" height="150px" class="card-img-top" />
 
-								<div class="card-body">
-									<p class="card-text">
-									<h4>
-										<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
-										<%if (b.getBoardStatus().equals("판매중")) {%>
-										<span class="badge bg-primary">판매중</span>
+						<div class="card-body">
+							<p class="card-text">
+							<h4>
+								<span class="badge bg-secondary"><%=b.getCategoryName()%></span>
+								<%if (b.getBoardStatus().equals("판매중")) {%>
+								<span class="badge bg-primary">판매중</span>
 
-										<%} else if (b.getBoardStatus().equals("예약중")) {%>
-										<span class="badge bg-success">예약중</span>
+								<%} else if (b.getBoardStatus().equals("예약중")) {%>
+								<span class="badge bg-success">예약중</span>
 
-										<%} else if (b.getBoardStatus().equals("판매완료")) {%>
-										<span class="badge bg-warning">판매완료</span>
-										<%}%>
-									</h4>
-									
-									<br>
-									<h5 class="card-title">
-										<%=b.getBoardTitle()%>
-									</h5>
+								<%} else if (b.getBoardStatus().equals("판매완료")) {%>
+								<span class="badge bg-warning">판매완료</span>
+								<%}%>
+							</h4>
 
-									<span><%=b.getUserId()%></span>
-									<div class="d-flex justify-content-between align-items-center">
-										<!--추천수, 조회수, 찜하기?-->
-
-										<!-- 버튼 필요시 연결-->
-										<!-- <div class="btn-group" role="group">
+							<br>
+							<h5 class="card-title"><%=b.getBoardTitle()%></h5>							
+							<span><%=b.getUserId()%></span>
+							<br><br>
+							
+							<div class="d-flex justify-content-between align-items-center">
+								<!--추천수, 조회수, 찜하기?-->
+								<!-- 버튼 필요시 연결-->
+								<!-- <div class="btn-group" role="group">
                          			 <button type="button" class="btn btn-sm btn-outline-secondary">버튼1</button>
                           			 <button type="button" class="btn btn-sm btn-outline-secondary">버튼2</button>
                         			</div> -->
-										<small class="text-dark">조회수 <%=b.getbCnt()%></small> <small
-											class="text-dark" align="right">추천수 <%=b.getLikeCnt()%></small>
-									</div>
-								</div>
+								<small class="text-dark">조회수 <%=b.getbCnt()%></small> <small
+									class="text-dark" align="right">👍 추천수 <%=b.getLikeCnt()%></small>
 							</div>
 						</div>
-						<%}%>
 					</div>
 				</div>
+				<%}%>
 			</div>
-		</main>
+		</div>
 	</div>
 
 	<script
