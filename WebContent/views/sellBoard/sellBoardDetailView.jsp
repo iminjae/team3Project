@@ -377,12 +377,12 @@ p{
 		            $(this).html('확인');
 		        })
 		   <%} else {%>
-			  	var _width = '500';
-			    var _height = '600';
+			  	var _width = '510';
+			    var _height = '630';
 			 
 			    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 			    var _left = Math.ceil(( window.screen.width - _width )/2);
-			    var _top = Math.ceil(( window.screen.height - _height )/2); 
+			    var _top = Math.ceil(( window.screen.height - _height )/4); 
 			 
 			    window.open('<%=request.getContextPath()%>/review.rv?rno=<%=b.getBoardNo()%>&userId=<%=b.getUserId()%>', '리뷰 쓰기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 		   <%}%>
