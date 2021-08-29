@@ -34,22 +34,33 @@
 		
 	}
 	
-	.board>tbody>tr:hover{
-		cursor:pointer
-	}
 	table {
     	width: 100%;
-    	border-top: 1px solid #444444;
-    	border-collapse: collapse;
+    	
   	}
-  	th, td {
+	.board>tbody>tr:hover{
+		cursor:pointer;
+		
+	}
+	
+	td{
+  	color: rgb(232,180,81);
+  	}
+  	td {
     	border-bottom: 1px solid #444444;
     	padding: 10px;
     	font-size:11px;
+    	height:30px;
   	}
-  	td{
-  		height:30px;
+  	th{
+  		background-color: rgb(53,61,64);
+  		color: rgb(255,255,255);
   	}
+  	button{
+  		background-color: rgb(53,61,64);
+  		color: rgb(255,255,255);
+  	}	
+  	
   	</style>
 </head>
 <body>
@@ -58,7 +69,7 @@
 	<div class="box">
 		<br>
 		
-		<h3>자유 게시판</h3>
+		<h3>나눔 게시판</h3>
 		<br>
 		
 		<table class="board"  align="center">
@@ -82,7 +93,7 @@
 				<% for(Board b : list){ %>
 				<tr>
 					<td><%= b.getBoardNo() %></td>
-					<td><%= b.getCategoryNo() %></td>
+					<td><%= b.getCategoryName() %></td>
 					<td class="link"><%= b.getBoardTitle() %></td>
 					<td><%= b.getUserId() %></td>
 					<td><%= b.getBoardCount() %></td>
