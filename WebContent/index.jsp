@@ -51,9 +51,9 @@
 
 <div class="find">
 
-    <a href="" id="idfind">아이디 찾기</a>
+    <a href="views\member\findid.jsp" onclick="window.open(this.href,'팝업창','width=500,height=800'); return false;" id="idfind">아이디 찾기</a>
     <span> | </span>
-    <a href="" id="pwdfind">비밀번호 찾기</a>
+    <a href="views\member\findid3.jsp" onclick="window.open(this.href,'팝업창','width=500,height=800'); return false;" id="pwfind">비밀번호 찾기</a>
     <span> | </span>    
     <a id="createuser" href="<%=request.getContextPath()%>/create.bo">회원가입</a>
 
@@ -70,7 +70,7 @@
         <a href="" id="idfind">이용약관</a>
         <span> | </span>
         <a href="" id="pwdfind">중고거래 주의사항</a>
-        <span> | </span>    
+        <span> | </span>     	
         <a href="" id="pwdfind">중고거래 법적사항</a>
         <span> | </span>    
         <a href="" id="pwdfind">고객센터</a>
@@ -87,9 +87,8 @@
 
     </div>
     
-<script>
 
-
+</script>
    
 </body>
 </html>

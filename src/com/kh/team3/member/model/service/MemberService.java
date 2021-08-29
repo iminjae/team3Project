@@ -107,8 +107,46 @@ public class MemberService {
 
 		return list;
 	}
-	
+
+ public Member findallmem(String name, String phone) {
+
+		Connection conn = getConnection();
+		Member list = new Member();
+		System.out.println("서비스시작");
+		list = new MemberDao().findMembertwo(conn,name,phone);
+		System.out.println("서비스끝");
+		
+		close(conn);
+
+		return list;
 	}
+public Member findallmempw(String id, String phone) {
+	Connection conn = getConnection();
+	Member list = new Member();
+	System.out.println("서비스시작");
+	list = new MemberDao().findMemberthree(conn,id,phone);
+	System.out.println("서비스끝");
+	
+	close(conn);
+
+	return list;
+}
+public int updateMemberpw(String id , String pw  ) {
+	Connection conn = getConnection();
+	Member updateMem = null;
+	int result = new MemberDao().updateMemberpw(conn, id,pw);
+	System.out.println("서비스 re " + result);
+	if (result > 0) {
+		commit(conn);
+
+	} else {
+		rollback(conn);
+	}
+	close(conn);
+	return result;
+}
+	}
+	
 	
 
 
