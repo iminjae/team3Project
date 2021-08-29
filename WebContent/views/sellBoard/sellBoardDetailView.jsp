@@ -191,13 +191,21 @@ p{
 							<!-- 버튼 만들기(찜, 추천, 1:1 채팅)-->
 
 							<div class="d-flex justify-content-between align-items-center">
-								<!-- 버튼그룹 -->
-								<button id=btn1 class="btn btn-outline-secondary"
-									onclick="thumbsUp();">좋아요👍</button>
-								<button id=btn2 class="btn btn-outline-secondary"
-									onclick="insertJjim();">찜💙</button>
-								<button id=btn3 class="btn btn-outline-secondary"
-									onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
+
+								<div class="col-6 d-grid p-1">
+									<button id="btn1" type="button"
+										class="btn btn-outline-secondary" onclick="thumbsUp();">좋아요👍</button>
+								</div>
+								<div class="col-6 d-grid p-1">
+									<button id="btn2" type="button"
+										class="btn btn-outline-secondary" onclick="insertJjim();">찜💙</button>
+								</div>
+								<div class="col-6 d-grid p-1">
+									<button id="btn3" type="button"
+										class="btn btn-outline-secondary"
+										onclick="location.href='<%=request.getContextPath()%>/ChatServlet'">1:1채팅💌</button>
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -426,6 +434,7 @@ p{
 	              }
 	      }
   </script>
+
 
 </body>
 </html>

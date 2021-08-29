@@ -169,7 +169,7 @@
                location.href="<%= request.getContextPath()%>/myreviewdetail.ms?nno="+nno;
                      
             })
-         })
+         });
          <% } %>
          
          

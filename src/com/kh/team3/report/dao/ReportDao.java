@@ -56,14 +56,13 @@ public class ReportDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				// 생성자 없어서 건건이 add 해서 객체 생성
+			
 				Report r = new Report();
 				r.setReportNo(rset.getInt("REPORT_NO"));
-				r.setReportCategory(rset.getString("REPORT_CATEGORY"));
 				r.setReportWriter(rset.getString("USER_ID"));
 				r.setReportNick(rset.getString("REPORT_NICKNAME"));
 				r.setReportDate(rset.getString("REPORT_CREATEDATE"));
-
+				r.setReportContent(rset.getString("REPORT_CONTENT"));
 				
 
 				list.add(r);
@@ -91,7 +90,6 @@ public class ReportDao {
 		System.out.println(r.getReportNick());
 		System.out.println(r.getReportContent());
 		System.out.println(r.getReportWriter());
-		System.out.println(r.getReportCategory());
 		
 		
 		
@@ -102,7 +100,6 @@ public class ReportDao {
 			pstmt.setString(1, r.getReportNick());
 			pstmt.setString(2, r.getReportContent());
 			pstmt.setString(3, r.getReportWriter());
-			pstmt.setString(4, r.getReportCategory());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -137,8 +134,7 @@ public class ReportDao {
 									rset.getString("REPORT_NICKNAME"),
 									rset.getString("REPORT_CONTENT"),
 									rset.getString("USER_ID"),
-									rset.getString("REPORT_CREATEDATE"),
-									rset.getString("REPORT_CATEGORY")
+									rset.getString("REPORT_CREATEDATE")
 								
 							);
 	         }
