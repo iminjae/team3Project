@@ -192,6 +192,6 @@ pageEncoding="UTF-8"%>
             }
         }
         </script>
-
+<%@include file = "../common/footer.jsp" %>
 </body>
 </html>

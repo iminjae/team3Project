@@ -41,13 +41,13 @@ Review rv = (Review) request.getAttribute("review");
 #btn2 {
 	width: 150px;
 	height: 50px;
-	margin-left: -100px;
+	margin-left: -80px;
 }
 
 #btn3 {
 	width: 150px;
 	height: 50px;
-	margin-left: -100px;
+	margin-left: -160px;
 }
 
 .mt-3 {
@@ -434,7 +434,7 @@ p{
 	              }
 	      }
   </script>
-
+<%@include file = "../common/footer.jsp" %>
 
 </body>
 </html>
