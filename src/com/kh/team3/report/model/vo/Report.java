@@ -9,7 +9,6 @@ public class Report {
 	private String reportWriter;
 	private String reportDate;
 	
-	private String reportCategory;
 	
 		
 	public Report() {
@@ -20,46 +19,15 @@ public class Report {
 
 
 	public Report(int reportNo, String reportNick, String reportContent, String reportWriter,
-			String reportDate, String reportCategory) {
+			String reportDate) {
 		super();
 		this.reportNo = reportNo;
 		this.reportNick = reportNick;
 		this.reportContent = reportContent;
 		this.reportWriter = reportWriter;
 		this.reportDate = reportDate;
-		this.reportCategory = reportCategory;
+
 	}
-
-
-
-
-
-
-
-
-
-
-
-	public String getReportCategory() {
-		return reportCategory;
-	}
-
-
-
-
-
-
-
-
-
-
-
-	public void setReportCategory(String reportCategory) {
-		this.reportCategory = reportCategory;
-	}
-
-
-
 
 
 
@@ -152,37 +120,14 @@ public class Report {
 
 
 
-
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "Report [reportNo=" + reportNo + ", reportNick=" + reportNick + ", reportContent=" + reportContent
-				+ ", reportWriter=" + reportWriter + ", reportDate=" + reportDate + ", reportCategory=" + reportCategory
+				+ ", reportWriter=" + reportWriter + ", reportDate=" + reportDate
 				+ "]";
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
 	
 	
 }

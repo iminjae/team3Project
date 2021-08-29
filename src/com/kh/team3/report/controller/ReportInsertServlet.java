@@ -1,6 +1,7 @@
 package com.kh.team3.report.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,7 +39,6 @@ public class ReportInsertServlet extends HttpServlet {
 		String reportUserId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
 		String reportNickName = request.getParameter("reportNickName");
-		String reportCategory= request.getParameter("reportCategory");
 		String reportContent = request.getParameter("reportContent");
 		
 		
@@ -46,15 +46,34 @@ public class ReportInsertServlet extends HttpServlet {
 		
 		r.setReportWriter(reportUserId);
 		r.setReportNick(reportNickName);
-		r.setReportCategory(reportCategory);
 		r.setReportContent(reportContent);
 		
 		
 		int result = new ReportService().insert(r);
 		
 		if(result > 0) {
+			
+		/*	response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("성공적으로 제출이 완료되었습니다."); 
+			out.close();
+			
+		*/
+			
+			
+			
 			request.getSession().setAttribute("msg", "제출 성공");
-			response.sendRedirect("views/common/mainPage.jsp");  
+			request.getRequestDispatcher("ReportInsertFormServlet").forward(request, response);
+			
+			
+
+
+			
+			
+			
 		}else {
 			request.setAttribute("msg", "제출실패");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
