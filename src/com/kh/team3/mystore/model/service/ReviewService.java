@@ -45,6 +45,16 @@ public class ReviewService {
 		return list;	
 	}
 	
+	//내가 받은 리뷰 조회
+	public ArrayList<Review> selectGetList(String loginUserId) {
+		Connection conn = getConnection();
+		System.out.println("서비스 내가 받은 리뷰 조회 아이디" + loginUserId);
+		ArrayList<Review> list = new ReviewDao().selectGetList(conn, loginUserId);
+		close(conn);
+		
+		return list;	
+	}
+	
 	//디테일서비스
 	public Review selectReview(int nno) {
 		Connection conn = getConnection();
@@ -110,6 +120,8 @@ public class ReviewService {
 		
 		return result;
 	}
+
+
 	
 //	//찜 하나만 조회에서 jsp에서
 //	public Jjim selectJjimOne(String userId, int bNo) {

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+.listArea{
+		width:760px;
+		height:550px;
+		margin:auto;
+		
+	}
+	.thumbnail{
+		display:inline-block;
+		width:220px;
+		border:5px solid rgb(23,62,96);
+		margin:10px;
+		 
+		
+	}
+	.thumbnail:hover{
+		opacity:0.7;
+		cursor:pointer;
+	}
+	 .list-group{
+    float: left;
+    margin-left: 30px;
+    width: 400px;
+    height: 300px;
+    
+  }
+  #one{
+    text-align: center;
+    font-size: large;
+    background-color: rgb(23,62,96);
+    color: white;
+    font-weight: bold;
+  }
+
+  .del{
+    margin-left: 100px;
+    float: left;
+    display: block;
+    width: 600px;
+    height: 300px;
+  }
+
+  .form-control{
+
+  }
+
+  
+  .outer {
+	width: 600px;
+	height: 650px;
+	
+	color: black;
+	 float: left;
+	 display :block;
+	 margin-left : 30px;
+	
+}
+
+#insertForm>table {
+	border: 1px solid white;
+}
+
+#insertForm input, #insertForm textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#insertForm img {
+	border: 1px dashed darkgray;
+}
+
+#a{
+	margin-top:25px;
+}
+
+#button{
+	    width: 100px;
+    height: 50px;
+    background-color: rgb(161,165,156);
+    color: white;
+   margin-right: 100px;
+
+	
+}
+
+

@@ -1,13 +1,11 @@
 <%@page import="com.kh.team3.sellBoard.model.vo.Attachment"%>
 <%@page import="com.kh.team3.sellBoard.model.vo.Board"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 <% 
 	Board b = (Board)request.getAttribute("board");
 	Attachment at = (Attachment)request.getAttribute("at");
-	String category = b.getCategoryName();
-	
+	String category = b.getCategoryName();	
 	String[] selected = new String[5];
 	
 	switch(category){
@@ -16,8 +14,7 @@
 	case "노트북": selected[2] = "selected"; break;
 	case "핸드폰": selected[3] = "selected"; break;
 	case "기타": selected[4] = "selected"; break;
-	}
-	
+	}	
 %>
 <!DOCTYPE html>
 <html>
@@ -29,19 +26,30 @@
    rel="stylesheet"
    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
    crossorigin="anonymous" />
+<link href="resources\css\common.css" rel="stylesheet" type="text/css">
+<link href="resources\css\main.css" rel="stylesheet" type="text/css">
+<link href="resources\css\sellBoard_css\sbUpdateForm.css" rel="stylesheet" type="text/css">
 <title>SellBoard_Update</title>
 </head>
+<style>
+.text-center {
+	/*font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Gaegu', cursive;
+	font-family: 'Gowun Dodum', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;*/
+	font-size: 2em;
+}
+</style>
 <body>
 	<!-- 메뉴바 -->
 	<%@ include file="../common/menubar.jsp"%>
-
 	<!-- 메인 -->
 	<form id="insertForm"
 		action="<%=request.getContextPath()%>/sellUpdate.bo" method="post"
 		enctype="multipart/form-data">
 		<input type="hidden" name="bNo" value="<%=b.getBoardNo()%>">
 		<div class="container">
-			<h2 class="text-center">판매글 등록</h2>
+			<h2 class="text-center">판매글 수정</h2>
 			<br>
 			<div class="mb-3 row">
 				<label class="col-md-3 col-form-label">제목</label>
@@ -91,7 +99,7 @@
 				</div>
 			</div>
 			<div class="mb-3 row">
-				<label class="col-md-3 col-form-label">기존 이미지</label>
+				<label class="col-md-3 col-form-label">대표 이미지</label>
 				<div class="col-md-9">
 					<div class="alert alert-secondary" role="alert">
 						<ul>
@@ -105,7 +113,7 @@
 				</div>
 			</div>
 			<div class="mb-3 row">
-				<label class="col-md-3 col-form-label">수정 이미지</label>
+				<label class="col-md-3 col-form-label">판매물품 이미지</label>
 				<div class="col-md-9">
 					<div class="alert alert-secondary" role="alert">
 						<ul>
@@ -141,7 +149,7 @@
 				<div class="col-6 d-grid p-1">
 					<!-- 뒤로 버튼 어디로연결할지 -->
 					<button type="button" class="btn btn-lg btn-outline-secondary"
-						onclick="location.href=#">버튼</button>
+						onclick="location.href='<%=request.getContextPath()%>/sellList.bo?currentPage=1';">목록으로</button>
 				</div>
 				<div class="col-6 d-grid p-1">
 					<input class="btn btn-lg btn-outline-primary" type="submit"

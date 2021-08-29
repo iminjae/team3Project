@@ -19,53 +19,14 @@ String userId = ((Member)request.getSession().getAttribute("loginUser")).getUser
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<link rel="stylesheet" href="resources\css\myPage_pic.css">
+ 
     <title>마이 페이지</title>	
   </head>
 
 
 <style>
-  .list-group{
-    float: left;
-    margin-left: 30px;
-    width: 400px;
-    height: 300px;
-    
-  }
-  #one{
-    text-align: center;
-    font-size: large;
-    background-color: blueviolet;
-    color: white;
-    font-weight: bold;
-  }
-
-  .del{
-    margin-left: 100px;
-    float: left;
-    display: block;
-    width: 600px;
-    height: 300px;
-  }
-
-  .form-control{
-
-  }
-
-  #xkfxhl{
-    width: 100px;
-    height: 50px;
-    background-color: blueviolet;
-    color: white;
-    margin-top : 30px;
-    margin-left: 500px;
-
-	#exampleInputEmail1{
-		margin-top : 30px;
-	}
-
-  }
-  
+ 
 </style>  
 
 
@@ -91,15 +52,25 @@ String userId = ((Member)request.getSession().getAttribute("loginUser")).getUser
 				
 				<% } %>
 
+
+  </div>
+
+</div>
 </form>
 
-	<label for="exampleFormControlInput1" class="form-label"> 기존 사진 </label><br>
+</div>
+	
+	<div id="alla">
+	
+	<label for="exampleFormControlInput1" class="form-label"> 기존 프로필 </label><br>
 	<img src="<%=contextPath%>/resources/board_upfiles/<%= path %>" width="200px" height="150px"> <br>
-<form id="insertForm" action="<%=request.getContextPath()%>/insertpic.th" method="post" enctype="multipart/form-data"
+	<form id="insertForm" action="<%=request.getContextPath()%>/insertpic.th" method="post" enctype="multipart/form-data"
 			>
 
+		</div>
 
-<label for="exampleFormControlInput1" class="form-label"> 파일 첨부 </label><br>
+	<div>
+	<label for="exampleFormControlInput1" class="form-label"> 변경 프로필 </label><br>
      		<input type="hidden" name="id" value="<%=userId%>">
 			
 					<img id="titleImg"  width="150" height="120">
@@ -111,16 +82,13 @@ String userId = ((Member)request.getSession().getAttribute("loginUser")).getUser
 
 			<br>
 
-			<div class="btns" align="center">
-
+		</div>
 				<input type="submit" id="xkfxhl" value="작성하기">
-			</div>
+			
 		</form>
 
 
-  </div>
 
-</div>
 
 
 

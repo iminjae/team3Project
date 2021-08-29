@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.team3.freeBoard.model.service.BoardService;
 import com.kh.team3.member.model.vo.Member;
 import com.kh.team3.mystore.model.service.ReviewService;
 import com.kh.team3.mystore.model.vo.Review;
@@ -56,15 +57,25 @@ public class ReviewFormServlet extends HttpServlet {
 	      System.out.println("리뷰서블릿 :" + userId);
 	      System.out.println("리뷰서블릿 :" + content);
 	      System.out.println("리뷰서블릿 :" + reviews);
+	      
+	    
+		    //명선님 파트
+		  	String rate=request.getParameter("rate");
+			String userIdstar=request.getParameter("userId");
+			Member m = new Member();
+			m.setUserId(userIdstar);
+			
+			int result = new BoardService().updateStar(m,rate);
+		
 
 	      
 	    
 	      
 	      Review rv = new Review(userId, rno, content, reviews);
 	      
-	      int result = new ReviewService().insertReview(userId, rv);
+	      int resultreview= new ReviewService().insertReview(userId, rv);
 	      
-	      if(result > 0) {
+	      if(resultreview * result  > 0) {
 	    	  	request.getSession().setAttribute("msg", "게시물 등록 성공");
 			}else {
 				request.setAttribute("msg", "리뷰 등록 실패했습니다");

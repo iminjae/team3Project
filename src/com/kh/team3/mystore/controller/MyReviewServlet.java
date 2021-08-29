@@ -45,6 +45,9 @@ public class MyReviewServlet extends HttpServlet {
 				ArrayList<Review> rvlist = new ReviewService().selectList(loginuserId);
 				request.setAttribute("rvlist", rvlist);
 				
+				ArrayList<Review> getlist = new ReviewService().selectGetList(loginuserId);
+				request.setAttribute("getlist", getlist);
+				
 				RequestDispatcher view =request.getRequestDispatcher("views/mystore/MyReview.jsp");
 			    view.forward(request, response);
 			

@@ -64,7 +64,7 @@ public class ReviewDao {
 		return result;
 	}
 
-	//목록
+	//리뷰 목록
 	public ArrayList<Review> selectList(Connection conn, String loginUserId) {
 		ArrayList<Review> list = new ArrayList<Review>();
 		
@@ -74,10 +74,9 @@ public class ReviewDao {
 		String sql = prop.getProperty("selectReviewList");
 		
 
-		System.out.println("다오 sql" + sql);
+
 		try {
-			System.out.println("다오 try sql" + sql);
-			System.out.println("다오 트라이안 아이디"+ loginUserId);
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, loginUserId );
 			rset = pstmt.executeQuery(); 
@@ -93,7 +92,53 @@ public class ReviewDao {
 									rset.getInt("BOARD_COUNT"),
 									rset.getInt("LIKE_COUNT"),
 									rset.getString("REVIEW_CONTENT"),
-									rset.getString("REVIEW_RADIO")
+									rset.getString("REVIEW_RADIO")								
+									));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		System.out.println("리뷰리스트다오>" + list);
+		return list;
+	}
+	
+	//내가받은 리뷰 조회
+	public ArrayList<Review> selectGetList(Connection conn, String loginUserId) {
+ArrayList<Review> list = new ArrayList<Review>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectGetReviewList");
+		
+
+		System.out.println("다오 sql" + sql);
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, loginUserId );
+			
+			rset = pstmt.executeQuery(); 
+
+			
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("BOARD_NO"),
+									rset.getString("CATEGORY_NAME"),
+									rset.getString("BOARD_TITLE"),
+									rset.getString("USER_ID"),
+									rset.getDate("CREATE_DATE"), 
+									rset.getInt("BOARD_COUNT"),
+									rset.getInt("LIKE_COUNT"),
+									rset.getString("REVIEW_CONTENT"),
+									rset.getString("REVIEW_RADIO"),
+									rset.getString("USER_ID")
 									));
 			}
 			
@@ -221,7 +266,8 @@ public class ReviewDao {
 									rset.getString("BOARD_COUNT"),
 									rset.getInt("LIKE_COUNT"),
 									rset.getString("JJIM_CHECK"),
-									rset.getString("CHANGE_NAME")
+									rset.getString("CHANGE_NAME"),
+									rset.getString("BOARD_STATUS")
 									));
 			}
 			
@@ -288,6 +334,8 @@ public class ReviewDao {
 		
 		return result;
 	}
+
+
 	
 //	//찜 하나만 조회 jsp에서 
 //	public Jjim selectJjimOne(Connection conn, String userId, int bNo) {

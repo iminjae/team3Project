@@ -66,7 +66,7 @@ public class SellBoardUpdateServlet extends HttpServlet {
 		b.setPrice(price);
 		b.setCategory(category);
 		b.setBoardStatus(boardStatus);
-		b.setBoardContent(content);
+		b.setBoardContent(content.replace("\n", "<br>"));
 		
 		Attachment at = new Attachment();
 

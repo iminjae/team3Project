@@ -12,12 +12,13 @@ public class Jjim {
 	private int likeCnt;
 	private String userId;
 	private String changeName;
+	private String boardStatus;
 	
 	public Jjim() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Jjim(String jjimNo, String jjimCheck, int boardNo, String boardTitle, String boardCount, int likeCnt, String userId,  String changeName) {
+	public Jjim(String jjimNo, String jjimCheck, int boardNo, String boardTitle, String boardCount, int likeCnt, String userId,  String changeName, String boardStatus) {
 		super();
 		this.jjimNo = jjimNo;
 		this.jjimCheck = jjimCheck;
@@ -27,10 +28,11 @@ public class Jjim {
 		this.likeCnt = likeCnt;
 		this.userId = userId;
 		this.changeName = changeName;
+		this.boardStatus = boardStatus;
 	}
 	
 	//조회 찜
-	public Jjim(int boardNo, String userId, String boardTitle, String boardCount, int likeCnt, String jjimCheck, String changeName) {
+	public Jjim(int boardNo, String userId, String boardTitle, String boardCount, int likeCnt, String jjimCheck, String changeName, String boardStatus) {
 		super();
 		this.boardNo = boardNo;
 		this.userId = userId;
@@ -39,6 +41,7 @@ public class Jjim {
 		this.likeCnt = likeCnt;
 		this.jjimCheck = jjimCheck;
 		this.changeName = changeName;
+		this.boardStatus = boardStatus;
 	}
 	
 	//찜 하나 조회
@@ -125,13 +128,24 @@ public class Jjim {
 	public void setChangeName(String changeName) {
 		this.changeName = changeName;
 	}
+	
+	
+
+	public String getBoardStatus() {
+		return boardStatus;
+	}
+
+	public void setBoardStatus(String boardStatus) {
+		this.boardStatus = boardStatus;
+	}
 
 	@Override
 	public String toString() {
 		return "Jjim [jjimNo=" + jjimNo + ", jjimCheck=" + jjimCheck + ", boardNo=" + boardNo + ", boardTitle="
 				+ boardTitle + ", boardCount=" + boardCount + ", likeCnt=" + likeCnt + ", userId=" + userId
-				+ ", changeName=" + changeName + "]";
+				+ ", changeName=" + changeName + ", boardStatus=" + boardStatus + "]";
 	}
+
 
 	
 	

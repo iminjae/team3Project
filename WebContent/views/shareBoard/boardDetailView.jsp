@@ -84,12 +84,18 @@
 		width:100%;
 		height:30px;
 	}
-	div{
-		
-		clear:both;
-		float:inherit;
-	}
-	
+
+	td,th {
+    	color:rgb(23,62,96);
+    	font-size:11px;
+    	height:30px;
+  	}
+
+  	button{
+  		background-color: rgb(53,61,64);
+  		color: rgb(255,255,255);
+  	}	
+  		
 </style>
 </head>
 <body>
@@ -104,11 +110,11 @@
             <th colspan="2" align="left"><%= b.getBoardTitle() %></th>
         </tr>
         <tr>
-            <td rowspan="2" height="100">프로필사진</td>
-            <th width="100" colspan="2" height="70" align="left"><%= b.getUserId() %></th> 
+            <td rowspan="2" height="100" style="background-color:rgb(23,62,96)"></td>
+            <th width="100" colspan="2" height="70" align="left">&nbsp	 <%= b.getUserId() %></th> 
          </tr>
          <tr>
-            <td><%= b.getCreateDate() %></td>
+            <td> &nbsp <%= b.getCreateDate() %></td>
             <td align="right">조회수 : <%= b.getBoardCount() %></td>
          </tr>
       </table>

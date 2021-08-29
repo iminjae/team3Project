@@ -30,7 +30,7 @@
 	.thumbnail{
 		display:inline-block;
 		width:220px;
-		border:3px solid blue;
+		border:5px solid  rgb(23,62,96);;
 		margin:10px;
 		 
 		
@@ -49,7 +49,7 @@
   #one{
     text-align: center;
     font-size: large;
-    background-color: blueviolet;
+    background-color: rgb(23,62,96);
     color: white;
     font-weight: bold;
   }
@@ -81,7 +81,7 @@
 	color: black;
 	 float: left;
 	 display :block;
-	 margin-left : 30px;
+	 margin-left : 400px;
 	
 }
 
@@ -110,7 +110,7 @@
 	
 	<div class="outer">
 		<br>
-		<h2 align="center">사진 게시판</h2>
+		<h2 align="center"></h2>
 		<br>
 		
 		<div class="listArea">
@@ -119,8 +119,13 @@
 				<input type="hidden" value="<%=b.getBoardNo()%>">	
 				<img src="<%=contextPath %>/resources/board_upfiles/<%= b.getTitleImg() %>" width="200px" height="150px"> <br>
 				<p>
-					 <%=b.getBoardTitle() %> <br>
-					조회수 : <%=b.getBoardCount() %>
+					 	<span class="badge bg-primary"><%=b.getBoardTitle() %> </span><br>
+					<span class="badge bg-primary">조회수 : <%=b.getBoardCount() %></span> 
+					<%if(b.getBoardStatus().equals("1")) {%>
+						<span class="badge bg-warning text-dark">진행중</span> 
+						<%}else{ %>
+						<span class="badge bg-danger">종료</span>
+						<%} %>
 				</p>
 			</div>
 			<%} %>
@@ -136,11 +141,14 @@
 			$(function(){
 				$(".thumbnail").click(function(){
 					var bId = $(this).children().eq(0).val();
-					location.href="<%=contextPath%>/detail.th?bId=" + bId;
+					location.href="<%=contextPath%>/detailuser.th?bId=" + bId;
 					 
 				});
 			});
 		</script>
+	<br>
+	<%@ include file="../common/footer.jsp" %>
+	
 	</div>
 	
 	 <!-- Optional JavaScript; choose one of the two! -->

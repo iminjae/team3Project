@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+ .list-group{
+    float: left;
+    margin-left: 30px;
+    width: 400px;
+    height: 300px;
+    
+  }
+  #one{
+    text-align: center;
+    font-size: large;
+    background-color: rgb(23, 62 ,96);
+    color: white;
+    font-weight: bold;
+  }
+
+  .del{
+    margin-left: 100px;
+    float: left;
+    display: block;
+    width: 600px;
+    height: 300px;
+  }
+
+  .form-control{
+
+  }
+
+  #xkfxhl{
+    width: 100px;
+    height: 50px;
+    background-color: rgb(161,165,156);
+    color: white;
+    margin-top : 200px;
+    margin-left: 50px;
+  }
+	#exampleInputEmail1{
+		margin-top : 30px;
+	}
+
+
+#alla{
+	margin-left : 150px;
+	display : block;
+	float : left;
+	margin-right : 100px;
+}
+
+img{
+	
+}
+  

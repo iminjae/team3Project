@@ -201,7 +201,7 @@ public class BoardService {
 		int result1 = new BoardDao().updateBoard(conn, b);
 		// 사진게시판이라 파일첨부는 필수
 		
-		int result2 = new BoardDao().insertAttachment(conn, fileList);
+		int result2 = new BoardDao().updateAttachment(conn, fileList,b.getBoardNo());
 		
 		
 		System.out.println("result1 : " + result1);

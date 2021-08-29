@@ -31,6 +31,17 @@ Member loginUser = (Member) request.getAttribute("loginUser");
 		width:100%;
 		box-sizing:border-box;
 	}
+	button{
+  		background-color: rgb(53,61,64);
+  		color: rgb(255,255,255);
+  	}	
+  	h2{
+  		color: rgb(232,180,81);
+  	}
+  	th{
+  		
+  		color: rgb(232,180,81);
+  	}
 </style>
 </head>
 <body>
