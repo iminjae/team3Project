@@ -43,6 +43,14 @@ public class MainMove extends HttpServlet {
 		System.out.println("session = " + session);
 		
 		ArrayList<Board> listtwo = new EventBoardService().selectThListtwo();
+		String [] countb = new EventBoardService().selectCount();
+		String [] countr = new EventBoardService().selectCountr();
+		
+		
+		System.out.println("*************************" + countb[0]);
+		request.setAttribute("listtwo", listtwo);
+		request.setAttribute("countb", countb);
+		request.setAttribute("countr", countr);
 		
 		request.setAttribute("listtwo", listtwo);
 		

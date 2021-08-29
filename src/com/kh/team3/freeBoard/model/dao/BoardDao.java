@@ -96,7 +96,7 @@ public class BoardDao {
             				rset.getString("BOARD_TITLE"),
             				rset.getInt("BOARD_COUNT"),
             				rset.getDate("CREATE_DATE"),
-            				rset.getInt("CATEGORY_NO"),
+            				rset.getString("CATEGORY_NAME"),
             				rset.getString("USER_ID")
                            ));
             
@@ -179,7 +179,7 @@ public class BoardDao {
                     rset.getInt("BOARD_COUNT"),
                     rset.getDate("CREATE_DATE"),
                     rset.getInt("LIKE_COUNT"),
-                    rset.getInt("CATEGORY_NO"),
+                    rset.getString("CATEGORY_NAME"),
                     rset.getString("USER_ID")
                     );
          }
@@ -411,7 +411,7 @@ public class BoardDao {
 	            				rset.getString("BOARD_TITLE"),
 	            				rset.getInt("BOARD_COUNT"),
 	            				rset.getDate("CREATE_DATE"),
-	            				rset.getInt("CATEGORY_NO"),
+	            				rset.getString("CATEGORY_NAME"),
 	            				rset.getString("USER_ID")
 	            				
 	                           ));
@@ -461,7 +461,7 @@ public class BoardDao {
 	            				rset.getString("BOARD_TITLE"),
 	            				rset.getInt("BOARD_COUNT"),
 	            				rset.getDate("CREATE_DATE"),
-	            				rset.getInt("CATEGORY_NO"),
+	            				rset.getString("CATEGORY_NAME"),
 	            				rset.getString("USER_ID")
 	            				
 	                           ));

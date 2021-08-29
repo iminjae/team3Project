@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList, com.kh.team3.mystore.model.vo.Review, com.kh.team3.member.model.vo.Member "%>
 <%
    ArrayList<Review> myboard = (ArrayList<Review>)request.getAttribute("myboard");
-	int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).getStartpoint();
+  int starpoint = (int)((Member)request.getSession().getAttribute("loginUser")).getStartpoint();
 
 String title="제목";
 
@@ -81,7 +81,7 @@ String title="제목";
       <div id="menu">
         <button id="now" onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
-          <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
+          <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">리뷰 확인</button><br>
         <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
       </div>
     </div>
@@ -95,7 +95,7 @@ String title="제목";
         <thead>
            <tr align="center">
               <th width="100">BoardNo.</th>
-              <th width="100">Category</th>
+              <th width="120">Category</th>
               <th width="400">Title</th>
               <th width="80">Author</th>
                <th width="50">Count</th>
@@ -120,11 +120,11 @@ String title="제목";
                                
                                <%if(rv.getBoardtypeName().equals("판매게시판")) {%>
                               		 <%if(rv.getBoardStaus().equals("판매중")) {%>
-                                		 <td>[ <%= rv.getCategoryName()%> ] <%= rv.getBoardTitle()%><div class="badge bg-primary">판매중</div></td>
+                                		 <td>[ <%= rv.getCategoryName()%> ] <%= rv.getBoardTitle()%>&ensp;<div class="badge bg-primary">판매중</div></td>
                                 	  <%}else if(rv.getBoardStaus().equals("예약중")) {%>
-                                		 <td>[ <%= rv.getCategoryName()%> ] <%= rv.getBoardTitle()%> <div class="badge bg-success">예약중</div></td>
+                                		 <td>[ <%= rv.getCategoryName()%> ] <%= rv.getBoardTitle()%>&ensp; <div class="badge bg-success">예약중</div></td>
                                 	  <%}else if(rv.getBoardStaus().equals("판매완료")) {%>
-                                	  	 <td>[ <%= rv.getCategoryName()%> ] <%= rv.getBoardTitle()%> <div class="badge bg-warning">판매완료</div></td>
+                                	  	 <td>[ <%= rv.getCategoryName()%> ] <%= rv.getBoardTitle()%> &ensp;<div class="badge bg-warning">판매완료</div></td>
                                 	  <%} %>
                                <%}else{ %>
                                 <td><%= rv.getBoardTitle() %></td>
@@ -175,16 +175,23 @@ String title="제목";
 	                  var category = $(this).children().eq(1).text();             
 	                    console.log("카테고리 : "+ category + " bNo : " + bNo);
 	                    
-	                     if(category="판매게시판") {
-	                        location.href="<%= request.getContextPath()%>/sellDetail.bo?bNo="+ bNo;
-	                     }else if(category="자유게시판") {                      
-	                        location.href="<%= request.getContextPath()%>/detail.bo?bno="+ bNo;
-	                     }else if(category="무료나눔게시판") {
-	                        location.href="<%= request.getContextPath()%>/#?bNo="+ bNo;
-	                     }else if(category="신고게시판") {
-	                         location.href="<%= request.getContextPath()%>/#?bNo="+ bNo;
-	                     }
-	                     
+	                    switch (category){
+	                    case "판매게시판" :
+	                    	 location.href="<%= request.getContextPath()%>/sellDetail.bo?bNo="+ bNo;
+	                        break;
+	                    case "자유게시판" :
+	                    	  location.href="<%= request.getContextPath()%>/detail.bo?bno="+ bNo;
+	                        break;
+	                    case "무료나눔게시판" :
+	                    	   location.href="<%= request.getContextPath()%>/detail.sbo?bno="+ bNo;
+	                        break;
+	                    case "무료나눔게시판" :
+	                    	   location.href="<%= request.getContextPath()%>/detail.sbo?bno="+ bNo;
+	                        break;
+	                    default :
+	                        alert("확인할 수 없는 게시글 입니다.")
+	                  }
+
 	               })
 	            })
          <% } %>

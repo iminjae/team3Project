@@ -1,37 +1,180 @@
 @charset "UTF-8";
 
+/*명선님 css*/
+.wrap{
+    max-width: 480px;
+    margin: 0 auto; /* 화면 가운데로 */
+    background-color: #fff;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 
-        .all{
-            border: 1px solid black;
+}
+.rating .rate_radio {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    opacity: 0.001;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+    display: none;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url('resources/images/star/star.png');
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+}
+.rating .rate_radio:checked + label {
+    background-image: url('resources/images/star/star2.png');
+}
+
+
+
+.warning_msg {
+    display: none;
+    position: relative;
+    text-align: center;
+    background: #ffffff;
+    line-height: 26px;
+    width: 100%;
+    color: red;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+}
+
+
+/*s내꺼 CSS*/
+  /*전체 크기 조절*/
+        .allreviewForm{
             width: 500px;
             height: 600px; 
+           border: 1px solid black;
         }
 
-        .form{
+        .middle{
+          background-color: rgb(161, 165, 166);
+          border: 1px solid black;
+          width:480px;
+          height: 550px; 
+          margin-top: 20px;
+          margin-left: 10px;
+          border-radius: 8px;
+        }
+
+        /*리뷰쓰기*/
+        .reviewWriteTag{
+          font-size: 21px;
+          font-weight: 800;
+          color: rgb(232, 180, 81);
+          margin-top: -52px;
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          
+        }
+
+        /*폼*/
+        .reviewWriterform{
+            margin-top: -20px;
             margin-left: 20px;
-            width: 450px;
+            width: 480px;
             height: 480px; 
-            background-color: rgb(254, 255, 210);
             border-radius: 8px;
         }
 
-        .reviewtext{
+        /*00께 드리는 후기*/
+        .toSellerTag{
+            padding-top: 5px;
+            margin-left: -50px;
+            text-align: center;
+            margin-top: -10px;
+        }
+
+        /*텍스트아리아*/
+        .WriteTextArea{
             width: 400px;
             height: 100px;
             border-radius: 5px;
             border: 0;
             outline: 0;
-            background-color: rgb(223, 223, 223, 0.7);
-            margin-left: 25px;
-            margin-top: 20px;
+            border : 5px solid rgb(232, 180, 81);
+            margin-left: 13px;
+            margin-top: -2px;
+            color: rgb(23, 62, 96);
    
         }
 
-        .btnOk{
+
+        /*체크박스*/
+        input[name="review"]{
+          background-color: salmon;
+        }
+
+        input[name="review"] + label{
+           width: 25px;
+           height: 25px;
+        }
+
+        /*등록 버튼*/
+        .reviewFormBtn{
             text-align: center;
+            border: 0;
+            outline: 0;
+            background-color: rgb(23, 62, 96);
+            color: white;
+            margin-left: -30px;
+            padding-top: 5px;
+            font-weight: 900;
+        }
+
+        .reviewFormBtn:hover{
+            text-align: center;
+            border: 0;
+            outline: 0;
+            color : rgb(23, 62, 96);
+            background-color: white;
+          
         }
 
         .radio{
             margin-left: 30px;
             margin-top: -20px;
+        }
+
+        /*깃털사진*/
+        .reviewFormImg{
+            width: 60px;
+            height: 50px;
+            margin-left: 70px;
+            margin-top: 20px;
+        }
+
+        /*거래는 ~ goodbad*/
+        .goodbad{
+            color: rgb(232, 180, 81);
+            font-weight: 900;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            margin-top: -15px;
+        }
+
+        /*거래는 괜찮았나요?*/
+        .okTag{
+            text-align: center;
+            margin-left: -70px;
+
+        }
+
+        /*체크박스위로*/
+        .checkboxupup{
+            margin-top: -10px;
+
         }

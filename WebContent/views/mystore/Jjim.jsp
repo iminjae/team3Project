@@ -15,6 +15,11 @@
 <link href="resources\css\main.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<link
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+   rel="stylesheet"
+   integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+   crossorigin="anonymous" />
 <style>
 .ptag{
 font-size : 24px;
@@ -48,6 +53,12 @@ font-size : 24px;
     margin-top: 40px;  
    }
    
+   #statusTag{
+   	display: inline-block;
+   	margin-left :auto;
+   	margin-right :auto;
+   	text-align:center;
+   }
 
 </style>
 <body>
@@ -66,7 +77,7 @@ font-size : 24px;
 	      <div id="menu">
 	        <button onclick="location.href='<%=request.getContextPath()%>/myboard.ms'">내 게시글</button><br>
 	        <button id="now" onclick="location.href='<%=request.getContextPath()%>/like.ms'">찜♡</button><br>
-	        <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">내가 쓴 리뷰</button><br>
+	        <button onclick="location.href='<%=request.getContextPath()%>/myreview.ms'">리뷰 확인</button><br>
 	        <button onclick="location.href='<%=request.getContextPath()%>/tracking.ms'">배송 조회</button><br>
 	      </div>
 	    </div>
@@ -85,9 +96,24 @@ font-size : 24px;
 			        <div class="getboard"  >
 			        		<input type="hidden" value="<%=list.getBoardNo() %>">
 			        		<div onclick="location.href='<%=request.getContextPath()%>/sellDetail.bo?bNo=<%=list.getBoardNo() %>'">
-					            <img src="<%=request.getContextPath()%>/resources/board_upfiles/<%=list.getChangeName() %>" width="50px" height="50px"> <br>
+					           
+					            <img src="<%=request.getContextPath()%>/resources/board_upfiles/<%=list.getChangeName() %>" width="50px" height="50px"> 
 					            <p><%= list.getBoardTitle()%></p>
-					            <p><%= list.getUserId()%>&ensp;&ensp;조회수:<%= list.getBoardCount()%></p>			            
+					           
+						           	 <%if(list.getBoardStatus().equals("판매중")) {%>
+						         	    <div class="divTag" >
+	                                	   <button id="userTag"><%= list.getUserId()%></button>&ensp;&ensp;<div class="badge bg-primary">판매중</div>
+	                             		</div>
+	                               	  <%}else if(list.getBoardStatus().equals("예약중")) {%>
+	                               	  	<div class="divTag" >
+	                               		   <button id="userTag"><%= list.getUserId()%></button>&ensp;&ensp;<div class="badge bg-success">예약중</div>
+	                               		</div>
+	                               	  <%}else if(list.getBoardStatus().equals("판매완료")) {%>
+	                               	  	  <div class="divTag" >                               	  	 
+	                               	  	    <button id="userTag"><%= list.getUserId()%></button>&ensp;&ensp;<div class="badge bg-warning">판매완료</div>
+	                               	      </div>
+	                               	  <%} %>	
+   
 				            </div>
 				            <button class="btn-like" onclick="cancle();">🧡</button>  
 			        </div>

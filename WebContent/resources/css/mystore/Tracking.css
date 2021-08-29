@@ -33,7 +33,7 @@
 
 	/*택배 조회*/
    input[type=text], select[name="t_code"]{
-  	    border : solid 2px #96bbbd;
+  	    border : solid 2px rgb(232, 180, 81);
         border-radius: 8px;
         font-size: 18px;
         margin-left : 10px;
@@ -46,6 +46,7 @@
     font-size: 20px;
      margin-left: 100px;
      margin-top : -10px;
+
   }
 	
   /* 전송버튼 */
@@ -54,18 +55,24 @@
     background: white;
     color: rgb(31, 96, 124);
     font-size: 21px;
+    font-weight: 800;
     width: 250px;
     height: 50px;
     border-radius: 13px;
-    border-color: rgb(31, 96, 124);
+    border-color: rgb(232, 180, 81);
     float : right;
     margin-right: 70px;
     margin-top: -65px;
+    outline:none;
+
+    
   }
 
   #buttongo:hover {
-    background: #64a2ac;
+    background: rgb(232, 180, 81);
     color: #fff;
     border-color: #fff;
     transition: all ease-in-out .35s; 
   }
+  
+   input:focus {outline:none;}

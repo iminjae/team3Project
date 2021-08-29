@@ -19,19 +19,19 @@
 <body>
  <%@ include file="../common/menubar.jsp" %>
  	
- 	  <div class="center">
+ 	  <div class="center" text-align = "center">
        <p class="mytitle">신고목록</p>
        
        <br>
 
 
-	   <table class="rpList">
+	   <table class="rpList" >
         <thead>
            <tr>
-              <th width="100">BoardNo.</th>
+              <th width="50">BoardNo.</th>
               <th width="400">신고내용</th>
               <th width="80">신고자</th>
-               <th width="50">신고대상자</th>
+               <th width="80">신고대상자</th>
               <th width="200">신고날짜</th>           
            </tr>
         </thead>
@@ -46,11 +46,11 @@
                        <tr>
              
                                <td><%= rp.getReportNo() %></td>
-                               <td><%= rp.getReportCategory() %></td>
+                               <td><%= rp.getReportContent() %></td>  
                                <td><%= rp.getReportWriter() %></td>
                                <td><%= rp.getReportNick() %></td>
                                <td><%= rp.getReportDate() %></td> 
-                               <td><%= rp.getReportContent() %></td>                              
+                                                           
                        </tr>
                     <% } %>   
              <% } %>                   
@@ -62,10 +62,6 @@
     
     <script>
     
-	
-	    
-	    
-	    
 	    
 	    <% if(!rpList.isEmpty()){ %>
          $(function(){

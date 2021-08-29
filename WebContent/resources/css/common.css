@@ -2,7 +2,7 @@
 @import url(reset.css);
 *, *:after, *:before{box-sizing:border-box;}
 body{
-    background: #fffcf6 url(../images/common/bg-top.png) 0 0 repeat-x;
+    background: #fff  0 0 repeat-x;
     font: 14px Malgun Ghothic,"맑은고딕",sans-serif;
     color: #555;
     min-width:320px;
@@ -28,7 +28,7 @@ body{
     margin-left: 0;
     padding: 0;
 }
-.util-menu a{color: #fff;display: block;height:38px;line-height:38px;}
+.util-menu a{color: black;display: block;height:38px;line-height:38px;}
 #gnb{position: absolute;left: 0;bottom: 0;width: 100%;z-index: 100;}
 #gnb > ul > li{width:25%;float: left;position: relative;}
 #gnb > ul > li > a{color: #fff;font-size:18px;text-align:center;display: block;height:45px;line-height:45px;}

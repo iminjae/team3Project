@@ -39,7 +39,10 @@ public class BoardUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		int result=0;
+		String bno="1";
 		if(ServletFileUpload.isMultipartContent(request)) {
+			
 			int maxSize = 10 * 1024 * 1024; 
 			
 			String resources = request.getSession().getServletContext().getRealPath("/resources"); // 절대경로
@@ -53,14 +56,20 @@ public class BoardUpdateServlet extends HttpServlet {
 			Board b = new Board();
 			
 			String title = multiRequest.getParameter("title");
+
 			String content = multiRequest.getParameter("content");
+
 			String categoryNo = multiRequest.getParameter("categoryNo");
-			int bno = Integer.parseInt(request.getParameter("bno"));
+
 			
+			bno = multiRequest.getParameter("bno");
+			
+			
+		
 			b.setBoardTitle(title);
 			b.setCategoryNo(Integer.parseInt(categoryNo));
 			b.setBoardContent(content);
-			b.setBoardNo(bno);
+			b.setBoardNo(Integer.parseInt(bno));
 			
 			ArrayList<Attachment> fileList = new ArrayList<>();
 			
@@ -80,19 +89,19 @@ public class BoardUpdateServlet extends HttpServlet {
 					fileList.add(at);
 				}
 			}
-			int result = new BoardService().updateSBoard(b, fileList);
+			result = new BoardService().updateSBoard(b, fileList);
 			
 			
-			System.out.println("result : " + result);
+		}
+		
+		if(result > 0) { 
 			
-			if(result > 0) { //성공하면 바로 상세페이지로 보내고
-				request.setAttribute(String.valueOf(bno), "bno");
-				request.getRequestDispatcher("detail.sbo").forward(request, response);	
-			}else {
-				request.setAttribute("msg", "게시판 수정에 실패했습니다");
-				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-				view.forward(request, response);
-			}
+			
+			response.sendRedirect("detail.sbo?bno=" +bno);
+		}else {
+			request.setAttribute("msg", "게시판 수정에 실패했습니다");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
 		}
 	}
 
