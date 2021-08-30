@@ -21,13 +21,14 @@
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
+
 	
 	
-	 <div class="container">
-    <div class="row">
-        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
+	 <div class="container" >
+    <div class="row" align="center">
+        <div class="well col-xs-10 col-sm-10col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3" align="center">
+            <div class="row" align="center">
+                <div class="col-xs-6 col-sm-6 col-md-6 text-left" >
                     <address>
                         No.<%=rp.getReportNo()%>
                         
@@ -47,7 +48,7 @@
                     <h1 style="font-size:250%"><strong>신고서</strong></h1>
                 </div>
                
-                <table class="table table-hover">
+                <table class="table table-hover" align="center">
                     <thead>
                         <tr>
                         
@@ -82,8 +83,11 @@
             </div>
         </div>
     </div>
-   
+    </div>
    
     
 </body>
+<br>
+<br>
+<%@include file = "../common/footer.jsp" %>
 </html>

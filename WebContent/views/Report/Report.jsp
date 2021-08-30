@@ -18,14 +18,15 @@
 
 <body>
  <%@ include file="../common/menubar.jsp" %>
+ 
  	
- 	  <div class="center" text-align = "center">
-       <p class="mytitle">신고목록</p>
+ 	  <div class="center" align="center" >
+       <h1 style="font-size:250%"><strong>신고목록</strong></h1>
        
        <br>
 
 
-	   <table class="rpList" >
+	   <table class="rpList" align="center" >
         <thead>
            <tr>
               <th width="50">BoardNo.</th>
@@ -35,7 +36,7 @@
               <th width="200">신고날짜</th>           
            </tr>
         </thead>
-          <div class="rpList">
+          <div class="rpList" align="center">
               <tbody>
               <% if(rpList.isEmpty()){ %>
                  <tr>
@@ -78,4 +79,5 @@
     </script>
     
 </body>
+<%@include file = "../common/footer.jsp" %>
 </html>
