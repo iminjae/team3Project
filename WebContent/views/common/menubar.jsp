@@ -62,6 +62,7 @@
                   <li><a href="<%=request.getContextPath()%>/MyPageMove.me">마이 페이지</a></li>
                   <li><a href="<%=request.getContextPath()%>/mystore.ms">내 상점</a></li>
                   <li><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
+                  <li><a href="<%=request.getContextPath()%>/logout.me"><%=loginUserId %></a></li>
               	    <li>  <img src="<%=contextPath%>/resources/board_upfiles/<%= path %>" width="30px" height="30px"> </li>
                </ul>
                <nav id="gnb">

@@ -84,7 +84,7 @@
 					<div class="visual-item-wrap item1">
 					<img id="imgg" src="<%=request.getContextPath()%>/resources/board_upfiles/<%=b.getTitleImg()  %>">
 					<h4 class="visual-title"> &lt;<%=b.getBoardTitle() %>&gt;</h4>
-					<p class="detail-view"><a href="<%=request.getContextPath()%>/detailuser.th?bNo=<%=b.getBoardNo() %>">자세히 보기</a></p>
+					<p class="detail-view"><a href="<%=request.getContextPath()%>/detailuser.th?bId=<%=b.getBoardNo() %>">자세히 보기</a></p>
 					</div>
 				</li>
 			 	<%} %>
