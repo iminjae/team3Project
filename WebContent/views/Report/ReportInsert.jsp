@@ -148,4 +148,5 @@ String userId = ((Member) request.getSession().getAttribute("loginUser")).getUse
     </script>
     
 </body>
+<%@include file = "../common/footer.jsp" %>
 </html>
