@@ -34,7 +34,7 @@ String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNi
   #one{
     text-align: center;
     font-size: large;
-    background-color: blueviolet;
+    background-color: rgb(23,62,96);
     color: white;
     font-weight: bold;
   }
@@ -54,7 +54,7 @@ String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNi
   #xkfxhl{
     width: 100px;
     height: 50px;
-    background-color: blueviolet;
+    background-color: rgb(161,165,166);
     color: white;
 
   }
@@ -145,6 +145,7 @@ String nickName = ((Member)request.getSession().getAttribute("loginUser")).getNi
 			<br>
 
 			<div class="btns" align="center">
+			<br><br>
 
 				<input type="submit" id="xkfxhl" value="작성하기">
 			</div>

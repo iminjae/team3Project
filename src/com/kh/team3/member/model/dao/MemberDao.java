@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.team3.eventBoard.model.vo.Board;
 import com.kh.team3.member.model.vo.Member;
 
 public class MemberDao {
@@ -253,7 +252,7 @@ public class MemberDao {
 
 	public ArrayList<Member> selectMember(Connection conn) {
 		ArrayList<Member> list = new ArrayList<>();
-
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
@@ -265,6 +264,7 @@ public class MemberDao {
 			while (rset.next()) {
 				Member m = new Member();
 				m.setUserId(rset.getString("USER_ID"));
+				
 				list.add(m);
 				
 			}
@@ -281,6 +281,96 @@ public class MemberDao {
 	
 	}
 
+	public Member findMembertwo(Connection conn, String name, String phone) {
+		Member list = new Member();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		System.out.println("다오시작");
+		String sql = prop.getProperty("selectlistmem");
+		System.out.println(name + phone);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			
+			
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				list.setUserId(rset.getString("USER_ID"));
+				System.out.println("!@#!@#!@%!#" +rset.getString("USER_ID"));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return list;
+
+	
+	}
+
+	public Member findMemberthree(Connection conn, String id, String phone) {
+		Member list = new Member();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		System.out.println("다오시작");
+		String sql = prop.getProperty("selectlistmempw");
+		System.out.println(id + phone);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, phone);
+			
+			
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				list.setUserId(rset.getString("USER_ID"));
+				System.out.println("!@#!@#!@%!#" +rset.getString("USER_ID"));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return list;
+
+	
+	}
+
+	public int updateMemberpw(Connection conn, String id , String pw) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updateMemberpw");
+		System.out.println(id + pw);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
+			
+		
+			System.out.println("!@#!@#!@#");
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("다오 re" + result);
+		return result;
+	}
 }
 	
 

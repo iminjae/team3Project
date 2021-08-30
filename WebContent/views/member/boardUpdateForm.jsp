@@ -22,7 +22,13 @@
 
 <title>Insert title here</title>
 <style>
-
+	 .list-group{
+    float: left;
+    margin-left: 30px;
+    width: 400px;
+    height: 300px;
+    
+  }
 	#updateForm>table{
 		border:1px solid white;
 	}
@@ -31,6 +37,14 @@
 		width:100%;
 		box-sizing:border-box;
 	}
+	  #one{
+    text-align: center;
+    font-size: large;
+    background-color: rgb(23,62,96);
+    color: white;
+    font-weight: bold;
+  }
+	
 	 .outer {
 	width: 600px;
 	height: 650px;
@@ -38,7 +52,7 @@
 	color: black;
 	 float: left;
 	 display :block;
-	 margin-left :  400px;
+	 margin-left :  100px;
 	
 }
 
@@ -73,6 +87,29 @@
 <body>
 	
 	<%@ include file="../common/menubar.jsp" %>
+	
+		  <div id="header-wrap">
+  
+   <div class="menu">
+   <div class="list-group">
+    <button type="button" id ="one" class="list-group-item list-group-item-action" aria-current="true">
+      MyPage Menu
+    </button> 
+    <form action="<%=request.getContextPath()%>/MyPageUpdateMove.me" method="post">
+   <input type="submit" class="list-group-item list-group-item-action" value="탈퇴하기" name="one"></button>
+   <input type="submit" class="list-group-item list-group-item-action" value="회원정보수정" name="two"></button>
+    <input type="submit" class="list-group-item list-group-item-action" value="비밀번호 변경" name="four">
+   <input type="submit" class="list-group-item list-group-item-action" value="회원사진 설정" name="five">  
+		<% if(request.getSession().getAttribute("userId").equals("admin")){ %>
+			<input type="submit" id="ch" class="list-group-item list-group-item-action" value="관리자 게시판" name="three"> 
+			<% }else{ %>
+				
+				<% } %>
+
+</form>
+  </div>
+		</div>
+		</div>
 	
 	<div class="outer">
 		<br>

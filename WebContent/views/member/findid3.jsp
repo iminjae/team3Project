@@ -14,6 +14,83 @@
     <link rel="stylesheet" href="resources\css\login.css">
    <Style>
    
+body{
+
+    font-weight: bold;
+}
+.top{
+
+    margin-top: 100px;
+}
+
+.center{
+    height: 60%;
+    margin-bottom: 280px;
+}
+
+.footer{
+    font-size: x-small;
+    text-align: center;
+   
+  
+}
+
+#logo{
+    display: block;
+  
+    margin: auto;
+    width: 300px;
+    height: 200px;
+}
+
+.login{
+    text-align: center;
+}
+
+
+#idPath, #pwdPath{
+   
+    width: 400px;
+    height: 45px;
+    margin-top: 10px;
+}
+
+#path{
+    width: 410px;
+    height: 45px;
+    margin-top: 20px;
+    background-color: rgb(232,180, 81);
+    font-size: large;
+    font-weight: bold;
+    color: white;
+}
+
+#line{
+    width: 410px;
+    color: rgb(201, 210, 214);
+    border: solid 1px rgb(201, 210, 214);
+}
+
+.check{
+   
+
+    margin-right: 300px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.find{
+   margin-top: 100px;
+    text-align: center;
+}
+
+#footerimg{
+ margin-top: 4px;
+width: 20px;
+height: 20px;
+}
+
+   
 
 
    </Style>
@@ -32,32 +109,22 @@
 
     <div class="center">
 
-        <form class="login" method="post"  action="<%=request.getContextPath() %>/login.me"
-          onSubmit="return LoginValidate();">
+        <form class="login" method="post"  action="<%=request.getContextPath() %>/findpw.me">
         <input type="text"  id="idPath" name="id" placeholder="아이디">  <br>
 
-        <input type="password" id="pwdPath" name="pw" placeholder="비밀번호">    
+        <input type="password" id="idPath" name="phone" placeholder="휴대폰 번호">    
 
             <br>
-        <input type="submit" value="로그인" id="path" class="paths">
+        <input type="submit" value="패스워드 찾기" id="path" class="paths">
 
     <div class="check">
-    <input type="checkbox" id="session"> <label>로그인 유지</label>
+  
 </div>
     
     <hr id="line">
 </form>
 
 
-<div class="find">
-
-    <a href="views\member\findid.jsp" onclick="window.open(this.href,'팝업창','width=500,height=800'); return false;" id="idfind">아이디 찾기</a>
-    <span> | </span>
-    <a href="views\member\findid3.jsp" onclick="window.open(this.href,'팝업창','width=500,height=800'); return false;" id="pwfind">비밀번호 찾기</a>
-    <span> | </span>    
-    <a id="createuser" href="<%=request.getContextPath()%>/create.bo">회원가입</a>
-
-</div>
 
 
 </div>

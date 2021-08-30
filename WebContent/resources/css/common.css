@@ -84,7 +84,7 @@ body{
 .mobile-menu-close button span:first-child + span{
     transform: rotate(45deg);
 }
-.sec-tit-1{color: #915540;font-size: 17px;margin-bottom: 20px;}
+.sec-tit-1{color: rgb(232, 180,81);font-size: 17px;margin-bottom: 20px;}
 #footer-wrap{
     background-color: #fff;
 }
