@@ -55,12 +55,14 @@
      font-size: 13px;
      background : white;
      border-radius : 6px;
-     border-color : rgb(201, 210, 214);
+     border-color : rgb(232, 180, 81);
+     font-weight:900;
+     color :  rgb(232, 180, 81);
   }
   
   #writeboard:hover{
-   color : rgb(201, 210, 214);
-   border-color : rgb(201, 210, 214);
+   color : rgb(232, 180, 81);
+   border-color :rgb(232, 180, 81);
    font-size : 14px;
   }
   
