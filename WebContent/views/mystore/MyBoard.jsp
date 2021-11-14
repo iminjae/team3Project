@@ -98,7 +98,7 @@ String title="제목";
               <th width="120">Category</th>
               <th width="400">Title</th>
               <th width="80">Author</th>
-               <th width="50">Count</th>
+              <th width="50">Count</th>
               <th width="200">CreatDate</th>           
            </tr>
         </thead>
@@ -182,9 +182,6 @@ String title="제목";
 	                        break;
 	                    case "자유게시판" :
 	                    	  location.href="<%= request.getContextPath()%>/detail.bo?bno="+ bNo;
-	                        break;
-	                    case "무료나눔게시판" :
-	                    	   location.href="<%= request.getContextPath()%>/detail.sbo?bno="+ bNo;
 	                        break;
 	                    case "무료나눔게시판" :
 	                    	   location.href="<%= request.getContextPath()%>/detail.sbo?bno="+ bNo;
